@@ -1,0 +1,42 @@
+/* pages/customer/address/addressAdd/addressAdd.wxss */
+page {
+  height: 100%;
+  background: white;
+}
+
+.addressAdd {
+  
+}
+
+.bottom-bar {
+  width: 100vw;
+  height: 160rpx;
+  position: fixed;
+  bottom: 0;
+  display: flex;
+  padding: 0 32rpx;
+  padding-top: 20rpx;
+  box-sizing: border-box;
+}
+.deleteBtn {
+  flex: 1;
+  background: white;
+  border-radius: 42rpx;
+  border: 2rpx solid #EE0A24;
+  height: 84rpx;
+  text-align: center;
+  line-height: 84rpx;
+  color: #EE0A24;
+  box-sizing: border-box;
+  background-color: white;
+}
+.saveBtn {
+  flex: 1;
+  background: #1989FA;
+  border-radius: 42rpx;
+  height: 84rpx;
+  text-align: center;
+  line-height: 84rpx;
+  color: white;
+  margin-left: 30rpx;
+}

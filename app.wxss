@@ -1,10 +1,28 @@
 /**app.wxss**/
-.container {
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
-  padding: 200rpx 0;
+.base {
+  color: #1989FA;
+}
+
+/* 空心按钮 */
+.btn1 {
+  background: white;
+  border-radius: 42rpx;
+  border: 2rpx solid #EE0A24;
+  height: 84rpx;
+  text-align: center;
+  line-height: 84rpx;
+  color: #EE0A24;
   box-sizing: border-box;
-} 
+  padding-top: 20rpx;
+  background-color: white;
+}
+
+/* 实心按钮 */
+.btn2 {
+  background: #1989FA;
+  border-radius: 42rpx;
+  height: 84rpx;
+  text-align: center;
+  line-height: 84rpx;
+  color: white;
+}

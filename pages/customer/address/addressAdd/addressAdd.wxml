@@ -1,0 +1,39 @@
+<!--pages/customer/address/addressAdd/addressAdd.wxml-->
+<view class="addressAdd">
+  <van-field
+    label="收货人"
+    model:value="{{ name }}"
+    placeholder="请输入收货人姓名"
+    maxlength="{{10}}"
+  />
+  <van-field
+    label="手机号"
+    model:value="{{ phone }}"
+    placeholder="请输入收货人手机号"
+    maxlength="{{11}}"
+  />
+  <picker mode="region" value="{{region}}" bindchange="bindRegionChange">
+    <van-field
+      label="省市区"
+      model:value="{{ region }}"
+      placeholder="请选择省市区"
+      readonly
+    />
+  </picker>
+  <van-field
+    label="详细地址"
+    model:value="{{ detailAddress }}"
+    placeholder="请输入详细地址"
+    type="textarea"
+    autosize
+    maxlength="{{50}}"
+  />
+  <van-cell title="默认地址">
+    <switch checked="{{isDefault}}" bindchange="defaultChange"/>
+  </van-cell>
+
+  <view class="bottom-bar">
+    <view class="deleteBtn" bind:tap="toDelete">删除</view>
+    <view class="saveBtn" bind:tap="toSave">保存</view>
+  </view>
+</view>

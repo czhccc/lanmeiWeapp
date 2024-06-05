@@ -1,0 +1,75 @@
+/* pages/customer/address/addressList/addressList.wxss */
+page {
+  height: 100%;
+  background: #F4F4F4;
+}
+
+.addressList {
+  padding-bottom: 200rpx;
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 702rpx;
+  background: #FFFFFF;
+  border-radius: 16rpx;
+  margin: 0 auto;
+  margin-top: 32rpx;
+  box-sizing: border-box;
+  padding: 32rpx;
+}
+.content {
+  
+}
+.content-line1 {
+  display: flex;
+  align-items: center;
+}
+.name {
+  font-weight: 700;
+  font-size: 28rpx;
+  color: #333333;
+}
+.phone {
+  margin-left: 16rpx;
+  font-weight: 700;
+  font-size: 28rpx;
+  color: #333333;
+}
+.address {
+  margin-top: 10rpx;
+  font-size: 24rpx;
+  color: #333333;
+  word-break: break-all;
+}
+.edit {
+  font-size: 32rpx;
+  color: #1989FA;
+  line-height: 40rpx;
+  word-break: keep-all;
+  margin-left: 32rpx;
+}
+
+.bottom-bar {
+  width: 100vw;
+  height: 160rpx;
+  position: fixed;
+  bottom: 0;
+  display: flex;
+  padding: 0 32rpx;
+  padding-top: 10rpx;
+  box-sizing: border-box;
+  padding-top: 20rpx;
+  background-color: white;
+}
+.addBtn {
+  flex: 1;
+  background: #1989FA;
+  border-radius: 42rpx;
+  height: 84rpx;
+  text-align: center;
+  line-height: 84rpx;
+  color: white;
+}
