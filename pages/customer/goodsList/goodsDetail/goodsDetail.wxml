@@ -19,7 +19,7 @@
 	<view class="detail">
 		<view class="detail-title">商品详情</view>
 		<view class="rich-wrapper">
-			<rich-text class="detail-content" nodes="<p>这是商品详情</p><p><img src=\"https://hhym.zjwocai.com/hhym-file/2024/05/06/84d5344fdff24497925b37ebb5ff1387.png\"></p>"></rich-text>
+			<rich-text class="detail-content" nodes="<p>这是商品详情</p><p><img src=\'https://hhym.zjwocai.com/hhym-file/2024/05/06/84d5344fdff24497925b37ebb5ff1387.png\'></p>"></rich-text>
 		</view>
 	</view>
 

@@ -1,66 +1,49 @@
 // pages/customer/seeSeller/seeSeller.js
 Page({
-
-  /**
-   * 页面的初始数据
-   */
   data: {
-
+    activeName: '1',
   },
-
-  /**
-   * 生命周期函数--监听页面加载
-   */
   onLoad(options) {
 
   },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady() {
-
+  onChange(e) {
+    console.log(e)
+    this.setData({
+      activeName: e.detail
+    })
   },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow() {
-
+  addressBtnClick(e) {
+    console.log(e)
+    wx.openLocation({
+      longitude: 121.4737,
+      latitude: 31.2304,
+      scale: 18,
+      name: '花桥村',
+      address: '浙江省绍兴市嵊州市花桥村'
+    });
   },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide() {
-
+  phoneBtnClick(e) {
+    console.log(e)
+    wx.makePhoneCall({
+      phoneNumber: '13989536366'
+    })
   },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload() {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh() {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom() {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage() {
-
+  copyPhone(e) {
+    console.log(e)
+    wx.setClipboardData({
+      data: 'aaaaa',
+      success: function (res) {
+        wx.showToast({
+          title: '复制成功',
+          icon: 'success',
+        });
+      },
+      fail: function (err) {
+        wx.showToast({
+          title: '复制失败',
+          icon: 'none',
+        });
+      }
+    });
   }
 })

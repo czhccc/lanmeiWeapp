@@ -6,3 +6,30 @@ page {
 .seeSeller {
 	
 }
+
+.address-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 30rpx;
+}
+.address-text {
+  font-size: 36rpx;
+}
+.address-btn {
+  margin-left: 20rpx;
+}
+
+.phone-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 30rpx;
+}
+.phone-text {
+  font-size: 36rpx;
+}
+.phone-btn {
+  margin-left: 20rpx;
+}
+[src]{
+	max-width:100%;
+}

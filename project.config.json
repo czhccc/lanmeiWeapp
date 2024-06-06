@@ -12,12 +12,7 @@
     "minified": true,
     "enhance": true,
     "showShadowRootInWxmlPanel": true,
-    "packNpmRelationList": [
-      {
-        "packageJsonPath": "./package.json",
-        "miniprogramNpmDistDir": "./miniprogram"
-      }
-    ],
+    "packNpmRelationList": [],
     "babelSetting": {
       "ignore": [],
       "disablePlugins": [],
