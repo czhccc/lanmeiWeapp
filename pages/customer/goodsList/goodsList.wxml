@@ -1,0 +1,47 @@
+<!--pages/prefer/prefer.wxml-->
+<view class="prefer">
+	<van-search value="{{ searchParam }}" bind:search="onSearch" placeholder="搜索商品" shape="round" />
+	<TabBar id="tabBar" />
+	<view class="content">
+		<view class="left">
+			<view class="lef-item" wx:for="{{category}}" wx:key="index">
+				<view class="left-item-title">{{item.name}}</view>
+				<view class="left-item-item" wx:for="{{item.children}}" wx:key="index" wx:for-item="iten" bindtap="categoryItemClick" data-item="{{iten}}"
+					style="color:{{choosedCategoryId==iten.id?'#0523A9':'#999999'}};background:{{choosedCategoryId==iten.id?'white':'#F3F3F3'}}">{{iten.name}}</view>
+			</view>
+		</view>
+		<view class="right">
+			<view class="sort">
+				<view class="zhtj" bindtap="sortClick" style="color:{{!sortType?'#0523A9':'#999999'}};">综合推荐</view>
+				<view class="xl" bindtap="sortClick" data-flag="sale_num">
+					<view class="sort-text" style="color:{{sortType=='sale_num'?'#0523A9':'#999999'}};">销量</view>
+					<image class="sort-img" wx:if="{{sortType!='sale_num'}}" src="/images/common/sort0.png" mode=""/>
+					<image class="sort-img" wx:if="{{sortType=='sale_num' && sortOrder=='asc'}}" src="/images/common/sort1.png" mode=""/>
+					<image class="sort-img" wx:if="{{sortType=='sale_num' && sortOrder=='desc'}}" src="/images/common/sort2.png" mode=""/>
+				</view>
+				<view class="xl">
+					<view class="sort-text" bindtap="sortClick" data-flag="cash_price" style="color:{{sortType=='cash_price'?'#0523A9':'#999999'}};">价格</view>
+					<image class="sort-img" wx:if="{{sortType!='cash_price'}}" src="/images/common/sort0.png" mode=""/>
+					<image class="sort-img" wx:if="{{sortType=='cash_price' && sortOrder=='asc'}}" src="/images/common/sort1.png" mode=""/>
+					<image class="sort-img" wx:if="{{sortType=='cash_price' && sortOrder=='desc'}}" src="/images/common/sort2.png" mode=""/>
+				</view>
+			</view>
+			<scroll-view scroll-y class="goods" bindscrolltolower="scrollToLower">
+				<view class="good" wx:for="{{listData}}" wx:key="index" bindtap="goodsClick" data-item="{{item}}">
+					<image class="good-img" src="{{item.briefImage}}" mode=""/>
+					<view class="good-content">
+						<view class="good-title">{{item.name}}</view>
+						<view class="good-people">{{item.saleNum}}人已购买</view>
+						<view class="good-price">¥{{item.cashPrice}}</view>		
+					</view>
+				</view>
+				<view wx:if="{{listData.length===0}}" style="display: flex;flex-direction: column;align-items: center;position: absolute;top: 50%;transform: translateY(-50%);width: 100%;">
+					<image src="/images/common/blank-list.png" mode="widthFix" style="width: 80%;"/>
+					<view style="text-align: center;">暂无数据</view>
+				</view>
+				<view wx:if="{{listData.length>0}}" style="height: 60rpx;"></view>
+			</scroll-view>
+		</view>
+		
+	</view>
+</view>

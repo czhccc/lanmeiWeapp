@@ -1,8 +1,35 @@
 {
   "pages": [
+    "pages/customer/seeSeller/seeSeller",
+    "pages/customer/goodsList/goodsList",
+    "pages/customer/goodsList/goodsDetail/goodsDetail",
+    "pages/customer/mine/mine",
     "pages/customer/address/addressList/addressList",
-    "pages/customer/address/addressAdd/addressAdd"
+    "pages/customer/address/addressAdd/addressAdd",
+    "pages/customer/home/home"
+    
   ],
+  "usingComponents": {
+    "NavBar": "./components/NavBar/NavBar",
+    "TabBar": "./components/TabBar/TabBar"
+  },
+  "tabBar": {
+    "custom": true,
+    "list": [
+      {
+        "pagePath": "pages/customer/home/home",
+        "text": "首页"
+      },
+      {
+        "pagePath": "pages/customer/goodsList/goodsList",
+        "text": "优选"
+      },
+      {
+        "pagePath": "pages/customer/mine/mine",
+        "text": "我的"
+      }
+    ]
+  },
   "window": {
     "navigationBarTextStyle": "black",
     "navigationBarTitleText": "Weixin",

@@ -1,0 +1,10 @@
+<!--components/common/NavBar/NavBar.wxml-->
+<view class="NavBar">
+  <van-nav-bar
+    title="{{title}}"
+    left-arrow="{{!noBackArrow}}"
+    bind:click-left="toBack"
+    fixed
+    placeholder="{{placeholder}}"
+  />
+</view>

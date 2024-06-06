@@ -1,0 +1,91 @@
+/* pages/deal/dealPrefer/dealPreferDetail/dealPreferDetail.wxss */
+page {
+	height: 100%;
+}
+.goodsDetail {
+	padding-bottom: 178rpx;
+}
+
+.swiper {
+	width: 100vw;
+	height: 750rpx;
+}
+.swiper-item {
+	width: 100vw;
+	height: 750rpx;
+}
+.swiper-img {
+	width: 100vw;
+	height: 750rpx;
+}
+
+.introduce {
+	margin-top: 36rpx;
+}
+.price-wrapper {
+	display: flex;
+	align-items: center;
+	box-sizing: border-box;
+	padding: 0 32rpx;
+	justify-content: space-between;
+}
+.price {
+	font-size: 40rpx;
+color: #F62603;
+font-weight: 700;
+}
+.people {
+	font-size: 24rpx;
+	color: #999999;
+}
+.name {
+	padding: 0 32rpx;
+	margin-top: 16rpx;
+	font-weight: 700;
+font-size: 32rpx;
+color: #333333;
+}
+
+.detail {
+	margin-top: 60rpx;
+}
+.detail-title {
+	font-weight: 700;
+font-size: 36rpx;
+color: #333333;
+padding: 0 32rpx;
+}
+.rich-wrapper {
+	margin-top: 24rpx;
+	padding: 0 32rpx;
+	
+}
+.detail-content {
+	width: 100%;
+	max-width: 100%;
+}
+[src]{
+	max-width:100%;
+}
+
+.bottom-bar {
+  width: 100vw;
+  height: 160rpx;
+  position: fixed;
+  bottom: 0;
+  display: flex;
+  padding: 0 32rpx;
+  padding-top: 10rpx;
+  box-sizing: border-box;
+  padding-top: 20rpx;
+  background-color: white;
+}
+.buyBtn {
+  flex: 1;
+  background: #1989FA;
+  border-radius: 42rpx;
+  height: 84rpx;
+  text-align: center;
+  line-height: 84rpx;
+  color: white;
+}

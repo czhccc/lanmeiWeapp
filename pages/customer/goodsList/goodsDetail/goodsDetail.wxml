@@ -1,0 +1,29 @@
+<!--pages/deal/dealPrefer/dealPreferDetail/dealPreferDetail.wxml-->
+<view class="goodsDetail">
+	<swiper class="swiper" indicator-dots="{{true}}" autoplay="{{true}}" interval="{{5000}}" duration="{{500}}" circular="{{true}}">
+		<swiper-item class="swiper-item" wx:for="{{5}}" wx:key="index">
+			<image class="swiper-img" src="https://pic.rmb.bdstatic.com/bjh/058dc53124683a55cc1acd72e80a72fc2461.png@h_1280"></image>
+		</swiper-item>
+	</swiper>
+
+	<view class="introduce">
+		<view class="price-wrapper">
+			<!-- <view class="price">¥{{theData.cashPrice}}</view> -->
+			<view class="price">¥200</view>
+			<!-- <view class="people">{{theData.saleNum}}人已购买</view> -->
+			<view class="people">200人已购买</view>
+		</view>
+		<view class="name">{{theData.name}}</view>
+	</view>
+
+	<view class="detail">
+		<view class="detail-title">商品详情</view>
+		<view class="rich-wrapper">
+			<rich-text class="detail-content" nodes="<p>这是商品详情</p><p><img src=\"https://hhym.zjwocai.com/hhym-file/2024/05/06/84d5344fdff24497925b37ebb5ff1387.png\"></p>"></rich-text>
+		</view>
+	</view>
+
+	<view class="bottom-bar">
+    <view class="buyBtn" bind:tap="toBuy">购买</view>
+  </view>
+</view>

@@ -1,0 +1,15 @@
+/* components/common/NavBar/NavBar.wxss */
+.van-nav-bar {
+  background-color: rgba(255, 255, 255, 0);
+}
+.van-icon-arrow-left {
+  color: black !important;
+  font-size: 20px;
+}
+.van-nav-bar__title {
+  color: white;
+  font-size: 32rpx;
+}
+.van-hairline--bottom:after {
+  display: none;
+}

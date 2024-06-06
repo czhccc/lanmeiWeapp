@@ -1,0 +1,114 @@
+/* pages/prefer/prefer.wxss */
+page {
+	height: 100%;
+}
+.prefer {
+	
+}
+
+.content {
+	display: flex;
+}
+
+.left {
+	min-width: 200rpx;
+	max-width: 200rpx;
+	background: #F3F3F3;
+	border-radius: 0rpx 16rpx 0rpx 0rpx;
+	height: calc(100vh - 54rpx - 32rpx - 140rpx - 34rpx - 30rpx);
+	overflow-y: auto;
+}
+.left-item {
+
+}
+.left-item-title {
+	font-weight: 700;
+	font-size: 32rpx;
+	color: #333333;
+	text-align: center;
+	box-sizing: border-box;
+	padding: 20rpx;
+}
+.left-item-item {
+	text-align: center;
+	font-size: 28rpx;
+	box-sizing: border-box;
+	padding: 20rpx;
+}
+
+
+.right {
+	flex: 1;
+	padding: 0 20rpx;
+	box-sizing: border-box;
+}
+.sort {
+	display: flex;
+	align-items: center;
+	font-size: 28rpx;
+	color: rgb(171,171,171);
+}
+.zhtj {
+
+}
+.xl {
+	display: flex;
+	align-items: center;
+	margin-left: 40rpx;
+}
+.sort-text {
+	
+}
+.sort-img {
+	width: 32rpx;
+	height: 32rpx;
+	position: relative;
+	top: 4rpx;
+}
+.goods {
+	margin-top: 24rpx;
+	height: calc(100vh - 54rpx - 32rpx - 200rpx - 34rpx);
+	overflow-y: auto;
+}
+.good {
+	display: flex;
+	margin-bottom: 40rpx;
+}
+.good-img {
+	width: 180rpx;
+	min-width: 180rpx;
+	height: 180rpx;
+	border-radius: 16rpx;
+}
+.good-content {
+	flex: 1;
+	position: relative;
+}
+.good-title {
+	font-size: 28rpx;
+	color: #333333;
+	margin-left: 20rpx;
+	font-weight: 700;
+	display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+	overflow: hidden;
+	position: absolute;
+	top: 0;
+}
+.good-people {
+	font-size: 24rpx;
+	color: #999999;
+	margin-left: 20rpx;
+	position: absolute;
+	bottom: 44rpx;
+}
+.good-price {
+	font-size: 24rpx;
+	color: #F62603;
+	font-weight: 700;
+	margin-left: 20rpx;
+	margin-top: 16rpx;
+	position: absolute;
+	bottom: 0;
+}

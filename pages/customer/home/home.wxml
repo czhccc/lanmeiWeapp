@@ -1,0 +1,60 @@
+<!--pages/home/home.wxml-->
+<view class="home">
+	<NavBar id="navBar" class="navBar" title="弘焕" noBackArrow />
+	<image class="back" src="/images/home/home-backImg.png"></image>
+
+	<TabBar id="tabBar" />
+
+	<view class="swiper-wrapper">
+		<swiper class="swiper" autoplay="true" interval="3000" duration="500" 	indicator-dots indicator-color="rgba(255,255,255,0.55)" 	indicator-active-color="#FFFFFF">
+			<swiper-item wx:for="{{swiper}}" wx:key="index">
+				<image class="swiper-img" src="{{item}}"></image>
+			</swiper-item>
+		</swiper>
+	</view>
+
+	<view class="nav-items">
+		<view class="nav-item" bindtap="navigate" data-flag="ljyy">
+			<image class="nav-item-img" src="../../images/home/nav-img1.png" alt=""/>
+			<view class="nav-item-title">立即预约</view>
+		</view>
+		<view class="nav-item" bindtap="navigate" data-flag="yxsc">
+			<image class="nav-item-img" src="../../images/home/nav-img2.png" alt=""/>
+			<view class="nav-item-title">优选商城</view>
+		</view>
+		<view class="nav-item" bindtap="navigate" data-flag="jfsc">
+			<image class="nav-item-img" src="../../images/home/nav-img3.png" alt=""/>
+			<view class="nav-item-title">积分商城</view>
+		</view>
+		<view class="nav-item" bindtap="navigate" data-flag="vipqy">
+			<image class="nav-item-img" src="../../images/home/nav-img4.png" alt=""/>
+			<view class="nav-item-title">VIP权益</view>
+		</view>
+	</view>
+
+	<view class="service" bindtap="toOrderRecord">
+		<image class="service-backImg" src="/images/home/service.png" mode=""/>
+		<image class="service-arrow" src="/images/home/service-arrow.png" mode=""/>
+		<view class="service-left">
+			<text class="service-left-text1">待服务</text>
+			<text class="service-left-text2">{{waitingNumber || '0'}}</text>
+		</view>
+	</view>
+
+	<view class="hxtt" wx:for="{{recommend}}" wx:key="index">
+		<view class="hxtt-title">
+			<text class="hxtt-title-left">{{item.name}}</text>
+			<view class="hxtt-title-right"></view>
+		</view>
+		<view class="hxtt-content">
+			<view class="hxtt-item" wx:for="{{item.salesList}}" wx:for-item="iten" wx:key="id" bindtap="goodsClick" data-item="{{iten}}">
+				<image class="hxtt-item-img" src="{{iten.briefImage}}" mode=""/>
+				<view class="hxtt-item-bottom">
+					<view class="hxtt-item-bottom-text1">{{iten.name}}</view>
+					<view class="hxtt-item-bottom-text2">¥{{iten.cashPrice}}</view>
+				</view>
+			</view>
+		</view>
+	</view>
+	<view class="blank"></view>
+</view>

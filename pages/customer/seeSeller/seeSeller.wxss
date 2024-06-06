@@ -1,0 +1,8 @@
+/* pages/customer/seeSeller/seeSeller.wxss */
+page {
+	height: 100%;
+}
+
+.seeSeller {
+	
+}

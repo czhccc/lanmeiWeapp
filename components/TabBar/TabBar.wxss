@@ -1,0 +1,81 @@
+/* components/common/TabBar/TabBar.wxss */
+.tab{
+  z-index: 999;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100vw;
+  /* background-color: transparent; */
+  /* padding-bottom: 34rpx; */
+}
+
+.blank {
+  height: 20rpx;
+  background-color: transparent;
+}
+.tab-content {
+  z-index: 999;
+  /* position: fixed;
+  left: 0;
+  bottom: 0; */
+  width: 100vw;
+  height: 112rpx;
+  background: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-sizing: border-box;
+  padding: 0 20rpx;
+}
+
+.tab-bar-item{
+  text-align: center;
+  width: 120rpx;
+  height: 80rpx;
+  border-radius: 40rpx;
+  box-sizing: border-box;
+  padding-top: 4rpx;
+}
+.tab-bar-img{
+  width: 40rpx;
+  height: 40rpx;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.tab-bar-text{
+  margin-top: 2rpx;
+  font-size: 20rpx;
+  font-weight: 700;
+}
+
+.middle-item {
+  width: 112rpx;
+  height: 112rpx;
+  background: #0523A9;
+  border-radius: 56rpx;
+  position: absolute;
+  top: 0rpx;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 999;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.middle-item-img {
+  width: 48rpx;
+  height: 48rpx;
+}
+.middle-item-text {
+  margin-top: 4rpx;
+  font-size: 20rpx;
+  color: white;
+}
+.middle-item-blank {
+  width: 112rpx;
+  height: 112rpx;
+  border-radius: 56rpx;
+}

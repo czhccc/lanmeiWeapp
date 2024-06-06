@@ -1,0 +1,68 @@
+<!--pages/mine/mine.wxml-->
+<view class="mine">
+	<TabBar id="tabBar" />
+	<image class="backImg" src="/images/mine/mine-back.png" mode=""/>
+
+	<view class="profile-wrapper">
+		<view class="profile" bindtap="toUserInfoDetail">
+			<image class="avatar" src="{{userInfo.avatar || '/images/mine/avatar.png'}}" mode=""/>
+			<view class="detail" wx:if="{{userInfo.phone}}">
+				<view class="name">
+					<text>{{userInfo.realName || '未登录'}}</text>
+					<view class="level">LV {{userInfo.level}}</view>
+				</view>
+				<view class="phone">{{userInfo.secretPhone}}</view>
+			</view>
+			<button wx:if="{{!userInfo.phone}}" class="login-button" open-type="getPhoneNumber" 
+			bindgetphonenumber="getPhoneNumber">微信授权登录</button>
+			<image class="profile-arrow" src="/images/mine/arrow.png" mode=""/>
+		</view>
+	</view>
+
+	<view class="panel">
+		<view class="panel-item" bindtap="yyjl">
+			<image class="panel-item-img" src="/images/mine/yyjl.png" mode=""/>
+			<view class="panel-item-text">预约记录</view>
+		</view>
+		<view class="panel-item" bindtap="hyk">
+			<image class="panel-item-img" src="/images/mine/hyk.png" mode=""/>
+			<view class="panel-item-text">会员卡</view>
+		</view>
+	</view>
+
+	<view class="nav-panel">
+		<view class="title">我的订单</view>
+		<view class="nav-panel-items">
+			<view class="nav-panel-item" bindtap="yxdd">
+				<image class="nav-panel-items-img" src="/images/mine/yxdd.png" mode=""/>
+				<view class="nav-panel-items-text">优选订单</view>
+			</view>
+			<view class="nav-panel-item" bindtap="jfdh">
+				<image class="nav-panel-items-img" src="/images/mine/jfdh.png" mode=""/>
+				<view class="nav-panel-items-text">积分兑换</view>
+			</view>
+			<view class="nav-panel-item" bindtap="dddd">
+				<image class="nav-panel-items-img" src="/images/mine/dddd.png" mode=""/>
+				<view class="nav-panel-items-text">到店订单</view>
+			</view>
+		</view>
+	</view>
+
+	<view class="nav-panel">
+		<view class="title">推荐功能</view>
+		<view class="nav-panel-items">
+			<view class="nav-panel-item" bindtap="zfjl">
+				<image class="nav-panel-items-img" src="/images/mine/zfjl.png" mode=""/>
+				<view class="nav-panel-items-text">支付记录</view>
+			</view>
+			<view class="nav-panel-item" bindtap="mdlb">
+				<image class="nav-panel-items-img" src="/images/mine/mdlb.png" mode=""/>
+				<view class="nav-panel-items-text">门店列表</view>
+			</view>
+			<view class="nav-panel-item" bindtap="lxkf">
+				<image class="nav-panel-items-img" src="/images/mine/lxkf.png" mode=""/>
+				<view class="nav-panel-items-text">联系客服</view>
+			</view>
+		</view>
+	</view>
+</view>
