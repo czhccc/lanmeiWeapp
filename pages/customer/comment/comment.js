@@ -65,5 +65,19 @@ Page({
     wx.navigateTo({
       url: '/pages/customer/seeSeller/seeSeller',
     })
+  },
+  submit() {
+    wx.showModal({
+      title: '确认提交？',
+      success: (res) => {
+        if (res.confirm) {
+          console.log('用户点击确定');
+          // 这里处理用户点击确定的逻辑
+        } else if (res.cancel) {
+          console.log('用户点击取消');
+          // 这里处理用户点击取消的逻辑
+        }
+      }
+    });
   }
 })

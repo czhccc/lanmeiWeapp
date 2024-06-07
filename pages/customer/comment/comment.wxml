@@ -27,7 +27,7 @@
 						multiple
 					/>
 				</view>
-				<view class="btn2">提交</view>
+				<view class="btn2" bindtap="submit">提交</view>
 				<view class="moreIdeas">
 					<text>想法很多？直接</text>
 					<van-button type="info" size="mini" bindtap="contactUs">联系我们</van-button>！
