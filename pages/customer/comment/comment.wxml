@@ -1,0 +1,66 @@
+<!--pages/customer/comment/comment.wxml-->
+<view class="comment">
+	<van-collapse value="{{ activeName }}" bind:change="onChange">
+    <van-collapse-item name="1">
+      <view slot="title">
+        <text style="font-size: 40rpx;display: flex;">
+					<text>有新想法</text>
+					<text style="font-size: 24rpx;margin-left: 20rpx;">今日上限(0/2)</text>
+				</text>
+      </view>
+      <view wx:if="{{true}}">
+        <van-field
+					class="commentInput"
+					model:value="{{ comment }}"
+					type="textarea"
+					placeholder="写下您愿意跟我们分享的任何想法，我们会尽快优化..."
+					autosize
+					border="{{ false }}"
+					maxlength="{{200}}"
+				/>
+				<view class="upload-wrapper">
+					<van-uploader 
+						file-list="{{ fileList }}" 
+						max-count="3" 
+						bind:after-read="afterRead" 
+						bind:delete="deleteFile"
+						multiple
+					/>
+				</view>
+				<view class="btn2">提交</view>
+				<view class="moreIdeas">
+					<text>想法很多？直接</text>
+					<van-button type="info" size="mini" bindtap="contactUs">联系我们</van-button>！
+				</view>
+      </view>
+			<view wx:if="{{false}}">
+				明天再来吧~
+			</view>
+    </van-collapse-item>
+    <van-collapse-item name="2">
+      <view slot="title">
+        <text style="font-size: 40rpx;">历史留言(30天内)</text>
+      </view>
+      <view class="history-item" wx:for="{{5}}" wx:key="index">
+				<view class="history-comment">
+					<view class="history-comment-time">
+						<text style="font-size: 30rpx; color: black;">#{{index+1}}</text>
+						2024-6-7 12:38
+					</view>
+					<view class="history-comment-content">
+						问题问题问题问题问题问题问题问题问题问题问题问题问题问题
+					</view>
+					<van-divider
+						contentPosition="center"
+						customStyle="color: #1989fa; border-color: #1989fa; font-size: 24rpx;margin-top: 10rpx;margin-bottom: 10rpx;"
+					>
+						回复<text style="font-size: 36rpx;">☟</text>
+					</van-divider>
+				</view>
+				<view class="history-reply">
+					回答回答回答回答回答回答回答回答回答回答回答回答回答回答回答回答
+				</view>
+			</view>
+    </van-collapse-item>
+  </van-collapse>
+</view>

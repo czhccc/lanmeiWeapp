@@ -9,7 +9,6 @@
 			<view class="detail" wx:if="{{userInfo.phone}}">
 				<view class="name">
 					<text>{{userInfo.realName || '未登录'}}</text>
-					<view class="level">LV {{userInfo.level}}</view>
 				</view>
 				<view class="phone">{{userInfo.secretPhone}}</view>
 			</view>
@@ -51,17 +50,13 @@
 	<view class="nav-panel">
 		<view class="title">推荐功能</view>
 		<view class="nav-panel-items">
-			<view class="nav-panel-item" bindtap="zfjl">
-				<image class="nav-panel-items-img" src="/images/mine/zfjl.png" mode=""/>
-				<view class="nav-panel-items-text">支付记录</view>
+			<view class="nav-panel-item" bindtap="comment">
+				<van-icon style="font-size: 60rpx;" name="smile-comment-o" />
+				<view class="nav-panel-items-text">想法留言</view>
 			</view>
-			<view class="nav-panel-item" bindtap="mdlb">
-				<image class="nav-panel-items-img" src="/images/mine/mdlb.png" mode=""/>
-				<view class="nav-panel-items-text">门店列表</view>
-			</view>
-			<view class="nav-panel-item" bindtap="lxkf">
-				<image class="nav-panel-items-img" src="/images/mine/lxkf.png" mode=""/>
-				<view class="nav-panel-items-text">联系客服</view>
+			<view class="nav-panel-item" bindtap="contact">
+				<van-icon style="font-size: 60rpx;" name="friends-o" />
+				<view class="nav-panel-items-text">关于我们</view>
 			</view>
 		</view>
 	</view>

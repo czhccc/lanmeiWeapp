@@ -1,0 +1,67 @@
+/* pages/customer/comment/comment.wxss */
+page {
+	height: 100%;
+	background: #F4F4F4;
+}
+
+.comment {
+
+}
+
+.commentInput {
+	
+	
+}
+.van-field__body--textarea {
+	/* background-color: #F4F4F4;
+	padding: 20rpx;
+	box-sizing: border-box; */
+}
+.van-cell--borderless {
+	/* padding: 0 !important; */
+}
+.upload-wrapper {
+	margin-top: 20rpx;
+	box-sizing: border-box;
+	padding: 0 32rpx;
+}
+.btn2 {
+	width: 630rpx;
+	margin: 0 auto;
+	margin-top: 20rpx;
+	background: white;
+  border-radius: 42rpx;
+  border: 2rpx solid #1989FA;
+  height: 80rpx;
+  text-align: center;
+  line-height: 80rpx;
+  color: #1989FA;
+	box-sizing: border-box;
+	font-size: 30rpx;
+  background-color: white;
+}
+.moreIdeas {
+	font-size: 32rpx;
+	color: red;
+	margin-top: 30rpx;
+}
+
+.history-item {
+	color: black;
+	border: 1rpx red solid;
+	box-sizing: border-box;
+	border-radius: 20rpx;
+	margin-bottom: 30rpx;
+	padding: 20rpx;
+}
+.history-comment-time {
+	font-size: 24rpx;
+	color: gray;
+}
+.history-comment-content {
+	font-size: 28rpx;
+	margin-top: 10rpx;
+}
+.history-reply {
+
+}

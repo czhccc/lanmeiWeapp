@@ -100,14 +100,14 @@ Page({
       url: '/pages/consume/consume',
     })
   },
-  mdlb() { // 门店列表
+  comment() { // 门店列表
     wx.navigateTo({
-      url: '/pages/shopList/shopList',
+      url: '/pages/customer/comment/comment',
     })
   },
-  lxkf() { // 联系客服
-    wx.makePhoneCall({
-      phoneNumber: '18261521199'
+  contact() { // 联系客服
+    wx.navigateTo({
+      url: '/pages/customer/seeSeller/seeSeller',
     })
   }
 })
