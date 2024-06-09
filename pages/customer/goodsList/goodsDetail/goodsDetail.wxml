@@ -9,7 +9,10 @@
 	<view class="introduce">
 		<view class="price-wrapper">
 			<!-- <view class="price">¥{{theData.cashPrice}}</view> -->
-			<view class="price">¥200</view>
+			<view class="price-content">
+        <view class="price">¥200</view>
+        <view class="discount">￥150</view>
+      </view>
 			<!-- <view class="people">{{theData.saleNum}}人已购买</view> -->
 			<view class="people">200人已购买</view>
 		</view>
@@ -24,6 +27,6 @@
 	</view>
 
 	<view class="bottom-bar">
-    <view class="buyBtn" bind:tap="toBuy">购买</view>
+    <view class="buyBtn" bind:tap="toBuyOrOrder">购买 / 预约</view>
   </view>
 </view>

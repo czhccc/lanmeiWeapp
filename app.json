@@ -1,10 +1,11 @@
 {
   "pages": [
+    "pages/customer/buyOrOrder/buyOrOrder",
+    "pages/customer/goodsList/goodsDetail/goodsDetail",
     "pages/customer/comment/comment",
     "pages/customer/mine/mine",
     "pages/customer/seeSeller/seeSeller",
     "pages/customer/goodsList/goodsList",
-    "pages/customer/goodsList/goodsDetail/goodsDetail",
     "pages/customer/address/addressList/addressList",
     "pages/customer/address/addressAdd/addressAdd",
     "pages/customer/home/home"

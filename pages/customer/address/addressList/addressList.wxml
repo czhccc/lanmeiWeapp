@@ -1,14 +1,15 @@
 <!--pages/customer/address/addressList/addressList.wxml-->
 <view class="addressList">
-  <view class="item" wx:for="{{10}}" wx:key="index">
+  <view class="item" wx:for="{{10}}" wx:key="index" bind:tap="chooseItem">
     <view class="content">
       <view class="content-line1">
         <view class="name">王女士王女士王女士</view>
         <view class="phone">13829282749</view>
       </view>
-      <view class="address">浙江省杭州市西湖区 汇峰国际D508浙江省杭州市西湖区 汇峰国际D508浙江省杭州市西湖区 汇峰国际D508</view>
+      <view class="address">浙江省杭州市西湖区 </view>
     </view>
-    <view class="edit" bind:tap="toEdit" data-item="{{item}}">编辑</view>
+    <view class="edit" catch:tap="toEdit" data-item="{{item}}">编辑</view>
+    <view class="default" wx:if="{{index===0}}">默认</view>
   </view>
 
   <view class="bottom-bar">

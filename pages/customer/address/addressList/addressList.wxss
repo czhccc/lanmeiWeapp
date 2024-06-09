@@ -19,6 +19,7 @@ page {
   margin-top: 32rpx;
   box-sizing: border-box;
   padding: 32rpx;
+  position: relative;
 }
 .content {
   
@@ -47,9 +48,23 @@ page {
 .edit {
   font-size: 32rpx;
   color: #1989FA;
-  line-height: 40rpx;
   word-break: keep-all;
   margin-left: 32rpx;
+  height: 60rpx;
+  line-height: 60rpx;
+}
+.default {
+  position: absolute;
+  top: 0;
+  right: 0;
+  color: white;
+  background-color: rgb(255, 111, 111);
+  font-size: 24rpx;
+  width: 70rpx;
+  text-align: center;
+  border-radius: 0 20rpx 0 20rpx;
+  box-sizing: border-box;
+  padding: 4rpx;
 }
 
 .bottom-bar {

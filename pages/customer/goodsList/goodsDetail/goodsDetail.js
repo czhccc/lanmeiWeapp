@@ -28,7 +28,9 @@ Page({
       url: '/pages/cart/cart',
     })
   },
-  toBuy() {
-
+  toBuyOrOrder() {
+    wx.navigateTo({
+      url: '/pages/customer/buyOrOrder/buyOrOrder',
+    })
   },
 })

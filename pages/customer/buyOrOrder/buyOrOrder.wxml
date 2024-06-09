@@ -1,0 +1,113 @@
+<!--pages/customer/buyOrOrder/buyOrOrder.wxml-->
+<view class="buyOrOrder">
+  <van-divider 
+    contentPosition="left"
+    customStyle="color: #1989fa; border-color: #1989fa; font-size: 30rpx;margin-top: 24rpx;margin-bottom: 0;"
+  >{{'购买或预约'}}数量</van-divider>
+  <view class="goods">
+    <image class="goods-img" src="https://img2.baidu.com/it/u=3650958543,1493738205&fm=253&fmt=auto&app=138&f=JPEG?w=800&h=800" mode=""/>
+    <view class="goods-content">
+      <view class="goods-name">意大利头皮护理产品</view>
+      <view class="goods-specification">
+        <text class="goods-specification-label">规格：</text>
+        <text class="goods-specification-value">500ml</text>
+        </view>
+      <view class="goods-price">
+        <view class="goods-price-content">
+          <view class="goods-price-new">¥199.00</view>
+          <view class="goods-price-old">¥299.00</view>
+        </view>
+        <view class="num-wrapper">
+          <view class="num-wrapper2">
+            <van-stepper 
+              value="{{ num }}" 
+              bind:change="numChnage"
+              min="{{1}}"
+              max="{{999}}" 
+            />
+            <!-- 最大值由剩余数量决定 -->
+          </view>
+        </view>
+      </view>
+      
+    </view>
+  </view>
+
+  <van-divider 
+    contentPosition="left"
+    customStyle="color: #1989fa; border-color: #1989fa; font-size: 30rpx;margin-top: 24rpx;margin-bottom: 0;"
+  >收货地址</van-divider>
+  <view class="chooseAddress" bind:tap="chooseAddress" wx:if="{{!addressInfo.id}}">
+    <text class="chooseAddress-text">请选择收货地址</text>
+    <image class="chooseAddress-arrow" src="../../../images/common/arrow-right.png" mode=""/>
+  </view>
+  <view class="choosedAddress" bind:tap="chooseAddress" wx:if="{{addressInfo.id}}">
+    <view class="choosedAddress-content">
+      <view class="choosedAddress-ssq">浙江省杭州市西湖区</view>
+      <view class="choosedAddress-detail">汇峰国际D508汇峰国际D508汇峰国际D508汇峰国际D508汇峰国际D508汇峰国际D508汇峰国际D508</view>
+      <view class="choosedAddress-nameAndPhone">王女士 12839282929</view>
+    </view>
+    <image class="chooseAddress-arrow" src="../../../images/common/arrow-right.png" mode=""/>
+  </view>
+
+  <van-divider 
+    contentPosition="left"
+    customStyle="color: #1989fa; border-color: #1989fa; font-size: 30rpx;margin-top: 24rpx;margin-bottom: 0;"
+  >收货方式</van-divider>
+  <picker mode="selector" range="{{pickMethodArray}}" bindchange="bindPickMethodChange">
+    <view class="pickMethod">
+      <text class="pickMethod-pla" wx:if="{{!pickMethod}}">请选择收货方式</text>
+      <text class="pickMethod-text" wx:if="{{pickMethod}}">
+        <text>{{pickMethod}}</text>
+        <text style="margin-left: 30rpx;">费用：{{10}}元</text>
+      </text>
+      <image class="pickMethod-arrow" src="../../../images/common/arrow-right.png" mode=""/>
+    </view>
+  </picker>
+
+  <van-divider 
+    contentPosition="left"
+    customStyle="color: #1989fa; border-color: #1989fa; font-size: 30rpx;margin-top: 24rpx;margin-bottom: 0;"
+  >备注说明</van-divider>
+  <view class="notes-wrapper">
+    <van-field
+      model:value="{{ notes }}"
+      type="textarea"
+      placeholder="请输入留言说明"
+      autosize
+      border="{{ false }}"
+      class="notes-input"
+      maxlength="{{200}}"
+      show-word-limit
+    />
+  </view>
+
+  <van-divider 
+    contentPosition="left"
+    customStyle="color: #1989fa; border-color: #1989fa; font-size: 30rpx;margin-top: 24rpx;margin-bottom: 0;"
+  >支付明细</van-divider>
+  <view class="detail">
+    <view class="detail-line">
+      <view class="detail-line-label">总金额</view>
+      <view class="detail-line-value">¥2049.00</view>
+    </view>
+    <view class="detail-line">
+      <view class="detail-line-label">优惠</view>
+      <view class="detail-line-value" style="color: red;">-¥20.00</view>
+    </view>
+    <view class="detail-line">
+      <view class="detail-line-label2">应付金额</view>
+      <view class="detail-line-value2">¥2029.00</view>
+    </view>
+  </view>
+  
+  <view class="bottom">
+    <view class="bottom-content">
+      <view class="payNum">
+        <view class="payNum-label">应付金额：</view>
+        <view class="payNum-value">¥2029.00</view>
+      </view>
+      <view class="payBtn" bind:tap="submit">提交订单</view>
+    </view>
+  </view>
+</view>
