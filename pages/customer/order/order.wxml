@@ -1,0 +1,93 @@
+<!--pages/customer/order/order.wxml-->
+<view class="order">
+  <van-tabs class="tabs" active="{{ tabIndex }}" bind:change="tabChange">
+    <van-tab title="预约"></van-tab>
+    <van-tab title="购买"></van-tab>
+  </van-tabs>
+
+  <view class="filter" catch:tap="filter">
+    筛选<van-icon name="filter-o" />
+  </view>
+
+  <view class="order-item" wx:for="{{10}}" wx:key="index">
+    <view class="order-top">
+      <view class="orderId">
+        <view class="orderId-label">订单编号：</view>
+        <view class="orderId-value">111111111111111111111111111111111111</view>
+      </view>
+      <view class="order-status">待收货</view>
+    </view>
+    <view class="order-content">
+      <image class="order-img" src="https://p3.itc.cn/q_70/images03/20221004/64961102427b4c1b88678029f39ef5c6.jpeg" alt=""/>
+      <view class="order-content-detail">
+        <view class="goodsName">蓝莓蓝莓蓝莓蓝莓蓝莓蓝莓蓝莓蓝莓蓝莓蓝莓蓝莓</view>
+        <view class="goods-specification">
+          <view class="goods-specification-label">规格：</view>
+          <view class="goods-specification-value">500ml500ml500ml500ml500ml500ml500ml500ml</view>
+        </view>
+      </view>
+      <view class="goods-num">×999</view>
+    </view>
+    
+    <view class="payCount">
+      <view class="payCount-label">实付金额：</view>
+      <view class="payCount-value">¥48.00</view>
+    </view>
+
+    <view class="order-btns">
+      <view class="order-cancelOrder" catch:tap="cancelOrder">取消预约</view>
+      <view class="order-refund" catch:tap="refund">退款</view>
+      <view class="order-seeDetail" catch:tap="seeDetail">查看详情</view>
+    </view>
+  </view>
+
+  <van-popup 
+    show="{{ isShowFilter }}" 
+    bind:close="closeFilter"
+    position="bottom"
+    lock-scroll
+  >
+    <view class="filter-content">
+      <view class="filter-item">
+        <view class="filter-item-label">订单号：</view>
+        <view class="filter-item-value filter-OrderId">
+          <input type="text" class="filter-orderInput" placeholder="请输入订单号" />
+        </view>
+      </view>
+
+      <view class="filter-item">
+        <view class="filter-item-label">产品名：</view>
+        <view class="filter-item-value filter-OrderId">
+          <input type="text" class="filter-orderInput" placeholder="请输入产品关键字" />
+        </view>
+      </view>
+
+      <view class="filter-item">
+        <view class="filter-item-label">状态：</view>
+        <view class="filter-item-value filter-status">
+          <view class="filter-status-item">待付款</view>
+          <view class="filter-status-item">待收货</view>
+          <view class="filter-status-item">已完结</view>
+        </view>
+      </view>
+
+      <view class="filter-item">
+        <view class="filter-item-label">时间段：</view>
+        <view class="filter-item-value filter-time">
+          <picker mode="date" value="{{date}}" start="2024-01-01" end="2030-12-31" bindchange="bindDateChange">
+            <view class="picker">
+              <view class="filter-time-item">2024-8-15</view>
+            </view>
+          </picker>
+          <view style="margin-right: 20rpx;">—</view>
+          <view class="filter-time-item">2024-8-15</view>
+        </view>
+      </view>
+
+      <view class="filter-btns">
+        <view class="filter-reset">重置</view>
+        <view class="filter-confirm">确定</view>
+      </view>
+    </view>
+  </van-popup>
+</view>
