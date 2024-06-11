@@ -45,6 +45,8 @@ Page({
     });
   },
   seeDetail() {
-
+    wx.navigateTo({
+      url: '/pages/customer/order/orderDetail/orderDetail',
+    })
   }
 })

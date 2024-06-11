@@ -1,0 +1,88 @@
+<!--pages/customer/order/orderDetail/orderDetail.wxml-->
+<view class="orderDetail">
+
+  <view class="item-title">商品</view>
+  <view class="goods">
+    <view class="goods-wrapper">
+      <image class="goods-img" src="https://img2.baidu.com/it/u=3650958543,1493738205&fm=253&fmt=auto&app=138&f=JPEG?w=800&h=800" mode=""/>
+      <view class="goods-content">
+        <view class="goods-name">意大利头皮护理产品</view>
+        <view class="goods-specification">
+          <text class="goods-specification-label">规格：</text>
+          <text class="goods-specification-value">500ml</text>
+          </view>
+        <view class="goods-price">
+          <view class="goods-price-content">
+            <view class="goods-price-new">¥199.00</view>
+            <view class="goods-price-old">¥299.00</view>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class="goods-num">×999</view>
+  </view>
+
+  <view class="item-title">收货地址</view>
+  <view class="choosedAddress">
+    <view class="choosedAddress-content">
+      <view class="choosedAddress-ssq">浙江省杭州市西湖区</view>
+      <view class="choosedAddress-detail">汇峰国际D508汇峰国际D508汇峰国际D508汇峰国际D508汇峰国际D508汇峰国际D508汇峰国际D508</view>
+      <view class="choosedAddress-nameAndPhone">王女士 12839282929</view>
+    </view>
+  </view>
+
+  <view class="item-title">收货方式</view>
+  <view class="pickMethod">
+    <text class="pickMethod-text">
+      <text>快递</text>
+      <text style="margin-left: 30rpx;">费用：{{10}}元</text>
+    </text>
+  </view>
+
+  <view class="item-title">备注留言</view>
+  <view class="notes-wrapper">
+    <van-field
+      model:value="{{ '2222222222222222222222222' }}"
+      type="textarea"
+      autosize
+      border="{{ false }}"
+      class="notes-input"
+      maxlength="{{200}}"
+      readonly
+    />
+  </view>
+
+  <view class="item-title">付款详情</view>
+  <view class="detail">
+    <view class="detail-line">
+      <view class="detail-line-label">总金额</view>
+      <view class="detail-line-value">¥2049.00</view>
+    </view>
+    <view class="detail-line">
+      <view class="detail-line-label">优惠</view>
+      <view class="detail-line-value" style="color: red;">-¥20.00</view>
+    </view>
+    <view class="detail-line">
+      <view class="detail-line-label2">应付金额</view>
+      <view class="detail-line-value2">¥2029.00</view>
+    </view>
+  </view>
+
+  <view class="orderId">
+    <view class="orderId-label">订单编号</view>
+    <view class="orderId-value">
+      192928192927102
+      <image class="copy-icon" src="../../../../images/common/copy.png" mode="" bind:tap="copyOrderId" />
+    </view>
+  </view>
+  
+  <view class="bottom">
+    <view class="bottom-content">
+      <view class="payNum">
+        <view class="payNum-label">应付金额：</view>
+        <view class="payNum-value">¥2029.00</view>
+      </view>
+      <view class="payBtn" bind:tap="submit">提交订单</view>
+    </view>
+  </view>
+</view>
