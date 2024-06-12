@@ -3,7 +3,7 @@
 	<van-collapse value="{{ activeName }}" bind:change="onChange">
     <van-collapse-item name="1">
       <view slot="title">
-        <text style="font-size: 40rpx;display: flex;">
+        <text style="font-size: 32rpx;display: flex;">
 					<text>有新想法</text>
 					<text style="font-size: 24rpx;margin-left: 20rpx;">今日上限(0/2)</text>
 				</text>
@@ -39,7 +39,7 @@
     </van-collapse-item>
     <van-collapse-item name="2">
       <view slot="title">
-        <text style="font-size: 40rpx;">历史留言(30天内)</text>
+        <text style="font-size: 32rpx;">历史留言(30天内)</text>
       </view>
       <view class="history-item" wx:for="{{5}}" wx:key="index">
 				<view class="history-comment">
@@ -50,15 +50,24 @@
 					<view class="history-comment-content">
 						问题问题问题问题问题问题问题问题问题问题问题问题问题问题
 					</view>
-					<van-divider
-						contentPosition="center"
-						customStyle="color: #1989fa; border-color: #1989fa; font-size: 24rpx;margin-top: 10rpx;margin-bottom: 10rpx;"
-					>
-						回复<text style="font-size: 36rpx;">☟</text>
-					</van-divider>
 				</view>
+				<van-divider
+					contentPosition="center"
+					customStyle="color: #1989fa; border-color: #1989fa; font-size: 24rpx;margin-top: 10rpx;margin-bottom: 10rpx;"
+				>
+					回复<text style="font-size: 36rpx;">☟</text>
+				</van-divider>
 				<view class="history-reply">
 					回答回答回答回答回答回答回答回答回答回答回答回答回答回答回答回答
+				</view>
+				<van-divider
+					contentPosition="center"
+					customStyle="color: #1989fa; border-color: #1989fa; font-size: 24rpx;margin-top: 10rpx;margin-bottom: 10rpx;"
+				>
+					再次回复<text style="font-size: 36rpx;">☟</text>
+				</van-divider>
+				<view class="history-reply">
+					回答2回答2回答2回答2回答2回答2回答2回答2回答2回答2回答2回答2回答2
 				</view>
 			</view>
     </van-collapse-item>

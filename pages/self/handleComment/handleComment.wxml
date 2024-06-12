@@ -1,0 +1,50 @@
+<!--pages/self/handleComment/handleComment.wxml-->
+<view class="handleComment">
+	<van-tabs class="" active="{{ tabIndex }}" bind:change="tabChange">
+		<van-tab title="未回复"></van-tab>
+		<van-tab title="已回复"></van-tab>
+	</van-tabs>
+
+	<view class="list">
+		<view class="item" wx:for="{{10}}" wx:key="index">
+			<view class="item-line">
+				<view class="item-line-label">提交时间</view>
+				<view class="item-line-value">
+					2024-6-12 15:08
+				</view>
+			</view>
+			<view class="item-line">
+				<view class="item-line-label">提交人</view>
+				<view class="item-line-value">
+					13989562356
+				</view>
+			</view>
+			<view class="item-content-label">
+				留言内容：
+			</view>
+			<view class="item-cotent-value">
+				佛山店和服就算防抖和供你电饭锅梵蒂冈及地方官覅进攻发动进攻ID结构ID结构我就分工我京东方IG就大佛IG键盘灯和惧怕个腹肌偶尔玩
+			</view>
+			<view class="item-content-label">
+				回复内容：
+			</view>
+			<view class="item-cotent-value">
+				iOS多个hi都说很反感我哦ID火攻i哦ID符合规定会辜负规定将破地方怕我该如何能够弄
+			</view>
+
+			<view class="item-content-label" style="margin-top: 30rpx;">
+				回复 / 再次回复：
+			</view>
+			<view class="item-content-textarea">
+				<textarea 
+					class="textarea" 
+					auto-height 
+					placeholder="请输入回复内容"
+					maxlength="{{200}}"
+				/>
+			</view>
+
+			<view class="submitBtn" bindtap="submit">提交</view>
+		</view>
+	</view>
+</view>

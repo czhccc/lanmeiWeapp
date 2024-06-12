@@ -3,8 +3,8 @@
 	<van-collapse accordion value="{{ activeName }}" bind:change="onChange">
     <van-collapse-item name="1">
       <view slot="title">
-        <text style="font-size: 40rpx;">线下地址</text>
-        <van-icon name="shop-collect" style="font-size: 40rpx;" />
+        <text style="font-size: 32rpx;color: #333333;">线下地址</text>
+        <van-icon name="shop-collect-o" style="font-size: 32rpx;margin-left: 10rpx;" />
       </view>
       <view>
         <view class="address-item" wx:for="{{10}}" wx:key="index">
@@ -19,24 +19,25 @@
     </van-collapse-item>
     <van-collapse-item name="2">
       <view slot="title">
-        <text style="font-size: 40rpx;">联系方式</text>
-        <van-icon name="phone" style="font-size: 40rpx;" />
+        <text style="font-size: 32rpx;color: #333333;">联系方式</text>
+        <van-icon name="phone-o" style="font-size: 32rpx;margin-left: 10rpx;" />
       </view>
-      <view class="phone-item">
+      <view class="phone-item" wx:for="{{2}}">
+        手机号：
         <text class="phone-text">13989536363</text>
+        <van-button class="phone-btn" round type="primary" size="mini" bind:tap="copyContact">复制</van-button>
         <van-button class="phone-btn" round type="info" size="mini" bind:tap="phoneBtnClick">拨打</van-button>
-        <van-button class="phone-btn" round type="primary" size="mini" bind:tap="copyPhone">复制号码</van-button>
       </view>
-      <view class="phone-item">
+      <view class="phone-item" wx:for="{{2}}">
+        微信号：
         <text class="phone-text">13989536363</text>
-        <van-button class="phone-btn" round type="info" size="mini" bind:tap="phoneBtnClick">拨打</van-button>
-        <van-button class="phone-btn" round type="primary" size="mini" bind:tap="copyPhone">复制号码</van-button>
+        <van-button class="phone-btn" round type="primary" size="mini" bind:tap="copyContact">复制</van-button>
       </view>
     </van-collapse-item>
     <van-collapse-item name="3">
       <view slot="title">
-        <text style="font-size: 40rpx;">关于我们</text>
-        <van-icon name="friends" style="font-size: 40rpx;" />
+        <text style="font-size: 32rpx;color: #333333;">关于我们</text>
+        <van-icon name="friends-o" style="font-size: 32rpx;margin-left: 10rpx;" />
       </view>
       <rich-text class="detail-content" nodes="<p>这是商品详情</p><p><img src=\'https://hhym.zjwocai.com/hhym-file/2024/05/06/84d5344fdff24497925b37ebb5ff1387.png\'></p>"></rich-text>
     </van-collapse-item>

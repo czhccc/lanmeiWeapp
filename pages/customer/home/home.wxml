@@ -16,7 +16,7 @@
 	<view class="nav-items">
 		<view class="nav-item" bindtap="navigate" data-flag="ljyy">
 			<image class="nav-item-img" src="../../images/home/nav-img1.png" alt=""/>
-			<view class="nav-item-title">立即预约</view>
+			<view class="nav-item-title">立即预订</view>
 		</view>
 		<view class="nav-item" bindtap="navigate" data-flag="yxsc">
 			<image class="nav-item-img" src="../../images/home/nav-img2.png" alt=""/>

@@ -1,9 +1,10 @@
-/* pages/customer/seeSeller/seeSeller.wxss */
+/* pages/self/aboutUs/aboutUs.wxss */
 page {
 	height: 100%;
+	background: #F4F4F4;
 }
 
-.seeSeller {
+.aboutUs {
 	
 }
 
@@ -14,10 +15,6 @@ page {
 }
 .address-text {
   font-size: 28rpx;
-  color: black;
-}
-.address-btn {
-  margin-left: 20rpx;
 }
 
 .phone-item {
@@ -27,7 +24,6 @@ page {
 }
 .phone-text {
   font-size: 28rpx;
-  color: black;
 }
 .phone-btn {
   margin-left: 20rpx;

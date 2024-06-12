@@ -19,7 +19,7 @@ Page({
       url: '/pages/customer/address/addressAdd/addressAdd?flag=edit',
     })
   },
-  chooseItem() { // 购买或预约时选中
+  chooseItem() { // 购买或预订时选中
     if (!this.data.isChoose) {
       return;
     }

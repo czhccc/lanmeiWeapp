@@ -10,7 +10,7 @@ Page({
   },
   onLoad(options) {
     wx.setNavigationBarTitle({
-      title: '预约或购买'
+      title: '预订或购买'
     });
   },
   numChnage(e) {

@@ -24,7 +24,7 @@
 
   <cover-view class="middle-item" bindtap="switchTabHandle" data-index="{{4}}">
     <cover-image class="middle-item-img" src="/images/tabBar/yy.png" />
-    <cover-view class="middle-item-text" style="color: {{currentUrl==='/pages/order/order' ? 'white' : 'rgb(142,168,161)'}}">预约</cover-view>
+    <cover-view class="middle-item-text" style="color: {{currentUrl==='/pages/order/order' ? 'white' : 'rgb(142,168,161)'}}">预订</cover-view>
   </cover-view>
 
   <cover-view style="height: 34rpx;background-color: white;"></cover-view>

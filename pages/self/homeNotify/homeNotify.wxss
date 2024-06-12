@@ -1,0 +1,43 @@
+/* pages/self/homeNotify/homeNotify.wxss */
+page {
+	height: 100%;
+	background: #F4F4F4;
+}
+
+.homeNotify {
+	
+}
+
+.input-wrapper {
+	
+}
+
+.current {
+	padding: 20rpx;
+	background-color: white;
+}
+
+.bottom {
+  width: 100vw;
+  position: fixed;
+  bottom: 0;
+  background-color: white;
+  height: 160rpx;
+  padding: 24rpx 24rpx 0 24rpx;
+  box-sizing: border-box;
+}
+.bottom-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.confirmBtn {
+  width: 690rpx;
+  height: 84rpx;
+  background: #1989FA;
+  border-radius: 42rpx;
+  color: white;
+  text-align: center;
+  line-height: 84rpx;
+  font-size: 36rpx;
+}

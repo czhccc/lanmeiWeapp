@@ -1,6 +1,10 @@
 <!--pages/customer/order/orderDetail/orderDetail.wxml-->
 <view class="orderDetail">
 
+  <view>
+    服务状态？
+  </view>
+
   <view class="item-title">商品</view>
   <view class="goods">
     <view class="goods-wrapper">

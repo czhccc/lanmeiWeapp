@@ -1,28 +1,19 @@
-// pages/customer/order/order.js
+// pages/self/deliver/deliver.js
 Page({
   data: {
     tabIndex: 0,
-    isShowFilter: false,
-    filterOrderId: '',
   },
   onLoad(options) {
 
   },
   tabChange(e) {
-    console.log(e)
     this.setData({
       tabIndex: e.detail.index
     })
   },
-  filter() {
-    this.setData({ isShowFilter: true });
-  },
-  closeFilter() {
-    this.setData({ isShowFilter: false });
-  },
-  cancelOrder() {
+  arrive() {
     wx.showModal({
-      title: '确认取消预订？',
+      title: '确认提交？',
       success(res) {
         if (res.confirm) {
           console.log('用户点击确定');
@@ -32,9 +23,9 @@ Page({
       }
     });
   },
-  refund() {
+  havePaid() {
     wx.showModal({
-      title: '确认退款？',
+      title: '确认已收款？',
       success(res) {
         if (res.confirm) {
           console.log('用户点击确定');
@@ -44,9 +35,4 @@ Page({
       }
     });
   },
-  seeDetail() {
-    wx.navigateTo({
-      url: '/pages/customer/order/orderDetail/orderDetail',
-    })
-  }
 })

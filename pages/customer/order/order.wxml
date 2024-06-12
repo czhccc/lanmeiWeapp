@@ -1,7 +1,7 @@
 <!--pages/customer/order/order.wxml-->
 <view class="order">
   <van-tabs class="tabs" active="{{ tabIndex }}" bind:change="tabChange">
-    <van-tab title="预约"></van-tab>
+    <van-tab title="预订"></van-tab>
     <van-tab title="购买"></van-tab>
   </van-tabs>
 
@@ -35,7 +35,7 @@
     </view>
 
     <view class="order-btns">
-      <view class="order-cancelOrder" catch:tap="cancelOrder">取消预约</view>
+      <view class="order-cancelOrder" catch:tap="cancelOrder">取消预订</view>
       <view class="order-refund" catch:tap="refund">退款</view>
       <view class="order-seeDetail" catch:tap="seeDetail">查看详情</view>
     </view>
@@ -65,9 +65,11 @@
       <view class="filter-item">
         <view class="filter-item-label">状态：</view>
         <view class="filter-item-value filter-status">
+          <view class="filter-status-item">已预订</view>
           <view class="filter-status-item">待付款</view>
           <view class="filter-status-item">待收货</view>
           <view class="filter-status-item">已完结</view>
+          <view class="filter-status-item">已取消</view>
         </view>
       </view>
 

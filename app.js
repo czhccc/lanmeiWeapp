@@ -1,17 +1,16 @@
 // app.js
 App({
   onLaunch() {
-    // 展示本地存储能力
-    const logs = wx.getStorageSync('logs') || []
-    logs.unshift(Date.now())
-    wx.setStorageSync('logs', logs)
-
-    // 登录
-    wx.login({
-      success: res => {
-        // 发送 res.code 到后台换取 openId, sessionKey, unionId
-      }
-    })
+    // wx.showModal({
+    //   title: '确认取消预订？',
+    //   success(res) {
+    //     if (res.confirm) {
+    //       console.log('用户点击确定');
+    //     } else if (res.cancel) {
+    //       console.log('用户点击取消');
+    //     }
+    //   }
+    // });
   },
   globalData: {
     userInfo: null

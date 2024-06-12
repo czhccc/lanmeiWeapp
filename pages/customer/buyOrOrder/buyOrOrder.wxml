@@ -3,7 +3,7 @@
   <van-divider 
     contentPosition="left"
     customStyle="color: #1989fa; border-color: #1989fa; font-size: 30rpx;margin-top: 24rpx;margin-bottom: 0;"
-  >{{'购买或预约'}}数量</van-divider>
+  >{{'购买或预订'}}数量</van-divider>
   <view class="goods">
     <image class="goods-img" src="https://img2.baidu.com/it/u=3650958543,1493738205&fm=253&fmt=auto&app=138&f=JPEG?w=800&h=800" mode=""/>
     <view class="goods-content">

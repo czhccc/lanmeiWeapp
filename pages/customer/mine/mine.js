@@ -70,7 +70,7 @@ Page({
     })
   },
   
-  yyjl() { // 预约记录
+  yyjl() { // 预订记录
     wx.navigateTo({
       url: '/pages/order/orderRecord/orderRecord',
     })

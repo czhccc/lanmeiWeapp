@@ -1,10 +1,13 @@
 {
   "pages": [
+    "pages/self/deliver/deliver",
+    "pages/self/navHome/navHome",
+    "pages/self/handleComment/handleComment",
+    "pages/self/aboutUs/aboutUs",
+    "pages/self/homeNotify/homeNotify",
+    "pages/customer/order/order",
     "pages/customer/order/orderDetail/orderDetail",
     "pages/customer/buyOrOrder/buyOrOrder",
-    
-    "pages/customer/order/order",
-    
     "pages/customer/goodsList/goodsDetail/goodsDetail",
     "pages/customer/comment/comment",
     "pages/customer/mine/mine",

@@ -1,0 +1,31 @@
+/* pages/self/navHome/navHome.wxss */
+page {
+	height: 100%;
+}
+
+.navHome {
+	padding: 50rpx;
+	padding-bottom: 60rpx;
+	box-sizing: border-box;
+	display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 50rpx;
+}
+
+.navItem {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	margin-bottom: 50rpx;
+	border: 1rpx solid black;
+	padding: 10rpx;
+	box-sizing: border-box;
+	border-radius: 10rpx;
+}
+.icon {
+	font-size: 68rpx;
+}
+.text {
+	word-break: break-all;
+	font-size: 30rpx;
+}

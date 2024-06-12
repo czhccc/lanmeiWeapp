@@ -27,6 +27,6 @@
 	</view>
 
 	<view class="bottom-bar">
-    <view class="buyBtn" bind:tap="toBuyOrOrder">购买 / 预约</view>
+    <view class="buyBtn" bind:tap="toBuyOrOrder">购买 / 预订</view>
   </view>
 </view>

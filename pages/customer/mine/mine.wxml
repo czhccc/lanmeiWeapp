@@ -21,7 +21,7 @@
 	<view class="panel">
 		<view class="panel-item" bindtap="yyjl">
 			<image class="panel-item-img" src="/images/mine/yyjl.png" mode=""/>
-			<view class="panel-item-text">预约记录</view>
+			<view class="panel-item-text">预订记录</view>
 		</view>
 		<view class="panel-item" bindtap="hyk">
 			<image class="panel-item-img" src="/images/mine/hyk.png" mode=""/>

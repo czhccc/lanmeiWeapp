@@ -2,6 +2,5 @@
   "usingComponents": {
     "van-field": "@vant/weapp/field/index",
     "van-cell": "@vant/weapp/cell/index"
-  },
-  "navigationBarTitleText": "编辑收货地址"
+  }
 }

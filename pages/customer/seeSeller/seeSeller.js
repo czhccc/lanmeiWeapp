@@ -28,7 +28,7 @@ Page({
       phoneNumber: '13989536366'
     })
   },
-  copyPhone(e) {
+  copyContact(e) {
     console.log(e)
     wx.setClipboardData({
       data: 'aaaaa',
