@@ -5,7 +5,14 @@ page {
 }
 
 .handleComment {
+  padding-top: 120rpx;
 	padding-bottom: 60rpx;
+}
+
+.tabs {
+  position: fixed;
+  top: 0;
+  width: 100vw;
 }
 
 .list {

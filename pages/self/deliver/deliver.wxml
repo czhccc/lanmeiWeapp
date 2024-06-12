@@ -1,6 +1,6 @@
 <!--pages/self/deliver/deliver.wxml-->
 <view class="handleComment">
-	<van-tabs class="" active="{{ tabIndex }}" bind:change="tabChange">
+	<van-tabs class="tabs" active="{{ tabIndex }}" bind:change="tabChange">
 		<van-tab title="待送货"></van-tab>
 		<van-tab title="已送达"></van-tab>
 	</van-tabs>

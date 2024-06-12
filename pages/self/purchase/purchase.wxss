@@ -1,0 +1,10 @@
+/* pages/self/purchase/purchase.wxss */
+page {
+	height: 100%;
+	background-color: #F4F4F4;
+}
+
+.purchase {
+  padding-top: 30rpx;
+	padding-bottom: 60rpx;
+}

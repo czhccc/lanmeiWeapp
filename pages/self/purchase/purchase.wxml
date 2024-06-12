@@ -1,0 +1,9 @@
+<!--pages/self/purchase/purchase.wxml-->
+<view class="purchase">
+  <van-field
+    model:value="{{ name }}"
+    placeholder="请输入产品名称+品种"
+    border="{{ false }}"
+    label="产品名"
+  />
+</view>

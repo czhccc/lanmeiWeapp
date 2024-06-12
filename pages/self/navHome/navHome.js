@@ -12,7 +12,9 @@ Page({
     })
   },
   cg() { // 采购
-
+    wx.navigateTo({
+      url: '/pages/self/purchase/purchase',
+    })
   },
   sh() { // 送货
     wx.navigateTo({
