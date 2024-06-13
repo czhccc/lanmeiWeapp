@@ -1,10 +1,9 @@
 {
   "pages": [
+    "pages/self/purchaseList/purchaseList",
     "pages/self/purchase/purchase",
     "pages/self/navHome/navHome",
-    
     "pages/self/deliver/deliver",
-    
     "pages/self/handleComment/handleComment",
     "pages/self/aboutUs/aboutUs",
     "pages/self/homeNotify/homeNotify",

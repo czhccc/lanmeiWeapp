@@ -8,3 +8,16 @@ page {
   padding-top: 30rpx;
 	padding-bottom: 60rpx;
 }
+
+.submitBtn {
+  border-radius: 42rpx;
+  height: 84rpx;
+  text-align: center;
+  line-height: 84rpx;
+  color: white;
+  box-sizing: border-box;
+	background-color: #1989FA;
+	margin: 0 auto;
+	margin-top: 40rpx;
+	width: 690rpx;
+}

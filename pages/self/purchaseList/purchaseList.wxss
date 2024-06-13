@@ -1,10 +1,10 @@
-/* pages/customer/order/order.wxss */
+/* pages/self/purchaseList/purchaseList.wxss */
 page {
   height: 100%;
   background: #F4F4F4;
 }
 
-.order {
+.purchaseList {
 
 }
 
@@ -12,10 +12,10 @@ page {
   
 }
 
-.order-list {
+.purchaseList-list {
   height: calc(100vh - 88rpx);
 }
-.order-item {
+.purchase-item {
   padding: 32rpx;
   box-sizing: border-box;
   background-color: white;
@@ -23,24 +23,24 @@ page {
   margin: 0 auto;
   margin-top: 32rpx;
 }
-.order-top {
+.purchase-top {
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
-.orderId {
+.purchaseId {
   font-size: 24rpx;
   color: #999999;
   display: flex;
   align-items: flex-start;
 }
-.orderId-label {
+.purchaseId-label {
   word-break: keep-all;
 }
-.orderId-value {
+.purchaseId-value {
   word-break: break-all;
 }
-.order-status {
+.purchase-status {
   width: 104rpx;
   height: 40rpx;
   background: #F2F3FF;
@@ -51,106 +51,58 @@ page {
   color: #0523A9;
   margin-left: 40rpx;
 }
-.order-content {
-  flex: 1;
+.purchase-content {
+  margin-top: 20rpx;
+}
+.purchase-time {
+  font-size: 24rpx;
+  color: #333333;
+}
+.purchase-main {
   display: flex;
   align-items: center;
-  margin-top: 24rpx;
-}
-.order-wrapper {
-  display: flex;
-  align-items: flex-start;
-}
-.order-img {
-  width: 180rpx;
-  min-width: 180rpx;
-  max-width: 180rpx;
-  height: 180rpx;
-  border-radius: 16rpx;
-}
-.order-content-detail {
-  margin-left: 20rpx;
+  justify-content: space-between;
+  margin-top: 10rpx;
 }
 .goodsName {
-  font-size: 28rpx;
+  font-size: 30rpx;
   color: #333333;
   font-weight: 700;
+  margin-top: 10rpx;
+  flex: 1;
 }
-.goods-specification {
-  margin-top: 12rpx;
-  font-size: 24rpx;
-  color: #999999;
-  display: flex;
-  align-items: flex-start;
-}
-.goods-specification-label {
-  word-break: keep-all;
-}
-.goods-specification-value {
-  word-break: break-all;
-}
-.goods-num {
+.purchase-num {
   margin-left: 20rpx;
   font-size: 24rpx;
   color: black;
+  word-break: keep-all;
 }
-.payCount {
+.purchase-resource {
+  font-size: 24rpx;
+  color: black;
+  margin-top: 20rpx;
   display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  margin-top: 12rpx;
 }
-.payCount-label {
-  font-size: 28rpx;
-  color: #000000;
+.purchase-resource-label {
+  word-break: keep-all;
 }
-.payCount-value {
-  font-size: 36rpx;
-  color: #F62603;
-  font-weight: 700;
+.purchase-resource-value {
+  word-break: break-all;
 }
 
-.order-btns {
-  margin-top: 24rpx;
-  display: flex;
-  justify-content: flex-end;
-}
-.order-cancelOrder {
-  width: 160rpx;
-  height: 64rpx;
-  line-height: 64rpx;
-  background: #FFFFFF;
-  border-radius: 32rpx;
-  border: 2rpx solid #0523A9;
+.addNew {
+  position: fixed;
+  left: 0rpx;
+  top: 70vh;
+  width: 120rpx;
   text-align: center;
-  font-size: 28rpx;
-  color: #0523A9;
-  box-sizing: border-box;
+  height: 60rpx;
+  line-height: 60rpx;
+  background-color: rgba(255, 0, 0, 0.822);
+  font-size: 30rpx;
+  border-radius: 0 10rpx 10rpx 0;
+  color: white;
 }
-.order-refund {
-  width: 106rpx;
-  height: 64rpx;
-  line-height: 64rpx;
-  background: #FFFFFF;
-  border-radius: 32rpx;
-  border: 2rpx solid #0523A9;
-  text-align: center;
-  font-size: 28rpx;
-  color: #0523A9;
-  box-sizing: border-box;
-}
-.order-seeDetail {
-  width: 160rpx;
-  height: 64rpx;
-  line-height: 64rpx;
-  background: #0523A9;
-  border-radius: 32rpx;
-  text-align: center;
-  font-size: 28rpx;
-  color: #FFFFFF;
-  margin-left: 20rpx;
-}
-
 .filter {
   position: fixed;
   right: 0rpx;
@@ -212,6 +164,7 @@ page {
   align-items: center;
 }
 .filter-time-item {
+  flex: 1;
   margin-right: 20rpx;
   padding: 10rpx 20rpx;
   background-color: rgb(243, 243, 243);
@@ -254,3 +207,4 @@ page {
   font-weight: 700;
   box-sizing: border-box;
 }
+

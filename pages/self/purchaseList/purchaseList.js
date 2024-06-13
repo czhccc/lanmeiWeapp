@@ -1,4 +1,4 @@
-// pages/customer/order/order.js
+// pages/self/purchaseList/purchaseList.js
 Page({
   data: {
     tabIndex: 0,
@@ -36,12 +36,18 @@ Page({
     console.log('触底')
   },
 
+  addNew() {
+    wx.navigateTo({
+      url: '/pages/self/purchase/purchase',
+    })
+  },
   filter() {
     this.setData({ isShowFilter: true });
   },
   closeFilter() {
     this.setData({ isShowFilter: false });
   },
+
   cancelOrder() {
     wx.showModal({
       title: '确认取消预订？',
@@ -70,5 +76,6 @@ Page({
     wx.navigateTo({
       url: '/pages/customer/order/orderDetail/orderDetail',
     })
-  }
+  },
+  
 })
