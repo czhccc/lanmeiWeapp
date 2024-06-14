@@ -5,7 +5,7 @@ page {
 }
 
 .homeNotify {
-	
+	padding-top: 30rpx;
 }
 
 .input-wrapper {

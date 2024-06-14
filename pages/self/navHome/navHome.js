@@ -21,8 +21,10 @@ Page({
       url: '/pages/self/deliver/deliver',
     })
   },
-  cp() { // 产品
-
+  sp() { // 商品
+    wx.navigateTo({
+      url: '/pages/self/goodsList/goodsList',
+    })
   },
   dd() { // 订单
 

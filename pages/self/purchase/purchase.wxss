@@ -9,6 +9,24 @@ page {
 	padding-bottom: 60rpx;
 }
 
+.btns {
+	display: flex;
+	align-items: center;
+}
+.deleteBtn {
+  border-radius: 42rpx;
+  height: 84rpx;
+  text-align: center;
+	line-height: 84rpx;
+	border: 1rpx solid red;
+  color: red;
+  box-sizing: border-box;
+	background-color: white;
+	margin: 0 auto;
+	margin-top: 40rpx;
+	margin-right: 20rpx;
+	width: 690rpx;
+}
 .submitBtn {
   border-radius: 42rpx;
   height: 84rpx;

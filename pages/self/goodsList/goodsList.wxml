@@ -1,41 +1,40 @@
-<!--pages/self/purchaseList/purchaseList.wxml-->
-<view class="purchaseList">
+<!--pages/self/goodsList/goodsList.wxml-->
+<view class="shelveList">
   <van-tabs class="tabs" active="{{ tabIndex }}" bind:change="tabChange">
-    <van-tab title="预订"></van-tab>
-    <van-tab title="购买"></van-tab>
+    <van-tab title="上架中"></van-tab>
+    <van-tab title="已下架"></van-tab>
   </van-tabs>
 
   <scroll-view 
-    class="purchaseList-list"
+    class="shelveList-list"
     scroll-y 
     bindscrolltolower="onScrollToLower"
     refresher-enabled	
     bindrefresherrefresh="bindrefresherrefresh" 
     refresher-triggered="{{refresherTriggered}}"
   >
-    <view class="purchase-item" wx:for="{{10}}" wx:key="index" bindtap="itemClick">
-      <view class="purchase-top">
-        <view class="purchaseId">
-          <view class="purchaseId-label">批次：</view>
-          <view class="purchaseId-value">20240613154866</view>
+    <view class="shelve-item" wx:for="{{10}}" wx:key="index" bindtap="itemClick">
+      <view class="shelve-top">
+        <view class="shelveId">
+          <view class="shelveId-label">产品编号：</view>
+          <view class="shelveId-value">20240613154866</view>
         </view>
-        <view class="purchase-status">未上架</view>
-        <!-- <view class="purchase-status">未上架/售卖中/已完结</view> -->
+        <view class="shelve-status">预订中</view>
       </view>
-      <view class="purchase-content">
-        <view class="purchase-time">采购时间：2024-6-13</view>
-        <view class="purchase-main">
-          <view class="goodsName">蓝莓蓝莓蓝莓蓝莓蓝莓蓝莓蓝莓蓝莓蓝莓蓝莓蓝莓蓝莓蓝莓</view>
-          <view class="purchase-num">×999斤</view>
+      <view class="shelve-content">
+        <view class="shelve-time">上架时间/下架时间：2024-6-13</view>
+        <view class="shelve-main">
+          <view class="goodsName">蓝莓蓝莓蓝莓蓝莓蓝莓蓝莓蓝莓蓝莓蓝莓蓝莓蓝莓蓝莓蓝莓蓝莓蓝莓蓝莓蓝莓蓝莓蓝莓</view>
+          <view class="shelve-num">×999斤</view>
         </view>
-        <view class="purchase-resource">
-          <view class="purchase-resource-label">
-            来源：
-          </view>
-          <view class="purchase-resource-value">
-            菜市口菜市口菜市口菜市口菜市口菜市口菜市口菜市口菜市口菜市口菜市口菜市口
-          </view>
-        </view>
+      </view>
+			<view class="payCount">
+        <view class="payCount-label">售价：</view>
+        <view class="payCount-value">
+					<text>¥48.00</text>
+					<text style="color: black;font-size: 24rpx;margin: 0 10rpx;"> / </text>
+					<text>斤</text>
+				</view>
       </view>
     </view>
     <view class="blank" style="height: 60rpx;"></view>

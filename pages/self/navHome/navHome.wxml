@@ -24,12 +24,12 @@
 			送货
 		</view>
 	</view>
-	<view class="navItem" bindtap="cp">
+	<view class="navItem" bindtap="sp">
 		<view class="icon">
 			<van-icon name="goods-collect-o" />
 		</view>
 		<view class="text">
-			产品
+			商品
 		</view>
 	</view>
 	<view class="navItem" bindtap="dd">

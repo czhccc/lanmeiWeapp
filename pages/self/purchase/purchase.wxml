@@ -37,7 +37,7 @@
     <van-field
       type="number"
       model:value="{{ num }}"
-      placeholder="请输入数量"
+      placeholder="数量"
       border="{{ false }}"
       label="数量"
     />
@@ -87,7 +87,8 @@
     maxlength="{{200}}"
   />
 
-  <view class="submitBtn">
-    提交
+  <view class="btns">
+    <view class="deleteBtn" bindtap="delete">删除</view>
+    <view class="submitBtn" bindtap="submit">保存</view>
   </view>
 </view>

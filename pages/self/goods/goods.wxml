@@ -1,0 +1,73 @@
+<!--pages/self/goods/goods.wxml-->
+<view class="goods">
+	<van-field
+		model:value="{{ goodsId }}"
+		placeholder="自动生成"
+		border="{{ false }}"
+		label="产品编号"
+		readonly
+	/>
+	<van-field
+		model:value="{{ name }}"
+		placeholder="请输入产品名称"
+		border="{{ false }}"
+		label="产品名称"
+	/>
+	<view style="display: flex;align-items: center;">
+    <van-field
+      type="number"
+      model:value="{{ totalNum }}"
+      placeholder="请输入总数量"
+      border="{{ false }}"
+      label="总数量"
+    />
+    <van-field
+      style="width: 33%;"
+      model:value="{{ unit }}"
+      placeholder="单位"
+      border="{{ false }}"
+    />
+  </view>
+	<van-field
+		type="number"
+		model:value="{{ num }}"
+		placeholder="自动计算"
+		border="{{ false }}"
+		label="当前剩余"
+		readonly
+	>
+		<view slot="right-icon">{{unit}}</view>
+	</van-field>
+	<van-field
+		type="number"
+		model:value="{{ unitPrice }}"
+		placeholder="请输入售价"
+		border="{{ false }}"
+		label="售价"
+	>
+		<view slot="right-icon">元 / {{unit || '单位'}}</view>
+	</van-field>
+	<van-cell title="是否可以邮寄" center border="{{ false }}">
+		<switch 
+			type="checkbox"
+			color="#1989FA"
+			checked="{{canMail}}" bindchange="canMailChange"/>
+  </van-cell>
+	<van-cell title="是否上架" center border="{{ false }}">
+		<switch 
+			type="checkbox"
+			color="#1989FA"
+			checked="{{isSale}}" bindchange="isSaleChange"/>
+  </van-cell>
+	<picker 
+		bindchange="statusChange" range="{{statusArr}}"
+  >
+    <van-field
+      model:value="{{ status }}"
+      placeholder="请选择当前状态"
+      border="{{ false }}"
+      label="状态"
+      readonly
+    />
+  </picker>
+</view>

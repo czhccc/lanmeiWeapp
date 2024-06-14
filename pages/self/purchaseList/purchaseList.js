@@ -48,33 +48,9 @@ Page({
     this.setData({ isShowFilter: false });
   },
 
-  cancelOrder() {
-    wx.showModal({
-      title: '确认取消预订？',
-      success(res) {
-        if (res.confirm) {
-          console.log('用户点击确定');
-        } else if (res.cancel) {
-          console.log('用户点击取消');
-        }
-      }
-    });
-  },
-  refund() {
-    wx.showModal({
-      title: '确认退款？',
-      success(res) {
-        if (res.confirm) {
-          console.log('用户点击确定');
-        } else if (res.cancel) {
-          console.log('用户点击取消');
-        }
-      }
-    });
-  },
-  seeDetail() {
+  itemClick() {
     wx.navigateTo({
-      url: '/pages/customer/order/orderDetail/orderDetail',
+      url: '/pages/self/purchase/purchase',
     })
   },
   

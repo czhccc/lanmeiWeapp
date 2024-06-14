@@ -2,7 +2,7 @@
 <view class="homeNotify">
 	<van-divider 
     contentPosition="left"
-    customStyle="color: #1989fa; border-color: #1989fa; font-size: 30rpx;margin-top: 24rpx;margin-bottom: 0;"
+    customStyle="color: #1989fa; border-color: #1989fa; font-size: 30rpx;margin-top: 0rpx;margin-bottom: 0;"
   >效果展示</van-divider>
 	<van-notice-bar
 		left-icon="volume-o"

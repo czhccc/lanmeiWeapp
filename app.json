@@ -1,8 +1,9 @@
 {
   "pages": [
+    "pages/self/goodsList/goodsList",
+    "pages/self/navHome/navHome",
     "pages/self/purchaseList/purchaseList",
     "pages/self/purchase/purchase",
-    "pages/self/navHome/navHome",
     "pages/self/deliver/deliver",
     "pages/self/handleComment/handleComment",
     "pages/self/aboutUs/aboutUs",
@@ -17,8 +18,8 @@
     "pages/customer/goodsList/goodsList",
     "pages/customer/address/addressList/addressList",
     "pages/customer/address/addressAdd/addressAdd",
-    "pages/customer/home/home"
-    
+    "pages/customer/home/home",
+    "pages/self/goods/goods"
   ],
   "usingComponents": {
     "NavBar": "./components/NavBar/NavBar",
