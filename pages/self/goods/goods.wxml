@@ -4,14 +4,14 @@
 		model:value="{{ goodsId }}"
 		placeholder="自动生成"
 		border="{{ false }}"
-		label="产品编号"
+		label="商品编号"
 		readonly
 	/>
 	<van-field
 		model:value="{{ name }}"
-		placeholder="请输入产品名称"
+		placeholder="请输入商品名称"
 		border="{{ false }}"
-		label="产品名称"
+		label="商品名称"
 	/>
 	<view style="display: flex;align-items: center;">
     <van-field
@@ -59,15 +59,48 @@
 			color="#1989FA"
 			checked="{{isSale}}" bindchange="isSaleChange"/>
   </van-cell>
-	<picker 
-		bindchange="statusChange" range="{{statusArr}}"
-  >
-    <van-field
-      model:value="{{ status }}"
-      placeholder="请选择当前状态"
-      border="{{ false }}"
-      label="状态"
-      readonly
-    />
-  </picker>
+  <van-cell title="当前状态" center border="{{ false }}">
+		<view slot="right-icon">
+      <radio-group bindchange="statusChange">
+        <view wx:for="{{statusArr}}" wx:key="index">
+          <view style="display: flex;align-items: center;">
+            <radio value="{{item.value}}" checked="true" color="#1989FA"/>
+            <text style="margin-left: 20rpx;">{{item.name}}</text>
+          </view>
+          
+        </view>
+      </radio-group>
+    </view>
+  </van-cell>
+  
+
+  <view style="margin-top: 40rpx;">
+    <van-cell title="商品图片" center border="{{ false }}"></van-cell>
+    <view style="background-color: white;padding: 32rpx;">
+      <van-uploader 
+        file-list="{{ imgList }}"
+        accept="all"
+        multiple
+        max-count="{{6}}"
+      />
+    </view>
+  </view>
+
+  <view style="margin-top: 40rpx;">
+    <van-cell title="商品详情描述" center border="{{ false }}"></van-cell>
+    <editor 
+      class="details" 
+      id="details"
+      placeholder="请输入商品详情..."
+      bindready="onEditorReady"
+      read-only="{{false}}"
+      show-img-size
+    ></editor>
+  </view>
+
+  <view class="btns">
+    <view class="deleteBtn" bindtap="delete">删除</view>
+    <view class="submitBtn" bindtap="submit">保存</view>
+  </view>
+  
 </view>

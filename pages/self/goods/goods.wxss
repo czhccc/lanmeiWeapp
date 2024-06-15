@@ -5,5 +5,47 @@ page {
 }
 
 .goods {
-	padding-bottom: 160rpx;
+	
+}
+
+.details {
+  background-color: white;
+  padding: 32rpx;
+  box-sizing: border-box;
+}
+
+
+.btns {
+	display: flex;
+  width: 100vw;
+  height: 160rpx;
+  background-color: white;
+  box-sizing: border-box;
+  padding: 0 32rpx;
+  padding-top: 20rpx;
+  margin-top: 30rpx;
+}
+.deleteBtn {
+  border-radius: 42rpx;
+  height: 84rpx;
+  text-align: center;
+	line-height: 84rpx;
+	border: 1rpx solid red;
+  color: red;
+  box-sizing: border-box;
+	background-color: white;
+	margin: 0 auto;
+	margin-right: 20rpx;
+	width: 690rpx;
+}
+.submitBtn {
+  border-radius: 42rpx;
+  height: 84rpx;
+  text-align: center;
+  line-height: 84rpx;
+  color: white;
+  box-sizing: border-box;
+	background-color: #1989FA;
+	margin: 0 auto;
+	width: 690rpx;
 }

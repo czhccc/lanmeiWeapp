@@ -65,9 +65,9 @@ page {
 }
 .detail-title {
 	font-weight: 700;
-font-size: 36rpx;
-color: #333333;
-padding: 0 32rpx;
+  font-size: 36rpx;
+  color: #333333;
+  padding: 0 32rpx;
 }
 .rich-wrapper {
 	margin-top: 24rpx;
@@ -76,7 +76,8 @@ padding: 0 32rpx;
 }
 .detail-content {
 	width: 100%;
-	max-width: 100%;
+  max-width: 100%;
+  font-size: 30rpx;
 }
 [src]{
 	max-width:100%;

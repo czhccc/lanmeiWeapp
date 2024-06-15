@@ -1,5 +1,10 @@
 {
   "pages": [
+    "pages/self/order/order",
+    "pages/self/order/orderDetail/orderDetail",
+    "pages/customer/order/order",
+    "pages/customer/order/orderDetail/orderDetail",
+    "pages/self/goods/goods",
     "pages/self/goodsList/goodsList",
     "pages/self/navHome/navHome",
     "pages/self/purchaseList/purchaseList",
@@ -8,8 +13,8 @@
     "pages/self/handleComment/handleComment",
     "pages/self/aboutUs/aboutUs",
     "pages/self/homeNotify/homeNotify",
-    "pages/customer/order/order",
-    "pages/customer/order/orderDetail/orderDetail",
+    
+    
     "pages/customer/buyOrOrder/buyOrOrder",
     "pages/customer/goodsList/goodsDetail/goodsDetail",
     "pages/customer/comment/comment",
@@ -18,8 +23,8 @@
     "pages/customer/goodsList/goodsList",
     "pages/customer/address/addressList/addressList",
     "pages/customer/address/addressAdd/addressAdd",
-    "pages/customer/home/home",
-    "pages/self/goods/goods"
+    "pages/customer/home/home"
+    
   ],
   "usingComponents": {
     "NavBar": "./components/NavBar/NavBar",
