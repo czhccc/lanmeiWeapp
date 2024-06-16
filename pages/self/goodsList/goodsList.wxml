@@ -5,6 +5,10 @@
     <van-tab title="已下架"></van-tab>
   </van-tabs>
 
+  <view class="search-wrapper">
+    <van-search model:value="{{ searchParam }}" placeholder="请输入搜索关键词" bind:search="searchConfirm" />
+  </view>
+
   <scroll-view 
     class="shelveList-list"
     scroll-y 
@@ -35,6 +39,12 @@
 					<text style="color: black;font-size: 24rpx;margin: 0 10rpx;"> / </text>
 					<text>斤</text>
 				</view>
+      </view>
+      <view class="haveOrdered">
+        <view class="haveOrdered-label">已预订：</view>
+        <view class="haveOrdered-value">
+          <text style="color: red;">200</text> 斤
+        </view>
       </view>
     </view>
     <view class="blank" style="height: 60rpx;"></view>

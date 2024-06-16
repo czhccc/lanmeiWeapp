@@ -1,8 +1,8 @@
 <!--pages/self/order/orderDetail/orderDetail.wxml-->
 <view class="orderDetail">
 
-  <view>
-    服务状态？
+  <view class="cancelOrder" catch:tap="cancelOrder">
+    取消订单<van-icon name="revoke" />
   </view>
 
   <view class="item-title">商品</view>
@@ -70,6 +70,9 @@
       <view class="detail-line-label2">应付金额</view>
       <view class="detail-line-value2">¥2029.00</view>
     </view>
+    <view style="display: flex;justify-content: flex-end;">
+      <view class="changeAmountBtn" bind:tap="changeAmount">修改金额</view>
+    </view>
   </view>
 
   <view class="orderId">
@@ -79,14 +82,107 @@
       <image class="copy-icon" src="../../../../images/common/copy.png" mode="" bind:tap="copyOrderId" />
     </view>
   </view>
-  
-  <view class="bottom">
-    <view class="bottom-content">
-      <view class="payNum">
-        <view class="payNum-label">应付金额：</view>
-        <view class="payNum-value">¥2029.00</view>
+
+  <view class="item-title">订单状态</view>
+  <view class="status-wrapper">
+    <radio-group bindchange="statusChange">
+      <view wx:for="{{statusArr}}" wx:key="index">
+        <view style="display: flex;align-items: center;margin-bottom: 20rpx;">
+          <radio value="{{item.value}}" checked="true" color="#1989FA"/>
+          <text style="margin-left: 20rpx;">{{item.name}}</text>
+        </view>
       </view>
-      <view class="payBtn" bind:tap="submit">提交订单</view>
+    </radio-group>
+    <view style="display: flex;justify-content: flex-end;">
+      <view class="changeAmountBtn" bind:tap="submitStatus">确认提交</view>
     </view>
   </view>
+
+  <view class="item-title">订单信息</view>
+  <view class="order-info">
+    <view class="order-infoLine">
+      <text class="order-infoLine-label">创建人</text>
+      <text class="order-infoLine-value">陈陈陈</text>
+    </view><view class="order-infoLine">
+      <text class="order-infoLine-label">创建时间</text>
+      <text class="order-infoLine-value">2023-6-15 22:04:05</text>
+    </view>
+    <view class="order-infoLine">
+      <text class="order-infoLine-label">完结人</text>
+      <text class="order-infoLine-value">冲冲冲</text>
+    </view>
+    <view class="order-infoLine">
+      <text class="order-infoLine-label">完结时间</text>
+      <text class="order-infoLine-value">2023-6-15 22:04:05</text>
+    </view>
+  </view>
+
+  <van-popup 
+    show="{{ isChangingAmount }}"
+    close-on-click-overlay="{{false}}"
+    z-index="{{999}}"
+    round
+  >
+    <view class="changeAmount-wrapper">
+      <view class="changeAmount-title">
+        修改付款金额
+      </view>
+      <view class="changeAmount-title">
+        当前金额：<text style="font-weight: 700;color: red;">¥2029.00</text>
+      </view>
+      <view class="changeAmount-input-wrapper">
+        <van-field
+          type="number"
+          class="changeAmount-input-zs"
+          value="{{ cancelOrderReason }}"
+          placeholder="整数"
+          autosize
+          border="{{ false }}"
+          maxlength="{{5}}"
+        />
+        <view>.</view>
+        <van-field
+          type="number"
+          class="changeAmount-input-xs"
+          value="{{ cancelOrderReason }}"
+          placeholder="小数"
+          autosize
+          border="{{ false }}"
+          maxlength="{{2}}"
+        />
+      </view>
+      <view class="changeAmount-btns">
+        <view class="changeAmount-cancelBtn" bind:tap="changeAmountCancel">取消</view>
+        <view class="changeAmount-confirmBtn" bind:tap="changeAmountConfirm">确定</view>
+      </view>
+    </view>
+  </van-popup>
+  
+  <van-popup 
+    show="{{ isShowCancelPopup }}"
+    close-on-click-overlay="{{false}}"
+    z-index="{{999}}"
+    round
+  >
+    <view class="cancelOrder-wrapper">
+      <view class="cancelOrder-title">取消订单（退款）</view>
+      <view class="cancelOrder-input-wrapper">
+        <van-field
+          class="cancelOrder-input"
+          value="{{ cancelOrderReason }}"
+          type="textarea"
+          placeholder="请输入取消原因"
+          autosize
+          border="{{ false }}"
+          maxlength="{{200}}"
+        />
+      </view>
+      <view class="cancelOrder-btns">
+        <view class="cancelOrder-cancelBtn" bind:tap="cancelOrderCancel">取消</view>
+        <view class="cancelOrder-confirmBtn" bind:tap="cancelOrderConfirm">确定</view>
+      </view>
+    </view>
+  </van-popup>
+  
+  
 </view>

@@ -5,6 +5,10 @@
     <van-tab title="购买"></van-tab>
   </van-tabs>
 
+  <view class="search-wrapper">
+    <van-search model:value="{{ searchParam }}" placeholder="请输入搜索关键词" bind:search="searchConfirm" />
+  </view>
+
   <scroll-view 
     class="order-list"
     scroll-y 
@@ -39,18 +43,15 @@
         <view class="payCount-label">实付金额：</view>
         <view class="payCount-value">¥48.00</view>
       </view>
-
-      <view class="order-btns">
-        <view class="order-cancelOrder" catch:tap="cancelOrder">取消预订</view>
-        <view class="order-refund" catch:tap="refund">退款</view>
-        <view class="order-seeDetail" catch:tap="seeDetail">查看详情</view>
-      </view>
     </view>
     <view class="blank" style="height: 60rpx;"></view>
   </scroll-view>
 
   <view class="filter" catch:tap="filter">
     筛选<van-icon name="filter-o" />
+  </view>
+  <view class="addNew" catch:tap="addNew">
+    新增<van-icon name="add-o" />
   </view>
 
   <van-popup 

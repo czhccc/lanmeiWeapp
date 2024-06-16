@@ -1,7 +1,9 @@
 {
   "pages": [
-    "pages/self/order/order",
     "pages/self/order/orderDetail/orderDetail",
+    "pages/self/order/orderAddNew/orderAddNew",
+    "pages/self/order/order",
+    
     "pages/customer/order/order",
     "pages/customer/order/orderDetail/orderDetail",
     "pages/self/goods/goods",
@@ -13,8 +15,6 @@
     "pages/self/handleComment/handleComment",
     "pages/self/aboutUs/aboutUs",
     "pages/self/homeNotify/homeNotify",
-    
-    
     "pages/customer/buyOrOrder/buyOrOrder",
     "pages/customer/goodsList/goodsDetail/goodsDetail",
     "pages/customer/comment/comment",

@@ -194,6 +194,16 @@ page {
   color: red;
   font-weight: 700;
 }
+.changeAmountBtn {
+  width: 200rpx;
+  height: 68rpx;
+  background: #1989FA;
+  border-radius: 42rpx;
+  color: white;
+  text-align: center;
+  line-height: 68rpx;
+  font-size: 32rpx;
+}
 
 .orderId {
   width: 690rpx;
@@ -202,15 +212,15 @@ page {
   border-radius: 16rpx;
   margin: 0 auto;
   margin-top: 40rpx;
-  padding: 32rpx;
+  padding: 24rpx;
   box-sizing: border-box;
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
 .orderId-label {
-  font-size: 28rpx;
-  color: #666666;
+  font-size: 38rpx;
+  color: #333333;
   font-weight: 700;
 }
 .orderId-value {
@@ -225,42 +235,13 @@ page {
   margin-left: 8rpx;
 }
 
-.bottom {
-  width: 100vw;
-  position: fixed;
-  bottom: 0;
+.status-wrapper {
+  width: 690rpx;
+  margin: 0 auto;
+  border-radius: 0 0 16rpx 16rpx;
   background-color: white;
-  height: 160rpx;
-  padding: 24rpx 24rpx 0 24rpx;
+  padding: 32rpx;
   box-sizing: border-box;
-  z-index: 999;
-}
-.bottom-content {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-.payNum {
-  display: flex;
-}
-.payNum-label {
-  font-size: 32rpx;
-  color: #333333;
-}
-.payNum-value {
-  font-size: 32rpx;
-  color: #F62603;
-  font-weight: 700;
-}
-.payBtn {
-  width: 240rpx;
-  height: 84rpx;
-  background: #1989FA;
-  border-radius: 42rpx;
-  color: white;
-  text-align: center;
-  line-height: 84rpx;
-  font-size: 36rpx;
 }
 
 .item-title {
@@ -273,4 +254,146 @@ page {
   font-weight: 700;
   box-sizing: border-box;
   padding: 24rpx 24rpx 10rpx 24rpx;
+}
+
+.order-info {
+  width: 690rpx;
+  padding-bottom: 24rpx;
+  box-sizing: border-box;
+  margin: 0 auto;
+  border-radius: 0 0 16rpx 16rpx;
+  background-color: white;
+}
+.order-infoLine {
+  display: flex;
+  justify-content: space-between;
+  padding: 10rpx 24rpx;
+  font-size: 28rpx;
+}
+.order-infoLine-label {
+  color: #999999;
+}
+.order-infoLine-value {
+  
+}
+
+.changeAmount-wrapper {
+  width: 60vw;
+  padding: 24rpx;
+  box-sizing: border-box;
+}
+.changeAmount-title {
+  font-weight: 700;
+  font-size: 30rpx;
+  padding: 20rpx;
+  box-sizing: border-box;
+}
+.changeAmount-input-wrapper {
+  display: flex;
+  align-items: center;
+}
+.changeAmount-input-zs {
+  flex: 1;
+}
+.changeAmount-input-xs {
+  width: 100rpx;
+}
+.changeAmount-btns {
+  display: flex;
+  align-items: center;
+  padding: 20rpx;
+  box-sizing: border-box;
+}
+.changeAmount-cancelBtn {
+  flex: 1;
+  border-radius: 42rpx;
+  border: 2rpx solid red;
+  height: 84rpx;
+  text-align: center;
+  line-height: 84rpx;
+  color: red;
+  box-sizing: border-box;
+  background-color: white;
+  font-size: 32rpx;
+  font-weight: 700;
+}
+.changeAmount-confirmBtn {
+  flex: 1;
+  background: #1989FA;
+  border-radius: 42rpx;
+  height: 84rpx;
+  text-align: center;
+  line-height: 84rpx;
+  color: white;
+  margin-left: 20rpx;
+  box-sizing: border-box;
+  font-size: 32rpx;
+  font-weight: 700;
+}
+
+.cancelOrder {
+  /* position: fixed;
+  left: 0rpx;
+  top: 30vh; */
+  width: 180rpx;
+  text-align: center;
+  height: 60rpx;
+  line-height: 60rpx;
+  background-color: rgba(233, 72, 99, 0.8);
+  font-size: 30rpx;
+  border-radius: 0 10rpx 10rpx 0;
+  color: white;
+}
+.cancelOrder-wrapper {
+  width: 80vw;
+  padding: 24rpx;
+  box-sizing: border-box;
+}
+.cancelOrder-title {
+  font-weight: 700;
+  font-size: 30rpx;
+  padding: 20rpx;
+  box-sizing: border-box;
+}
+.cancelOrder-input-wrapper {
+  min-height: 200rpx;
+}
+.cancelOrder-input {
+  min-height: 200rpx;
+}
+.cancelOrder-btns {
+  display: flex;
+  align-items: center;
+  padding: 20rpx;
+  box-sizing: border-box;
+}
+.cancelOrder-cancelBtn {
+  flex: 1;
+  border-radius: 42rpx;
+  border: 2rpx solid red;
+  height: 84rpx;
+  text-align: center;
+  line-height: 84rpx;
+  color: red;
+  box-sizing: border-box;
+  background-color: white;
+  font-size: 32rpx;
+  font-weight: 700;
+}
+.cancelOrder-confirmBtn {
+  flex: 1;
+  background: #1989FA;
+  border-radius: 42rpx;
+  height: 84rpx;
+  text-align: center;
+  line-height: 84rpx;
+  color: white;
+  margin-left: 20rpx;
+  box-sizing: border-box;
+  font-size: 32rpx;
+  font-weight: 700;
+}
+
+.van-cell {
+  border-radius: 16rpx !important;
 }

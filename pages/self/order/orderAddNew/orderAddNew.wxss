@@ -1,0 +1,56 @@
+/* pages/self/order/orderAddNew/orderAddNew.wxss */
+page {
+  height: 100%;
+  background: #F4F4F4;
+}
+
+.orderAddNew {
+
+}
+
+.item-title {
+  width: 690rpx;
+  margin: 0 auto;
+  margin-top: 40rpx;
+  background-color: white;
+  border-radius: 16rpx 16rpx 0 0;
+  font-size: 38rpx;
+  font-weight: 700;
+  box-sizing: border-box;
+  padding: 24rpx 24rpx 10rpx 24rpx;
+}
+
+.type-wrapper {
+  width: 690rpx;
+  margin: 0 auto;
+  border-radius: 0 0 16rpx 16rpx;
+  background-color: white;
+  padding: 32rpx;
+  padding-bottom: 24rpx;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.radio {
+  width: 50%;
+}
+
+.cell-wrapper {
+  background-color: white;
+  margin: 0 auto;
+  width: 690rpx;
+  border-radius: 0 0 16rpx 16rpx;
+}
+.notes-wrapper {
+  background-color: white;
+  margin: 0 auto;
+  width: 690rpx;
+  border-radius: 0 0 16rpx 16rpx;
+}
+.van-cell {
+  border-radius: 16rpx;
+  padding-left: 24rpx !important;
+  padding-right: 24rpx !important;
+  box-sizing: border-box;
+}

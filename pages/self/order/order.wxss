@@ -12,8 +12,12 @@ page {
   
 }
 
+.search-wrapper {
+  height: 100rpx;
+}
+
 .order-list {
-  height: calc(100vh - 88rpx);
+  height: calc(100vh - 100rpx - 88rpx);
 }
 .order-item {
   padding: 32rpx;
@@ -110,47 +114,19 @@ page {
   font-weight: 700;
 }
 
-.order-btns {
-  margin-top: 24rpx;
-  display: flex;
-  justify-content: flex-end;
-}
-.order-cancelOrder {
-  width: 160rpx;
-  height: 64rpx;
-  line-height: 64rpx;
-  background: #FFFFFF;
-  border-radius: 32rpx;
-  border: 2rpx solid #0523A9;
+.addNew {
+  position: fixed;
+  left: 0rpx;
+  top: 70vh;
+  width: 120rpx;
   text-align: center;
-  font-size: 28rpx;
-  color: #0523A9;
-  box-sizing: border-box;
+  height: 60rpx;
+  line-height: 60rpx;
+  background-color: rgba(255, 0, 0, 0.822);
+  font-size: 30rpx;
+  border-radius: 0 10rpx 10rpx 0;
+  color: white;
 }
-.order-refund {
-  width: 106rpx;
-  height: 64rpx;
-  line-height: 64rpx;
-  background: #FFFFFF;
-  border-radius: 32rpx;
-  border: 2rpx solid #0523A9;
-  text-align: center;
-  font-size: 28rpx;
-  color: #0523A9;
-  box-sizing: border-box;
-}
-.order-seeDetail {
-  width: 160rpx;
-  height: 64rpx;
-  line-height: 64rpx;
-  background: #0523A9;
-  border-radius: 32rpx;
-  text-align: center;
-  font-size: 28rpx;
-  color: #FFFFFF;
-  margin-left: 20rpx;
-}
-
 .filter {
   position: fixed;
   right: 0rpx;
