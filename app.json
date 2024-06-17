@@ -1,7 +1,8 @@
 {
   "pages": [
-    "pages/self/order/orderDetail/orderDetail",
     "pages/self/order/orderAddNew/orderAddNew",
+    "pages/self/order/orderDetail/orderDetail",
+    
     "pages/self/order/order",
     
     "pages/customer/order/order",

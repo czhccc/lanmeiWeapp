@@ -64,6 +64,7 @@
       <image class="pickMethod-arrow" src="../../../images/common/arrow-right.png" mode=""/>
     </view>
   </picker>
+  限江浙沪顺丰包邮 嵊州可送货上门
 
   <van-divider 
     contentPosition="left"
@@ -73,7 +74,7 @@
     <van-field
       model:value="{{ notes }}"
       type="textarea"
-      placeholder="请输入留言说明"
+      placeholder="请输入备注说明"
       autosize
       border="{{ false }}"
       class="notes-input"

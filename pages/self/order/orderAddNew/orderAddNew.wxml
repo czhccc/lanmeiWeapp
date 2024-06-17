@@ -1,6 +1,39 @@
 <!--pages/self/order/orderAddNew/orderAddNew.wxml-->
 <view class="orderAddNew">
 
+  <view class="goods">
+    <image class="goods-img" src="https://img2.baidu.com/it/u=3650958543,1493738205&fm=253&fmt=auto&app=138&f=JPEG?w=800&h=800" mode=""/>
+    <view class="goods-content">
+      <view class="goods-name">意大利头皮护理产品意大利头皮护理产品意大利头皮护理产品意大利头皮护理产品意大利头皮护理产品</view>
+      <view class="goods-specification">
+        <text class="goods-specification-label">规格：</text>
+        <text class="goods-specification-value">500ml500ml500ml500ml500ml500ml500ml500ml500ml</text>
+        </view>
+      <view class="goods-price">
+        <view class="goods-price-content">
+          <view class="goods-price-new">¥199.00</view>
+          <view class="goods-price-old">¥299.00</view>
+        </view>
+        <view class="num-wrapper">
+          <view class="num-wrapper2">
+            <van-stepper 
+              value="{{ num }}" 
+              bind:change="numChnage"
+              min="{{1}}"
+              max="{{999}}" 
+            />
+            <!-- 最大值由剩余数量决定 -->
+          </view>
+        </view>
+      </view>
+      
+    </view>
+  </view>
+  <view class="totalAmount" style="padding: 20rpx 32rpx;background-color: white;display: flex;align-items: center;font-size: 36rpx;">
+    <view style="color: black;">总金额：</view>
+    <view style="font-weight: 700;color: red;">￥99999</view>
+  </view>
+
   <view class="item-title">订单类型</view>
   <view class="type-wrapper">
     <radio-group bindchange="typeChange" style="width: 100%;">
@@ -8,8 +41,20 @@
         <view wx:for="{{typeArr}}" wx:key="index" style="width: 50%;">
           <view style="display: flex;align-items: center;">
             <radio value="{{item.value}}" checked="true" color="#1989FA"/>
-            <text style="margin-left: 10rpx;">{{item.name}}</text>
+            <text style="margin-left: 10rpx;">{{item.label}}</text>
           </view>
+        </view>
+      </view>
+    </radio-group>
+  </view>
+
+  <view class="item-title">订单状态</view>
+  <view class="status-wrapper">
+    <radio-group bindchange="statusChange">
+      <view wx:for="{{statusArr}}" wx:key="index">
+        <view style="display: flex;align-items: center;margin-bottom: 20rpx;">
+          <radio value="{{item.value}}" checked="true" color="#1989FA"/>
+          <text style="margin-left: 20rpx;">{{item.label}}</text>
         </view>
       </view>
     </radio-group>
@@ -47,12 +92,26 @@
     />
   </view>
 
-  <view class="item-title">留言说明</view>
+  <view class="item-title">收货方式</view>
+  <view class="type-wrapper">
+    <radio-group bindchange="pickMethodChange" style="width: 100%;">
+      <view style="display: flex;align-items: center;margin-bottom: 20rpx;justify-content: space-between;">
+        <view wx:for="{{pickMethodArr}}" wx:key="index" style="width: 50%;">
+          <view style="display: flex;align-items: center;">
+            <radio value="{{item.value}}" checked="true" color="#1989FA"/>
+            <text style="margin-left: 10rpx;">{{item.label}}</text>
+          </view>
+        </view>
+      </view>
+    </radio-group>
+  </view>
+
+  <view class="item-title">备注说明</view>
   <view class="notes-wrapper">
     <van-field
       model:value="{{ notes }}"
       type="textarea"
-      placeholder="请输入留言说明"
+      placeholder="请输入备注说明"
       autosize
       border="{{ false }}"
       class="notes-input"
