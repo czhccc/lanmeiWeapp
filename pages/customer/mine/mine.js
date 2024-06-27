@@ -70,42 +70,22 @@ Page({
     })
   },
   
-  yyjl() { // 预订记录
+  toOrder() { // 我的订单
     wx.navigateTo({
-      url: '/pages/order/orderRecord/orderRecord',
+      url: '/pages/customer/order/order',
     })
   },
-  hyk() { // 会员卡
+  toAddress() { // 收获地址
     wx.navigateTo({
-      url: '/pages/card/card',
+      url: '/pages/customer/address/addressList/addressList',
     })
   },
-  yxdd() { // 优选订单
-    wx.navigateTo({
-      url: '/pages/deal/dealPrefer/dealPrefer',
-    })
-  },
-  jfdh() { // 积分兑换
-    wx.navigateTo({
-      url: '/pages/deal/dealPoint/dealPoint',
-    })
-  },
-  dddd() { // 到店订单
-    wx.navigateTo({
-      url: '/pages/deal/dealShop/dealShop',
-    })
-  },
-  zfjl() { // 支付记录
-    wx.navigateTo({
-      url: '/pages/consume/consume',
-    })
-  },
-  comment() { // 门店列表
+  comment() { // 想法留言
     wx.navigateTo({
       url: '/pages/customer/comment/comment',
     })
   },
-  contact() { // 联系客服
+  contact() { // 关于我们
     wx.navigateTo({
       url: '/pages/customer/seeSeller/seeSeller',
     })

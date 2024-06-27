@@ -15,6 +15,7 @@ Component({
       let pages = getCurrentPages();
       let currentPage = pages[pages.length - 1];
       let currentUrl = `/${currentPage.route}`;
+      console.log('1111', currentUrl)
       this.setData({
         currentUrl
       })
@@ -22,17 +23,24 @@ Component({
   },
   methods: {
     switchTabHandle(e) {
-      let index = Number(e.currentTarget.dataset.index)
+      let flag = e.currentTarget.dataset.flag
       let pages = getCurrentPages()
       let currentPage = pages[pages.length-1]
       let url = `/${currentPage.route}`
-      let urls = ['/pages/home/home', '/pages/prefer/prefer', '/pages/point/point', '/pages/mine/mine', '/pages/order/order']
-      if (url !== urls[index]) {
-        this.setData({
-          tabIndex: index
-        })
+      console.log(flag)
+      console.log(url)
+
+      if (flag==='home') {
         wx.switchTab({
-          url: urls[index],
+          url: '/pages/customer/home/home',
+        })
+      } else if (flag==='mine') {
+        wx.switchTab({
+          url: '/pages/customer/mine/mine',
+        })
+      } else if (flag==='goodsList') {
+        wx.switchTab({
+          url: '/pages/customer/goodsList/goodsList',
         })
       }
     }

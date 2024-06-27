@@ -5,6 +5,8 @@
     <van-tab title="购买"></van-tab>
   </van-tabs>
 
+  <van-search value="{{ searchParam }}" bind:search="onSearch" placeholder="输入批次号或商品名称" shape="round" />
+
   <scroll-view 
     class="purchaseList-list"
     scroll-y 
@@ -54,20 +56,6 @@
     lock-scroll
   >
     <view class="filter-content">
-      <view class="filter-item">
-        <view class="filter-item-label">批次：</view>
-        <view class="filter-item-value filter-OrderId">
-          <input type="text" class="filter-orderInput" placeholder="请输入批次" />
-        </view>
-      </view>
-
-      <view class="filter-item">
-        <view class="filter-item-label">产品名：</view>
-        <view class="filter-item-value filter-OrderId">
-          <input type="text" class="filter-orderInput" placeholder="请输入产品名关键字" />
-        </view>
-      </view>
-
       <view class="filter-item" style="margin-bottom: 10rpx;">
         <view class="filter-item-label">状态：</view>
         <view class="filter-item-value filter-status">
@@ -80,11 +68,11 @@
       <view class="filter-item">
         <view class="filter-item-label">时间段：</view>
         <view class="filter-item-value filter-time">
-          <picker mode="date" value="{{date}}" start="2024-01-01" end="2030-12-31" bindchange="bindDateChange">
+          <picker mode="date" value="{{date}}" start="2024-01-01" end="2030-12-31" bindchange="bindDateChange" style="flex: 1;">
             <view class="filter-time-item">2024-8-15</view>
           </picker>
-          <view style="margin-right: 20rpx;">—</view>
-          <picker mode="date" value="{{date}}" start="2024-01-01" end="2030-12-31" bindchange="bindDateChange">
+          <view style="margin-right: 20rpx;margin-left: 20rpx;">—</view>
+          <picker mode="date" value="{{date}}" start="2024-01-01" end="2030-12-31" bindchange="bindDateChange" style="flex: 1;">
             <view class="filter-time-item">2024-8-15</view>
           </picker>
         </view>

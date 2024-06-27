@@ -64,7 +64,9 @@
       <image class="pickMethod-arrow" src="../../../images/common/arrow-right.png" mode=""/>
     </view>
   </picker>
-  限江浙沪顺丰包邮 嵊州可送货上门
+  <view style="font-size: 24rpx;padding: 0 32rpx;margin-top: 10rpx;">
+    限江浙沪顺丰包邮 嵊州可送货上门
+  </view>
 
   <van-divider 
     contentPosition="left"

@@ -13,7 +13,7 @@ page {
 }
 
 .purchaseList-list {
-  height: calc(100vh - 88rpx);
+  height: calc(100vh - 88rpx - 108rpx);
 }
 .purchase-item {
   padding: 32rpx;
@@ -48,7 +48,7 @@ page {
   line-height: 40rpx;
   text-align: center;
   font-size: 24rpx;
-  color: #0523A9;
+  color: #1989FA;
   margin-left: 40rpx;
 }
 .purchase-content {
@@ -149,6 +149,7 @@ page {
 }
 .filter-status {
   justify-content: space-between;
+  align-items: center;
   flex-wrap: wrap;
 }
 .filter-status-item {
@@ -157,21 +158,19 @@ page {
   border-radius: 20rpx;
   font-size: 28rpx;
   word-break: keep-all;
-  margin-bottom: 20rpx;
 }
 .filter-time {
   display: flex;
   align-items: center;
 }
 .filter-time-item {
-  flex: 1;
-  margin-right: 20rpx;
   padding: 10rpx 20rpx;
   background-color: rgb(243, 243, 243);
   border-radius: 20rpx;
   height: 50rpx;
   line-height: 50rpx;
   font-size: 28rpx;
+  text-align: center;
 }
 
 .filter-btns {
@@ -187,18 +186,18 @@ page {
   height: 84rpx;
   background: #FFFFFF;
   border-radius: 42rpx;
-  border: 2rpx solid #0523A9;
+  border: 2rpx solid #1989FA;
   line-height: 84rpx;
   text-align: center;
   font-size: 32rpx;
-  color: #0523A9;
+  color: #1989FA;
   font-weight: 700;
   box-sizing: border-box;
 }
 .filter-confirm {
   width: 340rpx;
   height: 84rpx;
-  background: #0523A9;
+  background: #1989FA;
   border-radius: 42rpx;
   line-height: 84rpx;
   text-align: center;

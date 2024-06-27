@@ -1,10 +1,12 @@
 {
   "pages": [
+    "pages/temporary/home/home",
+    "pages/customer/mine/mine",
+    "pages/customer/home/home",
+    
     "pages/self/order/orderAddNew/orderAddNew",
     "pages/self/order/orderDetail/orderDetail",
-    
     "pages/self/order/order",
-    
     "pages/customer/order/order",
     "pages/customer/order/orderDetail/orderDetail",
     "pages/self/goods/goods",
@@ -19,12 +21,12 @@
     "pages/customer/buyOrOrder/buyOrOrder",
     "pages/customer/goodsList/goodsDetail/goodsDetail",
     "pages/customer/comment/comment",
-    "pages/customer/mine/mine",
+    
     "pages/customer/seeSeller/seeSeller",
     "pages/customer/goodsList/goodsList",
     "pages/customer/address/addressList/addressList",
-    "pages/customer/address/addressAdd/addressAdd",
-    "pages/customer/home/home"
+    "pages/customer/address/addressAdd/addressAdd"
+    
     
   ],
   "usingComponents": {
@@ -39,12 +41,12 @@
         "text": "首页"
       },
       {
-        "pagePath": "pages/customer/goodsList/goodsList",
-        "text": "优选"
-      },
-      {
         "pagePath": "pages/customer/mine/mine",
         "text": "我的"
+      },
+      {
+        "pagePath": "pages/customer/goodsList/goodsList",
+        "text": "商品"
       }
     ]
   },

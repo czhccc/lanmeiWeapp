@@ -10,7 +10,7 @@ page {
 .backImg {
 	position: absolute;
 	width: 100vw;
-	height: 510rpx;
+	height: 480rpx;
 	z-index: -1;
 }
 
@@ -20,7 +20,7 @@ page {
 	background-color: white;
 }
 .profile-wrapper {
-	padding-top: 240rpx;
+	padding-top: 200rpx;
 }
 .profile {
 	padding: 0 32rpx;
@@ -51,50 +51,22 @@ page {
 	height: 64rpx;
 }
 
-.panel {
-	margin: 0 auto;
-	margin-top: 44rpx;
-	width: 688rpx;
-	height: 180rpx;
-	background: #FFFFFF;
-	border-radius: 24rpx;
-	display: flex;
-	align-items: center;
-	padding: 0 160rpx;
-	box-sizing: border-box;
-	justify-content: space-between;
-}
-.panel-item {
-
-}
-.panel-item-img {
-	width: 86rpx;
-	height: 86rpx;
-}
-.panel-item-text {
-	text-align: center;
-	font-size: 24rpx;
-	color: #333333;
-}
-
 .nav-panel {
 	margin: 0 auto;
 	margin-top: 32rpx;
-	width: 686rpx;
-	height: 232rpx;
+	width: 660rpx;
 	background: #FFFFFF;
 	border-radius: 24px;
 	box-sizing: border-box;
-	padding: 30rpx 32rpx;
+	padding: 30rpx 0;
 	font-size: 28rpx;
 	font-weight: 700;
 }
 .nav-panel-items {
 	padding: 0 56rpx;
-	margin-top: 32rpx;
 	display: flex;
 	align-items: center;
-	justify-content: space-between;
+	justify-content: space-around;
 }
 .nav-panel-item {
 	display: flex;

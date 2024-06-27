@@ -1,0 +1,14 @@
+/* pages/temporary/home/home.wxss */
+.page {
+	height: 100%;
+}
+
+.home {
+	height: 100vh;
+}
+
+.wrapper {
+	position: relative;
+	top: 50%;
+	transform: translateY(-50%);
+}

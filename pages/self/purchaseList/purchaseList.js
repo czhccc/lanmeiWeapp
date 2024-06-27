@@ -9,6 +9,8 @@ Page({
     pageNo: 1,
     pageSize: 10,
     listData: [],
+
+    searchParam: '',
   },
   onLoad(options) {
 
@@ -22,7 +24,9 @@ Page({
       tabIndex: e.detail.index
     })
   },
-
+  onSearch(e) {
+    console.log(e)
+  },
   bindrefresherrefresh() {
     console.log('下拉刷新')
     this.setData({

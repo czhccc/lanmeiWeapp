@@ -13,7 +13,7 @@ Page({
   },
   cg() { // 采购
     wx.navigateTo({
-      url: '/pages/self/purchase/purchase',
+      url: '/pages/self/purchaseList/purchaseList',
     })
   },
   sh() { // 送货

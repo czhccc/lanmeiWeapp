@@ -15,17 +15,14 @@
 }
 .tab-content {
   z-index: 999;
-  /* position: fixed;
-  left: 0;
-  bottom: 0; */
   width: 100vw;
   height: 112rpx;
   background: white;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
   box-sizing: border-box;
-  padding: 0 20rpx;
+  border-top: 1rpx solid #E7E7E7;
 }
 
 .tab-bar-item{
@@ -45,14 +42,13 @@
 }
 .tab-bar-text{
   margin-top: 2rpx;
-  font-size: 20rpx;
-  font-weight: 700;
+  font-size: 24rpx;
 }
 
 .middle-item {
   width: 112rpx;
   height: 112rpx;
-  background: #0523A9;
+  background: #1989FA;
   border-radius: 56rpx;
   position: absolute;
   top: 0rpx;
@@ -66,12 +62,12 @@
   justify-content: center;
 }
 .middle-item-img {
-  width: 48rpx;
-  height: 48rpx;
+  width: 60rpx;
+  height: 60rpx;
 }
 .middle-item-text {
   margin-top: 4rpx;
-  font-size: 20rpx;
+  font-size: 24rpx;
   color: white;
 }
 .middle-item-blank {

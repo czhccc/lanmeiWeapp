@@ -1,60 +1,42 @@
 <!--pages/home/home.wxml-->
 <view class="home">
-	<NavBar id="navBar" class="navBar" title="弘焕" noBackArrow />
-	<image class="back" src="/images/home/home-backImg.png"></image>
+	<TabBar />
 
-	<TabBar id="tabBar" />
+	<van-notice-bar
+		left-icon="volume-o"
+		text="我是通知示例我是通知示例我是通知示例我是通知示例我是通知示例我是通知示例我是通知示例我是通知示例。"
+	/>
 
 	<view class="swiper-wrapper">
 		<swiper class="swiper" autoplay="true" interval="3000" duration="500" 	indicator-dots indicator-color="rgba(255,255,255,0.55)" 	indicator-active-color="#FFFFFF">
-			<swiper-item wx:for="{{swiper}}" wx:key="index">
-				<image class="swiper-img" src="{{item}}"></image>
+			<swiper-item>
+				<image class="swiper-img" src="https://img0.baidu.com/it/u=3121065565,3649687365&fm=253&fmt=auto&app=138&f=JPEG?w=800&h=1422" bindtap="seeBigSwiperItem" mode="aspectFit"></image>
+			</swiper-item>
+			<swiper-item>
+				<image class="swiper-img" src="https://i0.hdslb.com/bfs/article/442ddbb12b31a22e67bb99e524d1e69800e9ebf8.jpg" bindtap="seeBigSwiperItem" mode="aspectFit"></image>
+			</swiper-item>
+			<swiper-item>
+				<image class="swiper-img" src="https://img1.baidu.com/it/u=1429192092,2564268011&fm=253&app=138&f=JPEG?w=800&h=1131" bindtap="seeBigSwiperItem" mode="aspectFit"></image>
 			</swiper-item>
 		</swiper>
 	</view>
 
 	<view class="nav-items">
 		<view class="nav-item" bindtap="navigate" data-flag="ljyy">
-			<image class="nav-item-img" src="../../images/home/nav-img1.png" alt=""/>
-			<view class="nav-item-title">立即预订</view>
+			<image class="nav-item-img" src="../../../images/home/icon-order.png" mode=""/>
+			<view class="nav-item-title">我的订单</view>
 		</view>
 		<view class="nav-item" bindtap="navigate" data-flag="yxsc">
-			<image class="nav-item-img" src="../../images/home/nav-img2.png" alt=""/>
-			<view class="nav-item-title">优选商城</view>
-		</view>
-		<view class="nav-item" bindtap="navigate" data-flag="jfsc">
-			<image class="nav-item-img" src="../../images/home/nav-img3.png" alt=""/>
-			<view class="nav-item-title">积分商城</view>
+			<image class="nav-item-img" src="../../../images/home/icon-comment.png" mode=""/>
+			<view class="nav-item-title">想法留言</view>
 		</view>
 		<view class="nav-item" bindtap="navigate" data-flag="vipqy">
-			<image class="nav-item-img" src="../../images/home/nav-img4.png" alt=""/>
-			<view class="nav-item-title">VIP权益</view>
+			<image class="nav-item-img" src="../../../images/home/icon-aboutUs.png" mode=""/>
+			<view class="nav-item-title">关于我们</view>
 		</view>
 	</view>
 
-	<view class="service" bindtap="toOrderRecord">
-		<image class="service-backImg" src="/images/home/service.png" mode=""/>
-		<image class="service-arrow" src="/images/home/service-arrow.png" mode=""/>
-		<view class="service-left">
-			<text class="service-left-text1">待服务</text>
-			<text class="service-left-text2">{{waitingNumber || '0'}}</text>
-		</view>
+	<view style="margin-top: 100rpx;margin-left: 100rpx;" bindtap="return">
+		返回
 	</view>
-
-	<view class="hxtt" wx:for="{{recommend}}" wx:key="index">
-		<view class="hxtt-title">
-			<text class="hxtt-title-left">{{item.name}}</text>
-			<view class="hxtt-title-right"></view>
-		</view>
-		<view class="hxtt-content">
-			<view class="hxtt-item" wx:for="{{item.salesList}}" wx:for-item="iten" wx:key="id" bindtap="goodsClick" data-item="{{iten}}">
-				<image class="hxtt-item-img" src="{{iten.briefImage}}" mode=""/>
-				<view class="hxtt-item-bottom">
-					<view class="hxtt-item-bottom-text1">{{iten.name}}</view>
-					<view class="hxtt-item-bottom-text2">¥{{iten.cashPrice}}</view>
-				</view>
-			</view>
-		</view>
-	</view>
-	<view class="blank"></view>
 </view>

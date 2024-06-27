@@ -3,28 +3,22 @@
   <cover-view class="blank"></cover-view>
   
   <cover-view class="tab-content">
-    <cover-view class="tab-bar-item" bindtap="switchTabHandle" data-index="{{0}}" style="background: {{currentUrl==='/pages/home/home' ? '#F2F3FF' : ''}}">
-      <cover-image class="tab-bar-img" src="{{currentUrl==='/pages/home/home' ? '/images/tabBar/sy-active.png' : '/images/tabBar/sy.png'}}" />
-      <cover-view class="tab-bar-text" style="color: {{currentUrl==='/pages/home/home' ? '#0523A9' : 'black'}}">首页</cover-view>
-    </cover-view>
-    <cover-view class="tab-bar-item" bindtap="switchTabHandle" data-index="{{1}}" style="background: {{currentUrl==='/pages/prefer/prefer' ? '#F2F3FF' : ''}}">
-      <cover-image class="tab-bar-img" src="{{currentUrl==='/pages/prefer/prefer' ? '/images/tabBar/yx-active.png' : '/images/tabBar/yx.png'}}" />
-      <cover-view class="tab-bar-text" style="color: {{currentUrl==='/pages/prefer/prefer' ? '#0523A9' : 'black'}}">商品</cover-view>
+    <cover-view class="tab-bar-item" bindtap="switchTabHandle" data-flag="home" >
+      <cover-image class="tab-bar-img" src="{{currentUrl==='/pages/customer/home/home' ? '/images/tabBar/icon-home-active.png' : '/images/tabBar/icon-home.png'}}" />
+      <cover-view class="tab-bar-text" style="color: {{currentUrl==='/pages/customer/home/home' ? '#1989FA' : 'black'}}">首页</cover-view>
     </cover-view>
     <cover-view class="middle-item-blank"></cover-view>
-    <cover-view class="tab-bar-item" bindtap="switchTabHandle" data-index="{{2}}" style="background: {{currentUrl==='/pages/point/point' ? '#F2F3FF' : ''}}">
-      <cover-image class="tab-bar-img" src="{{currentUrl==='/pages/point/point' ? '/images/tabBar/jf-active.png' : '/images/tabBar/jf.png'}}" />
-      <cover-view class="tab-bar-text" style="color: {{currentUrl==='/pages/point/point' ? '#0523A9' : 'black'}}">积分</cover-view>
-    </cover-view>
-    <cover-view class="tab-bar-item" bindtap="switchTabHandle" data-index="{{3}}" style="background: {{currentUrl==='/pages/mine/mine' ? '#F2F3FF' : ''}}">
-      <cover-image class="tab-bar-img" src="{{currentUrl==='/pages/mine/mine' ? '/images/tabBar/wd-active.png' : '/images/tabBar/wd.png'}}" />
-      <cover-view class="tab-bar-text" style="color: {{currentUrl==='/pages/mine/mine' ? '#0523A9' : 'black'}}">我的</cover-view>
+    <cover-view class="tab-bar-item" bindtap="switchTabHandle" data-flag="mine" >
+      <cover-image class="tab-bar-img" src="{{currentUrl==='/pages/customer/mine/mine' ? '/images/tabBar/icon-mine-active.png' : '/images/tabBar/icon-mine.png'}}" />
+      <cover-view class="tab-bar-text" style="color: {{currentUrl==='/pages/customer/mine/mine' ? '#1989FA' : 'black'}}">我的</cover-view>
     </cover-view>
   </cover-view>
 
-  <cover-view class="middle-item" bindtap="switchTabHandle" data-index="{{4}}">
-    <cover-image class="middle-item-img" src="/images/tabBar/yy.png" />
-    <cover-view class="middle-item-text" style="color: {{currentUrl==='/pages/order/order' ? 'white' : 'rgb(142,168,161)'}}">预订</cover-view>
+  <cover-view class="middle-item" bindtap="switchTabHandle" data-flag="goodsList"
+    style="background: {{currentUrl==='/pages/customer/goodsList/goodsList' ? '#1989FA' : '#F2F3FF'}};color: {{currentUrl==='/pages/customer/goodsList/goodsList' ? 'white' : 'black'}}"
+  >
+    <cover-image class="middle-item-img" src="{{currentUrl==='/pages/customer/goodsList/goodsList' ? '/images/tabBar/icon-buy-active.png' : '/images/tabBar/icon-buy.png'}}" />
+    <cover-view class="middle-item-text" style="color: {{currentUrl==='/pages/customer/goodsList/goodsList' ? 'white' : 'rgba(0,0,0,0.8)'}}">商品</cover-view>
   </cover-view>
 
   <cover-view style="height: 34rpx;background-color: white;"></cover-view>

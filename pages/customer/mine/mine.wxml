@@ -1,7 +1,7 @@
 <!--pages/mine/mine.wxml-->
 <view class="mine">
 	<TabBar id="tabBar" />
-	<image class="backImg" src="/images/mine/mine-back.png" mode=""/>
+	<image class="backImg" src="/images/mine/back.png" mode=""/>
 
 	<view class="profile-wrapper">
 		<view class="profile" bindtap="toUserInfoDetail">
@@ -18,37 +18,20 @@
 		</view>
 	</view>
 
-	<view class="panel">
-		<view class="panel-item" bindtap="yyjl">
-			<image class="panel-item-img" src="/images/mine/yyjl.png" mode=""/>
-			<view class="panel-item-text">预订记录</view>
-		</view>
-		<view class="panel-item" bindtap="hyk">
-			<image class="panel-item-img" src="/images/mine/hyk.png" mode=""/>
-			<view class="panel-item-text">会员卡</view>
-		</view>
-	</view>
-
-	<view class="nav-panel">
-		<view class="title">我的订单</view>
+	<view class="nav-panel" style="margin-top: 180rpx;">
 		<view class="nav-panel-items">
-			<view class="nav-panel-item" bindtap="yxdd">
-				<image class="nav-panel-items-img" src="/images/mine/yxdd.png" mode=""/>
-				<view class="nav-panel-items-text">优选订单</view>
+			<view class="nav-panel-item" bindtap="toOrder">
+				<van-icon style="font-size: 60rpx;" name="orders-o" />
+				<view class="nav-panel-items-text">我的订单</view>
 			</view>
-			<view class="nav-panel-item" bindtap="jfdh">
-				<image class="nav-panel-items-img" src="/images/mine/jfdh.png" mode=""/>
-				<view class="nav-panel-items-text">积分兑换</view>
-			</view>
-			<view class="nav-panel-item" bindtap="dddd">
-				<image class="nav-panel-items-img" src="/images/mine/dddd.png" mode=""/>
-				<view class="nav-panel-items-text">到店订单</view>
+			<view class="nav-panel-item" bindtap="toAddress">
+				<van-icon style="font-size: 60rpx;" name="free-postage" />
+				<view class="nav-panel-items-text">收货地址</view>
 			</view>
 		</view>
 	</view>
 
 	<view class="nav-panel">
-		<view class="title">推荐功能</view>
 		<view class="nav-panel-items">
 			<view class="nav-panel-item" bindtap="comment">
 				<van-icon style="font-size: 60rpx;" name="smile-comment-o" />

@@ -30,11 +30,14 @@
     </view>
   </view>
   <view class="totalAmount" style="padding: 20rpx 32rpx;background-color: white;display: flex;align-items: center;font-size: 36rpx;">
-    <view style="color: black;">总金额：</view>
-    <view style="font-weight: 700;color: red;">￥99999</view>
+    <view style="color: black;">应付金额：</view>
+    <view style="font-weight: 700;color: red;display: flex;align-items: center;">
+      <text>￥</text>
+      <input type="digit" value="{{99999}}" style="font-size: 36rpx;" />
+    </view>
   </view>
 
-  <view class="item-title">订单类型</view>
+  <view class="item-title">订单类型（根据商品自动判断？）</view>
   <view class="type-wrapper">
     <radio-group bindchange="typeChange" style="width: 100%;">
       <view style="display: flex;align-items: center;margin-bottom: 20rpx;justify-content: space-between;">

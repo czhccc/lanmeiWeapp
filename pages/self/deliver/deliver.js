@@ -2,6 +2,7 @@
 Page({
   data: {
     tabIndex: 0,
+    searchParam: '',
   },
   onLoad(options) {
 
@@ -11,9 +12,12 @@ Page({
       tabIndex: e.detail.index
     })
   },
+  onSearch(e) {
+    console.log(e)
+  },
   arrive() {
     wx.showModal({
-      title: '确认提交？',
+      title: '确认已送达？',
       success(res) {
         if (res.confirm) {
           console.log('用户点击确定');
@@ -35,4 +39,9 @@ Page({
       }
     });
   },
+  seeDetail(e) {
+    wx.navigateTo({
+      url: '/pages/self/order/orderDetail/orderDetail',
+    })
+  }
 })

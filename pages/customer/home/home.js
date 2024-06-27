@@ -1,26 +1,20 @@
 // pages/home/home.js
-import { 
-  getWaitingNumber,
-  getHomeSwiper,
-  getHomeRecommend
-} from '../../network/home'
 
 Page({
   data: {
     swiper: [],
-    waitingNumber: 0,
-    recommend: [],
   },
   onLoad(options) {
-    this.getLocation()
-    this._getSwiper()
-    this._getRecommend()
+
   },
   onShow() {
-    let token = wx.getStorageSync('token');
-    if (token) {
-      this._getWaitingNumber()
-    }
+
+  },
+  seeBigSwiperItem(e) {
+    console.log(e)
+    wx.previewImage({
+      urls: ['https://img0.baidu.com/it/u=3121065565,3649687365&fm=253&fmt=auto&app=138&f=JPEG?w=800&h=1422','https://i0.hdslb.com/bfs/article/442ddbb12b31a22e67bb99e524d1e69800e9ebf8.jpg','https://img1.baidu.com/it/u=1429192092,2564268011&fm=253&app=138&f=JPEG?w=800&h=1131'] // 需要预览的图片http链接列表
+    });
   },
   getLocation(){
     wx.getLocation({
@@ -33,25 +27,11 @@ Page({
     })
   },
   _getSwiper() { // 轮播图
-    getHomeSwiper().then(res => {
-      this.setData({
-        swiper: res.result
-      })
-    })
-  },
-  _getWaitingNumber() { // 待服务数量
-    getWaitingNumber().then(res => {
-      this.setData({
-        waitingNumber: res.result
-      })
-    })
-  },
-  _getRecommend() { // 推荐主题及商品
-    getHomeRecommend().then(res => {
-      this.setData({
-        recommend: res.result
-      })
-    })
+    // getHomeSwiper().then(res => {
+    //   this.setData({
+    //     swiper: res.result
+    //   })
+    // })
   },
   navigate(e) {
     console.log(e)
@@ -81,16 +61,9 @@ Page({
         break;
     }
   },
-  goodsClick(e) { // 点击商品
-    console.log(e.currentTarget.dataset.item)
-    let item = e.currentTarget.dataset.item
+  return() {
     wx.navigateTo({
-      url: `/pages/prefer/preferGoodsDetail/preferGoodsDetail?id=${item.id}`,
+      url: '/pages/temporary/home/home',
     })
   },
-  toOrderRecord() {
-    wx.navigateTo({
-      url: '/pages/order/orderRecord/orderRecord',
-    })
-  }
 })

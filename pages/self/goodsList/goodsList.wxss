@@ -48,7 +48,7 @@ page {
   line-height: 40rpx;
   text-align: center;
   font-size: 24rpx;
-  color: #0523A9;
+  color: #1989FA;
   margin-left: 40rpx;
 }
 .shelve-content {
@@ -204,18 +204,18 @@ page {
   height: 84rpx;
   background: #FFFFFF;
   border-radius: 42rpx;
-  border: 2rpx solid #0523A9;
+  border: 2rpx solid #1989FA;
   line-height: 84rpx;
   text-align: center;
   font-size: 32rpx;
-  color: #0523A9;
+  color: #1989FA;
   font-weight: 700;
   box-sizing: border-box;
 }
 .filter-confirm {
   width: 340rpx;
   height: 84rpx;
-  background: #0523A9;
+  background: #1989FA;
   border-radius: 42rpx;
   line-height: 84rpx;
   text-align: center;
