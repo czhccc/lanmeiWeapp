@@ -27,7 +27,9 @@ Page({
     })
   },
   dd() { // 订单
-
+    wx.navigateTo({
+      url: '/pages/self/order/order',
+    })
   },
   clly() { // 处理留言
     wx.navigateTo({
