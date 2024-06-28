@@ -123,3 +123,17 @@ page {
   padding-right: 24rpx !important;
   box-sizing: border-box;
 }
+
+.submitBtn {
+  width: 690rpx;
+  margin: 0 auto;
+  margin-top: 60rpx;
+  background: #1989FA;
+  border-radius: 42rpx;
+  height: 84rpx;
+  text-align: center;
+  line-height: 84rpx;
+  color: white;
+  font-weight: 700;
+  font-size: 30rpx;
+}
