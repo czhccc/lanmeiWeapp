@@ -1,37 +1,44 @@
 // pages/customer/seeSeller/seeSeller.js
+import {
+  _getAboutUs
+} from '../../../network/customer/aboutUs'
+
 Page({
   data: {
-    activeName: '1',
+    theData: {}
   },
   onLoad(options) {
-
+    this.getAboutUs()
+  },
+  getAboutUs() {
+    _getAboutUs().then(res => {
+      this.setData({
+        theData: res.data[0]
+      })
+    })
   },
   onChange(e) {
-    console.log(e)
     this.setData({
       activeName: e.detail
     })
   },
   addressBtnClick(e) {
-    console.log(e)
+    let item = e.currentTarget.dataset.item
     wx.openLocation({
-      longitude: 121.4737,
-      latitude: 31.2304,
+      longitude: Number(item.lon),
+      latitude: Number(item.lat),
       scale: 18,
-      name: '花桥村',
-      address: '浙江省绍兴市嵊州市花桥村'
+      address: item.address
     });
   },
   phoneBtnClick(e) {
-    console.log(e)
     wx.makePhoneCall({
-      phoneNumber: '13989536366'
+      phoneNumber: e.currentTarget.dataset.phone
     })
   },
   copyContact(e) {
-    console.log(e)
     wx.setClipboardData({
-      data: 'aaaaa',
+      data: e.currentTarget.dataset.contact,
       success: function (res) {
         wx.showToast({
           title: '复制成功',

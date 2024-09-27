@@ -35,3 +35,6 @@ page {
 [src]{
 	max-width:100%;
 }
+.detail-content {
+  
+}

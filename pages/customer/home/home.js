@@ -37,24 +37,19 @@ Page({
     console.log(e)
     let flag = e.currentTarget.dataset.flag
     switch (flag) {
-      case 'ljyy':
+      case 'myOrder':
         wx.switchTab({
           url: '/pages/order/order',
         })
         break;
-      case 'yxsc':
+      case 'comment':
         wx.switchTab({
           url: '/pages/prefer/prefer',
         })
         break;
-      case 'jfsc':
-        wx.switchTab({
-          url: '/pages/point/point',
-        })
-        break;
-      case 'vipqy':
+      case 'aboutUs':
         wx.navigateTo({
-          url: '/pages/vip/vip',
+          url: '/pages/customer/seeSeller/seeSeller',
         })
         break;
       default:

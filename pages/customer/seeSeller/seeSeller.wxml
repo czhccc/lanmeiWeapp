@@ -7,13 +7,9 @@
         <van-icon name="shop-collect-o" style="font-size: 32rpx;margin-left: 10rpx;" />
       </view>
       <view>
-        <view class="address-item" wx:for="{{10}}" wx:key="index">
-          <text class="address-text">浙江省绍兴市嵊州市花桥村浙江省绍兴市嵊州市花桥村浙江省绍兴市嵊州市花桥村</text>
-          <van-button class="address-btn" round type="info" size="mini" bind:tap="addressBtnClick">查看</van-button>
-        </view>
-        <view class="address-item">
-          <text class="address-text">浙江省绍兴市嵊州市花桥村</text>
-          <van-button class="address-btn" round type="info" size="mini" bind:tap="addressBtnClick">查看</van-button>
+        <view class="address-item" wx:for="{{theData.address}}" wx:key="index">
+          <text class="address-text">{{item.address}}</text>
+          <van-button class="address-btn" round type="info" size="mini" bind:tap="addressBtnClick" data-item="{{item}}">查看</van-button>
         </view>
       </view>
     </van-collapse-item>
@@ -22,16 +18,11 @@
         <text style="font-size: 32rpx;color: #333333;">联系方式</text>
         <van-icon name="phone-o" style="font-size: 32rpx;margin-left: 10rpx;" />
       </view>
-      <view class="phone-item" wx:for="{{2}}">
-        手机号：
-        <text class="phone-text">13989536363</text>
-        <van-button class="phone-btn" round type="primary" size="mini" bind:tap="copyContact">复制</van-button>
-        <van-button class="phone-btn" round type="info" size="mini" bind:tap="phoneBtnClick">拨打</van-button>
-      </view>
-      <view class="phone-item" wx:for="{{2}}">
-        微信号：
-        <text class="phone-text">13989536363</text>
-        <van-button class="phone-btn" round type="primary" size="mini" bind:tap="copyContact">复制</van-button>
+      <view class="phone-item" wx:for="{{theData.contact}}" wx:key="item">
+        <text>{{item.type}}：</text>
+        <text class="phone-text">{{item.contact}}</text>
+        <van-button class="phone-btn" round type="primary" size="mini" bind:tap="copyContact" data-contact="{{item.contact}}">复制</van-button>
+        <van-button class="phone-btn" wx:if="{{item.type==='手机号'}}" round type="info" size="mini" bind:tap="phoneBtnClick" data-phone="{{item.contact}}">拨打</van-button>
       </view>
     </van-collapse-item>
     <van-collapse-item name="3">
@@ -39,7 +30,7 @@
         <text style="font-size: 32rpx;color: #333333;">关于我们</text>
         <van-icon name="friends-o" style="font-size: 32rpx;margin-left: 10rpx;" />
       </view>
-      <rich-text class="detail-content" nodes="<p>这是商品详情</p><p><img src=\'https://hhym.zjwocai.com/hhym-file/2024/05/06/84d5344fdff24497925b37ebb5ff1387.png\'></p>"></rich-text>
+      <rich-text class="detail-content" nodes="{{theData.aboutUs}}"></rich-text>
     </van-collapse-item>
   </van-collapse>
 </view>
