@@ -33,15 +33,7 @@ Page({
   },
   clly() { // 处理留言
     wx.navigateTo({
-      url: '/pages/self/handleComment/handleComment',
+      url: '/pages/self/comment/comment',
     })
   },
-  gywm() { // 关于我们
-    wx.navigateTo({
-      url: '/pages/self/aboutUs/aboutUs',
-    })
-  },
-  pzgg() { // 配置广告
-
-  }
 })

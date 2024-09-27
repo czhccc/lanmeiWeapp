@@ -84,6 +84,7 @@ Page({
           let details = ''
           that.data.editorCtx.getContents({
             success(res) {
+              console.log(res.html)
               details = res.html
             }
           });

@@ -48,20 +48,4 @@
 			处理留言
 		</view>
 	</view>
-	<view class="navItem" bindtap="gywm">
-		<view class="icon">
-			<van-icon name="friends-o" />
-		</view>
-		<view class="text">
-			关于我们
-		</view>
-	</view>
-	<view class="navItem" bindtap="pzgg">
-		<view class="icon">
-			<van-icon name="hot-o" />
-		</view>
-		<view class="text">
-			配置广告
-		</view>
-	</view>
 </view>
