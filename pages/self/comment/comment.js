@@ -17,6 +17,8 @@ Page({
     commentId: null,
     isShowResponsePanel: false,
     responseContent: '',
+
+    isSubmiting: false,
   },
   onLoad(options) {
     this.getCommentListByWechat()
@@ -78,6 +80,9 @@ Page({
   },
   submit() {
     var that = this;
+    if (that.data.isSubmiting) {
+      return;
+    }
     if (!this.data.responseContent) {
       wx.showToast({
         title: '请输入回复内容',
@@ -89,6 +94,7 @@ Page({
       title: '确认提交？',
       success(res) {
         if (res.confirm) {
+          that.data.isSubmiting = true
           _response({
             commentId: that.data.commentId,
             response: that.data.responseContent
@@ -101,8 +107,13 @@ Page({
               pageNo: 1,
               list: [],
             })
-            that.getCommentListByWechat()
-            that.closeResponsePanel()
+            setTimeout(() => {
+              that.getCommentListByWechat()
+              that.closeResponsePanel()
+              that.data.isSubmiting = false
+            }, 1500)
+          }).finally(() => {
+            that.data.isSubmiting = false
           })
         }
       }

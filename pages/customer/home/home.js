@@ -34,17 +34,16 @@ Page({
     // })
   },
   navigate(e) {
-    console.log(e)
     let flag = e.currentTarget.dataset.flag
     switch (flag) {
       case 'myOrder':
-        wx.switchTab({
+        wx.navigateTo({
           url: '/pages/order/order',
         })
         break;
       case 'comment':
-        wx.switchTab({
-          url: '/pages/prefer/prefer',
+        wx.navigateTo({
+          url: '/pages/customer/comment/comment',
         })
         break;
       case 'aboutUs':

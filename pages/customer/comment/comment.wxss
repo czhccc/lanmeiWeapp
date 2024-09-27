@@ -42,13 +42,15 @@ page {
 }
 .moreIdeas {
 	font-size: 32rpx;
-	color: red;
+	color: #1989FA;
 	margin-top: 30rpx;
+	display: flex;
+	justify-content: flex-end;
 }
 
 .history-item {
 	color: black;
-	border: 1rpx red solid;
+	border: 1rpx #1989FA solid;
 	box-sizing: border-box;
 	border-radius: 20rpx;
 	margin-bottom: 30rpx;
@@ -57,6 +59,9 @@ page {
 .history-comment-time {
 	font-size: 24rpx;
 	color: gray;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
 }
 .history-comment-content {
 	font-size: 28rpx;

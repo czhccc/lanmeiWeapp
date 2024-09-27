@@ -1,15 +1,33 @@
 // pages/customer/comment/comment.js
+import {
+  _comment,
+  _getUserAllComments
+} from '../../../network/customer/comment'
+
 Page({
   data: {
     activeName: ['1', '2'],
     comment: '',
     fileList: [],
+
+    historyComments: [],
+
+    isSubmiting: false,
   },
   onLoad(options) {
-
+    this.getHistoryComments()
   },
   onReady() {
 
+  },
+  getHistoryComments() {
+    _getUserAllComments({
+      author: '13989536936'
+    }).then(res => {
+      this.setData({
+        historyComments: res.data.records
+      })
+    })
   },
   onChange(e) {
     console.log(e)
@@ -67,15 +85,40 @@ Page({
     })
   },
   submit() {
+    var that = this;
+    if (that.data.isSubmiting) {
+      return;
+    }
     wx.showModal({
       title: '确认提交？',
       success: (res) => {
         if (res.confirm) {
-          console.log('用户点击确定');
-          // 这里处理用户点击确定的逻辑
-        } else if (res.cancel) {
-          console.log('用户点击取消');
-          // 这里处理用户点击取消的逻辑
+          that.data.isSubmiting = true
+          _comment({
+            comment: that.data.comment,
+            author: '13989536936'
+          }).then(res => {
+            if (res.data) {
+              wx.showToast({
+                title: '留言成功',
+                icon: 'none'
+              })
+              setTimeout(() => {
+                that.getHistoryComments()
+                that.setData({
+                  comment: '',
+                  isSubmiting: false,
+                })
+              }, 1500)
+            } else {
+              wx.showToast({
+                title: res.message,
+                icon: 'none'
+              })
+            }
+          }).finally(() => {
+            that.data.isSubmiting = false
+          })
         }
       }
     });
