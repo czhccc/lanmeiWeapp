@@ -1,17 +1,22 @@
 <!--pages/prefer/prefer.wxml-->
 <view class="prefer">
-	<van-search value="{{ searchParam }}" bind:search="onSearch" placeholder="搜索商品" shape="round" />
+	<van-search model:value="{{ goodsName }}" bind:search="onSearch" placeholder="搜索商品" shape="round" />
 	<TabBar id="tabBar" />
 	<view class="content">
 		<view class="left">
-			<view class="lef-item" wx:for="{{category}}" wx:key="index">
+			<view class="left-item-title" bindtap="getAllGoods"
+			style="color:{{choosedCategoryId==-1?'#1989FA':'#333333'}};background:{{choosedCategoryId==-1?'white':'#F3F3F3'}}">全部</view>
+			<view class="lef-item" wx:for="{{categoryList}}" wx:key="index">
 				<view class="left-item-title">{{item.name}}</view>
-				<view class="left-item-item" wx:for="{{item.children}}" wx:key="index" wx:for-item="iten" bindtap="categoryItemClick" data-item="{{iten}}"
+				<view class="left-item-item" 
+					wx:for="{{item.children}}" wx:key="indey" 
+					wx:for-item="iten" wx:for-index="indey"
+					bindtap="categoryItemClick" data-id="{{iten.id}}"
 					style="color:{{choosedCategoryId==iten.id?'#1989FA':'#999999'}};background:{{choosedCategoryId==iten.id?'white':'#F3F3F3'}}">{{iten.name}}</view>
 			</view>
 		</view>
 		<view class="right">
-			<view class="sort">
+			<!-- <view class="sort">
 				<view class="zhtj" bindtap="sortClick" style="color:{{!sortType?'#1989FA':'#999999'}};">综合推荐</view>
 				<view class="xl" bindtap="sortClick" data-flag="sale_num">
 					<view class="sort-text" style="color:{{sortType=='sale_num'?'#1989FA':'#999999'}};">销量</view>
@@ -25,19 +30,19 @@
 					<image class="sort-img" wx:if="{{sortType=='cash_price' && sortOrder=='asc'}}" src="/images/common/sort1.png" mode=""/>
 					<image class="sort-img" wx:if="{{sortType=='cash_price' && sortOrder=='desc'}}" src="/images/common/sort2.png" mode=""/>
 				</view>
-			</view>
+			</view> -->
 			<scroll-view scroll-y class="goods" bindscrolltolower="scrollToLower">
 				<view class="good" wx:for="{{listData}}" wx:key="index" bindtap="goodsClick" data-item="{{item}}">
-					<image class="good-img" src="{{item.briefImage}}" mode=""/>
+					<image wx:if="{{item.goodsCoverImg}}" class="good-img" src="{{item.goodsCoverImg}}" mode=""/>
+					<image wx:if="{{!item.goodsCoverImg}}" class="good-img" src="../../../images/common/noImg.png" mode=""/>
 					<view class="good-content">
-						<view class="good-title">{{item.name}}</view>
-						<view class="good-people">{{item.saleNum}}人已购买</view>
+						<view class="good-title">{{item.goods_name}}</view>
 						<view class="good-price">¥{{item.cashPrice}}</view>		
 					</view>
 				</view>
 				<view wx:if="{{listData.length===0}}" style="display: flex;flex-direction: column;align-items: center;position: absolute;top: 50%;transform: translateY(-50%);width: 100%;">
 					<image src="/images/common/blank-list.png" mode="widthFix" style="width: 80%;"/>
-					<view style="text-align: center;">暂无数据</view>
+					<view style="text-align: center;">暂无商品</view>
 				</view>
 				<view wx:if="{{listData.length>0}}" style="height: 60rpx;"></view>
 			</scroll-view>

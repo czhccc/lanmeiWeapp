@@ -12,7 +12,9 @@
 				</view>
 				<view class="phone">{{userInfo.secretPhone}}</view>
 			</view>
-			<button wx:if="{{!userInfo.phone}}" class="login-button" open-type="getPhoneNumber" 
+			<!-- <button wx:if="{{!userInfo.phone}}" class="login-button" open-type="getPhoneNumber" 
+			bindgetphonenumber="getPhoneNumber">微信授权登录</button> -->
+			<button class="login-button" open-type="getPhoneNumber" 
 			bindgetphonenumber="getPhoneNumber">微信授权登录</button>
 			<image class="profile-arrow" src="/images/mine/arrow.png" mode=""/>
 		</view>

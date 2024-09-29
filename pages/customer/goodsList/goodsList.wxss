@@ -96,13 +96,6 @@ page {
 	position: absolute;
 	top: 0;
 }
-.good-people {
-	font-size: 24rpx;
-	color: #999999;
-	margin-left: 20rpx;
-	position: absolute;
-	bottom: 44rpx;
-}
 .good-price {
 	font-size: 24rpx;
 	color: #F62603;
