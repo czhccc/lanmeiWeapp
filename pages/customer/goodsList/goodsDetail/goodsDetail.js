@@ -1,4 +1,8 @@
 // pages/deal/dealPrefer/dealPreferDetail/dealPreferDetail.js
+import {
+  _getGoodsDetailById
+} from '../../../../network/customer/goods'
+
 
 Page({
   data: {
@@ -7,21 +11,18 @@ Page({
     isShowPopup: false,
 
     popConfirmFlag: 'addCart',
-
-    popupNum: 1,
   },
   onLoad(options) {
-    console.log(options.id)
-    this._getPreferGoodsDetail(options.id)
+    this.getGoodsDetailById(options.id)
   },
-  _getPreferGoodsDetail(id) {
-    // getPreferGoodsDetail({
-    //   id
-    // }).then(res => {
-    //   this.setData({
-    //     theData: res.result
-    //   })
-    // })
+  getGoodsDetailById(id) {
+    _getGoodsDetailById({
+      id
+    }).then(res => {
+      this.setData({
+        theData: res.data
+      })
+    })
   },
   gotoCart() {
     wx.navigateTo({

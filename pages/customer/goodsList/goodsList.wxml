@@ -35,9 +35,11 @@
 				<view class="good" wx:for="{{listData}}" wx:key="index" bindtap="goodsClick" data-item="{{item}}">
 					<image wx:if="{{item.goodsCoverImg}}" class="good-img" src="{{item.goodsCoverImg}}" mode=""/>
 					<image wx:if="{{!item.goodsCoverImg}}" class="good-img" src="../../../images/common/noImg.png" mode=""/>
+					<view class="goods-type">{{item.currentBatchType===0?'预订':'现卖'}}</view>
 					<view class="good-content">
 						<view class="good-title">{{item.goods_name}}</view>
-						<view class="good-price">¥{{item.cashPrice}}</view>		
+						<view class="good-price" wx:if="{{item.currentBatchType===0}}">¥{{item.currentBatchMinPrice}} ~ ¥{{item.currentBatchMaxPrice}}</view>
+						<view class="good-price" wx:if="{{item.currentBatchType===1}}">¥{{item.currentBatchUnitPrice}}</view>
 					</view>
 				</view>
 				<view wx:if="{{listData.length===0}}" style="display: flex;flex-direction: column;align-items: center;position: absolute;top: 50%;transform: translateY(-50%);width: 100%;">

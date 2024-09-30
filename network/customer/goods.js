@@ -15,3 +15,11 @@ export function _getGoodsList(data) {
 		data
   })
 }
+
+// 获取商品详情
+export function _getGoodsDetailById(data) {
+  return request({
+		url: '/goods/getGoodsDetailById',
+		data
+  })
+}

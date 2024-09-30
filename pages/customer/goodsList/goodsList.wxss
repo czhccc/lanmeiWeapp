@@ -73,12 +73,23 @@ page {
 .good {
 	display: flex;
 	margin-bottom: 40rpx;
+	position: relative;
 }
 .good-img {
 	width: 180rpx;
 	min-width: 180rpx;
 	height: 180rpx;
 	border-radius: 16rpx;
+}
+.goods-type {
+	position: absolute;
+	left: 180rpx;
+	background-color: rgba(25,137,250);
+	transform: translateX(-100%);
+	font-size: 20rpx;
+	padding: 6rpx;
+	color: white;
+	border-radius: 0 16rpx 0 16rpx;
 }
 .good-content {
 	flex: 1;
