@@ -14,6 +14,8 @@ page {
   box-sizing: border-box;
   padding: 30rpx 24rpx;
   background-color: white;
+}
+.goods-content-wrapper {
   display: flex;
 }
 .goods-img {
@@ -44,36 +46,17 @@ page {
 .goods-specification-value {
   word-break: break-all;
 }
-.goods-price {
-  display: flex;
-  align-items: flex-end;
-  margin-top: 48rpx;
-  flex-wrap: wrap;
-  justify-content: space-between;
-}
 .goods-price-content {
   display: flex;
-  align-items: flex-end;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 48rpx;
+  flex-wrap: wrap;
 }
-.goods-price-new {
+.goods-price {
   font-size: 36rpx;
   color: #F62603;
   font-weight: 700;
-}
-.goods-price-old {
-  font-size: 24rpx;
-  color: gray;
-  text-decoration: line-through;
-  margin-left: 10rpx;
-  transform: translateY(-4rpx);
-}
-
-.num-wrapper {
-  min-width: 200rpx;
-}
-.num-wrapper2 {
-  display: flex;
-  justify-content: flex-end;
 }
 
 .chooseAddress {
@@ -100,7 +83,7 @@ page {
 .choosedAddress {
   width: 690rpx;
   background: #FFFFFF;
-  border-radius: 16rpx;
+  border-radius: 0 0 16rpx 16rpx;
   margin: 0 auto;
   display: flex;
   justify-content: space-between;
@@ -134,7 +117,7 @@ page {
   width: 690rpx;
   height: 76rpx;
   background: #FFFFFF;
-  border-radius: 16rpx;
+  border-radius: 0 0 16rpx 16rpx;
   margin: 0 auto;
   box-sizing: border-box;
   padding: 0 24rpx;
@@ -156,12 +139,19 @@ page {
   width: 24rpx;
   height: 24rpx;
 }
+.pickMethod-tip {
+  font-size: 24rpx;
+  padding: 0 32rpx;
+  margin-top: 10rpx;
+  display: flex;
+  justify-content: flex-end;
+}
 
 .notes-wrapper {
   background-color: white;
   margin: 0 auto;
   width: 690rpx;
-  border-radius: 16rpx;
+  border-radius: 0 0 16rpx 16rpx;
 }
 .van-cell {
   border-radius: 16rpx;
@@ -182,9 +172,9 @@ page {
 
 .detail {
   margin: 0 auto;
-  width: 702rpx;
+  width: 690rpx;
   background: #FFFFFF;
-  border-radius: 16rpx;
+  border-radius: 0 0 16rpx 16rpx;
   padding: 24rpx;
   box-sizing: border-box;
 }
@@ -242,11 +232,23 @@ page {
 }
 .payBtn {
   width: 240rpx;
-  height: 84rpx;
+  height: 74rpx;
+  line-height: 74rpx;
   background: #1989FA;
   border-radius: 42rpx;
   color: white;
   text-align: center;
-  line-height: 84rpx;
   font-size: 36rpx;
+}
+
+.item-title {
+  width: 690rpx;
+  margin: 0 auto;
+  margin-top: 40rpx;
+  background-color: white;
+  border-radius: 16rpx 16rpx 0 0;
+  font-size: 38rpx;
+  font-weight: 700;
+  box-sizing: border-box;
+  padding: 24rpx 24rpx 10rpx 24rpx;
 }

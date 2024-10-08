@@ -1,42 +1,30 @@
 <!--pages/customer/buyOrOrder/buyOrOrder.wxml-->
 <view class="buyOrOrder">
-  <van-divider 
-    contentPosition="left"
-    customStyle="color: #1989fa; border-color: #1989fa; font-size: 30rpx;margin-top: 24rpx;margin-bottom: 0;"
-  >{{'购买或预订'}}数量</van-divider>
   <view class="goods">
-    <image class="goods-img" src="https://img2.baidu.com/it/u=3650958543,1493738205&fm=253&fmt=auto&app=138&f=JPEG?w=800&h=800" mode=""/>
-    <view class="goods-content">
-      <view class="goods-name">意大利头皮护理产品意大利头皮护理产品意大利头皮护理产品意大利头皮护理产品意大利头皮护理产品</view>
-      <view class="goods-specification">
-        <text class="goods-specification-label">规格：</text>
-        <text class="goods-specification-value">500ml500ml500ml500ml500ml500ml500ml500ml500ml</text>
-        </view>
-      <view class="goods-price">
-        <view class="goods-price-content">
-          <view class="goods-price-new">¥199.00</view>
-          <view class="goods-price-old">¥299.00</view>
-        </view>
-        <view class="num-wrapper">
-          <view class="num-wrapper2">
-            <van-stepper 
-              value="{{ num }}" 
-              bind:change="numChnage"
-              min="{{1}}"
-              max="{{999}}" 
-            />
-            <!-- 最大值由剩余数量决定 -->
+    <view class="goods-content-wrapper">
+      <image class="goods-img" src="https://img2.baidu.com/it/u=3650958543,1493738205&fm=253&fmt=auto&app=138&f=JPEG?w=800&h=800" mode=""/>
+      <view class="goods-content">
+        <view class="goods-name">意大利头皮护理产品意大利头皮护理产品意大利头皮护理产品意大利头皮护理产品意大利头皮护理产品</view>
+        <view class="goods-specification">
+          <text class="goods-specification-label">规格：</text>
+          <text class="goods-specification-value">500ml500ml500ml500ml500ml500ml500ml500ml500ml</text>
           </view>
+        <view class="goods-price-content">
+          <view class="goods-price">¥199.00</view>
+          <van-stepper 
+            value="{{ num }}" 
+            bind:change="numChnage"
+            min="{{1}}"
+            max="{{999}}" 
+          />
+          <!-- 最大值由剩余数量决定 -->
         </view>
+        
       </view>
-      
     </view>
   </view>
 
-  <van-divider 
-    contentPosition="left"
-    customStyle="color: #1989fa; border-color: #1989fa; font-size: 30rpx;margin-top: 24rpx;margin-bottom: 0;"
-  >收货地址</van-divider>
+  <view class="item-title">收货地址</view>
   <view class="chooseAddress" bind:tap="chooseAddress" wx:if="{{!addressInfo.id}}">
     <text class="chooseAddress-text">请选择收货地址</text>
     <image class="chooseAddress-arrow" src="../../../images/common/arrow-right.png" mode=""/>
@@ -50,10 +38,7 @@
     <image class="chooseAddress-arrow" src="../../../images/common/arrow-right.png" mode=""/>
   </view>
 
-  <van-divider 
-    contentPosition="left"
-    customStyle="color: #1989fa; border-color: #1989fa; font-size: 30rpx;margin-top: 24rpx;margin-bottom: 0;"
-  >收货方式</van-divider>
+  <view class="item-title">收货方式</view>
   <picker mode="selector" range="{{pickMethodArray}}" bindchange="bindPickMethodChange">
     <view class="pickMethod">
       <text class="pickMethod-pla" wx:if="{{!pickMethod}}">请选择收货方式</text>
@@ -64,14 +49,11 @@
       <image class="pickMethod-arrow" src="../../../images/common/arrow-right.png" mode=""/>
     </view>
   </picker>
-  <view style="font-size: 24rpx;padding: 0 32rpx;margin-top: 10rpx;">
+  <view class="pickMethod-tip">
     限江浙沪顺丰包邮 嵊州可送货上门
   </view>
 
-  <van-divider 
-    contentPosition="left"
-    customStyle="color: #1989fa; border-color: #1989fa; font-size: 30rpx;margin-top: 24rpx;margin-bottom: 0;"
-  >备注说明</van-divider>
+  <view class="item-title">备注说明</view>
   <view class="notes-wrapper">
     <van-field
       model:value="{{ notes }}"
@@ -85,10 +67,7 @@
     />
   </view>
 
-  <van-divider 
-    contentPosition="left"
-    customStyle="color: #1989fa; border-color: #1989fa; font-size: 30rpx;margin-top: 24rpx;margin-bottom: 0;"
-  >支付明细</van-divider>
+  <view class="item-title">支付明细</view>
   <view class="detail">
     <view class="detail-line">
       <view class="detail-line-label">总金额</view>

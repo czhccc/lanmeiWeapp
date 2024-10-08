@@ -75,7 +75,7 @@ page {
 }
 
 .detail {
-	margin-top: 60rpx;
+	margin-top: 30rpx;
 }
 .detail-title {
 	font-weight: 700;

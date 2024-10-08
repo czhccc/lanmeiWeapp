@@ -15,15 +15,25 @@
 	
 	<view class="introduce">
 		<view class="price-wrapper">
-			<view class="price" wx:if="{{theData.currentBatch.batch_type===0}}">¥{{theData.currentBatch.batch_minPrice}} ~ ¥{{theData.currentBatch.batch_maxPrice}}</view>
-			<view class="price" wx:if="{{theData.currentBatch.batch_type===1}}">¥{{theData.currentBatch.batch_unitPrice}}</view>
-			<!-- <view class="price-content">
-        <view class="price">¥200</view>
-        <view class="discount">￥150</view>
-      </view> -->
-			<view class="type">{{item.currentBatchType===0?'预订':'现卖'}}</view>
+			<view class="price" wx:if="{{currentBatchType===0}}">¥{{theData.currentBatch.batch_minPrice}} ~ ¥{{theData.currentBatch.batch_maxPrice}}</view>
+			<view class="price" wx:if="{{currentBatchType===1}}">¥{{theData.currentBatch.batch_unitPrice}}</view>
+			<view class="type">{{currentBatchType===0?'预订':'现货'}}</view>
 		</view>
 		<view class="name">{{theData.goodsName}}</view>
+	</view>
+
+	<view class="line"></view>
+
+	<view class="detail">
+		<view class="detail-title">下单提示</view>
+		<view class="rich-wrapper">
+			<view>最少{{currentBatchTypeText}} {{theData.currentBatch.batch_minQuantity}} {{theData.currentBatch.snapshot_goodsUnit}}</view>
+		</view>
+		<view class="rich-wrapper">
+			<view wx:for="{{theData.currentBatch.batch_discounts}}" wx:key="index">
+				满 {{item.quantity}} {{theData.currentBatch.snapshot_goodsUnit}}，优惠 {{item.discount}} 元
+			</view>
+		</view>
 	</view>
 
 	<view class="line"></view>
@@ -36,6 +46,6 @@
 	</view>
 
 	<view class="bottom-bar">
-    <view class="buyBtn" bind:tap="toBuyOrOrder">购买 / 预订</view>
+    <view class="buyBtn" bind:tap="toBuyOrOrder">{{currentBatchTypeText}}</view>
   </view>
 </view>

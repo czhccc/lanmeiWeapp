@@ -1,6 +1,9 @@
 // pages/customer/buyOrOrder/buyOrOrder.js
 Page({
   data: {
+    theData: null,
+    currentBatchTypeText: null,
+
     num: 1,
 
     addressInfo: {},
@@ -9,8 +12,14 @@ Page({
     notes: '',
   },
   onLoad(options) {
+    const app = getApp();
+    this.setData({
+      theData: app.globalData.currentGoodsDetail,
+      currentBatchTypeText: app.globalData.currentGoodsDetail.currentBatch.batch_type===1?'购买':'预订'
+    })
+
     wx.setNavigationBarTitle({
-      title: '预订或购买'
+      title: this.data.theData.currentBatch.batch_type===1?'购买':'预订'
     });
   },
   numChnage(e) {

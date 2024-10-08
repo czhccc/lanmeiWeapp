@@ -4,7 +4,7 @@
     label="收货人"
     model:value="{{ name }}"
     placeholder="请输入收货人姓名"
-    maxlength="{{10}}"
+    maxlength="{{20}}"
     required
   />
   <van-field
