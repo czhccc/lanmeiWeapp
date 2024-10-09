@@ -4,23 +4,15 @@
 	<image class="backImg" src="/images/mine/back.png" mode=""/>
 
 	<view class="profile-wrapper">
-		<view class="profile" bindtap="toUserInfoDetail">
-			<image class="avatar" src="{{userInfo.avatar || '/images/mine/avatar.png'}}" mode=""/>
-			<view class="detail" wx:if="{{userInfo.phone}}">
-				<view class="name">
-					<text>{{userInfo.realName || '未登录'}}</text>
-				</view>
-				<view class="phone">{{userInfo.secretPhone}}</view>
-			</view>
-			<!-- <button wx:if="{{!userInfo.phone}}" class="login-button" open-type="getPhoneNumber" 
-			bindgetphonenumber="getPhoneNumber">微信授权登录</button> -->
-			<button class="login-button" open-type="getPhoneNumber" 
-			bindgetphonenumber="getPhoneNumber">微信授权登录</button>
-			<image class="profile-arrow" src="/images/mine/arrow.png" mode=""/>
+		<view class="profile">
+			<!-- <image class="avatar" src="{{userInfo.avatar || '/images/mine/avatar.png'}}" mode=""/> -->
+			<view class="phone" wx:if="{{phone}}">{{phone}}</view>
+			<button class="login-button" wx:if="{{!phone}}" open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">微信授权登录</button>
+			<!-- <image class="profile-arrow" src="/images/mine/arrow.png" mode=""/> -->
 		</view>
 	</view>
 
-	<view class="nav-panel" style="margin-top: 180rpx;">
+	<view class="nav-panel nav-panel1">
 		<view class="nav-panel-items">
 			<view class="nav-panel-item" bindtap="toOrder">
 				<van-icon style="font-size: 60rpx;" name="orders-o" />
@@ -33,7 +25,7 @@
 		</view>
 	</view>
 
-	<view class="nav-panel">
+	<view class="nav-panel nav-panel2">
 		<view class="nav-panel-items">
 			<view class="nav-panel-item" bindtap="comment">
 				<van-icon style="font-size: 60rpx;" name="smile-comment-o" />

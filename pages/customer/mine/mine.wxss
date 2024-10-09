@@ -15,34 +15,39 @@ page {
 }
 
 .login-button {
-	margin: 0;
-	margin-left: 40rpx;
 	background-color: white;
 }
 .profile-wrapper {
-	padding-top: 200rpx;
+	padding-top: 180rpx;
 }
 .profile {
 	padding: 0 32rpx;
 	display: flex;
 	align-items: center;
+	justify-content: center;
 }
-.avatar {
+/* .avatar {
 	width: 128rpx;
 	height: 128rpx;
 	border-radius: 50%;
-}
+} */
 .detail {
 	padding: 14rpx 0;
 	margin-left: 32rpx;
 	color: white;
 }
-.name {
-	display: flex;
-	align-items: center;
-}
 .phone {
-	margin-top: 18rpx;
+	font-size: 40rpx;
+	color: white;
+
+	position: relative;
+    font-size: 60rpx;
+    text-decoration: none;
+    letter-spacing: 6rpx;
+	border: 1rpx solid white;
+	border-radius: 16rpx;
+	padding: 14rpx;
+	box-sizing: border-box;
 }
 .profile-arrow {
 	position: absolute;
@@ -53,7 +58,6 @@ page {
 
 .nav-panel {
 	margin: 0 auto;
-	margin-top: 32rpx;
 	width: 660rpx;
 	background: #FFFFFF;
 	border-radius: 24px;
@@ -61,6 +65,12 @@ page {
 	padding: 30rpx 0;
 	font-size: 28rpx;
 	font-weight: 700;
+}
+.nav-panel1 {
+	margin-top: 240rpx;
+}
+.nav-panel2 {
+	margin-top: 40rpx;
 }
 .nav-panel-items {
 	padding: 0 56rpx;

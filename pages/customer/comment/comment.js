@@ -22,7 +22,7 @@ Page({
   },
   getHistoryComments() {
     _getUserAllComments({
-      author: '13989536936'
+      author: wx.getStorageSync('phone')
     }).then(res => {
       this.setData({
         historyComments: res.data.records
@@ -96,7 +96,7 @@ Page({
           that.data.isSubmiting = true
           _comment({
             comment: that.data.comment,
-            author: '13989536936'
+            author: wx.getStorageSync('phone')
           }).then(res => {
             if (res.data) {
               wx.showToast({

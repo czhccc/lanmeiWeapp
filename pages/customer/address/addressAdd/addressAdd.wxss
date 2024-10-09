@@ -29,6 +29,7 @@ page {
   color: #EE0A24;
   box-sizing: border-box;
   background-color: white;
+  margin-right: 30rpx;
 }
 .saveBtn {
   flex: 1;
@@ -38,5 +39,4 @@ page {
   text-align: center;
   line-height: 84rpx;
   color: white;
-  margin-left: 30rpx;
 }

@@ -3,8 +3,7 @@ import {
 } from './config'
 
 export default function(options, showToast=true) {
-  // let token = wx.getStorageSync('token');
-  let token = 'Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicGhvbmUiOiIxMzk4OTUzNjkzNiIsIm5hbWUiOiJjemgiLCJyb2xlIjoyLCJpYXQiOjE3MjgzNDkzOTgsImV4cCI6MTcyODQzNTc5OH0.d9pn4KnerGvCgqaAXeHcukDdCzgzdD5w30EFhk9728oNxGPOaHedIv21B_KepU-elBXGrFa4moeRFI6_H_c3QeEtjvKfhnyzNbYVp7Xb8jjM6EKWi4EUK0cX5PUANXuROldkl47ZO44IYwk3T0VmmicuG3FXDLVqxVmuEZ36KyIlca8cAwjZKqTjRFu1gQp8uX3OxTrCoMp1DkAm7rxokGX8LdCYh3WrnwNsR0oPmeAwHVz6hf6PSH_qxtacvokqOmbB5zw3iq6LqwjKzOHcyXXN_Riogl21FJLLvvbJhJ5VoBXjfHnxXrQCjjfKvocwU_KJnQ__tZOL3lAtqfdyLg';
+  let token = wx.getStorageSync('token');
 	let header = {}
 	if (token) {
 		header = { 'Authorization': token }
@@ -31,13 +30,15 @@ export default function(options, showToast=true) {
           }
 					if (data.code === 401) {
             wx.removeStorageSync('token')
+            wx.removeStorageSync('phone')
+            
             const pages = getCurrentPages();
             const currentPage = pages[pages.length - 1];
             const currentPageUrl = currentPage.route;
-            if (currentPageUrl != 'pages/mine/mine') {
+            if (currentPageUrl != 'pages/customer/mine/mine') {
               setTimeout(() => {
-                wx.reLaunch({
-                  url: `/pages/mine/mine?flag=expire`,
+                wx.switchTab({
+                  url: `/pages/customer/mine/mine`,
                 })
               }, 1500)
             }

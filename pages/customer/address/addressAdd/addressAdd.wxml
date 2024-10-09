@@ -25,7 +25,7 @@
   </picker>
   <van-field
     label="详细地址"
-    model:value="{{ detailAddress }}"
+    model:value="{{ detail }}"
     placeholder="请输入详细地址"
     type="textarea"
     autosize
@@ -37,7 +37,7 @@
   </van-cell>
 
   <view class="bottom-bar">
-    <view class="deleteBtn" bind:tap="toDelete">删除</view>
-    <view class="saveBtn" bind:tap="toSave">保存</view>
+    <view class="deleteBtn" wx:if="{{flag==='edit'}}" bind:tap="toDelete">删除</view>
+    <view class="saveBtn" bind:tap="toSave">{{flag==='edit'?'保存':'提交'}}</view>
   </view>
 </view>

@@ -1,20 +1,44 @@
 // pages/customer/address/addressAdd/addressAdd.js
+import {
+  _addAddress,
+  _editAddress,
+  _deleteAddress,
+} from '../../../../network/customer/address'
+
 Page({
   data: {
+    flag: null,
+    id: null,
     name: '',
     phone: '',
     region: '',
-    detailAddress: '',
-    isDefault: false
+    detail: '',
+    isDefault: false,
+
+    isSubmiting: false,
   },
   onLoad(options) {
     wx.setNavigationBarTitle({
       title: options.flag === 'add' ? '新增收获地址' : '编辑收货地址'
     });
+    this.setData({
+      flag: options.flag
+    })
+    
+    if (options.info) {
+      let info = JSON.parse(options.info)
+      this.setData({
+        id: info.id,
+        name: info.name,
+        phone: info.phone,
+        region: info.region,
+        detail: info.detail,
+        isDefault: info.isDefault===1 ? true: false
+      })
+    }
   },
   bindRegionChange(e) { // 选择省市区
     let regions = e.detail.value
-    console.log(regions)
     this.setData({
       region: `${regions[0]}${regions[1]}${regions[2]}`
     })
@@ -25,19 +49,35 @@ Page({
     })
   },
   toDelete() {
+    var that = this;
     wx.showModal({
       title: '确认删除？',
       success(res) {
         if (res.confirm) {
-          console.log('用户点击确定');
-        } else if (res.cancel) {
-          console.log('用户点击取消');
+          that.data.isSubmiting = true
+          _deleteAddress({
+            id: that.data.id
+          }).then(res => {
+            wx.showToast({
+              title: res.message,
+              icon: 'none'
+            })
+
+            setTimeout(() => {
+              wx.navigateBack()
+            }, 1500)
+          }).finally(() => {
+            that.data.isSubmiting = false
+          })
         }
       }
     });
   },
   toSave() {
-    console.log('保存')
+    if (this.data.isSubmiting) {
+      return;
+    }
+
     if (!this.data.name) {
       wx.showToast({
         title: '请输入收货人姓名',
@@ -75,7 +115,7 @@ Page({
       })
       return;
     }
-    if (!this.data.detailAddress) {
+    if (!this.data.detail) {
       wx.showToast({
         title: '请输入详细地址',
         icon: 'none'
@@ -83,5 +123,56 @@ Page({
       return;
     }
 
+    var that = this;
+    wx.showModal({
+      title: '确认提交？',
+      success(res) {
+        if (res.confirm) {
+          that.data.isSubmiting = true
+          if (that.data.flag === 'add') { // 新增
+            _addAddress({
+              name: that.data.name, 
+              phone: that.data.phone, 
+              user: wx.getStorageSync('phone'), 
+              region: that.data.region, 
+              detail: that.data.detail, 
+              isDefault: that.data.isDefault,
+            }).then(res => {
+              wx.showToast({
+                title: res.message,
+                icon: 'none'
+              })
+
+              setTimeout(() => {
+                wx.navigateBack()
+              }, 1500)
+            }).finally(() => {
+              that.data.isSubmiting = false
+            })
+          } else { // 编辑
+            _editAddress({
+              id: that.data.id,
+              name: that.data.name, 
+              phone: that.data.phone, 
+              user: wx.getStorageSync('phone'), 
+              region: that.data.region, 
+              detail: that.data.detail, 
+              isDefault: that.data.isDefault,
+            }).then(res => {
+              wx.showToast({
+                title: res.message,
+                icon: 'none'
+              })
+
+              setTimeout(() => {
+                wx.navigateBack()
+              }, 1500)
+            }).finally(() => {
+              that.data.isSubmiting = false
+            })
+          }
+        }
+      }
+    });
   }
 })
