@@ -2,10 +2,18 @@
 <view class="home">
 	<TabBar />
 
-	<van-notice-bar
-		left-icon="volume-o"
-		text="我是通知示例我是通知示例我是通知示例我是通知示例我是通知示例我是通知示例我是通知示例我是通知示例。"
-	/>
+	<view class="notification">
+		<view class="notification-content">
+			<van-icon class="notification-content-icon" name="volume-o" />
+			<view class="notification-content-value">
+				{{ notification.content }}
+			</view> 
+		</view>
+		<view class="notification-time">
+			--- {{ notification.createTime }}
+		</view>
+	</view>
+
 
 	<view class="swiper-wrapper">
 		<swiper class="swiper" autoplay="true" interval="3000" duration="500" 	indicator-dots indicator-color="rgba(255,255,255,0.55)" 	indicator-active-color="#FFFFFF">

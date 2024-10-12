@@ -1,41 +1,40 @@
 <!--pages/self/homeNotify/homeNotify.wxml-->
 <view class="homeNotify">
-	<van-divider 
-    contentPosition="left"
-    customStyle="color: #1989fa; border-color: #1989fa; font-size: 30rpx;margin-top: 0rpx;margin-bottom: 0;"
-  >效果展示</van-divider>
-	<van-notice-bar
-		left-icon="volume-o"
-		text="{{ message }}"
-	/>
 
 	<van-divider 
     contentPosition="left"
-    customStyle="color: #1989fa; border-color: #1989fa; font-size: 30rpx;margin-top: 48rpx;margin-bottom: 0;"
-  >当前通知</van-divider>
+    customStyle="color: #1989fa; border-color: #1989fa; font-size: 30rpx;margin-bottom: 0;margin-top: 0;"
+  	>当前通知</van-divider>
 	<view class="current">
-		我是当前的通知内容我是当前的通知内容我是当前的通知内容我是当前的通知内容我是当前的通知内容我是当前的通知内容我是当前的通知内容
+		<view class="current-wrapper">
+			<text class="current-label">时间：</text>
+			<text class="current-value">{{notification.createTime}}</text>
+		</view>
+		<view class="current-wrapper" style="margin-top: 10rpx;">
+			<text class="current-label">内容：</text>
+			<text class="current-value">{{notification.content}}</text>
+		</view>
 	</view>
 
 	<van-divider 
     contentPosition="left"
-    customStyle="color: #1989fa; border-color: #1989fa; font-size: 30rpx;margin-top: 48rpx;margin-bottom: 0;"
-  >配置通知</van-divider>
+    customStyle="color: #1989fa; border-color: #1989fa; font-size: 30rpx;margin-bottom: 0;"
+  	>发布新通知</van-divider>
 	<view class="input-wrapper">
 		<van-field
-			model:value="{{ message }}"
+			model:value="{{ content }}"
 			label="通知内容"
 			type="textarea"
 			placeholder="请输入通知内容"
 			autosize
 			border="{{ false }}"
-			maxlength="{{100}}"
+			maxlength="{{200}}"
 			show-word-limit
 			clearable
 		/>
 	</view>
 
 	<view class="bottom">
-		<view class="confirmBtn" bind:tap="submit">保存</view>
-  </view>
+		<view class="confirmBtn" bind:tap="submit">发布</view>
+    </view>
 </view>

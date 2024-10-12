@@ -5,7 +5,8 @@ page {
 }
 
 .homeNotify {
-	padding-top: 30rpx;
+  padding-bottom: 200rpx;
+  padding-top: 40rpx;
 }
 
 .input-wrapper {
@@ -16,6 +17,18 @@ page {
 	padding: 20rpx;
 	background-color: white;
 }
+.current-wrapper {
+  display: flex;
+  align-items: flex-start;
+  font-size: 28rpx;
+}
+.current-label {
+  font-weight: 700;
+  word-break: keep-all;
+}
+.current-value {
+  word-break: break-all;
+}
 
 .bottom {
   width: 100vw;
@@ -25,6 +38,7 @@ page {
   height: 160rpx;
   padding: 24rpx 24rpx 0 24rpx;
   box-sizing: border-box;
+  z-index: 999;
 }
 .bottom-content {
   display: flex;

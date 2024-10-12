@@ -1,6 +1,6 @@
 /* pages/self/goodsList/goodsList.wxss */
 page {
-  height: 100%;
+  height: 100vh;
   background: #F4F4F4;
 }
 

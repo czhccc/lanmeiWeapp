@@ -37,11 +37,18 @@ page {
 	color: white;
 }
 .phone {
-	font-size: 40rpx;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-size: 42rpx;
+}
+.phone-label {
 	color: white;
-
+}
+.phone-value {
+	font-weight: 700;
+	color: white;
 	position: relative;
-    font-size: 60rpx;
     text-decoration: none;
     letter-spacing: 6rpx;
 	border: 1rpx solid white;

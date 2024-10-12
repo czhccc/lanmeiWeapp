@@ -1,14 +1,21 @@
 // pages/home/home.js
+import {
+  _getLatestNotification
+} from '../../../network/customer/notify'
 
 Page({
   data: {
+    notification: {
+      content: '',
+      time: '',
+    },
     swiper: [],
   },
   onLoad(options) {
 
   },
   onShow() {
-
+    this.getLatestNotification()
   },
   seeBigSwiperItem(e) {
     console.log(e)
@@ -24,6 +31,17 @@ Page({
         wx.setStorageSync('longitude', res.longitude)
         wx.setStorageSync('latitude', res.latitude)
       },
+    })
+  },
+  getLatestNotification() {
+    _getLatestNotification().then(res => {
+      console.log(res)
+      this.setData({
+        notification: {
+          content: res.data.content,
+          createTime: res.data.createTime
+        }
+      })
     })
   },
   _getSwiper() { // 轮播图

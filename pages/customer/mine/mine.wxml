@@ -6,7 +6,10 @@
 	<view class="profile-wrapper">
 		<view class="profile">
 			<!-- <image class="avatar" src="{{userInfo.avatar || '/images/mine/avatar.png'}}" mode=""/> -->
-			<view class="phone" wx:if="{{phone}}">{{phone}}</view>
+			<view class="phone" wx:if="{{phone}}">
+				<view class="phone-label">当前用户：</view>
+				<view class="phone-value">{{phone}}</view>
+			</view>
 			<button class="login-button" wx:if="{{!phone}}" open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">微信授权登录</button>
 			<!-- <image class="profile-arrow" src="/images/mine/arrow.png" mode=""/> -->
 		</view>

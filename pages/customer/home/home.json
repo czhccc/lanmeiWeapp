@@ -1,7 +1,7 @@
 {
   "usingComponents": {
-    "TabBar": "../../../components/TabBar/TabBar",
-    "van-notice-bar": "@vant/weapp/notice-bar/index"
+    "van-icon": "@vant/weapp/icon/index",
+    "TabBar": "../../../components/TabBar/TabBar"
   },
   "navigationBarTitleText": "首页"
 }

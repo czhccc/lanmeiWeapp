@@ -3,7 +3,35 @@ page {
 	height: 100%;
 }
 .home {
-	padding-bottom: 60rpx;
+	padding-bottom: 240rpx;
+}
+
+.notification {
+	background-color: rgb(255,251,232);
+	padding: 16rpx 32rpx;
+	color: #ed6a0c;
+}
+.notification-content {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	
+}
+.notification-content-icon {
+	font-size: inherit;
+	font-size: 36rpx;
+	margin-right: 20rpx;
+}
+.notification-content-value {
+	flex: 1;
+	font-size: 28rpx;
+	line-height: 48rpx;
+	text-align: left;
+}
+.notification-time {
+	text-align: right;
+	font-size: 26rpx;
+	margin-top: 6rpx;
 }
 
 .swiper-wrapper {
