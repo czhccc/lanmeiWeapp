@@ -17,14 +17,14 @@
 		<view class="price-wrapper">
 			<view class="price" wx:if="{{currentBatchType===0}}">¥{{theData.currentBatch.batch_minPrice}} ~ ¥{{theData.currentBatch.batch_maxPrice}}</view>
 			<view class="price" wx:if="{{currentBatchType===1}}">¥{{theData.currentBatch.batch_unitPrice}}</view>
-			<view class="type">{{currentBatchType===0?'预订':'现货'}}</view>
+			<view class="type">{{currentBatchType===0?'预订':'现货 余量：???'}}</view>
 		</view>
 		<view class="name">{{theData.goodsName}}</view>
 	</view>
 
 	<view class="line"></view>
 
-	<view class="detail">
+	<view class="detail" wx:if="{{theData.goodsId}}">
 		<view class="detail-title">下单提示</view>
 		<view class="rich-wrapper">
 			<view>最少{{currentBatchTypeText}} {{theData.currentBatch.batch_minQuantity}} {{theData.currentBatch.snapshot_goodsUnit}}</view>

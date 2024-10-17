@@ -14,9 +14,11 @@ Page({
     listData: [],
   },
   onLoad(options) {
+    
+  },
+  onShow() {
     this.getCategory()
   },
-
   getCategory() {
     var that = this;
     _getCategory().then(res => {

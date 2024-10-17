@@ -50,4 +50,7 @@ Page({
       }
     });
   },
+  coverImageLoadError() {
+    console.log('封面图加载失败，要在这里替换成默认图片')
+  }
 })

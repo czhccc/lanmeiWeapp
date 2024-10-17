@@ -2,7 +2,12 @@
 <view class="buyOrOrder">
   <view class="goods">
     <view class="goods-content-wrapper">
-      <image class="goods-img" src="https://img2.baidu.com/it/u=3650958543,1493738205&fm=253&fmt=auto&app=138&f=JPEG?w=800&h=800" mode=""/>
+      <image 
+        class="goods-img" 
+        src="https://img2.baidu.com/it/u=3650958543,1493738205&fm=253&fmt=auto&app=138&f=JPEG?w=800&h=800" 
+        mode=""
+        binderror="coverImageLoadError"
+      />
       <view class="goods-content">
         <view class="goods-name">意大利头皮护理产品意大利头皮护理产品意大利头皮护理产品意大利头皮护理产品意大利头皮护理产品</view>
         <view class="goods-specification">
