@@ -27,12 +27,8 @@ page {
 	align-items: center;
 	box-sizing: border-box;
 	padding: 0 32rpx;
-	justify-content: space-between;
-}
-.price-content {
-  display: flex;
-  /* align-items: flex-end; */
-  position: relative;
+  justify-content: space-between;
+  margin-top: 10rpx;
 }
 .price {
 	font-size: 40rpx;
@@ -48,15 +44,19 @@ page {
   color: gray;
   text-decoration: line-through; /* 添加删除线 */
 }
+.type-wrapper {
+  display: flex;
+  justify-content: flex-end;
+  padding-right: 32rpx;
+  margin-top: 10rpx;
+}
 .type {
-  width: 84rpx;
-  height: 60rpx;
   background: #F2F3FF;
   border-radius: 4rpx;
-  line-height: 60rpx;
   text-align: center;
   font-size: 28rpx;
   color: #1989FA;
+  padding: 10rpx 20rpx;
 }
 .name {
 	padding: 0 32rpx;
@@ -74,6 +74,20 @@ page {
   margin-top: 32rpx;
 }
 
+.tip {
+	margin-top: 30rpx;
+}
+.tip-title {
+	font-weight: 700;
+  font-size: 36rpx;
+  color: #333333;
+  padding: 0 32rpx;
+}
+.tip-wrapper {
+	margin-top: 24rpx;
+	padding: 0 32rpx;
+}
+
 .detail {
 	margin-top: 30rpx;
 }
@@ -84,9 +98,7 @@ page {
   padding: 0 32rpx;
 }
 .rich-wrapper {
-	margin-top: 24rpx;
 	padding: 0 32rpx;
-	
 }
 .detail-content {
 	width: 100%;

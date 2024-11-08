@@ -14,25 +14,22 @@ Page({
     listData: [],
   },
   onLoad(options) {
-    
+    this.getCategory()
   },
   onShow() {
-    this.getCategory()
+    this.getGoodsList({goodsCategoryId: this.data.choosedCategoryId})
   },
   getCategory() {
     var that = this;
-    _getCategory().then(res => {
-      that.getGoodsList({goodsCategoryId: res.data[0].children[0].id})
+    _getCategory({
+      isSelling: true
+    }).then(res => {
+      if (res.data.length > 0) {
+        that.getGoodsList({goodsCategoryId: res.data[0].children[0].id})
+      }
 
       this.setData({
-        categoryList: [
-          // {
-          //   id: null,
-          //   name: '全部',
-          //   children: []
-          // },
-          ...res.data
-        ],
+        categoryList: res.data,
         choosedCategoryId: res.data[0].children[0].id
       })
     })

@@ -11,8 +11,8 @@ page {
 }
 
 .left {
-	min-width: 200rpx;
-	max-width: 200rpx;
+	min-width: 180rpx;
+	max-width: 180rpx;
 	background: #F3F3F3;
 	border-radius: 0rpx 16rpx 0rpx 0rpx;
 	height: calc(100vh - 54rpx - 32rpx - 140rpx - 34rpx - 30rpx);
@@ -74,6 +74,13 @@ page {
 	display: flex;
 	margin-bottom: 40rpx;
 	position: relative;
+	border: 1rpx solid #DDD;
+	padding: 4rpx;
+	padding-right: 0;
+	margin-right: 4rpx;
+	box-sizing: border-box;
+	border-radius: 10rpx;
+	box-shadow: 8rpx 4rpx 20rpx rgba(0, 0, 0, 0.15);
 }
 .good-img {
 	width: 180rpx;
@@ -95,17 +102,11 @@ page {
 	flex: 1;
 	position: relative;
 }
-.good-title {
+.good-name {
 	font-size: 28rpx;
 	color: #333333;
 	margin-left: 20rpx;
 	font-weight: 700;
-	display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 2;
-	overflow: hidden;
-	position: absolute;
-	top: 0;
 }
 .good-price {
 	font-size: 24rpx;
@@ -113,6 +114,4 @@ page {
 	font-weight: 700;
 	margin-left: 20rpx;
 	margin-top: 16rpx;
-	position: absolute;
-	bottom: 0;
 }

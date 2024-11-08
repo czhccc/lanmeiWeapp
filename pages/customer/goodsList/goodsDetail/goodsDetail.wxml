@@ -1,37 +1,39 @@
 <!--pages/deal/dealPrefer/dealPreferDetail/dealPreferDetail.wxml-->
 <view class="goodsDetail">
-	<swiper wx:if="{{theData.goodsId}}" class="swiper" 
+	<swiper class="swiper" wx:if="{{theData.swiperList.length > 0}}" 
 			indicator-dots="{{true}}" autoplay="{{false}}" 
 			interval="{{5000}}" duration="{{500}}" circular="{{true}}"
 	>
 		<swiper-item class="swiper-item" wx:for="{{theData.swiperList}}" wx:key="index">
-			<image wx:if="{{item.type==='image'}}" class="swiper-img" src="{{item.url}}"></image>
+			<image wx:if="{{item.fileType==='image'}}" class="swiper-img" src="{{item.url}}"></image>
 			<video wx:else class="swiper-img" src="{{item.url}}" 
 					controls="true"
-
 			></video>
 		</swiper-item>
 	</swiper>
 	
 	<view class="introduce">
+		<view class="name">{{theData.goods_name}}</view>
 		<view class="price-wrapper">
-			<view class="price" wx:if="{{currentBatchType===0}}">¥{{theData.currentBatch.batch_minPrice}} ~ ¥{{theData.currentBatch.batch_maxPrice}}</view>
-			<view class="price" wx:if="{{currentBatchType===1}}">¥{{theData.currentBatch.batch_unitPrice}}</view>
-			<view class="type">{{currentBatchType===0?'预订':'现货 余量：???'}}</view>
+			<view class="price" wx:if="{{theData.batch_type==='preorder'}}">¥{{theData.batch_minPrice}} ~ ¥{{theData.batch_maxPrice}} / {{theData.goods_unit}}</view>
+			<view class="price" wx:if="{{theData.batch_type==='stock'}}">¥{{theData.batch_unitPrice}} / {{theData.goods_unit}}</view>
 		</view>
-		<view class="name">{{theData.goodsName}}</view>
+		<view class="type-wrapper">
+			<view class="type" wx:if="{{theData.batch_type==='preorder'}}">预订中</view>
+			<view class="type" wx:if="{{theData.batch_type==='stock'}}">现货  余量：{{theData.batch_stock}} {{theData.goods_unit}}</view>
+		</view>
 	</view>
 
 	<view class="line"></view>
 
-	<view class="detail" wx:if="{{theData.goodsId}}">
-		<view class="detail-title">下单提示</view>
-		<view class="rich-wrapper">
-			<view>最少{{currentBatchTypeText}} {{theData.currentBatch.batch_minQuantity}} {{theData.currentBatch.snapshot_goodsUnit}}</view>
+	<view class="tip" wx:if="{{theData.id}}">
+		<view class="tip-title">下单提示</view>
+		<view class="tip-wrapper">
+			<view>最少{{theData.batch_type === 1 ? '购买' : '预订'}} {{theData.batch_minQuantity}} {{theData.goods_unit}}</view>
 		</view>
-		<view class="rich-wrapper">
-			<view wx:for="{{theData.currentBatch.batch_discounts}}" wx:key="index">
-				满 {{item.quantity}} {{theData.currentBatch.snapshot_goodsUnit}}，优惠 {{item.discount}} 元
+		<view class="tip-wrapper">
+			<view wx:for="{{theData.batch_discounts}}" wx:key="index">
+				满 {{item.quantity}} {{theData.goods_unit}}，优惠 {{item.discount}} 元
 			</view>
 		</view>
 	</view>
@@ -41,11 +43,11 @@
 	<view class="detail">
 		<view class="detail-title">商品详情</view>
 		<view class="rich-wrapper">
-			<rich-text class="detail-content" nodes="{{theData.goodsRichText}}"></rich-text>
+			<rich-text class="detail-content" nodes="{{theData.goods_richText}}"></rich-text>
 		</view>
 	</view>
 
 	<view class="bottom-bar">
-    <view class="buyBtn" bind:tap="toBuyOrOrder">{{currentBatchTypeText}}</view>
-  </view>
+		<view class="buyBtn" bind:tap="toBuyOrOrder">{{theData.batch_type === 1 ? '购买' : '预订'}}</view>
+	</view>
 </view>

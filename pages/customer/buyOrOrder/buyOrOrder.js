@@ -2,7 +2,6 @@
 Page({
   data: {
     theData: null,
-    currentBatchTypeText: null,
 
     num: 1,
 
@@ -15,11 +14,10 @@ Page({
     const app = getApp();
     this.setData({
       theData: app.globalData.currentGoodsDetail,
-      currentBatchTypeText: app.globalData.currentGoodsDetail.currentBatch.batch_type===1?'购买':'预订'
     })
 
     wx.setNavigationBarTitle({
-      title: this.data.theData.currentBatch.batch_type===1?'购买':'预订'
+      title: this.data.theData.batch_type==='preorder'?'预订':'购买'
     });
   },
   numChnage(e) {

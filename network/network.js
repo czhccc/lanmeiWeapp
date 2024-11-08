@@ -4,6 +4,7 @@ import {
 
 export default function(options, showToast=true) {
   let token = wx.getStorageSync('token');
+  // let token = 'Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJwaG9uZSI6IjEzOTg5NTM2OTM2IiwiaWF0IjoxNzI5NjUxODQyLCJleHAiOjE3Mjk3MzgyNDJ9.lBOfmoZT3-VpVFcS-a2XKDGO6RgRnqi-03P5Jj5GeCJfoenBfEOY0rJeJ7ehPezFQhyIkysQFx8bj-p_L6vIeyoI9G9Yt_Y3g5WgopcYxVRk1SOxMpdWmocF3ah-oBo_dxNfj-Han5QhCvfLihHSFBYEY31mfB8PKUDPmotTHSzr6ChVRk2VKvIJ2LNNtAhs8ZJVkQVpsb2BV-SzzLkohaymhnHhr4aNBsNHNWq-FMwe5zIfvBItPoup5uSe_aADM9Nyyv_8QpyGerhcJii7CZ_6iEc5SIMoAP0W1QEvrEOMLWV_ZJaHgUIKe3Z8BkDXHgLMVvjvEBBY33vWDIBa8A';
 	let header = {}
 	if (token) {
 		header = { 'Authorization': token }

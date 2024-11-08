@@ -10,8 +10,6 @@ import {
 Page({
   data: {
     theData: {},
-    currentBatchType: null,
-    currentBatchTypeText: null,
     detailContet: '',
     isShowPopup: false,
 
@@ -21,27 +19,23 @@ Page({
     this.getGoodsDetailById(options.id)
   },
   getGoodsDetailById(id) {
-    _getGoodsDetailById({
-      id
-    }).then(res => {
+    _getGoodsDetailById({ id }).then(res => {
       let theData = res.data
-      theData.currentBatch.batch_discounts = JSON.parse(theData.currentBatch.batch_discounts)
-      for (const item of theData.currentBatch.batch_discounts) {
+      theData.batch_discounts = JSON.parse(theData.batch_discounts)
+      for (const item of theData.batch_discounts) {
         item.discount = formatNumber(item.discount)
         item.quantity = formatNumber(item.quantity)
       }
-      theData.currentBatch.batch_minQuantity = formatNumber(theData.currentBatch.batch_minQuantity)
-      if (theData.currentBatch.batch_type === 0) {
-        theData.currentBatch.batch_minPrice = formatNumber(theData.currentBatch.batch_minPrice)
-        theData.currentBatch.batch_maxPrice = formatNumber(theData.currentBatch.batch_maxPrice)
+      theData.batch_minQuantity = formatNumber(theData.batch_minQuantity)
+      if (theData.batch_type === 0) {
+        theData.batch_minPrice = formatNumber(theData.batch_minPrice)
+        theData.batch_maxPrice = formatNumber(theData.batch_maxPrice)
       } else {
-        theData.currentBatch.batch_unitPrice = formatNumber(theData.currentBatch.batch_unitPrice)
+        theData.batch_unitPrice = formatNumber(theData.batch_unitPrice)
       }
 
       this.setData({
         theData,
-        currentBatchType: theData.currentBatch.batch_type,
-        currentBatchTypeText: theData.currentBatch.batch_type === 1 ? '购买' : '预订'
       })
     })
   },
