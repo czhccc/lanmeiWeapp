@@ -2,27 +2,21 @@
 <view class="buyOrOrder">
   <view class="goods">
     <view class="goods-content-wrapper">
-      <image 
-        class="goods-img" 
-        src="https://img2.baidu.com/it/u=3650958543,1493738205&fm=253&fmt=auto&app=138&f=JPEG?w=800&h=800" 
-        mode=""
-        binderror="coverImageLoadError"
-      />
+      <image class="goods-img" src="{{theData.goods_coverImage}}" mode=""
+        binderror="coverImageLoadError" />
       <view class="goods-content">
-        <view class="goods-name">意大利头皮护理产品意大利头皮护理产品意大利头皮护理产品意大利头皮护理产品意大利头皮护理产品</view>
-        <view class="goods-specification">
-          <text class="goods-specification-label">规格：</text>
-          <text class="goods-specification-value">500ml500ml500ml500ml500ml500ml500ml500ml500ml</text>
-          </view>
+        <view class="goods-name">{{theData.goods_name}}</view>
+        <view class="goods-stock" wx:if="{{theData.batch_type==='stock'}}">余量：{{theData.batch_stock}} {{theData.goods_unit}}</view>
         <view class="goods-price-content">
-          <view class="goods-price">¥199.00</view>
+          <view class="goods-price">¥{{totalPrice}}</view>
+        </view>
+        <view class="goods-num-wrapper">
           <van-stepper 
             value="{{ num }}" 
-            bind:change="numChnage"
+            bind:change="numChange"
             min="{{1}}"
-            max="{{999}}" 
+            max="{{theData.batch_stock || 999}}" 
           />
-          <!-- 最大值由剩余数量决定 -->
         </view>
         
       </view>
@@ -36,9 +30,9 @@
   </view>
   <view class="choosedAddress" bind:tap="chooseAddress" wx:if="{{addressInfo.id}}">
     <view class="choosedAddress-content">
-      <view class="choosedAddress-ssq">浙江省杭州市西湖区</view>
-      <view class="choosedAddress-detail">汇峰国际D508汇峰国际D508汇峰国际D508汇峰国际D508汇峰国际D508汇峰国际D508汇峰国际D508</view>
-      <view class="choosedAddress-nameAndPhone">王女士 12839282929</view>
+      <view class="choosedAddress-ssq">{{addressInfo.region}}</view>
+      <view class="choosedAddress-detail">{{addressInfo.detail}}</view>
+      <view class="choosedAddress-nameAndPhone">{{addressInfo.name}} {{addressInfo.phone}}</view>
     </view>
     <image class="chooseAddress-arrow" src="../../../images/common/arrow-right.png" mode=""/>
   </view>

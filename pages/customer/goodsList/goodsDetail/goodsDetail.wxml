@@ -20,7 +20,8 @@
 		</view>
 		<view class="type-wrapper">
 			<view class="type" wx:if="{{theData.batch_type==='preorder'}}">预订中</view>
-			<view class="type" wx:if="{{theData.batch_type==='stock'}}">现货  余量：{{theData.batch_stock}} {{theData.goods_unit}}</view>
+			<view class="type" wx:if="{{theData.batch_type==='stock'&&theData.batch_stock>0}}">现货  余量：{{theData.batch_stock}} {{theData.goods_unit}}</view>
+			<view class="type" wx:if="{{theData.batch_type==='stock'&&theData.batch_stock<=0}}">现货  余量：{{theData.batch_stock}} {{theData.goods_unit}}</view>
 		</view>
 	</view>
 
@@ -48,6 +49,6 @@
 	</view>
 
 	<view class="bottom-bar">
-		<view class="buyBtn" bind:tap="toBuyOrOrder">{{theData.batch_type === 1 ? '购买' : '预订'}}</view>
+		<view class="buyBtn" bind:tap="toBuyOrOrder">{{theData.batch_type === 'preorder' ? '预订' : '购买'}}</view>
 	</view>
 </view>

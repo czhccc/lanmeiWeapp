@@ -35,3 +35,10 @@ export function _deleteAddress(data) {
 	})
 }
 
+// 获取默认地址
+export function _getDefaultAddress(data) {
+	return request({
+		url: '/wechat/address/default',
+		data
+	})
+}

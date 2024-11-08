@@ -37,21 +37,19 @@ Page({
       url: `/pages/customer/address/addressAdd/addressAdd?flag=edit&info=${JSON.stringify(info)}`,
     })
   },
-  chooseItem() { // 购买或预订时选中
+  chooseItem(e) { // 购买或预订时选中
+    let address = e.currentTarget.dataset.item
     if (!this.data.isChoose) {
       return;
     }
 
     const pages = getCurrentPages();
     const prevPage = pages[pages.length - 2];
-    prevPage.setData({
-      addressInfo: {
-        id: 1,
-        name: '111',
-        phone: '13989457856',
-        detail: '22222222222222222'
-      }
-    });
-    wx.navigateBack();
+    if (prevPage.data.addressInfo) {
+      prevPage.setData({
+        addressInfo: address
+      });
+      wx.navigateBack();
+    }
   },
 })

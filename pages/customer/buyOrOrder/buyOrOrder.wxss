@@ -34,29 +34,28 @@ page {
   color: #333333;
   font-weight: 700;
 }
-.goods-specification {
+.goods-stock {
   margin-top: 12rpx;
   font-size: 24rpx;
   color: #999999;
   display: flex;
-}
-.goods-specification-label {
-  word-break: keep-all;
-}
-.goods-specification-value {
-  word-break: break-all;
+  justify-content: flex-end;
 }
 .goods-price-content {
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  margin-top: 48rpx;
+  margin-top: 10rpx;
   flex-wrap: wrap;
 }
 .goods-price {
   font-size: 36rpx;
   color: #F62603;
   font-weight: 700;
+}
+.goods-num-wrapper {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 20rpx;
 }
 
 .chooseAddress {

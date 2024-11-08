@@ -9,6 +9,7 @@ import {
 
 Page({
   data: {
+    id: null,
     theData: {},
     detailContet: '',
     isShowPopup: false,
@@ -16,7 +17,12 @@ Page({
     popConfirmFlag: 'addCart',
   },
   onLoad(options) {
-    this.getGoodsDetailById(options.id)
+    this.data.id = options.id
+  },
+  onShow() {
+    if (this.data.id) {
+      this.getGoodsDetailById(this.data.id)
+    }
   },
   getGoodsDetailById(id) {
     _getGoodsDetailById({ id }).then(res => {
@@ -27,11 +33,12 @@ Page({
         item.quantity = formatNumber(item.quantity)
       }
       theData.batch_minQuantity = formatNumber(theData.batch_minQuantity)
-      if (theData.batch_type === 0) {
-        theData.batch_minPrice = formatNumber(theData.batch_minPrice)
-        theData.batch_maxPrice = formatNumber(theData.batch_maxPrice)
+      if (theData.batch_type === 'preorder') {
+        theData.batch_minPrice = theData.batch_minPrice
+        theData.batch_maxPrice = theData.batch_maxPrice
       } else {
-        theData.batch_unitPrice = formatNumber(theData.batch_unitPrice)
+        theData.batch_unitPrice = theData.batch_unitPrice
+        theData.batch_stock = formatNumber(theData.batch_stock)
       }
 
       this.setData({
@@ -45,6 +52,16 @@ Page({
     })
   },
   toBuyOrOrder() {
+    if (this.data.theData.batch_type === 'stock') {
+      if (this.data.theData.batch_stock <= 0) {
+        wx.showToast({
+          title: '已经卖完了~',
+          icon: 'none'
+        })
+        return;
+      }
+    }
+
     const app = getApp();
     app.globalData.currentGoodsDetail = this.data.theData
 
