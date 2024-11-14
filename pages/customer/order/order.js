@@ -1,4 +1,8 @@
 // pages/customer/order/order.js
+import {
+  _getOrderList
+} from '../../../network/customer/order'
+
 Page({
   data: {
     tabIndex: 0,
@@ -11,10 +15,17 @@ Page({
     listData: [],
   },
   onLoad(options) {
-
+    this.getOrderList()
   },
-  _getListData() {
-
+  getOrderList() {
+    _getOrderList({
+      pageNo: 1,
+      pageSize: 10,
+      user: wx.getStorageSync('phone'),
+      batch_type: this.data.tabIndex===0 ? 'preorder' : 'stock'
+    }).then(res => {
+      
+    })
   },
   tabChange(e) {
     console.log(e)

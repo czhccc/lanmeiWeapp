@@ -8,14 +8,15 @@
         <view class="goods-name">{{theData.goods_name}}</view>
         <view class="goods-stock" wx:if="{{theData.batch_type==='stock'}}">余量：{{theData.batch_stock}} {{theData.goods_unit}}</view>
         <view class="goods-price-content">
-          <view class="goods-price">¥{{totalPrice}}</view>
+          <view class="goods-price" wx:if="{{theData.batch_type==='preorder'}}">¥{{theData.batch_minPrice}} ~ ¥{{theData.batch_maxPrice}} / {{theData.goods_unit}}</view>
+			<view class="goods-price" wx:if="{{theData.batch_type==='stock'}}">¥{{theData.batch_unitPrice}} / {{theData.goods_unit}}</view>
         </view>
         <view class="goods-num-wrapper">
           <van-stepper 
             value="{{ num }}" 
             bind:change="numChange"
             min="{{1}}"
-            max="{{theData.batch_stock || 999}}" 
+            max="{{theData.batch_type==='stock' ? theData.batch_stock : 999}}" 
           />
         </view>
         
@@ -70,15 +71,20 @@
   <view class="detail">
     <view class="detail-line">
       <view class="detail-line-label">总金额</view>
-      <view class="detail-line-value">¥2049.00</view>
+      <view class="detail-line-value" wx:if="{{theData.batch_type==='preorder'}}">¥{{totalMinPrice}} ~ {{totalMaxPrice}}</view>
+      <view class="detail-line-value" wx:if="{{theData.batch_type==='stock'}}">¥{{totalPrice}}</view>
+    </view>
+    <view class="detail-line">
+      <view class="detail-line-label">邮费</view>
+      <view class="detail-line-value">¥{{postage}}</view>
     </view>
     <view class="detail-line">
       <view class="detail-line-label">优惠</view>
-      <view class="detail-line-value" style="color: red;">-¥20.00</view>
+      <view class="detail-line-value" style="color: red;">-¥{{discountAmount}}</view>
     </view>
     <view class="detail-line">
       <view class="detail-line-label2">应付金额</view>
-      <view class="detail-line-value2">¥2029.00</view>
+      <view class="detail-line-value2">¥{{finalPrice}}</view>
     </view>
   </view>
   
@@ -86,9 +92,9 @@
     <view class="bottom-content">
       <view class="payNum">
         <view class="payNum-label">应付金额：</view>
-        <view class="payNum-value">¥2029.00</view>
+        <view class="payNum-value">¥{{finalPrice}}</view>
       </view>
-      <view class="payBtn" bind:tap="submit">提交订单</view>
+      <view class="payBtn" bind:tap="submit">{{theData.batch_type==='preorder' ? '确定预订' : '提交订单'}}</view>
     </view>
   </view>
 </view>

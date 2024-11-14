@@ -2,7 +2,7 @@
 <view class="order">
   <van-tabs class="tabs" active="{{ tabIndex }}" bind:change="tabChange">
     <van-tab title="预订"></van-tab>
-    <van-tab title="购买"></van-tab>
+    <van-tab title="现货"></van-tab>
   </van-tabs>
 
   <scroll-view 
