@@ -54,6 +54,7 @@ page {
 .order-content {
   flex: 1;
   display: flex;
+  justify-content: space-between;
   align-items: center;
   margin-top: 24rpx;
 }
@@ -76,23 +77,11 @@ page {
   color: #333333;
   font-weight: 700;
 }
-.goods-specification {
-  margin-top: 12rpx;
-  font-size: 24rpx;
-  color: #999999;
-  display: flex;
-  align-items: flex-start;
-}
-.goods-specification-label {
-  word-break: keep-all;
-}
-.goods-specification-value {
-  word-break: break-all;
-}
 .goods-num {
   margin-left: 20rpx;
-  font-size: 24rpx;
+  font-size: 30rpx;
   color: black;
+  font-weight: 700;
 }
 .payCount {
   display: flex;
@@ -189,23 +178,23 @@ page {
   
 }
 .filter-orderInput {
-  background-color: rgb(243, 243, 243);
+  background-color: rgb(247, 247, 247);
   border-radius: 20rpx;
   flex: 1;
   font-size: 28rpx;
   padding: 10rpx 24rpx;
 }
 .filter-status {
-  justify-content: space-between;
+  justify-content: flex-start;
   flex-wrap: wrap;
 }
 .filter-status-item {
   padding: 10rpx 20rpx;
-  background-color: pink;
+  background-color: rgb(243, 243, 243);
   border-radius: 20rpx;
   font-size: 28rpx;
   word-break: keep-all;
-  margin-bottom: 20rpx;
+  margin-right: 20rpx;
 }
 .filter-time {
   display: flex;

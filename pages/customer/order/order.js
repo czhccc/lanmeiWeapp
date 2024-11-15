@@ -24,24 +24,67 @@ Page({
       user: wx.getStorageSync('phone'),
       batch_type: this.data.tabIndex===0 ? 'preorder' : 'stock'
     }).then(res => {
-      
+      let listData = res.data.records.map(item => {
+        let statusText = ''
+        switch (item.status) {
+          case 'reserved': statusText='已预订';break;
+          case 'paid': statusText='已付款';break;
+          case 'unpaid': statusText='未付款';break;
+          case 'completed': statusText='已完成';break;
+          default: break;
+        }
+        let finalPrice = null
+        if (item.batch_type==='preorder') {
+          let minPrice = (Number(item.total_minPrice) + Number(item.postage) - Number(item.discount_amount)).toFixed(2)
+          let maxPrice = (Number(item.total_maxPrice) + Number(item.postage) - Number(item.discount_amount)).toFixed(2)
+          finalPrice = `${minPrice} ~ ${maxPrice}`
+        } else {
+          finalPrice = (Number(item.total_price) + Number(item.postage) - Number(item.discount_amount)).toFixed(2)
+        }
+        return {
+          ...item,
+          statusText,
+          finalPrice,
+        }
+      })
+      this.setData({
+        listData: [...this.data.listData, ...listData]
+      })
+      if (res.data.records.length > 0) {
+        this.setData({
+          pageNo: this.data.pageNo + 1
+        })
+      }
+      if (this.data.refresherTriggered) {
+        this.setData({
+          refresherTriggered: false
+        })
+      }
     })
   },
   tabChange(e) {
-    console.log(e)
-    this.setData({
-      tabIndex: e.detail.index
-    })
+    if (e.detail.index === this.data.tabIndex) {
+      return;
+    } else {
+      this.setData({
+        tabIndex: e.detail.index
+      })
+      this.setData({
+        pageNo: 1,
+        listData: [],
+        refresherTriggered: true
+      })
+      this.getOrderList()
+    }
   },
 
   bindrefresherrefresh() {
-    console.log('下拉刷新')
     this.setData({
       pageNo: 1,
       listData: [],
       refresherTriggered: true
     })
-    this._getListData()
+    this.getOrderList()
   },
   onScrollToLower() {
     console.log('触底')

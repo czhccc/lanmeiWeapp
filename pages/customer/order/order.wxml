@@ -13,36 +13,32 @@
     bindrefresherrefresh="bindrefresherrefresh" 
     refresher-triggered="{{refresherTriggered}}"
   >
-    <view class="order-item" wx:for="{{10}}" wx:key="index">
+    <view class="order-item" wx:for="{{listData}}" wx:key="index">
       <view class="order-top">
         <view class="orderId">
           <view class="orderId-label">订单编号：</view>
-          <view class="orderId-value">111111111111111111111111111111111111</view>
+          <view class="orderId-value">{{item.order_no}}</view>
         </view>
-        <view class="order-status">待收货</view>
+        <view class="order-status">{{item.statusText}}</view>
       </view>
       <view class="order-content">
         <view class="order-wrapper">
-          <image class="order-img" src="https://p3.itc.cn/q_70/images03/20221004/64961102427b4c1b88678029f39ef5c6.jpeg" alt=""/>
+          <image class="order-img" src="{{item.snapshot_coverImage}}" alt=""/>
           <view class="order-content-detail">
-            <view class="goodsName">蓝莓蓝莓蓝莓蓝莓蓝莓蓝莓蓝莓蓝莓蓝莓蓝莓蓝莓</view>
-            <view class="goods-specification">
-              <view class="goods-specification-label">规格：</view>
-              <view class="goods-specification-value">500ml500ml500ml500ml500ml500ml500ml500ml</view>
-            </view>
+            <view class="goodsName">{{item.snapshot_goodsName}}</view>
           </view>
         </view>
-        <view class="goods-num">×999</view>
+        <view class="goods-num">×{{item.num}}</view>
       </view>
       
       <view class="payCount">
-        <view class="payCount-label">实付金额：</view>
-        <view class="payCount-value">¥48.00</view>
+        <view class="payCount-label">{{item.batch_type==='preorder' ? '预订金额' : '实付金额'}}：</view>
+        <view class="payCount-value">¥{{item.finalPrice}}</view>
       </view>
 
       <view class="order-btns">
-        <view class="order-cancelOrder" catch:tap="cancelOrder">取消预订</view>
-        <view class="order-refund" catch:tap="refund">退款</view>
+        <view class="order-cancelOrder" wx:if="{{item.batch_type==='preorder'}}" catch:tap="cancelOrder">取消预订</view>
+        <view class="order-refund" wx:if="{{item.batch_type==='stock'}}" catch:tap="refund">退款</view>
         <view class="order-seeDetail" catch:tap="seeDetail">查看详情</view>
       </view>
     </view>
@@ -63,25 +59,27 @@
       <view class="filter-item">
         <view class="filter-item-label">订单号：</view>
         <view class="filter-item-value filter-OrderId">
-          <input type="text" class="filter-orderInput" placeholder="请输入订单号" />
+          <input type="text" class="filter-orderInput" placeholder="请输入订单号" maxlength="{{18}}" />
         </view>
       </view>
 
       <view class="filter-item">
         <view class="filter-item-label">产品名：</view>
         <view class="filter-item-value filter-OrderId">
-          <input type="text" class="filter-orderInput" placeholder="请输入产品关键字" />
+          <input type="text" class="filter-orderInput" placeholder="请输入产品关键字" maxlength="{{15}}" />
         </view>
       </view>
 
-      <view class="filter-item" style="margin-bottom: 10rpx;">
+      <view class="filter-item">
         <view class="filter-item-label">状态：</view>
-        <view class="filter-item-value filter-status">
+        <view class="filter-item-value filter-status" wx:if="{{tabIndex===0}}">
           <view class="filter-status-item">已预订</view>
-          <view class="filter-status-item">待付款</view>
-          <view class="filter-status-item">待收货</view>
-          <view class="filter-status-item">已完结</view>
-          <view class="filter-status-item">已取消</view>
+          <view class="filter-status-item">未付款</view>
+          <view class="filter-status-item">已完成</view>
+        </view>
+        <view class="filter-item-value filter-status" wx:if="{{tabIndex===1}}">
+          <view class="filter-status-item">已付款</view>
+          <view class="filter-status-item">已完成</view>
         </view>
       </view>
 
