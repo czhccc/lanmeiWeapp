@@ -190,11 +190,12 @@ page {
 }
 .filter-status-item {
   padding: 10rpx 20rpx;
-  background-color: rgb(243, 243, 243);
+  background-color: rgb(148,148,148);
   border-radius: 20rpx;
   font-size: 28rpx;
   word-break: keep-all;
   margin-right: 20rpx;
+  margin-bottom: 10rpx;
 }
 .filter-time {
   display: flex;

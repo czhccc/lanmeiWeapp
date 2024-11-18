@@ -98,12 +98,14 @@ Page({
       return;
     } else {
       this.setData({
-        tabIndex: e.detail.index
-      })
-      this.setData({
+        tabIndex: e.detail.index,
         pageNo: 1,
         listData: [],
-        refresherTriggered: true
+        orderNo: '',
+        goodsName: '',
+        status: '',
+        startDate: '',
+        endDate: '',
       })
       this.getOrderList()
     }
