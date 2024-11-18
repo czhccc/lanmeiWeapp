@@ -201,6 +201,8 @@ page {
   align-items: center;
 }
 .filter-time-item {
+  width: 160rpx;
+  text-align: center;
   margin-right: 20rpx;
   padding: 10rpx 20rpx;
   background-color: rgb(243, 243, 243);

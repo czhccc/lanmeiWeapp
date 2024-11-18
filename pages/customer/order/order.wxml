@@ -19,7 +19,8 @@
           <view class="orderId-label">订单编号：</view>
           <view class="orderId-value">{{item.order_no}}</view>
         </view>
-        <view class="order-status">{{item.statusText}}</view>
+        <view class="order-status" wx:if="{{item.statusText==='已取消'||item.statusText==='已退款'}}" style="color: red;">{{item.statusText}}</view>
+        <view class="order-status" wx:else>{{item.statusText}}</view>
       </view>
       <view class="order-content">
         <view class="order-wrapper">
@@ -57,48 +58,54 @@
   >
     <view class="filter-content">
       <view class="filter-item">
-        <view class="filter-item-label">订单号：</view>
+        <view class="filter-item-label" style="color: {{orderNo?'rgb(25,137,250)':'black'}};">订单号：</view>
         <view class="filter-item-value filter-OrderId">
-          <input type="text" class="filter-orderInput" placeholder="请输入订单号" maxlength="{{18}}" />
+          <input model:value="{{orderNo}}" type="text" class="filter-orderInput" placeholder="请输入订单号" maxlength="{{18}}" />
         </view>
       </view>
 
       <view class="filter-item">
-        <view class="filter-item-label">产品名：</view>
+        <view class="filter-item-label" style="color: {{goodsName?'rgb(25,137,250)':'black'}};">产品名：</view>
         <view class="filter-item-value filter-OrderId">
-          <input type="text" class="filter-orderInput" placeholder="请输入产品关键字" maxlength="{{15}}" />
+          <input model:value="{{goodsName}}" type="text" class="filter-orderInput" placeholder="请输入产品关键字" maxlength="{{15}}" />
         </view>
       </view>
 
       <view class="filter-item">
-        <view class="filter-item-label">状态：</view>
+        <view class="filter-item-label" style="color: {{status?'rgb(25,137,250)':'black'}};">状态：</view>
         <view class="filter-item-value filter-status" wx:if="{{tabIndex===0}}">
-          <view class="filter-status-item">已预订</view>
-          <view class="filter-status-item">未付款</view>
-          <view class="filter-status-item">已完成</view>
+          <view class="filter-status-item" style="background-color: {{status==='reserved'?'rgb(25,137,250)':'rgb(243, 243, 243)'}};color: {{status==='reserved'?'white':'black'}};" bind:tap="filterStatusClick" data-flag="reserved">已预订</view>
+          <view class="filter-status-item" style="background-color: {{status==='unpaid'?'rgb(25,137,250)':'rgb(243, 243, 243)'}};color: {{status==='unpaid'?'white':'black'}};" bind:tap="filterStatusClick" data-flag="unpaid">未付款</view>
+          <view class="filter-status-item" style="background-color: {{status==='completed'?'rgb(25,137,250)':'rgb(243, 243, 243)'}};color: {{status==='completed'?'white':'black'}};" bind:tap="filterStatusClick" data-flag="completed">已完成</view>
+          <view class="filter-status-item" style="background-color: {{status==='canceled'?'rgb(25,137,250)':'rgb(243, 243, 243)'}};color: {{status==='canceled'?'white':'black'}};" bind:tap="filterStatusClick" data-flag="canceled">已取消</view>
         </view>
         <view class="filter-item-value filter-status" wx:if="{{tabIndex===1}}">
-          <view class="filter-status-item">已付款</view>
-          <view class="filter-status-item">已完成</view>
+          <view class="filter-status-item" style="background-color: {{status==='paid'?'rgb(25,137,250)':'rgb(243, 243, 243)'}};color: {{status==='paid'?'white':'black'}};" bind:tap="filterStatusClick" data-flag="paid">已付款</view>
+          <view class="filter-status-item" style="background-color: {{status==='completed'?'rgb(25,137,250)':'rgb(243, 243, 243)'}};color: {{status==='completed'?'white':'black'}};" bind:tap="filterStatusClick" data-flag="completed">已完成</view>
+          <view class="filter-status-item" style="background-color: {{status==='refunded'?'rgb(25,137,250)':'rgb(243, 243, 243)'}};color: {{status==='refunded'?'white':'black'}};" bind:tap="filterStatusClick" data-flag="refunded">已退款</view>
         </view>
       </view>
 
       <view class="filter-item">
-        <view class="filter-item-label">时间段：</view>
+        <view class="filter-item-label" style="color: {{(startDate || endDare)?'rgb(25,137,250)':'black'}};">时间段：</view>
         <view class="filter-item-value filter-time">
-          <picker mode="date" value="{{date}}" start="2024-01-01" end="2030-12-31" bindchange="bindDateChange">
+          <picker mode="date" value="{{startDate}}" start="2024-01-01" end="2030-12-31" bindchange="startDateChange">
             <view class="picker">
-              <view class="filter-time-item">2024-8-15</view>
+              <input class="filter-time-item" value="{{startDate}}" placeholder="开始日期" disabled></input>
             </view>
           </picker>
           <view style="margin-right: 20rpx;">—</view>
-          <view class="filter-time-item">2024-8-15</view>
+          <picker mode="date" value="{{endDate}}" start="2024-01-01" end="2030-12-31" bindchange="endDateChange">
+            <view class="picker">
+              <input class="filter-time-item" value="{{endDate}}" placeholder="结束日期" disabled></input>
+            </view>
+          </picker>
         </view>
       </view>
 
       <view class="filter-btns">
-        <view class="filter-reset">重置</view>
-        <view class="filter-confirm">确定</view>
+        <view class="filter-reset" bind:tap="filterReset">重置</view>
+        <view class="filter-confirm" bind:tap="filterConfirm">确定</view>
       </view>
     </view>
   </van-popup>
