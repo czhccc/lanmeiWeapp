@@ -138,7 +138,6 @@ Page({
       success(res) {
         if (res.confirm) {
           let params = {
-            user: wx.getStorageSync('phone'),
             generation_type: 'auto',
             goods_id: that.data.theData.id,
             batch_no: that.data.theData.batch_no,
