@@ -167,7 +167,7 @@ Page({
               })
             }).catch(error => {
               wx.showToast({
-                title: '预订失败',
+                title: error.message,
                 icon: 'error'
               })
             })
@@ -180,7 +180,7 @@ Page({
               // 跳转到支付页
             }).catch(error => {
               wx.showToast({
-                title: '下单失败',
+                title: error.message,
                 icon: 'error'
               })
             })

@@ -27,11 +27,15 @@ Page({
   getGoodsDetailById(id) {
     _getGoodsDetailById({ id }).then(res => {
       let theData = res.data
-      theData.batch_discounts = JSON.parse(theData.batch_discounts)
-      for (const item of theData.batch_discounts) {
-        item.discount = formatNumber(item.discount)
-        item.quantity = formatNumber(item.quantity)
+
+      if (theData.batch_discounts && theData.batch_discounts.length>0) {
+        theData.batch_discounts = JSON.parse(theData.batch_discounts)
+        for (const item of theData.batch_discounts) {
+          item.discount = formatNumber(item.discount)
+          item.quantity = formatNumber(item.quantity)
+        }
       }
+      
       theData.batch_minQuantity = formatNumber(theData.batch_minQuantity)
       if (theData.batch_type === 'preorder') {
         theData.batch_minPrice = theData.batch_minPrice
@@ -55,7 +59,7 @@ Page({
     if (this.data.theData.batch_type === 'stock') {
       if (this.data.theData.batch_stock <= 0) {
         wx.showToast({
-          title: '已经卖完了~',
+          title: '已经卖完了...',
           icon: 'none'
         })
         return;

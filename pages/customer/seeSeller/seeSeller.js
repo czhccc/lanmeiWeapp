@@ -13,7 +13,7 @@ Page({
   getAboutUs() {
     _getAboutUs().then(res => {
       this.setData({
-        theData: res.data[0]
+        theData: res.data
       })
     })
   },

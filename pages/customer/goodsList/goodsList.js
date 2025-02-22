@@ -17,15 +17,19 @@ Page({
     this.getCategory()
   },
   onShow() {
+    this.getCategory()
     this.getGoodsList({goodsCategoryId: this.data.choosedCategoryId})
   },
   getCategory() {
-    var that = this;
     _getCategory({
       isSelling: true
     }).then(res => {
-      if (res.data.length > 0) {
-        that.getGoodsList({goodsCategoryId: res.data[0].children[0].id})
+      if (res.data.length === 0) {
+        return;
+      }
+
+      if(this.data.listData.length === 0) {
+        this.getGoodsList({goodsCategoryId: res.data[0].children[0].id})
       }
 
       this.setData({

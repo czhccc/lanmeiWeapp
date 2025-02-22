@@ -49,7 +49,9 @@
 						contentPosition="center"
 						customStyle="color: #1989fa; border-color: #1989fa; font-size: 24rpx;margin-top: 10rpx;margin-bottom: 10rpx;"
 					>
-						回复{{indey+1}}<text style="font-size: 36rpx;">☟</text>
+						<text wx:if="{{indey===0}}">回复</text>
+            <text wx:else>回复{{indey+1}}</text>
+            <!-- <text style="font-size: 36rpx;">☟</text> -->
 					</van-divider>
 					<view class="history-reply">{{iten.response}}</view>
 				</block>
