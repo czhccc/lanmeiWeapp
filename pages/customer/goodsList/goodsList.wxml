@@ -31,11 +31,18 @@
 					<image class="sort-img" wx:if="{{sortType=='cash_price' && sortOrder=='desc'}}" src="/images/common/sort2.png" mode=""/>
 				</view>
 			</view> -->
-			<scroll-view scroll-y class="goods" bindscrolltolower="scrollToLower">
+			<scroll-view 
+        scroll-y 
+        class="goods" 
+        bindscrolltolower="scrollToLower"
+        refresher-enabled	
+        bindrefresherrefresh="bindrefresherrefresh" 
+        refresher-triggered="{{refresherTriggered}}"
+      >
 				<view class="good" wx:for="{{listData}}" wx:key="index" bindtap="goodsClick" data-item="{{item}}">
 					<image wx:if="{{item.goods_coverImage}}" class="good-img" src="{{item.goods_coverImage}}" mode=""/>
 					<image wx:if="{{!item.goods_coverImage}}" class="good-img" src="../../../images/common/noImg.png" mode=""/>
-					<view class="goods-type">{{item.batch_type==='preorder'?'预订':'现货'}}</view>
+					<view class="goods-type" style="background-color: {{item.batch_type==='preorder'?'#66BB6A':'rgba(25,137,250)'}};">{{item.batch_type==='preorder'?'预订':'现货'}}</view>
 					<view class="good-content">
 						<view class="good-name">{{item.goods_name}}</view>
 						<view class="good-price" wx:if="{{item.batch_type==='preorder'}}">¥{{item.batch_minPrice}} ~ ¥{{item.batch_maxPrice}} / {{item.goods_unit}}</view>

@@ -42,3 +42,11 @@ export function _getDefaultAddress(data) {
 		data
 	})
 }
+
+// 获得省市区
+export function _getAll(data) {
+  return request({
+    url: '/ship/getAll',
+    data
+  })
+}

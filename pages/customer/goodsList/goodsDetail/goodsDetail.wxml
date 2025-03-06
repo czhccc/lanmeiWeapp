@@ -20,8 +20,7 @@
 		</view>
 		<view class="type-wrapper">
 			<view class="type" wx:if="{{theData.batch_type==='preorder'}}">预订中</view>
-			<view class="type" wx:if="{{theData.batch_type==='stock'&&theData.batch_stock>0}}">现货  余量：{{theData.batch_stock}} {{theData.goods_unit}}</view>
-			<view class="type" wx:if="{{theData.batch_type==='stock'&&theData.batch_stock<=0}}">现货  余量：{{theData.batch_stock}} {{theData.goods_unit}}</view>
+			<view class="type" wx:if="{{theData.batch_type==='stock'}}">余量：{{theData.batch_stock_totalAmount}} {{theData.goods_unit}}</view>
 		</view>
 	</view>
 
@@ -29,14 +28,19 @@
 
 	<view class="tip" wx:if="{{theData.id}}">
 		<view class="tip-title">下单提示</view>
+    <view wx:if="{{theData.batch_type==='preorder'}}" style="color: red;font-size: 26rpx;padding-left: 32rpx;margin-top: 10rpx;">预订商品可能因某种原因而取消</view>
+    <view wx:if="{{theData.batch_type==='preorder'}}" style="color: red;font-size: 26rpx;padding-left: 32rpx;margin-top: 10rpx;">预订商品最终价格在区间内波动</view>
+
 		<view class="tip-wrapper">
-			<view>最少{{theData.batch_type === 1 ? '购买' : '预订'}} {{theData.batch_minQuantity}} {{theData.goods_unit}}</view>
+			<view>最少{{theData.batch_type === 'stock' ? '购买' : '预订'}} {{theData.batch_minQuantity}} {{theData.goods_unit}}</view>
 		</view>
 		<view class="tip-wrapper">
 			<view wx:for="{{theData.batch_discounts}}" wx:key="index">
 				满 {{item.quantity}} {{theData.goods_unit}}，优惠 {{item.discount}} 元
 			</view>
 		</view>
+
+    <view class="tip-wrapper">可邮寄范围：{{ provinces }}</view>
 	</view>
 
 	<view class="line"></view>

@@ -94,22 +94,25 @@ page {
   max-width: 600rpx;
 }
 .choosedAddress-ssq {
-  font-size: 24rpx;
+  font-size: 26rpx;
   color: #666666;
-  font-size: 24rpx;
   color: #333333;
 }
 .choosedAddress-detail {
   font-size: 28rpx;
   color: #333333;
-  font-weight: 700;
   margin-top: 10rpx;
 }
 .choosedAddress-nameAndPhone {
-  font-size: 32rpx;
+  font-size: 30rpx;
   color: #333333;
-  font-weight: 700;
   margin-top: 10rpx;
+}
+.defaultAddressNotAvailableText {
+  color: red;
+  text-align: right;
+  padding-right: 30rpx;
+  font-size: 24rpx;
 }
 
 .pickMethod {

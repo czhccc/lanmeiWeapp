@@ -9,16 +9,18 @@ Page({
     goodsName: '',
 
     categoryList: [],
-    choosedCategoryId: null,
+    choosedCategoryId: -1,
 
     listData: [],
+
+    refresherTriggered: false,
   },
   onLoad(options) {
-    this.getCategory()
+    
   },
   onShow() {
     this.getCategory()
-    this.getGoodsList({goodsCategoryId: this.data.choosedCategoryId})
+    this.getGoodsList()
   },
   getCategory() {
     _getCategory({
@@ -28,13 +30,8 @@ Page({
         return;
       }
 
-      if(this.data.listData.length === 0) {
-        this.getGoodsList({goodsCategoryId: res.data[0].children[0].id})
-      }
-
       this.setData({
-        categoryList: res.data,
-        choosedCategoryId: res.data[0].children[0].id
+        categoryList: res.data
       })
     })
   },
@@ -48,6 +45,12 @@ Page({
       this.setData({
         listData: res.data.records
       })
+
+      if (this.data.refresherTriggered) { // 下拉刷新
+        this.setData({
+          refresherTriggered: false
+        })
+      }
     })
   },
   categoryItemClick(e) {
@@ -82,5 +85,19 @@ Page({
     wx.navigateTo({
       url: `/pages/customer/goodsList/goodsDetail/goodsDetail?id=${item.id}`,
     })
-  }
+  },
+  bindrefresherrefresh() { // 下拉刷新
+    this.setData({
+      pageNo: 1,
+      listData: [],
+      refresherTriggered: true
+    })
+
+    this.getCategory()
+    if (this.data.choosedCategoryId === -1) { // 全部
+      this.getGoodsList()
+    } else { // 某个
+      this.getGoodsList({goodsCategoryId: this.data.choosedCategoryId})
+    }
+  },
 })

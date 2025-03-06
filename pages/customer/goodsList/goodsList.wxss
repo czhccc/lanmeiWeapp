@@ -91,7 +91,6 @@ page {
 .goods-type {
 	position: absolute;
 	left: 180rpx;
-	background-color: rgba(25,137,250);
 	transform: translateX(-100%);
 	font-size: 20rpx;
 	padding: 6rpx;

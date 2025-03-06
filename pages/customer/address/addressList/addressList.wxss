@@ -4,6 +4,12 @@ page {
   background: #F4F4F4;
 }
 
+.availableProvinces {
+  font-size: 24rpx;
+  padding: 10rpx 30rpx;
+  background-color: white;
+}
+
 .addressList {
   padding-bottom: 200rpx;
 }
@@ -63,6 +69,19 @@ page {
   width: 70rpx;
   text-align: center;
   border-radius: 0 20rpx 0 20rpx;
+  box-sizing: border-box;
+  padding: 4rpx;
+}
+.unavailable {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  color: white;
+  background-color: rgb(230,162,60);
+  font-size: 24rpx;
+  width: 90rpx;
+  text-align: center;
+  border-radius: 20rpx 0 20rpx 0;
   box-sizing: border-box;
   padding: 4rpx;
 }

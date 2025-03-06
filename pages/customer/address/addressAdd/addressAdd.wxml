@@ -14,15 +14,35 @@
     maxlength="{{11}}"
     required
   />
-  <picker mode="region" value="{{region}}" bindchange="bindRegionChange">
-    <van-field
-      label="省市区"
-      model:value="{{ region }}"
-      placeholder="请选择省市区"
-      readonly
-      required
-    />
-  </picker>
+
+  
+  <van-field
+    label="省"
+    model:value="{{ province }}"
+    placeholder="请选择省"
+    readonly
+    required
+    bind:tap="chooseProvince"
+  />
+  <van-field
+    wx:if="{{ province }}"
+    label="市"
+    model:value="{{ city }}"
+    placeholder="请选择市"
+    readonly
+    required
+    bind:tap="chooseCity"
+  />
+  <van-field
+    wx:if="{{ city }}"
+    label="区"
+    model:value="{{ district }}"
+    placeholder="请选择区"
+    readonly
+    required
+    bind:tap="chooseDistrict"
+  />
+
   <van-field
     label="详细地址"
     model:value="{{ detail }}"
@@ -40,4 +60,17 @@
     <view class="deleteBtn" wx:if="{{flag==='edit'}}" bind:tap="toDelete">删除</view>
     <view class="saveBtn" bind:tap="toSave">{{flag==='edit'?'保存':'提交'}}</view>
   </view>
+
+  <van-popup 
+    show="{{ isShowPopup }}"
+    position="bottom"
+  >
+    <van-picker 
+      columns="{{ popupArray }}" 
+      show-toolbar
+      title="{{ popupTitle }}"
+      bind:cancel="popupCancel"
+      bind:confirm="popupConfirm"
+     />
+  </van-popup>
 </view>

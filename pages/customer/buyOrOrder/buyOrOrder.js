@@ -12,12 +12,13 @@ Page({
 
     num: 1,
 
-    
-
+    provinces: [],
     addressInfo: {},
+    defaultAddressNotAvailable: true,
+
     pickMethod: null,
     pickMethodArray: ['快递', '送货上门'],
-    postage: 0,
+    postage: '0.00',
     notes: '',
 
     totalMinPrice: '0.00',
@@ -25,11 +26,14 @@ Page({
     totalPrice: null,
     discountAmount: '0.00',
     finalPrice: '0.00',
+
+    isSubmiting: false,
   },
   onLoad(options) {
     const app = getApp();
     this.setData({
       theData: app.globalData.currentGoodsDetail,
+      provinces: app.globalData.currentGoodsDetail.batch_shipProvinces.map(item => item.name)
     })
     if (app.globalData.currentGoodsDetail.batch_type==='preorder') {
       this.setData({
@@ -54,9 +58,17 @@ Page({
       user: wx.getStorageSync('phone')
     }).then(res => {
       if (res.data.length > 0) {
-        this.setData({
-          addressInfo: res.data[0]
-        })
+        let addressInfo = res.data[0]
+        if (this.data.provinces.includes(addressInfo.province)) { // 默认地址符合可邮寄省份
+          this.setData({
+            addressInfo
+          })
+        } else {
+          this.setData({
+            defaultAddressNotAvailable: true
+          })
+        }
+        
       }
     })
   },
@@ -82,6 +94,9 @@ Page({
         discountAmount = Math.max(discountAmount, item.discount);
       }
     })
+
+    // 计算邮费
+    this.calculatePostage()
     
     this.setData({
       discountAmount: discountAmount.toFixed(2)
@@ -91,7 +106,7 @@ Page({
   },
   chooseAddress() {
     wx.navigateTo({
-      url: '/pages/customer/address/addressList/addressList?isChoose=true',
+      url: `/pages/customer/address/addressList/addressList?isChoose=true&availableProvinces=${this.data.provinces}`,
     })
   },
   bindPickMethodChange(e) {
@@ -100,6 +115,31 @@ Page({
       postage: '10.00'
     })
     this.calculateFinalPrice()
+  },
+  calculatePostage() {
+    if(!this.data.addressInfo.province) {
+      return;
+    }
+    let postageRule = this.data.theData.batch_shipProvinces.find(item => item.name === this.data.addressInfo.province)
+
+    if (postageRule.freeShippingNum&&this.data.num>=postageRule.freeShippingNum) { // 达到包邮条件
+      this.setData({
+        postage: '0.00'
+      })
+    } else {
+      if (this.data.num <= postageRule.baseNum) { // 首重之内
+        this.setData({
+          postage: String(postageRule.basePostage.toFixed(2))
+        })
+      }
+      if ((this.data.num>postageRule.baseNum)&&(this.data.num<postageRule.freeShippingNum)) { // 大于首重
+        let excess = this.data.num - postageRule.baseNum; // 超出首重的数量
+        let extraChargeUnits = Math.ceil(excess / postageRule.extraNum); // 向上取整计算需要支付的超额邮费次数
+        this.setData({
+          postage: String((postageRule.basePostage + extraChargeUnits * postageRule.extraPostage).toFixed(2))
+        })
+      }
+    }
   },
   calculateFinalPrice() {
     let finalPrice = 0
@@ -116,7 +156,11 @@ Page({
     }
   },
   submit() {
-    // 预订不需要付钱！！！！！！！！！！！！！
+    if (this.data.isSubmiting) {
+      return;
+    }
+    this.data.isSubmiting = true
+
     let that = this
     if (!this.data.addressInfo.id) {
       wx.showToast({
@@ -125,7 +169,7 @@ Page({
       })
       return;
     }
-    if (!this.data.pickMethod) {
+    if (addressInfo.district==='嵊州市' && !this.data.pickMethod) {
       wx.showToast({
         title: '请选择收货方式',
         icon: 'none'
@@ -143,14 +187,14 @@ Page({
             batch_no: that.data.theData.batch_no,
             batch_type: that.data.theData.batch_type,
             num: that.data.num,
-            receive_method: that.data.pickMethod==='快递' ? 'post' : 'delivery',
+            receive_method: that.data.pickMethod==='快递' ? 'ship' : 'delivery',
             receive_name: that.data.addressInfo.name,
             receive_phone: that.data.addressInfo.phone,
             receive_region: that.data.addressInfo.region,
             receive_address: that.data.addressInfo.detail,
             remark_customer: that.data.notes,
             discount_amount: that.data.discountAmount,
-            postage: that.data.postage,
+            postage: Number(that.data.postage),
             snapshot_coverImage: that.data.theData.goods_coverImage,
             snapshot_goodsName: that.data.theData.goods_name,
             snapshot_goodsUnit: that.data.theData.goods_unit,
@@ -165,6 +209,11 @@ Page({
               wx.showToast({
                 title: '预订成功',
               })
+              setTimeout(() => {
+                wx.navigateBack({
+                  delta: 2  // 返回上上页
+                });
+              }, 1500)
             }).catch(error => {
               wx.showToast({
                 title: error.message,
@@ -185,6 +234,9 @@ Page({
               })
             })
           }
+        }
+        if (res.cancel) {
+          that.data.isSubmiting = false
         }
       }
     });

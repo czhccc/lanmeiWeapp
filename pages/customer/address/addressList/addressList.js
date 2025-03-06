@@ -5,12 +5,19 @@ import {
 
 Page({
   data: {
+    numLimited: false, // 数量上限
     isChoose: false,
     list: [],
+
+    availableProvinces: [],
+    availableProvincesString: '',
   },
   onLoad(options) {
+    console.log(options)
     this.setData({
-      isChoose: options.isChoose || false
+      isChoose: options.isChoose || false,
+      availableProvinces: options.availableProvinces.split(','),
+      availableProvincesString: options.availableProvinces.replaceAll(',', '、'),
     })
   },
   onShow() {
@@ -20,9 +27,31 @@ Page({
     _getAddressList({
       user: wx.getStorageSync('phone')
     }).then(res => {
-      this.setData({
-        list: res.data
-      })
+      if (res.data.length >= 10) {
+        this.setData({ numLimited: true })
+      }
+
+      if (this.data.isChoose) {
+        let list = res.data.map(item => {
+          if (this.data.availableProvinces.includes(item.province)) { // 符合条件
+            return {
+              ...item
+            }
+          } else {
+            return {
+              unavailable: true,
+              ...item
+            }
+          }
+        })
+        this.setData({
+          list
+        })
+      } else {
+        this.setData({
+          list: res.data
+        })
+      }
     })
   },
   toAdd() { // 新增
@@ -42,6 +71,13 @@ Page({
     if (!this.data.isChoose) {
       return;
     }
+    if (address.unavailable) {
+      wx.showToast({
+        title: '该地址不可用于当前商品',
+        icon: 'none'
+      })
+      return;
+    }
 
     const pages = getCurrentPages();
     const prevPage = pages[pages.length - 2];
@@ -49,6 +85,9 @@ Page({
       prevPage.setData({
         addressInfo: address
       });
+      if (prevPage.calculatePostage) {
+        prevPage.calculatePostage()
+      }
       wx.navigateBack();
     }
   },

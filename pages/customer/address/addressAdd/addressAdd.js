@@ -3,6 +3,7 @@ import {
   _addAddress,
   _editAddress,
   _deleteAddress,
+  _getAll,
 } from '../../../../network/customer/address'
 
 Page({
@@ -11,11 +12,24 @@ Page({
     id: null,
     name: '',
     phone: '',
-    region: '',
+    province: '',
+    provinceCode: '',
+    city: '',
+    cityCode: '',
+    district: '',
+    districtCode: '',
     detail: '',
     isDefault: false,
 
     isSubmiting: false,
+
+    provinces: [],
+    cities: [],
+    districts: [],
+    isShowPopup: false,
+    popupArray: [],
+    popupTitle: '',
+    popupFlag: 'province',
   },
   onLoad(options) {
     wx.setNavigationBarTitle({
@@ -31,16 +45,81 @@ Page({
         id: info.id,
         name: info.name,
         phone: info.phone,
-        region: info.region,
+        province: info.province,
+        provinceCode: info.provinceCode,
+        city: info.city,
+        cityCode: info.cityCode,
+        district: info.district,
+        districtCode: info.districtCode,
         detail: info.detail,
         isDefault: info.isDefault===1 ? true: false
       })
     }
+
+    this.getProvinces()
   },
-  bindRegionChange(e) { // 选择省市区
-    let regions = e.detail.value
+  getProvinces() { // 获取全部省
+    _getAll({ level: 'province' }).then(res => {
+      this.setData({
+        provinces: res.data
+      })
+    })
+  },
+  chooseProvince() {
     this.setData({
-      region: `${regions[0]}${regions[1]}${regions[2]}`
+      popupFlag: 'province',
+      popupArray: this.data.provinces.map(item => item.name),
+      popupTitle: '选择省',
+      isShowPopup: true,
+    })
+  },
+  chooseCity() {
+    let code = this.data.provinces.find(item => item.name===this.data.province).code
+    _getAll({ level: 'city', code }).then(res => {
+      this.setData({
+        cities: res.data,
+        popupFlag: 'city',
+        popupArray: res.data.map(item => item.name),
+        popupTitle: '选择市',
+        isShowPopup: true,
+      })
+    })
+  },
+  chooseDistrict() {
+    let code = this.data.cities.find(item => item.name===this.data.city).code
+    _getAll({ level: 'district', code }).then(res => {
+      this.setData({
+        districts: res.data,
+        popupFlag: 'district',
+        popupArray: res.data.map(item => item.name),
+        popupTitle: '选择区',
+        isShowPopup: true,
+      })
+    })
+  },
+  popupCancel() {
+    this.setData({
+      isShowPopup: false,
+    })
+  },
+  popupConfirm(e) {
+    let flagArray = null
+    switch (this.data.popupFlag) {
+      case 'province':
+        flagArray = this.data.provinces;
+        break;
+      case 'city':
+        flagArray = this.data.cities;
+        break;
+      case 'district':
+        flagArray = this.data.districts;
+        break;
+      default: break;
+    }
+    this.setData({
+      [this.data.popupFlag]: e.detail.value,
+      [`${this.data.popupFlag}Code`]: flagArray.find(item => item.name===e.detail.value).code,
+      isShowPopup: false,
     })
   },
   defaultChange(e) { // 默认地址
@@ -49,6 +128,9 @@ Page({
     })
   },
   toDelete() {
+    if (this.data.isSubmiting) {
+      return;
+    }
     var that = this;
     wx.showModal({
       title: '确认删除？',
@@ -77,6 +159,7 @@ Page({
     if (this.data.isSubmiting) {
       return;
     }
+    this.data.isSubmiting = true
 
     if (!this.data.name) {
       wx.showToast({
@@ -101,16 +184,23 @@ Page({
       })
       return;
     }
-    if (!this.data.region) {
+    if (!this.data.province) {
       wx.showToast({
-        title: '请选择省市区',
+        title: '请选择省',
         icon: 'none'
       })
       return;
     }
-    if (!this.data.name) {
+    if (!this.data.city) {
       wx.showToast({
-        title: '请输入收货人姓名',
+        title: '请选择市',
+        icon: 'none'
+      })
+      return;
+    }
+    if (!this.data.district) {
+      wx.showToast({
+        title: '请选择区',
         icon: 'none'
       })
       return;
@@ -128,13 +218,18 @@ Page({
       title: '确认提交？',
       success(res) {
         if (res.confirm) {
-          that.data.isSubmiting = true
+          // that.data.isSubmiting = true
           if (that.data.flag === 'add') { // 新增
             _addAddress({
               name: that.data.name, 
               phone: that.data.phone, 
               user: wx.getStorageSync('phone'), 
-              region: that.data.region, 
+              province: that.data.province, 
+              provinceCode: that.data.provinceCode, 
+              city: that.data.city, 
+              cityCode: that.data.cityCode, 
+              district: that.data.district, 
+              districtCode: that.data.districtCode, 
               detail: that.data.detail, 
               isDefault: that.data.isDefault,
             }).then(res => {
@@ -155,7 +250,12 @@ Page({
               name: that.data.name, 
               phone: that.data.phone, 
               user: wx.getStorageSync('phone'), 
-              region: that.data.region, 
+              province: that.data.province, 
+              provinceCode: that.data.provinceCode, 
+              city: that.data.city, 
+              cityCode: that.data.cityCode, 
+              district: that.data.district, 
+              districtCode: that.data.districtCode, 
               detail: that.data.detail, 
               isDefault: that.data.isDefault,
             }).then(res => {
@@ -171,6 +271,8 @@ Page({
               that.data.isSubmiting = false
             })
           }
+        } else if (res.cancel) {
+          that.data.isSubmiting = false
         }
       }
     });

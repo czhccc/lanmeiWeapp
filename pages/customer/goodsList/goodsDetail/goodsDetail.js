@@ -14,7 +14,7 @@ Page({
     detailContet: '',
     isShowPopup: false,
 
-    popConfirmFlag: 'addCart',
+    provinces: [],
   },
   onLoad(options) {
     this.data.id = options.id
@@ -37,6 +37,7 @@ Page({
       }
       
       theData.batch_minQuantity = formatNumber(theData.batch_minQuantity)
+      theData.batch_remainingAmount = formatNumber(theData.batch_remainingAmount)
       if (theData.batch_type === 'preorder') {
         theData.batch_minPrice = theData.batch_minPrice
         theData.batch_maxPrice = theData.batch_maxPrice
@@ -47,6 +48,7 @@ Page({
 
       this.setData({
         theData,
+        provinces: theData.batch_shipProvinces.map(item => item.name).join('、')
       })
     })
   },

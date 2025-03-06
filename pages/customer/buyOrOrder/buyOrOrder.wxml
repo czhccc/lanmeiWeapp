@@ -6,20 +6,20 @@
         binderror="coverImageLoadError" />
       <view class="goods-content">
         <view class="goods-name">{{theData.goods_name}}</view>
-        <view class="goods-stock" wx:if="{{theData.batch_type==='stock'}}">余量：{{theData.batch_stock}} {{theData.goods_unit}}</view>
+        
         <view class="goods-price-content">
           <view class="goods-price" wx:if="{{theData.batch_type==='preorder'}}">¥{{theData.batch_minPrice}} ~ ¥{{theData.batch_maxPrice}} / {{theData.goods_unit}}</view>
-			<view class="goods-price" wx:if="{{theData.batch_type==='stock'}}">¥{{theData.batch_unitPrice}} / {{theData.goods_unit}}</view>
+			    <view class="goods-price" wx:if="{{theData.batch_type==='stock'}}">¥{{theData.batch_unitPrice}} / {{theData.goods_unit}}</view>
         </view>
         <view class="goods-num-wrapper">
           <van-stepper 
             value="{{ num }}" 
             bind:change="numChange"
             min="{{1}}"
-            max="{{theData.batch_type==='stock' ? theData.batch_stock : 999}}" 
+            max="{{theData.batch_type==='stock' ? theData.batch_stock_remainingAmount : 999}}" 
           />
         </view>
-        
+        <view class="goods-stock" wx:if="{{theData.batch_type==='stock'}}">余量：{{theData.batch_stock_remainingAmount}} {{theData.goods_unit}}</view>
       </view>
     </view>
   </view>
@@ -31,15 +31,16 @@
   </view>
   <view class="choosedAddress" bind:tap="chooseAddress" wx:if="{{addressInfo.id}}">
     <view class="choosedAddress-content">
-      <view class="choosedAddress-ssq">{{addressInfo.region}}</view>
+      <view class="choosedAddress-ssq">{{addressInfo.province}} {{addressInfo.city}} {{addressInfo.district}}</view>
       <view class="choosedAddress-detail">{{addressInfo.detail}}</view>
       <view class="choosedAddress-nameAndPhone">{{addressInfo.name}} {{addressInfo.phone}}</view>
     </view>
     <image class="chooseAddress-arrow" src="../../../images/common/arrow-right.png" mode=""/>
   </view>
+  <view class="defaultAddressNotAvailableText" wx:if="{{defaultAddressNotAvailable&&!addressInfo.province}}">默认地址不符合条件，请手动选择</view>
 
-  <view class="item-title">收货方式</view>
-  <picker mode="selector" range="{{pickMethodArray}}" bindchange="bindPickMethodChange">
+  <view class="item-title" wx:if="{{addressInfo.district==='嵊州市'}}">收货方式</view>
+  <picker mode="selector" range="{{pickMethodArray}}" wx:if="{{addressInfo.district==='嵊州市'}}" bindchange="bindPickMethodChange">
     <view class="pickMethod">
       <text class="pickMethod-pla" wx:if="{{!pickMethod}}">请选择收货方式</text>
       <text class="pickMethod-text" wx:if="{{pickMethod}}">
@@ -49,16 +50,14 @@
       <image class="pickMethod-arrow" src="../../../images/common/arrow-right.png" mode=""/>
     </view>
   </picker>
-  <view class="pickMethod-tip">
-    限江浙沪顺丰包邮 嵊州可送货上门
-  </view>
+  <view class="pickMethod-tip" wx:if="{{addressInfo.district==='嵊州市'}}">嵊州可送货上门</view>
 
   <view class="item-title">备注说明</view>
   <view class="notes-wrapper">
     <van-field
       model:value="{{ notes }}"
       type="textarea"
-      placeholder="请输入备注说明"
+      placeholder="请输入备注说明，非必填"
       autosize
       border="{{ false }}"
       class="notes-input"
@@ -70,15 +69,16 @@
   <view class="item-title">支付明细</view>
   <view class="detail">
     <view class="detail-line">
-      <view class="detail-line-label">总金额</view>
+      <view class="detail-line-label">商品价格</view>
       <view class="detail-line-value" wx:if="{{theData.batch_type==='preorder'}}">¥{{totalMinPrice}} ~ {{totalMaxPrice}}</view>
       <view class="detail-line-value" wx:if="{{theData.batch_type==='stock'}}">¥{{totalPrice}}</view>
     </view>
     <view class="detail-line">
       <view class="detail-line-label">邮费</view>
-      <view class="detail-line-value">¥{{postage}}</view>
+      <view class="detail-line-value" wx:if="{{addressInfo.province}}">{{addressInfo.province&&postage==='0.00' ? '包邮' : '¥'+postage}}</view>
+      <view class="detail-line-value" wx:else>{{'请选择收货地址'}}</view>
     </view>
-    <view class="detail-line">
+    <view class="detail-line" wx:if="{{discountAmount > 0}}">
       <view class="detail-line-label">优惠</view>
       <view class="detail-line-value" style="color: red;">-¥{{discountAmount}}</view>
     </view>
@@ -91,7 +91,7 @@
   <view class="bottom">
     <view class="bottom-content">
       <view class="payNum">
-        <view class="payNum-label">应付金额：</view>
+        <view class="payNum-label">{{theData.batch_type==='preorder'?'价格区间':'应付金额'}}：</view>
         <view class="payNum-value">¥{{finalPrice}}</view>
       </view>
       <view class="payBtn" bind:tap="submit">{{theData.batch_type==='preorder' ? '确定预订' : '提交订单'}}</view>
