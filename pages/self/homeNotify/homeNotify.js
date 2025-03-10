@@ -12,7 +12,7 @@ Page({
       time: '',
     },
 
-    isSubmiting: false,
+    isSubmitting: false,
   },
   onShow() {
     this.getLatestNotification()
@@ -36,11 +36,11 @@ Page({
       })
       return;
     }
-    if (this.data.isSubmiting) {
+    if (this.data.isSubmitting) {
       return;
     }
     var that = this;
-    this.data.isSubmiting = true
+    this.data.isSubmitting = true
     wx.showModal({
       title: '确认发布？',
       success(res) {
@@ -55,7 +55,7 @@ Page({
             that.getLatestNotification()
           }).finally(() => {
             that.setData({
-              isSubmiting: false,
+              isSubmitting: false,
               content: '',
             })
           })

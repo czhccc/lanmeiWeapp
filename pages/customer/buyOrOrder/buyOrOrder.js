@@ -12,12 +12,11 @@ Page({
 
     num: 1,
 
+    defaultAddressNotAvailable: true,
     provinces: [],
     addressInfo: {},
-    defaultAddressNotAvailable: true,
+    isHomeDelivery: false,
 
-    pickMethod: null,
-    pickMethodArray: ['快递', '送货上门'],
     postage: '0.00',
     notes: '',
 
@@ -27,7 +26,7 @@ Page({
     discountAmount: '0.00',
     finalPrice: '0.00',
 
-    isSubmiting: false,
+    isSubmitting: false,
   },
   onLoad(options) {
     const app = getApp();
@@ -45,6 +44,11 @@ Page({
         totalPrice: app.globalData.currentGoodsDetail.batch_unitPrice
       })
     }
+
+    this.setData({
+      num: this.data.theData.batch_minQuantity
+    })
+
     this.calculateFinalPrice()
 
     wx.setNavigationBarTitle({
@@ -94,27 +98,17 @@ Page({
         discountAmount = Math.max(discountAmount, item.discount);
       }
     })
-
-    // 计算邮费
-    this.calculatePostage()
     
     this.setData({
       discountAmount: discountAmount.toFixed(2)
     })
 
-    this.calculateFinalPrice()
+    this.calculatePostage() // 计算邮费
   },
   chooseAddress() {
     wx.navigateTo({
       url: `/pages/customer/address/addressList/addressList?isChoose=true&availableProvinces=${this.data.provinces}`,
     })
-  },
-  bindPickMethodChange(e) {
-    this.setData({
-      pickMethod: this.data.pickMethodArray[Number(e.detail.value)],
-      postage: '10.00'
-    })
-    this.calculateFinalPrice()
   },
   calculatePostage() {
     if(!this.data.addressInfo.province) {
@@ -140,6 +134,12 @@ Page({
         })
       }
     }
+
+    if (this.data.addressInfo.district!=='嵊州市' && this.data.isHomeDelivery) {
+      this.setData({ isHomeDelivery: false })
+    }
+
+    this.calculateFinalPrice() // 计算最终价格
   },
   calculateFinalPrice() {
     let finalPrice = 0
@@ -156,12 +156,18 @@ Page({
     }
   },
   submit() {
-    if (this.data.isSubmiting) {
+    if (this.data.isSubmitting) {
       return;
     }
-    this.data.isSubmiting = true
 
     let that = this
+    if (this.data.num < this.data.theData.batch_minQuantity) {
+      wx.showToast({
+        title: `最少${this.data.theData.batch_type==='preorder'?'预订':'购买'}${this.data.theData.batch_minQuantity}${this.data.theData.goods_unit}`,
+        icon: 'none'
+      })
+      return;
+    }
     if (!this.data.addressInfo.id) {
       wx.showToast({
         title: '请选择收货地址',
@@ -169,14 +175,8 @@ Page({
       })
       return;
     }
-    if (addressInfo.district==='嵊州市' && !this.data.pickMethod) {
-      wx.showToast({
-        title: '请选择收货方式',
-        icon: 'none'
-      })
-      return;
-    }
 
+    this.data.isSubmitting = true
     wx.showModal({
       title: `${this.data.theData.batch_type==='preorder' ? '确定预订' : '提交订单'}`,
       success(res) {
@@ -187,10 +187,15 @@ Page({
             batch_no: that.data.theData.batch_no,
             batch_type: that.data.theData.batch_type,
             num: that.data.num,
-            receive_method: that.data.pickMethod==='快递' ? 'ship' : 'delivery',
+            receive_isHomeDelivery: that.data.addressInfo.district==='嵊州市' ? (that.data.isHomeDelivery ? 1 : 0) : 0,
             receive_name: that.data.addressInfo.name,
             receive_phone: that.data.addressInfo.phone,
-            receive_region: that.data.addressInfo.region,
+            receive_province: that.data.addressInfo.province,
+            receive_provinceCode: that.data.addressInfo.provinceCode,
+            receive_city: that.data.addressInfo.city,
+            receive_cityCode: that.data.addressInfo.cityCode,
+            receive_district: that.data.addressInfo.district,
+            receive_districtCode: that.data.addressInfo.districtCode,
             receive_address: that.data.addressInfo.detail,
             remark_customer: that.data.notes,
             discount_amount: that.data.discountAmount,
@@ -226,22 +231,34 @@ Page({
               wx.showToast({
                 title: '下单成功',
               })
+              setTimeout(() => {
+                wx.switchTab({
+                  url: '/pages/customer/goodsList/goodsList',
+                })
+              }, 1500)
               // 跳转到支付页
             }).catch(error => {
+              console.log('error ????????????')
               wx.showToast({
                 title: error.message,
                 icon: 'error'
               })
+              that.data.isSubmitting = false
             })
           }
         }
         if (res.cancel) {
-          that.data.isSubmiting = false
+          that.data.isSubmitting = false
         }
       }
     });
   },
   coverImageLoadError() {
     console.log('封面图加载失败，要在这里替换成默认图片')
+  },
+  isHomeDeliveryChange(e) { // 送货上门
+    this.setData({
+      isHomeDelivery: e.detail
+    })
   }
 })

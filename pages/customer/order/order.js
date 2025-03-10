@@ -1,6 +1,8 @@
 // pages/customer/order/order.js
 import {
-  _getOrderList
+  _getOrderList,
+  _cancelSingleReservedOrder,
+  _getOrderDetailById,
 } from '../../../network/customer/order'
 
 Page({
@@ -20,6 +22,13 @@ Page({
     status: '',
     startDate: '',
     endDate: '',
+
+    // 取消预订
+    isShowCancelOrderPopup: false,
+    cancelOrderReason: '',
+
+    currentOrderId: null, // 正在操作的订单的id
+    isSubmitting: false,
   },
   onLoad(options) {
     this.getOrderList()
@@ -61,11 +70,15 @@ Page({
         }
         let finalPrice = null
         if (item.batch_type==='preorder') {
-          let minPrice = (Number(item.total_minPrice) + Number(item.postage) - Number(item.discount_amount)).toFixed(2)
-          let maxPrice = (Number(item.total_maxPrice) + Number(item.postage) - Number(item.discount_amount)).toFixed(2)
-          finalPrice = `${minPrice} ~ ${maxPrice}`
+          if (item.status==='reserved' || item.status==='canceled') { // 预订阶段
+            let finalMinPrice = (Number(item.preorder_minPrice)*Number(item.num) + Number(item.postage) - Number(item.discountAmount_promotion) - Number(item.discountAmount_custom)).toFixed(2)
+            let finalMaxPrice = (Number(item.preorder_maxPrice)*Number(item.num) + Number(item.postage) - Number(item.discountAmount_promotion) - Number(item.discountAmount_custom)).toFixed(2)
+            finalPrice = `${finalMinPrice} ~ ${finalMaxPrice}`
+          } else if (item.status==='unpaid') { // 售卖阶段
+            finalPrice = (Number(item.preorder_finalPrice)*Number(item.num) + Number(item.postage) - Number(item.discountAmount_promotion) - Number(item.discountAmount_custom)).toFixed(2)
+          }
         } else {
-          finalPrice = (Number(item.total_price) + Number(item.postage) - Number(item.discount_amount)).toFixed(2)
+          finalPrice = (Number(item.stock_unitPrice)*Number(item.num) + Number(item.postage) - Number(item.discountAmount_promotion) - Number(item.discountAmount_custom)).toFixed(2)
         }
         return {
           ...item,
@@ -116,18 +129,50 @@ Page({
   closeFilter() {
     this.setData({ isShowFilter: false });
   },
-  cancelOrder() {
-    wx.showModal({
-      title: '确认取消预订？',
-      success(res) {
-        if (res.confirm) {
-          console.log('用户点击确定');
-        } else if (res.cancel) {
-          console.log('用户点击取消');
-        }
-      }
-    });
+
+  // 取消预订
+  cancelOrder(e) {
+    this.data.currentOrderId = e.currentTarget.dataset.orderid
+
+    if (this.data.isSubmitting) {
+      return;
+    }
+    this.setData({
+      isShowCancelOrderPopup: true,
+      cancelOrderReason: '',
+    })
   },
+  closeCancelOrderPopup() {
+    this.setData({
+      isShowCancelOrderPopup: false,
+    })
+  },
+  cancelOrderPopupConfirm() {
+    this.data.isSubmitting = true
+
+    _cancelSingleReservedOrder({
+      orderId: this.data.currentOrderId,
+      cancelOrderReason: this.data.cancelOrderReason,
+    }).then(res => {
+      if (res.code === 200) {
+        this.setData({
+          isShowCancelOrderPopup: false,
+        })
+        wx.showToast({
+          title: '取消预订成功',
+        })
+        setTimeout(() => {
+          this.replaceOrderItem()
+        }, 1500)
+      } else {
+        wx.showToast({
+          title: res.message,
+          icon: 'error'
+        })
+      }
+    })
+  },
+
   refund() {
     wx.showModal({
       title: '确认退款？',
@@ -140,9 +185,9 @@ Page({
       }
     });
   },
-  seeDetail() {
+  seeDetail(e) {
     wx.navigateTo({
-      url: '/pages/customer/order/orderDetail/orderDetail',
+      url: `/pages/customer/order/orderDetail/orderDetail?id=${e.currentTarget.dataset.id}`,
     })
   },
   filterStatusClick(e) {
@@ -177,4 +222,53 @@ Page({
     })
     this.getOrderList()
   },
+  copyOrderId(e) {
+    wx.setClipboardData({
+      data: e.currentTarget.dataset.text,
+      success: function () {
+        wx.showToast({
+          title: '复制成功',
+          icon: 'success'
+        });
+      },
+    });
+  },
+  replaceOrderItem() { // 操作列表项后替换被操作的那一项
+    _getOrderDetailById({id: this.data.currentOrderId}).then(res => {
+      let theData = res.data
+      let statusText = ''
+      switch (theData.status) {
+        case 'reserved': statusText='已预订';break;
+        case 'paid': statusText='已付款';break;
+        case 'unpaid': statusText='未付款';break;
+        case 'completed': statusText='已完成';break;
+        case 'canceled': statusText='已取消';break;
+        case 'refunded': statusText='已退款';break;
+        default: break;
+      }
+      theData.statusText = statusText
+
+      let finalPrice = null
+      if (theData.batch_type==='preorder') {
+        if (!theData.preorder_finalPrice) { // 预订阶段
+          let finalMinPrice = (Number(theData.preorder_minPrice)*Number(theData.num) + Number(theData.postage) - Number(theData.discountAmount_promotion) - Number(theData.discountAmount_custom)).toFixed(2)
+          let finalMaxPrice = (Number(theData.preorder_maxPrice)*Number(theData.num) + Number(theData.postage) - Number(theData.discountAmount_promotion) - Number(theData.discountAmount_custom)).toFixed(2)
+          finalPrice = `${finalMinPrice} ~ ${finalMaxPrice}`
+        } else { // 售卖阶段
+          finalPrice = (Number(theData.preorder_finalPrice)*Number(theData.num) + Number(theData.postage) - Number(theData.discountAmount_promotion) - Number(theData.discountAmount_custom)).toFixed(2)
+        }
+      } else {
+        finalPrice = (Number(theData.stock_unitPrice)*Number(theData.num) + Number(theData.postage) - Number(theData.discountAmount_promotion) - Number(theData.discountAmount_custom)).toFixed(2)
+      }
+      theData.finalPrice = finalPrice
+
+      let index = this.data.listData.findIndex(item => item.id===this.data.currentOrderId)
+      this.data.listData[index] = theData
+
+      this.setData({
+        listData: this.data.listData,
+        isSubmitting: false,
+      })
+    })
+  }
 })

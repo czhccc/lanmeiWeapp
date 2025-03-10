@@ -1,5 +1,6 @@
 {
   "dependencies": {
-    "@vant/weapp": "^1.11.6"
+    "@vant/weapp": "^1.11.6",
+    "dayjs": "^1.11.13"
   }
 }

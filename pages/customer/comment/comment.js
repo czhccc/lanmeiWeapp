@@ -12,7 +12,7 @@ Page({
 
     historyComments: [],
 
-    isSubmiting: false,
+    isSubmitting: false,
   },
   onLoad(options) {
     this.getHistoryComments()
@@ -86,14 +86,14 @@ Page({
   },
   submit() {
     var that = this;
-    if (that.data.isSubmiting) {
+    if (that.data.isSubmitting) {
       return;
     }
     wx.showModal({
       title: '确认提交？',
       success: (res) => {
         if (res.confirm) {
-          that.data.isSubmiting = true
+          that.data.isSubmitting = true
           _comment({
             comment: that.data.comment,
             author: wx.getStorageSync('phone')
@@ -107,7 +107,7 @@ Page({
                 that.getHistoryComments()
                 that.setData({
                   comment: '',
-                  isSubmiting: false,
+                  isSubmitting: false,
                 })
               }, 1500)
             } else {
@@ -117,7 +117,7 @@ Page({
               })
             }
           }).finally(() => {
-            that.data.isSubmiting = false
+            that.data.isSubmitting = false
           })
         }
       }

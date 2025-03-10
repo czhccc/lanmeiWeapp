@@ -20,7 +20,7 @@
 		</view>
 		<view class="type-wrapper">
 			<view class="type" wx:if="{{theData.batch_type==='preorder'}}">预订中</view>
-			<view class="type" wx:if="{{theData.batch_type==='stock'}}">余量：{{theData.batch_stock_totalAmount}} {{theData.goods_unit}}</view>
+			<view class="type" wx:if="{{theData.batch_type==='stock'}}">剩余量：{{theData.batch_stock_remainingAmount}} {{theData.goods_unit}}</view>
 		</view>
 	</view>
 

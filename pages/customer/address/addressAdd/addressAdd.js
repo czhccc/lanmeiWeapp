@@ -21,7 +21,7 @@ Page({
     detail: '',
     isDefault: false,
 
-    isSubmiting: false,
+    isSubmitting: false,
 
     provinces: [],
     cities: [],
@@ -128,7 +128,7 @@ Page({
     })
   },
   toDelete() {
-    if (this.data.isSubmiting) {
+    if (this.data.isSubmitting) {
       return;
     }
     var that = this;
@@ -136,7 +136,7 @@ Page({
       title: '确认删除？',
       success(res) {
         if (res.confirm) {
-          that.data.isSubmiting = true
+          that.data.isSubmitting = true
           _deleteAddress({
             id: that.data.id
           }).then(res => {
@@ -149,17 +149,17 @@ Page({
               wx.navigateBack()
             }, 1500)
           }).finally(() => {
-            that.data.isSubmiting = false
+            that.data.isSubmitting = false
           })
         }
       }
     });
   },
   toSave() {
-    if (this.data.isSubmiting) {
+    if (this.data.isSubmitting) {
       return;
     }
-    this.data.isSubmiting = true
+    this.data.isSubmitting = true
 
     if (!this.data.name) {
       wx.showToast({
@@ -218,7 +218,7 @@ Page({
       title: '确认提交？',
       success(res) {
         if (res.confirm) {
-          // that.data.isSubmiting = true
+          // that.data.isSubmitting = true
           if (that.data.flag === 'add') { // 新增
             _addAddress({
               name: that.data.name, 
@@ -242,7 +242,7 @@ Page({
                 wx.navigateBack()
               }, 1500)
             }).finally(() => {
-              that.data.isSubmiting = false
+              that.data.isSubmitting = false
             })
           } else { // 编辑
             _editAddress({
@@ -268,11 +268,11 @@ Page({
                 wx.navigateBack()
               }, 1500)
             }).finally(() => {
-              that.data.isSubmiting = false
+              that.data.isSubmitting = false
             })
           }
         } else if (res.cancel) {
-          that.data.isSubmiting = false
+          that.data.isSubmitting = false
         }
       }
     });

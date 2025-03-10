@@ -18,29 +18,34 @@
         <view class="orderId">
           <view class="orderId-label">订单编号：</view>
           <view class="orderId-value">{{item.order_no}}</view>
+          <image class="orderId-copy" src="../../../images/common/copy.png" mode="" bind:tap="copyOrderId" data-text="{{item.order_no}}" />
         </view>
         <view class="order-status" wx:if="{{item.statusText==='已取消'||item.statusText==='已退款'}}" style="color: red;">{{item.statusText}}</view>
         <view class="order-status" wx:else>{{item.statusText}}</view>
       </view>
       <view class="order-content">
-        <view class="order-wrapper">
           <image class="order-img" src="{{item.snapshot_coverImage}}" alt=""/>
-          <view class="order-content-detail">
-            <view class="goodsName">{{item.snapshot_goodsName}}</view>
-          </view>
-        </view>
-        <view class="goods-num">×{{item.num}}</view>
+          <view class="goodsName">{{item.snapshot_goodsName}}</view>
       </view>
+      <view class="goods-num">×{{item.num}} {{item.snapshot_goodsUnit}}</view>
       
-      <view class="payCount">
-        <view class="payCount-label">{{item.batch_type==='preorder' ? '预订金额' : '实付金额'}}：</view>
+      <view class="payCount" wx:if="{{item.batch_type==='preorder'&&(item.status==='reserved'||item.status==='canceled')}}">
+        <view class="payCount-label">价格区间：</view>
+        <view class="payCount-value">¥{{item.finalPrice}}</view>
+      </view>
+      <view class="payCount" wx:if="{{item.batch_type==='preorder'&&item.status==='unpaid'}}">
+        <view class="payCount-label">待付款金额：</view>
+        <view class="payCount-value">¥{{item.finalPrice}}</view>
+      </view>
+      <view class="payCount" wx:if="{{item.batch_type==='stock'}}">
+        <view class="payCount-label">付款金额：</view>
         <view class="payCount-value">¥{{item.finalPrice}}</view>
       </view>
 
       <view class="order-btns">
-        <view class="order-cancelOrder" wx:if="{{item.batch_type==='preorder'}}" catch:tap="cancelOrder">取消预订</view>
+        <view class="order-btn-red" wx:if="{{item.status==='reserved'}}" catch:tap="cancelOrder" data-orderId="{{item.id}}">取消预订</view>
         <view class="order-refund" wx:if="{{item.batch_type==='stock'}}" catch:tap="refund">退款</view>
-        <view class="order-seeDetail" catch:tap="seeDetail">查看详情</view>
+        <view class="order-seeDetail" catch:tap="seeDetail" data-id="{{item.id}}">查看详情</view>
       </view>
     </view>
     <view class="blank" style="height: 60rpx;"></view>
@@ -106,6 +111,32 @@
       <view class="filter-btns">
         <view class="filter-reset" bind:tap="filterReset">重置</view>
         <view class="filter-confirm" bind:tap="filterConfirm">确定</view>
+      </view>
+    </view>
+  </van-popup>
+
+  <van-popup 
+    show="{{ isShowCancelOrderPopup }}" 
+    round
+    z-index="{{999}}"
+  >
+    <view class="cancelOrderWrapper">
+      <view class="cancelOrderTitle">取消预订</view>
+      <view class="cancelOrderInput-wrapper">
+        <van-field
+          class="cancelOrderInput"
+          model:value="{{ cancelOrderReason }}"
+          type="textarea"
+          placeholder="请输入原因，非必填"
+          autosize
+          border="{{false}}"
+          maxlength="{{100}}"
+          show-word-limit
+        />
+      </view>
+      <view class="cancelOrderBtns">
+        <view class="cancelOrder-cancelBtn" bind:tap="closeCancelOrderPopup">取消</view>
+        <view class="cancelOrder-confirmBtn" bind:tap="cancelOrderPopupConfirm">确认</view>
       </view>
     </view>
   </van-popup>

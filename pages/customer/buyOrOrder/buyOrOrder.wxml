@@ -15,11 +15,11 @@
           <van-stepper 
             value="{{ num }}" 
             bind:change="numChange"
-            min="{{1}}"
+            min="{{theData.batch_minQuantity}}"
             max="{{theData.batch_type==='stock' ? theData.batch_stock_remainingAmount : 999}}" 
           />
         </view>
-        <view class="goods-stock" wx:if="{{theData.batch_type==='stock'}}">余量：{{theData.batch_stock_remainingAmount}} {{theData.goods_unit}}</view>
+        <view class="goods-stock" wx:if="{{theData.batch_type==='stock'}}">剩余量：{{theData.batch_stock_remainingAmount}} {{theData.goods_unit}}</view>
       </view>
     </view>
   </view>
@@ -39,20 +39,13 @@
   </view>
   <view class="defaultAddressNotAvailableText" wx:if="{{defaultAddressNotAvailable&&!addressInfo.province}}">默认地址不符合条件，请手动选择</view>
 
-  <view class="item-title" wx:if="{{addressInfo.district==='嵊州市'}}">收货方式</view>
-  <picker mode="selector" range="{{pickMethodArray}}" wx:if="{{addressInfo.district==='嵊州市'}}" bindchange="bindPickMethodChange">
-    <view class="pickMethod">
-      <text class="pickMethod-pla" wx:if="{{!pickMethod}}">请选择收货方式</text>
-      <text class="pickMethod-text" wx:if="{{pickMethod}}">
-        <text>{{pickMethod}}</text>
-        <text style="margin-left: 30rpx;">费用：{{10}}元</text>
-      </text>
-      <image class="pickMethod-arrow" src="../../../images/common/arrow-right.png" mode=""/>
-    </view>
-  </picker>
-  <view class="pickMethod-tip" wx:if="{{addressInfo.district==='嵊州市'}}">嵊州可送货上门</view>
+  <view class="isHomeDelivery-wrapper" wx:if="{{addressInfo.district==='嵊州市'}}">
+    <van-checkbox class="isHomeDelivery-checkbox" value="{{ isHomeDelivery }}" shape="square" bind:change="isHomeDeliveryChange">送货上门</van-checkbox>
+    <view class="isHomeDelivery-tip" wx:if="{{addressInfo.district==='嵊州市'}}">嵊州市可送货上门</view>
+  </view>
+  
 
-  <view class="item-title">备注说明</view>
+  <view class="item-title">备注</view>
   <view class="notes-wrapper">
     <van-field
       model:value="{{ notes }}"
@@ -66,7 +59,7 @@
     />
   </view>
 
-  <view class="item-title">支付明细</view>
+  <view class="item-title">价格明细</view>
   <view class="detail">
     <view class="detail-line">
       <view class="detail-line-label">商品价格</view>
@@ -79,21 +72,22 @@
       <view class="detail-line-value" wx:else>{{'请选择收货地址'}}</view>
     </view>
     <view class="detail-line" wx:if="{{discountAmount > 0}}">
-      <view class="detail-line-label">优惠</view>
+      <view class="detail-line-label">满减优惠</view>
       <view class="detail-line-value" style="color: red;">-¥{{discountAmount}}</view>
     </view>
-    <view class="detail-line">
-      <view class="detail-line-label2">应付金额</view>
+    <view class="detail-line" wx:if="{{addressInfo.province}}">
+      <view class="detail-line-label2">{{theData.batch_type==='preorder'?'价格区间':'付款金额'}}：</view>
       <view class="detail-line-value2">¥{{finalPrice}}</view>
     </view>
   </view>
   
   <view class="bottom">
     <view class="bottom-content">
-      <view class="payNum">
-        <view class="payNum-label">{{theData.batch_type==='preorder'?'价格区间':'应付金额'}}：</view>
+      <view class="payNum" wx:if="{{addressInfo.province}}">
+        <!-- <view class="payNum-label">{{theData.batch_type==='preorder'?'价格区间':'付款金额'}}：</view> -->
         <view class="payNum-value">¥{{finalPrice}}</view>
       </view>
+      <view class="payNum" wx:else>请选择收获地址</view>
       <view class="payBtn" bind:tap="submit">{{theData.batch_type==='preorder' ? '确定预订' : '提交订单'}}</view>
     </view>
   </view>

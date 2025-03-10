@@ -99,7 +99,11 @@ page {
 }
 .good-content {
 	flex: 1;
-	position: relative;
+  position: relative;
+  min-height: 180rpx;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
 }
 .good-name {
 	font-size: 28rpx;
@@ -108,7 +112,7 @@ page {
 	font-weight: 700;
 }
 .good-price {
-	font-size: 24rpx;
+	font-size: 26rpx;
 	color: #F62603;
 	font-weight: 700;
 	margin-left: 20rpx;

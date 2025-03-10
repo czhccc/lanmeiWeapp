@@ -5,23 +5,39 @@ page {
 }
 
 .orderDetail {
-  padding-bottom: 200rpx;
+
+}
+
+.status-wrapper {
+  box-sizing: border-box;
+  width: 690rpx;
+  height: 40rpx;
+  margin: 0 auto;
+  margin-top: 40rpx;
+  display: flex;
+  justify-content: flex-end;
+}
+.status {
+  color: #1989FA;
+  width: 104rpx;
+  height: 40rpx;
+  background: white;
+  border-radius: 4rpx 4rpx 0 0;
+  line-height: 40rpx;
+  text-align: center;
+  font-size: 26rpx;
 }
 
 .goods{
   width: 690rpx;
   background: #FFFFFF;
   box-sizing: border-box;
-  padding: 30rpx 24rpx;
+  padding: 32rpx;
   background-color: white;
-  display: flex;
-  align-items: center;
   margin: 0 auto;
   border-radius: 0 0 16rpx 16rpx;
 }
 .goods-wrapper {
-  margin-left: 20rpx;
-  flex: 1;
   position: relative;
   display: flex;
   align-items: flex-start;
@@ -32,54 +48,41 @@ page {
   height: 180rpx;
   border-radius: 16rpx;
 }
-.goods-content {
-  margin-left: 20rpx;
-}
 .goods-name {
   font-size: 28rpx;
   color: #333333;
-  font-weight: 700;
-}
-.goods-specification {
-  margin-top: 12rpx;
-  font-size: 24rpx;
-  color: #999999;
-  display: flex;
-}
-.goods-specification-label {
-  word-break: keep-all;
-}
-.goods-specification-value {
-  word-break: break-all;
+  margin-left: 20rpx;
+  /* font-weight: 700; */
 }
 .goods-price {
   display: flex;
   align-items: flex-end;
-  margin-top: 48rpx;
   flex-wrap: wrap;
   justify-content: space-between;
-}
-.goods-price-content {
-  display: flex;
-  align-items: flex-end;
-}
-.goods-price-new {
-  font-size: 36rpx;
-  color: #F62603;
-  font-weight: 700;
-}
-.goods-price-old {
-  font-size: 24rpx;
-  color: gray;
-  text-decoration: line-through;
-  margin-left: 10rpx;
-  transform: translateY(-4rpx);
 }
 .goods-num {
   margin-left: 20rpx;
   font-size: 30rpx;
-  color: #999999;
+  color: black;
+  text-align: right;
 }
+.goods-price-wrapper {
+  margin-top: 12rpx;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+.goods-price-label {
+  font-size: 24rpx;
+  color: #000000;
+}
+.goods-price-value {
+  font-size: 36rpx;
+  color: #F62603;
+  text-align: right;
+  /* font-weight: 700; */
+}
+
 
 .choosedAddress {
   width: 690rpx;
@@ -96,9 +99,7 @@ page {
   max-width: 600rpx;
 }
 .choosedAddress-ssq {
-  font-size: 24rpx;
-  color: #666666;
-  font-size: 24rpx;
+  font-size: 26rpx;
   color: #333333;
 }
 .choosedAddress-detail {
@@ -107,35 +108,27 @@ page {
   margin-top: 10rpx;
 }
 .choosedAddress-nameAndPhone {
-  font-size: 32rpx;
+  font-size: 30rpx;
   color: #333333;
   margin-top: 10rpx;
 }
-
-.pickMethod {
-  width: 690rpx;
-  height: 76rpx;
-  background: #FFFFFF;
-  border-radius: 0 0 16rpx 16rpx;
-  margin: 0 auto;
-  box-sizing: border-box;
-  padding: 0 24rpx;
-  line-height: 76rpx;
+.isHomeDelivery-wrapper {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
+  justify-content: flex-end;
+  width: 690rpx;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
 }
-.pickMethod-pla {
+.isHomeDelivery {
+  background-color: white;
   font-size: 28rpx;
-  color: #999999;
-}
-.pickMethod-text {
-  font-size: 28rpx;
-  color: black;
-}
-.pickMethod-arrow {
-  width: 24rpx;
-  height: 24rpx;
+  height: 40rpx;
+  line-height: 40rpx;
+  width: 130rpx;
+  text-align: center;
+  box-sizing: border-box;
+  border-radius: 4rpx 4rpx 0 0;
 }
 
 .notes-wrapper {
@@ -185,9 +178,9 @@ page {
   font-weight: 700;
 }
 .detail-line-label2 {
-  font-size: 32rpx;
+  font-size: 28rpx;
   color: #333333;
-  font-weight: 700;
+  /* font-weight: 700; */
 }
 .detail-line-value2 {
   font-size: 32rpx;
@@ -211,7 +204,7 @@ page {
 .orderId-label {
   font-size: 28rpx;
   color: #666666;
-  font-weight: 700;
+  /* font-weight: 700; */
 }
 .orderId-value {
   display: flex;
@@ -233,7 +226,7 @@ page {
   height: 160rpx;
   padding: 24rpx 24rpx 0 24rpx;
   box-sizing: border-box;
-  z-index: 999;
+  z-index: 900;
 }
 .bottom-content {
   display: flex;
@@ -262,6 +255,11 @@ page {
   line-height: 84rpx;
   font-size: 36rpx;
 }
+.payBtn-red {
+  background-color: white;
+  color: red;
+  border: 2rpx solid red;
+}
 
 .item-title {
   width: 690rpx;
@@ -273,4 +271,89 @@ page {
   font-weight: 700;
   box-sizing: border-box;
   padding: 24rpx 24rpx 10rpx 24rpx;
+}
+
+.cancelOrderWrapper {
+  width: 600rpx;
+  padding: 32rpx;
+  box-sizing: border-box;
+}
+.cancelOrderTitle {
+  font-weight: 700;
+}
+.cancelOrderInput-wrapper {
+  margin-top: 40rpx;
+  border: 2rpx solid rgb(27, 27, 27);
+  border-radius: 16rpx;
+  padding: 4rpx;
+}
+.cancelOrderInput {
+  
+}
+.cancelOrderBtns {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10 32rpx;
+  margin-top: 32rpx;
+}
+.cancelOrder-cancelBtn {
+  flex: 1;
+  height: 68rpx;
+  line-height: 68rpx;
+  background: white;
+  border-radius: 42rpx;
+  color: red;
+  border: 2rpx solid red;
+  text-align: center;
+  font-size: 32rpx;
+}
+.cancelOrder-confirmBtn {
+  flex: 1;
+  height: 68rpx;
+  line-height: 68rpx;
+  background: #1989FA;
+  border-radius: 42rpx;
+  color: white;
+  text-align: center;
+  font-size: 32rpx;
+  margin-left: 20rpx;
+}
+
+.canceledInfo {
+  width: 690rpx;
+  background: #FFFFFF;
+  border-radius: 0 0 16rpx 16rpx;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 24rpx;
+  box-sizing: border-box;
+  font-size: 28rpx;
+  word-break: break-all;
+}
+.timeInfo {
+  width: 690rpx;
+  background: #FFFFFF;
+  border-radius: 0 0 16rpx 16rpx;
+  margin: 0 auto;
+  padding: 24rpx;
+  box-sizing: border-box;
+}
+.timeInfo-item {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10rpx;
+}
+.timeInfo-item:last-child {
+  margin-bottom: 0;
+}
+.timeInfo-item-label {
+  font-size: 28rpx;
+  color: #666666;
+}
+.timeInfo-item-value {
+  font-size: 28rpx;
+  color: black;
 }

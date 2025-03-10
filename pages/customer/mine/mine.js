@@ -18,6 +18,7 @@ Page({
     })
   },
   getPhoneNumber (e) {
+    console.log('微信授权登录')
     if (!e.detail.code) { // 用户拒绝授权
       return;
     }

@@ -19,7 +19,7 @@ page {
   padding: 32rpx;
   box-sizing: border-box;
   background-color: white;
-  width: 702rpx;
+  width: 690rpx;
   margin: 0 auto;
   margin-top: 32rpx;
 }
@@ -40,6 +40,11 @@ page {
 .orderId-value {
   word-break: break-all;
 }
+.orderId-copy {
+  margin-left: 8rpx;
+  width: 36rpx;
+  height: 36rpx;
+}
 .order-status {
   width: 104rpx;
   height: 40rpx;
@@ -47,20 +52,16 @@ page {
   border-radius: 4rpx;
   line-height: 40rpx;
   text-align: center;
-  font-size: 24rpx;
+  font-size: 26rpx;
   color: #1989FA;
   margin-left: 40rpx;
+  /* font-weight: 700; */
 }
 .order-content {
-  flex: 1;
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  margin-top: 24rpx;
-}
-.order-wrapper {
-  display: flex;
   align-items: flex-start;
+  margin-top: 24rpx;
 }
 .order-img {
   width: 180rpx;
@@ -69,19 +70,17 @@ page {
   height: 180rpx;
   border-radius: 16rpx;
 }
-.order-content-detail {
-  margin-left: 20rpx;
-}
 .goodsName {
   font-size: 28rpx;
   color: #333333;
-  font-weight: 700;
+  margin-left: 20rpx;
+  /* font-weight: 700; */
 }
 .goods-num {
-  margin-left: 20rpx;
   font-size: 30rpx;
   color: black;
-  font-weight: 700;
+  text-align: right;
+  /* font-weight: 700; */
 }
 .payCount {
   display: flex;
@@ -90,13 +89,13 @@ page {
   margin-top: 12rpx;
 }
 .payCount-label {
-  font-size: 28rpx;
+  font-size: 24rpx;
   color: #000000;
 }
 .payCount-value {
   font-size: 36rpx;
   color: #F62603;
-  font-weight: 700;
+  /* font-weight: 700; */
 }
 
 .order-btns {
@@ -104,28 +103,16 @@ page {
   display: flex;
   justify-content: flex-end;
 }
-.order-cancelOrder {
+.order-btn-red {
   width: 160rpx;
   height: 64rpx;
   line-height: 64rpx;
   background: #FFFFFF;
   border-radius: 32rpx;
-  border: 2rpx solid #1989FA;
+  border: 2rpx solid red;
   text-align: center;
   font-size: 28rpx;
-  color: #1989FA;
-  box-sizing: border-box;
-}
-.order-refund {
-  width: 106rpx;
-  height: 64rpx;
-  line-height: 64rpx;
-  background: #FFFFFF;
-  border-radius: 32rpx;
-  border: 2rpx solid #1989FA;
-  text-align: center;
-  font-size: 28rpx;
-  color: #1989FA;
+  color: red;
   box-sizing: border-box;
 }
 .order-seeDetail {
@@ -245,4 +232,52 @@ page {
   color: #FFFFFF;
   font-weight: 700;
   box-sizing: border-box;
+}
+
+/* 取消预订 */
+.cancelOrderWrapper {
+  width: 600rpx;
+  padding: 32rpx;
+  box-sizing: border-box;
+}
+.cancelOrderTitle {
+  font-weight: 700;
+}
+.cancelOrderInput-wrapper {
+  margin-top: 40rpx;
+  border: 2rpx solid rgb(27, 27, 27);
+  border-radius: 16rpx;
+  padding: 4rpx;
+}
+.cancelOrderInput {
+  
+}
+.cancelOrderBtns {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10 32rpx;
+  margin-top: 32rpx;
+}
+.cancelOrder-cancelBtn {
+  flex: 1;
+  height: 68rpx;
+  line-height: 68rpx;
+  background: white;
+  border-radius: 42rpx;
+  color: red;
+  border: 2rpx solid red;
+  text-align: center;
+  font-size: 32rpx;
+}
+.cancelOrder-confirmBtn {
+  flex: 1;
+  height: 68rpx;
+  line-height: 68rpx;
+  background: #1989FA;
+  border-radius: 42rpx;
+  color: white;
+  text-align: center;
+  font-size: 32rpx;
+  margin-left: 20rpx;
 }

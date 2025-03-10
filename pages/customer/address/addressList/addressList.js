@@ -35,15 +35,16 @@ Page({
         let list = res.data.map(item => {
           if (this.data.availableProvinces.includes(item.province)) { // 符合条件
             return {
-              ...item
+              ...item,
+              unavailable: false,
             }
           } else {
             return {
+              ...item,
               unavailable: true,
-              ...item
             }
           }
-        })
+        }).sort((a, b) => a.unavailable - b.unavailable);
         this.setData({
           list
         })

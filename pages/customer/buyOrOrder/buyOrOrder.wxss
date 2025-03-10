@@ -115,35 +115,25 @@ page {
   font-size: 24rpx;
 }
 
-.pickMethod {
+.isHomeDelivery-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20rpx;
+  margin-top: 16rpx;
+  background-color: white;
   width: 690rpx;
-  height: 76rpx;
   background: #FFFFFF;
   border-radius: 0 0 16rpx 16rpx;
   margin: 0 auto;
+  margin-top: 40rpx;
   box-sizing: border-box;
-  padding: 0 24rpx;
-  line-height: 76rpx;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
 }
-.pickMethod-pla {
+.isHomeDelivery-checkbox {
   font-size: 28rpx;
-  color: #999999;
 }
-.pickMethod-text {
-  font-size: 28rpx;
-  color: black;
-  font-weight: 700;
-}
-.pickMethod-arrow {
-  width: 24rpx;
-  height: 24rpx;
-}
-.pickMethod-tip {
+.isHomeDelivery-tip {
   font-size: 24rpx;
-  padding: 0 32rpx;
   margin-top: 10rpx;
   display: flex;
   justify-content: flex-end;
@@ -196,14 +186,15 @@ page {
   font-weight: 700;
 }
 .detail-line-label2 {
-  font-size: 32rpx;
+  font-size: 28rpx;
   color: #333333;
-  font-weight: 700;
+  word-break: keep-all;
 }
 .detail-line-value2 {
-  font-size: 32rpx;
+  font-size: 28rpx;
   color: red;
   font-weight: 700;
+  word-break: keep-all;
 }
 
 .bottom {
@@ -226,6 +217,7 @@ page {
 .payNum-label {
   font-size: 32rpx;
   color: #333333;
+  font-weight: 700;
 }
 .payNum-value {
   font-size: 32rpx;

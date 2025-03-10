@@ -67,7 +67,7 @@
       <view class="detail-line-value" style="color: red;">-¥20.00</view>
     </view>
     <view class="detail-line">
-      <view class="detail-line-label2">应付金额</view>
+      <view class="detail-line-label2">待付款金额</view>
       <view class="detail-line-value2">¥2029.00</view>
     </view>
     <view style="display: flex;justify-content: flex-end;">

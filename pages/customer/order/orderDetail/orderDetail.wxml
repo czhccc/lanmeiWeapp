@@ -1,52 +1,54 @@
 <!--pages/customer/order/orderDetail/orderDetail.wxml-->
-<view class="orderDetail">
+<view class="orderDetail" style="padding-bottom: {{isShowBottom ? '200rpx' : '100rpx'}}">
 
-  <view>
-    服务状态？
+  <view class="status-wrapper">
+    <view class="status" wx:if="{{theData.statusText==='已取消'||theData.statusText==='已退款'}}" style="color: red;">{{theData.statusText}}</view>
+    <view class="status" wx:else>{{theData.statusText}}</view>
   </view>
-
-  <view class="item-title">商品</view>
+  
   <view class="goods">
     <view class="goods-wrapper">
-      <image class="goods-img" src="https://img2.baidu.com/it/u=3650958543,1493738205&fm=253&fmt=auto&app=138&f=JPEG?w=800&h=800" mode=""/>
-      <view class="goods-content">
-        <view class="goods-name">意大利头皮护理产品</view>
-        <view class="goods-specification">
-          <text class="goods-specification-label">规格：</text>
-          <text class="goods-specification-value">500ml</text>
-          </view>
-        <view class="goods-price">
-          <view class="goods-price-content">
-            <view class="goods-price-new">¥199.00</view>
-            <view class="goods-price-old">¥299.00</view>
-          </view>
-        </view>
-      </view>
+      <image class="goods-img" src="{{theData.snapshot_coverImage}}" mode=""/>
+      <view class="goods-name">{{theData.snapshot_goodsName}}</view>
     </view>
-    <view class="goods-num">×999</view>
+    <view class="goods-num">×{{theData.num}} {{theData.snapshot_goodsUnit}}</view>
+    <view class="goods-price-wrapper">
+      <view class="goods-price-label" wx:if="{{theData.batch_type==='preorder'&&(theData.status==='reserved'||theData.status==='canceled')}}">价格区间：</view>
+      <view class="goods-price-label" wx:if="{{theData.batch_type==='preorder'&&theData.status==='unpaid'}}">待付款金额：</view>
+      <view class="goods-price-value">¥{{theData.finalPrice}}</view>
+    </view>
+    
+  </view>
+
+  <view class="orderId">
+    <view class="orderId-label">订单编号</view>
+    <view class="orderId-value">
+      {{theData.order_no}}
+      <image class="copy-icon" src="../../../../images/common/copy.png" mode="" bind:tap="copyOrderId" data-text="{{theData.order_no}}" />
+    </view>
+  </view>
+
+  <view class="item-title" wx:if="{{theData.status==='canceled'}}">订单已取消（{{theData.cancel_by===theData.user?'用户取消':'管理员取消'}}）</view>
+  <view class="canceledInfo" wx:if="{{theData.status==='canceled'}}">
+    取消原因：{{ theData.cancel_reason }}
   </view>
 
   <view class="item-title">收货地址</view>
-  <view class="choosedAddress">
+  <view class="choosedAddress" style="border-radius: {{theData.receive_isHomeDelivery===1?'0':'16rpx'}};">
     <view class="choosedAddress-content">
-      <view class="choosedAddress-ssq">浙江省杭州市西湖区</view>
-      <view class="choosedAddress-detail">汇峰国际D508汇峰国际D508汇峰国际D508汇峰国际D508汇峰国际D508汇峰国际D508汇峰国际D508</view>
-      <view class="choosedAddress-nameAndPhone">王女士 12839282929</view>
+      <view class="choosedAddress-ssq">{{theData.receive_province}} {{theData.receive_city}} {{theData.receive_district}}</view>
+      <view class="choosedAddress-detail">{{theData.receive_address}}</view>
+      <view class="choosedAddress-nameAndPhone">{{theData.receive_name}} {{theData.receive_phone}}</view>
     </view>
   </view>
-
-  <view class="item-title">收货方式</view>
-  <view class="pickMethod">
-    <text class="pickMethod-text">
-      <text>快递</text>
-      <text style="margin-left: 30rpx;">费用：{{10}}元</text>
-    </text>
+  <view class="isHomeDelivery-wrapper" wx:if="{{theData.receive_isHomeDelivery===1}}">
+    <view class="isHomeDelivery">{{theData.receive_isHomeDelivery===1 ? '送货上门' : ' '}}</view>
   </view>
 
-  <view class="item-title">备注留言</view>
+  <view class="item-title">备注</view>
   <view class="notes-wrapper">
     <van-field
-      model:value="{{ '2222222222222222222222222' }}"
+      model:value="{{ theData.remark_customer }}"
       type="textarea"
       autosize
       border="{{ false }}"
@@ -56,37 +58,84 @@
     />
   </view>
 
-  <view class="item-title">付款详情</view>
-  <view class="detail">
-    <view class="detail-line">
-      <view class="detail-line-label">总金额</view>
-      <view class="detail-line-value">¥2049.00</view>
+  <view class="item-title">时间明细</view>
+  <view class="timeInfo">
+    <view class="timeInfo-item" wx:if="{{theData.preorder_time}}">
+      <view class="timeInfo-item-label">预订时间</view>
+      <view class="timeInfo-item-value">{{theData.preorder_time}}</view>
     </view>
-    <view class="detail-line">
-      <view class="detail-line-label">优惠</view>
-      <view class="detail-line-value" style="color: red;">-¥20.00</view>
+    <view class="timeInfo-item" wx:if="{{theData.cancel_time}}">
+      <view class="timeInfo-item-label">取消时间</view>
+      <view class="timeInfo-item-value">{{theData.cancel_time}}</view>
     </view>
-    <view class="detail-line">
-      <view class="detail-line-label2">应付金额</view>
-      <view class="detail-line-value2">¥2029.00</view>
+    <view class="timeInfo-item" wx:if="{{theData.pay_time}}">
+      <view class="timeInfo-item-label">付款时间</view>
+      <view class="timeInfo-item-value">{{theData.pay_time}}</view>
+    </view>
+    <view class="timeInfo-item" wx:if="{{theData.complete_time}}">
+      <view class="timeInfo-item-label">完结时间</view>
+      <view class="timeInfo-item-value">{{theData.complete_time}}</view>
     </view>
   </view>
 
-  <view class="orderId">
-    <view class="orderId-label">订单编号</view>
-    <view class="orderId-value">
-      192928192927102
-      <image class="copy-icon" src="../../../../images/common/copy.png" mode="" bind:tap="copyOrderId" />
+  <view class="item-title">价格明细</view>
+  <view class="detail">
+    <view class="detail-line">
+      <view class="detail-line-label">商品价格</view>
+      <view class="detail-line-value" wx:if="{{theData.batch_type==='preorder'&&theData.status==='reserved'}}">¥{{theData.totalMinPrice}} ~ {{theData.totalMaxPrice}}</view>
+      <view class="detail-line-value" wx:if="{{theData.batch_type==='preorder'&&theData.status==='canceled'}}">¥{{theData.totalMinPrice}} ~ {{theData.totalMaxPrice}}</view>
+      <view class="detail-line-value" wx:if="{{theData.batch_type==='preorder'&&theData.status==='unpaid'}}">¥{{theData.totalPrice}}</view>
+      <view class="detail-line-value" wx:if="{{theData.batch_type==='stock'}}">¥{{theData.totalPrice}}</view>
+    </view>
+    <view class="detail-line">
+      <view class="detail-line-label">邮费</view>
+      <view class="detail-line-value">{{theData.postage==='0.00' ? '包邮' : '¥'+theData.postage}}</view>
+    </view>
+    <view class="detail-line" wx:if="{{theData.discountAmount_promotion > 0}}">
+      <view class="detail-line-label">满减优惠</view>
+      <view class="detail-line-value" style="color: red;">-¥{{theData.discountAmount_promotion}}</view>
+    </view>
+    <view class="detail-line">
+      <view class="detail-line-label2">{{theData.batch_type==='preorder'?'价格区间':'待付款金额'}}：</view>
+      <view class="detail-line-value2">¥{{theData.finalPrice}}</view>
     </view>
   </view>
-  
-  <view class="bottom">
+
+  <view class="bottom" wx:if="{{isShowBottom}}">
     <view class="bottom-content">
-      <view class="payNum">
-        <view class="payNum-label">应付金额：</view>
-        <view class="payNum-value">¥2029.00</view>
+      <view class="payNum" wx:if="{{theData.status === 'unpaid'}}">
+        <!-- <view class="payNum-label">待付款金额：</view> -->
+        <view class="payNum-value">¥{{theData.finalPrice}}</view>
       </view>
-      <view class="payBtn" bind:tap="submit">提交订单</view>
+      <view class="payNum" wx:else> </view>
+      <view class="payBtn payBtn-red" bind:tap="cancelOrder" wx:if="{{theData.status === 'reserved'}}">取消预订</view>
+      <view class="payBtn" bind:tap="payOrder" wx:if="{{theData.status === 'unpaid'}}">付款</view>
     </view>
   </view>
+
+  <van-popup 
+    show="{{ isShowCancelOrderPopup }}" 
+    round
+    z-index="{{999}}"
+  >
+    <view class="cancelOrderWrapper">
+      <view class="cancelOrderTitle">取消预订</view>
+      <view class="cancelOrderInput-wrapper">
+        <van-field
+          class="cancelOrderInput"
+          model:value="{{ cancelOrderReason }}"
+          type="textarea"
+          placeholder="请输入原因，非必填"
+          autosize
+          border="{{false}}"
+          maxlength="{{100}}"
+          show-word-limit
+        />
+      </view>
+      <view class="cancelOrderBtns">
+        <view class="cancelOrder-cancelBtn" bind:tap="closeCancelOrderPopup">取消</view>
+        <view class="cancelOrder-confirmBtn" bind:tap="cancelOrderPopupConfirm">确认</view>
+      </view>
+    </view>
+  </van-popup>
 </view>
