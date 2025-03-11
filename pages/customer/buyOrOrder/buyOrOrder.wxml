@@ -62,7 +62,7 @@
   <view class="item-title">价格明细</view>
   <view class="detail">
     <view class="detail-line">
-      <view class="detail-line-label">商品价格</view>
+      <view class="detail-line-label">商品总价</view>
       <view class="detail-line-value" wx:if="{{theData.batch_type==='preorder'}}">¥{{totalMinPrice}} ~ {{totalMaxPrice}}</view>
       <view class="detail-line-value" wx:if="{{theData.batch_type==='stock'}}">¥{{totalPrice}}</view>
     </view>
@@ -76,7 +76,7 @@
       <view class="detail-line-value" style="color: red;">-¥{{discountAmount}}</view>
     </view>
     <view class="detail-line" wx:if="{{addressInfo.province}}">
-      <view class="detail-line-label2">{{theData.batch_type==='preorder'?'价格区间':'付款金额'}}：</view>
+      <view class="detail-line-label2">总计金额：</view>
       <view class="detail-line-value2">¥{{finalPrice}}</view>
     </view>
   </view>

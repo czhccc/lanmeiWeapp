@@ -2,8 +2,10 @@
 <view class="orderDetail" style="padding-bottom: {{isShowBottom ? '200rpx' : '100rpx'}}">
 
   <view class="status-wrapper">
-    <view class="status" wx:if="{{theData.statusText==='已取消'||theData.statusText==='已退款'}}" style="color: red;">{{theData.statusText}}</view>
-    <view class="status" wx:else>{{theData.statusText}}</view>
+    <view class="status" wx:if="{{theData.statusText==='已预订'}}" style="color: #1F8FA6;">{{theData.statusText}}</view>
+    <view class="status" wx:if="{{theData.statusText==='已取消'}}" style="color: #C05717;">{{theData.statusText}}</view>
+    <view class="status" wx:if="{{theData.statusText==='已付款'}}" style="color: #13ac5a;">{{theData.statusText}}</view>
+    <view class="status" wx:if="{{theData.statusText==='已完结'}}" style="color: #2D3748;">{{theData.statusText}}</view>
   </view>
   
   <view class="goods">
@@ -12,11 +14,11 @@
       <view class="goods-name">{{theData.snapshot_goodsName}}</view>
     </view>
     <view class="goods-num">×{{theData.num}} {{theData.snapshot_goodsUnit}}</view>
-    <view class="goods-price-wrapper">
+    <!-- <view class="goods-price-wrapper">
       <view class="goods-price-label" wx:if="{{theData.batch_type==='preorder'&&(theData.status==='reserved'||theData.status==='canceled')}}">价格区间：</view>
       <view class="goods-price-label" wx:if="{{theData.batch_type==='preorder'&&theData.status==='unpaid'}}">待付款金额：</view>
       <view class="goods-price-value">¥{{theData.finalPrice}}</view>
-    </view>
+    </view> -->
     
   </view>
 
@@ -81,10 +83,10 @@
   <view class="item-title">价格明细</view>
   <view class="detail">
     <view class="detail-line">
-      <view class="detail-line-label">商品价格</view>
+      <view class="detail-line-label">商品总价</view>
       <view class="detail-line-value" wx:if="{{theData.batch_type==='preorder'&&theData.status==='reserved'}}">¥{{theData.totalMinPrice}} ~ {{theData.totalMaxPrice}}</view>
       <view class="detail-line-value" wx:if="{{theData.batch_type==='preorder'&&theData.status==='canceled'}}">¥{{theData.totalMinPrice}} ~ {{theData.totalMaxPrice}}</view>
-      <view class="detail-line-value" wx:if="{{theData.batch_type==='preorder'&&theData.status==='unpaid'}}">¥{{theData.totalPrice}}</view>
+      <view class="detail-line-value" wx:if="{{theData.batch_type==='preorder'&&(theData.status==='unpaid'||theData.status==='paid'||theData.status==='completed')}}">¥{{theData.totalPrice}}</view>
       <view class="detail-line-value" wx:if="{{theData.batch_type==='stock'}}">¥{{theData.totalPrice}}</view>
     </view>
     <view class="detail-line">
@@ -95,8 +97,16 @@
       <view class="detail-line-label">满减优惠</view>
       <view class="detail-line-value" style="color: red;">-¥{{theData.discountAmount_promotion}}</view>
     </view>
+    <view class="detail-line" wx:if="{{theData.discountAmount_custom > 0}}">
+      <view class="detail-line-label">其他优惠</view>
+      <view class="detail-line-value" style="color: red;">-¥{{theData.discountAmount_custom}}</view>
+    </view>
     <view class="detail-line">
-      <view class="detail-line-label2">{{theData.batch_type==='preorder'?'价格区间':'待付款金额'}}：</view>
+      <view class="detail-line-label2">总计金额：</view>
+      <view class="detail-line-value2">¥{{theData.finalPrice}}</view>
+    </view>
+    <view class="detail-line" wx:if="{{theData.pay_finalAmount}}">
+      <view class="detail-line-label2">实付款：</view>
       <view class="detail-line-value2">¥{{theData.finalPrice}}</view>
     </view>
   </view>
@@ -110,6 +120,7 @@
       <view class="payNum" wx:else> </view>
       <view class="payBtn payBtn-red" bind:tap="cancelOrder" wx:if="{{theData.status === 'reserved'}}">取消预订</view>
       <view class="payBtn" bind:tap="payOrder" wx:if="{{theData.status === 'unpaid'}}">付款</view>
+      <view class="payBtn" bind:tap="completeOrder" wx:if="{{theData.status === 'paid'}}">确认收货</view>
     </view>
   </view>
 

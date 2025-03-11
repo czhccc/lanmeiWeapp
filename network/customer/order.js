@@ -42,3 +42,12 @@ export function _payOrder(data) {
     method: 'POST'
 	}, false)
 }
+
+// 确认收货（完结订单）
+export function _completeOrder(data) {
+  return request({
+		url: '/order/completeOrder',
+    data,
+    method: 'POST'
+	}, false)
+}

@@ -3,6 +3,8 @@ import {
   _getOrderList,
   _cancelSingleReservedOrder,
   _getOrderDetailById,
+  _payOrder,
+  _completeOrder,
 } from '../../../network/customer/order'
 
 Page({
@@ -63,7 +65,7 @@ Page({
           case 'reserved': statusText='已预订';break;
           case 'paid': statusText='已付款';break;
           case 'unpaid': statusText='未付款';break;
-          case 'completed': statusText='已完成';break;
+          case 'completed': statusText='已完结';break;
           case 'canceled': statusText='已取消';break;
           case 'refunded': statusText='已退款';break;
           default: break;
@@ -167,12 +169,91 @@ Page({
       } else {
         wx.showToast({
           title: res.message,
-          icon: 'error'
+          icon: 'none'
         })
       }
+    }).catch(error => {
+      wx.showToast({
+        title: error.message,
+        icon: 'none'
+      })
+      setTimeout(() => {
+        this.data.isSubmitting = false
+      }, 1500)
     })
   },
+  payOrder(e) { // 付款
+    this.data.currentOrderId = e.currentTarget.dataset.orderid
 
+    _payOrder({ orderId: this.data.currentOrderId }).then(res => {
+      if (res.code === 200) {
+        wx.showToast({
+          title: '付款成功',
+        })
+        setTimeout(() => {
+          this.replaceOrderItem()
+        }, 1500)
+      } else {
+        wx.showToast({
+          title: res.message,
+          icon: 'none'
+        })
+      }
+    }).catch(error => {
+      wx.showToast({
+        title: error.message,
+        icon: 'none'
+      })
+      setTimeout(() => {
+        this.data.isSubmitting = false
+      }, 1500)
+    })
+  },
+  completeOrder(e) { // 确认收货
+    var that = this;
+
+    if (this.data.isSubmitting) {
+      return;
+    }
+
+    this.data.currentOrderId = e.currentTarget.dataset.orderid
+
+    that.data.isSubmitting = true
+
+    wx.showModal({
+      title: '确认收货？',
+      success(res) {
+        if (res.confirm) {
+          _completeOrder({ orderId: that.data.currentOrderId }).then(res => {
+            if (res.code === 200) {
+              wx.showToast({
+                title: '收货成功',
+              })
+              setTimeout(() => {
+                that.replaceOrderItem()
+              }, 1500)
+            } else {
+              wx.showToast({
+                title: res.message,
+                icon: 'none'
+              })
+            }
+          }).catch(error => {
+            wx.showToast({
+              title: error.message,
+              icon: 'none'
+            })
+            setTimeout(() => {
+              that.data.isSubmitting = false
+            }, 1500)
+          })
+        }
+        if (res.cancel) {
+          that.data.isSubmitting = false
+        }
+      }
+    });
+  },
   refund() {
     wx.showModal({
       title: '确认退款？',
@@ -187,7 +268,7 @@ Page({
   },
   seeDetail(e) {
     wx.navigateTo({
-      url: `/pages/customer/order/orderDetail/orderDetail?id=${e.currentTarget.dataset.id}`,
+      url: `/pages/customer/order/orderDetail/orderDetail?id=${e.currentTarget.dataset.orderid}`,
     })
   },
   filterStatusClick(e) {
@@ -241,7 +322,7 @@ Page({
         case 'reserved': statusText='已预订';break;
         case 'paid': statusText='已付款';break;
         case 'unpaid': statusText='未付款';break;
-        case 'completed': statusText='已完成';break;
+        case 'completed': statusText='已完结';break;
         case 'canceled': statusText='已取消';break;
         case 'refunded': statusText='已退款';break;
         default: break;

@@ -20,8 +20,10 @@
           <view class="orderId-value">{{item.order_no}}</view>
           <image class="orderId-copy" src="../../../images/common/copy.png" mode="" bind:tap="copyOrderId" data-text="{{item.order_no}}" />
         </view>
-        <view class="order-status" wx:if="{{item.statusText==='已取消'||item.statusText==='已退款'}}" style="color: red;">{{item.statusText}}</view>
-        <view class="order-status" wx:else>{{item.statusText}}</view>
+        <view class="order-status" wx:if="{{item.statusText==='已预订'}}" style="color: #1F8FA6;">{{item.statusText}}</view>
+        <view class="order-status" wx:if="{{item.statusText==='已取消'}}" style="color: #C05717;">{{item.statusText}}</view>
+        <view class="order-status" wx:if="{{item.statusText==='已付款'}}" style="color: #13ac5a;">{{item.statusText}}</view>
+        <view class="order-status" wx:if="{{item.statusText==='已完结'}}" style="color: #2D3748;">{{item.statusText}}</view>
       </view>
       <view class="order-content">
           <image class="order-img" src="{{item.snapshot_coverImage}}" alt=""/>
@@ -33,19 +35,21 @@
         <view class="payCount-label">价格区间：</view>
         <view class="payCount-value">¥{{item.finalPrice}}</view>
       </view>
-      <view class="payCount" wx:if="{{item.batch_type==='preorder'&&item.status==='unpaid'}}">
-        <view class="payCount-label">待付款金额：</view>
+      <view class="payCount" wx:if="{{item.status==='unpaid'}}">
+        <view class="payCount-label">待付款：</view>
         <view class="payCount-value">¥{{item.finalPrice}}</view>
       </view>
-      <view class="payCount" wx:if="{{item.batch_type==='stock'}}">
-        <view class="payCount-label">付款金额：</view>
-        <view class="payCount-value">¥{{item.finalPrice}}</view>
+      <view class="payCount" wx:if="{{item.status==='paid'||item.status==='completed'}}">
+        <view class="payCount-label">实付款：</view>
+        <view class="payCount-value">¥{{item.pay_finalAmount}}</view>
       </view>
 
       <view class="order-btns">
         <view class="order-btn-red" wx:if="{{item.status==='reserved'}}" catch:tap="cancelOrder" data-orderId="{{item.id}}">取消预订</view>
+        <view class="order-payOrder" wx:if="{{item.status==='unpaid'}}" catch:tap="payOrder" data-orderId="{{item.id}}">付款</view>
+        <view class="order-payOrder" wx:if="{{item.status==='paid'}}" catch:tap="completeOrder" data-orderId="{{item.id}}">确认收货</view>
         <view class="order-refund" wx:if="{{item.batch_type==='stock'}}" catch:tap="refund">退款</view>
-        <view class="order-seeDetail" catch:tap="seeDetail" data-id="{{item.id}}">查看详情</view>
+        <view class="order-seeDetail" catch:tap="seeDetail" data-orderId="{{item.id}}">查看详情</view>
       </view>
     </view>
     <view class="blank" style="height: 60rpx;"></view>
@@ -81,12 +85,12 @@
         <view class="filter-item-value filter-status" wx:if="{{tabIndex===0}}">
           <view class="filter-status-item" style="background-color: {{status==='reserved'?'rgb(25,137,250)':'rgb(243, 243, 243)'}};color: {{status==='reserved'?'white':'black'}};" bind:tap="filterStatusClick" data-flag="reserved">已预订</view>
           <view class="filter-status-item" style="background-color: {{status==='unpaid'?'rgb(25,137,250)':'rgb(243, 243, 243)'}};color: {{status==='unpaid'?'white':'black'}};" bind:tap="filterStatusClick" data-flag="unpaid">未付款</view>
-          <view class="filter-status-item" style="background-color: {{status==='completed'?'rgb(25,137,250)':'rgb(243, 243, 243)'}};color: {{status==='completed'?'white':'black'}};" bind:tap="filterStatusClick" data-flag="completed">已完成</view>
+          <view class="filter-status-item" style="background-color: {{status==='completed'?'rgb(25,137,250)':'rgb(243, 243, 243)'}};color: {{status==='completed'?'white':'black'}};" bind:tap="filterStatusClick" data-flag="completed">已完结</view>
           <view class="filter-status-item" style="background-color: {{status==='canceled'?'rgb(25,137,250)':'rgb(243, 243, 243)'}};color: {{status==='canceled'?'white':'black'}};" bind:tap="filterStatusClick" data-flag="canceled">已取消</view>
         </view>
         <view class="filter-item-value filter-status" wx:if="{{tabIndex===1}}">
           <view class="filter-status-item" style="background-color: {{status==='paid'?'rgb(25,137,250)':'rgb(243, 243, 243)'}};color: {{status==='paid'?'white':'black'}};" bind:tap="filterStatusClick" data-flag="paid">已付款</view>
-          <view class="filter-status-item" style="background-color: {{status==='completed'?'rgb(25,137,250)':'rgb(243, 243, 243)'}};color: {{status==='completed'?'white':'black'}};" bind:tap="filterStatusClick" data-flag="completed">已完成</view>
+          <view class="filter-status-item" style="background-color: {{status==='completed'?'rgb(25,137,250)':'rgb(243, 243, 243)'}};color: {{status==='completed'?'white':'black'}};" bind:tap="filterStatusClick" data-flag="completed">已完结</view>
           <view class="filter-status-item" style="background-color: {{status==='refunded'?'rgb(25,137,250)':'rgb(243, 243, 243)'}};color: {{status==='refunded'?'white':'black'}};" bind:tap="filterStatusClick" data-flag="refunded">已退款</view>
         </view>
       </view>

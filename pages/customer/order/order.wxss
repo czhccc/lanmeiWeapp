@@ -115,6 +115,18 @@ page {
   color: red;
   box-sizing: border-box;
 }
+.order-payOrder {
+  width: 160rpx;
+  height: 64rpx;
+  line-height: 64rpx;
+  background: #FFFFFF;
+  border-radius: 32rpx;
+  border: 2rpx solid #1989FA;
+  text-align: center;
+  font-size: 28rpx;
+  color: #1989FA;
+  box-sizing: border-box;
+}
 .order-seeDetail {
   width: 160rpx;
   height: 64rpx;

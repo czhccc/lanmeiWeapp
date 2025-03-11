@@ -3,6 +3,7 @@ import {
   _getOrderDetailById,
   _cancelSingleReservedOrder,
   _payOrder,
+  _completeOrder,
 } from '../../../../network/customer/order'
 
 import dayjs from 'dayjs'
@@ -31,7 +32,7 @@ Page({
         case 'reserved': statusText='已预订';break;
         case 'paid': statusText='已付款';break;
         case 'unpaid': statusText='未付款';break;
-        case 'completed': statusText='已完成';break;
+        case 'completed': statusText='已完结';break;
         case 'canceled': statusText='已取消';break;
         case 'refunded': statusText='已退款';break;
         default: break;
@@ -52,7 +53,7 @@ Page({
           let finalMinPrice = (Number(theData.preorder_minPrice)*Number(theData.num) + Number(theData.postage) - Number(theData.discountAmount_promotion) - Number(theData.discountAmount_custom)).toFixed(2)
           let finalMaxPrice = (Number(theData.preorder_maxPrice)*Number(theData.num) + Number(theData.postage) - Number(theData.discountAmount_promotion) - Number(theData.discountAmount_custom)).toFixed(2)
           finalPrice = `${finalMinPrice} ~ ${finalMaxPrice}`
-        } else if (theData.status==='unpaid') { // 售卖阶段
+        } else if (theData.status==='unpaid' || theData.status==='paid'||theData.status==='completed') { // 售卖阶段
           theData.totalPrice = (Number(theData.preorder_finalPrice)*Number(theData.num)).toFixed(2)
 
           finalPrice = (Number(theData.preorder_finalPrice)*Number(theData.num) + Number(theData.postage) - Number(theData.discountAmount_promotion) - Number(theData.discountAmount_custom)).toFixed(2)
@@ -109,8 +110,7 @@ Page({
       }
     })
   },
-  // 付款
-  payOrder() {
+  payOrder() { // 付款
     if (this.data.isSubmitting) {
       return;
     }
@@ -128,6 +128,49 @@ Page({
         }, 1500)
       }
     })
+  },
+  completeOrder(e) { // 确认收货
+    var that = this;
+
+    if (this.data.isSubmitting) {
+      return;
+    }
+
+    that.data.isSubmitting = true
+
+    wx.showModal({
+      title: '确认收货？',
+      success(res) {
+        if (res.confirm) {
+          _completeOrder({ orderId: that.data.orderId }).then(res => {
+            if (res.code === 200) {
+              wx.showToast({
+                title: '收货成功',
+              })
+              setTimeout(() => {
+                that.getOrderDetailById()
+              }, 1500)
+            } else {
+              wx.showToast({
+                title: res.message,
+                icon: 'none'
+              })
+            }
+          }).catch(error => {
+            wx.showToast({
+              title: error.message,
+              icon: 'none'
+            })
+            setTimeout(() => {
+              that.data.isSubmitting = false
+            }, 1500)
+          })
+        }
+        if (res.cancel) {
+          that.data.isSubmitting = false
+        }
+      }
+    });
   },
   copyOrderId(e) {
     wx.setClipboardData({
