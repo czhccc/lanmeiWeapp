@@ -14,12 +14,16 @@
       <view class="goods-name">{{theData.snapshot_goodsName}}</view>
     </view>
     <view class="goods-num">×{{theData.num}} {{theData.snapshot_goodsUnit}}</view>
-    <!-- <view class="goods-price-wrapper">
-      <view class="goods-price-label" wx:if="{{theData.batch_type==='preorder'&&(theData.status==='reserved'||theData.status==='canceled')}}">价格区间：</view>
-      <view class="goods-price-label" wx:if="{{theData.batch_type==='preorder'&&theData.status==='unpaid'}}">待付款金额：</view>
-      <view class="goods-price-value">¥{{theData.finalPrice}}</view>
-    </view> -->
-    
+    <view class="goods-price">
+      <view class="goods-price-proorder" wx:if="{{theData.batch_type==='preorder'}}">
+        ￥{{theData.preorder_minPrice}} ~ {{theData.preorder_maxPrice}}
+        <text class="goods-price-unit"> / {{theData.snapshot_goodsUnit}}</text>
+      </view>
+      <view class="goods-price-stock" wx:if="{{theData.batch_type==='stock'}}">
+        ￥{{theData.stock_unitPrice}}
+        <text class="goods-price-unit"> / {{theData.snapshot_goodsUnit}}</text>
+      </view>
+    </view>
   </view>
 
   <view class="orderId">
@@ -95,11 +99,11 @@
     </view>
     <view class="detail-line" wx:if="{{theData.discountAmount_promotion > 0}}">
       <view class="detail-line-label">满减优惠</view>
-      <view class="detail-line-value" style="color: red;">-¥{{theData.discountAmount_promotion}}</view>
+      <view class="detail-line-value" style="color: #E53935;">-¥{{theData.discountAmount_promotion}}</view>
     </view>
     <view class="detail-line" wx:if="{{theData.discountAmount_custom > 0}}">
       <view class="detail-line-label">其他优惠</view>
-      <view class="detail-line-value" style="color: red;">-¥{{theData.discountAmount_custom}}</view>
+      <view class="detail-line-value" style="color: #E53935;">-¥{{theData.discountAmount_custom}}</view>
     </view>
     <view class="detail-line">
       <view class="detail-line-label2">总计金额：</view>
@@ -118,9 +122,9 @@
         <view class="payNum-value">¥{{theData.finalPrice}}</view>
       </view>
       <view class="payNum" wx:else> </view>
-      <view class="payBtn payBtn-red" bind:tap="cancelOrder" wx:if="{{theData.status === 'reserved'}}">取消预订</view>
-      <view class="payBtn" bind:tap="payOrder" wx:if="{{theData.status === 'unpaid'}}">付款</view>
-      <view class="payBtn" bind:tap="completeOrder" wx:if="{{theData.status === 'paid'}}">确认收货</view>
+      <view class="btn-solid btn-solid-#E53935" bind:tap="cancelOrder" wx:if="{{theData.status === 'reserved'}}">取消预订</view>
+      <view class="btn-solid" bind:tap="payOrder" wx:if="{{theData.status === 'unpaid'}}">付款</view>
+      <view class="btn-solid" bind:tap="completeOrder" wx:if="{{theData.status === 'paid'}}">确认收货</view>
     </view>
   </view>
 

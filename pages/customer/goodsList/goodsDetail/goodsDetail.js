@@ -29,7 +29,7 @@ Page({
       let theData = res.data
 
       if (theData.batch_discounts && theData.batch_discounts.length>0) {
-        theData.batch_discounts = JSON.parse(theData.batch_discounts)
+        theData.batch_discounts = theData.batch_discounts
         for (const item of theData.batch_discounts) {
           item.discount = formatNumber(item.discount)
           item.quantity = formatNumber(item.quantity)

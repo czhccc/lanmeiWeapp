@@ -54,33 +54,17 @@ page {
   margin-left: 20rpx;
   /* font-weight: 700; */
 }
-.goods-price {
-  display: flex;
-  align-items: flex-end;
-  flex-wrap: wrap;
-  justify-content: space-between;
-}
 .goods-num {
   margin-left: 20rpx;
   font-size: 30rpx;
   color: black;
   text-align: right;
 }
-.goods-price-wrapper {
-  margin-top: 12rpx;
+.goods-price {
+  margin-top: 10rpx;
   display: flex;
-  align-items: center;
   justify-content: flex-end;
-}
-.goods-price-label {
-  font-size: 24rpx;
-  color: #000000;
-}
-.goods-price-value {
-  font-size: 36rpx;
-  color: #F62603;
-  text-align: right;
-  /* font-weight: 700; */
+  color: #E53935;
 }
 
 
@@ -184,7 +168,7 @@ page {
 }
 .detail-line-value2 {
   font-size: 32rpx;
-  color: red;
+  color: #E53935;
   font-weight: 700;
 }
 
@@ -245,20 +229,20 @@ page {
   color: #F62603;
   font-weight: 700;
 }
-.payBtn {
-  width: 240rpx;
-  height: 84rpx;
-  background: #1989FA;
-  border-radius: 42rpx;
+.btn-solid {
   color: white;
+  border: 2rpx solid #1989FA;
+  background-color: #1989FA;
+  border-radius: 9999rpx;
   text-align: center;
-  line-height: 84rpx;
   font-size: 36rpx;
+  margin-left: 20rpx;
+  padding: 16rpx 20rpx;
 }
-.payBtn-red {
-  background-color: white;
-  color: red;
-  border: 2rpx solid red;
+.btn-solid-#E53935 {
+  border: 2rpx solid #E53E3E;
+  background-color: #E53E3E;
+  color: white;
 }
 
 .item-title {
@@ -303,8 +287,8 @@ page {
   line-height: 68rpx;
   background: white;
   border-radius: 42rpx;
-  color: red;
-  border: 2rpx solid red;
+  color: #E53935;
+  border: 2rpx solid #E53935;
   text-align: center;
   font-size: 32rpx;
 }

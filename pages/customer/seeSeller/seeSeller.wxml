@@ -3,6 +3,19 @@
 	<van-collapse accordion value="{{ activeName }}" bind:change="onChange">
     <van-collapse-item name="1">
       <view slot="title">
+        <text style="font-size: 32rpx;color: #333333;">联系方式</text>
+        <van-icon name="phone-o" style="font-size: 32rpx;margin-left: 10rpx;" />
+      </view>
+      <view style="color: black;margin-bottom: 32rpx;">有任何问题、反馈、建议、合作，请联系我们</view>
+      <view class="phone-item" wx:for="{{theData.contact}}" wx:key="item">
+        <text>{{item.type}}：</text>
+        <text class="phone-text">{{item.contact}}</text>
+        <van-button class="phone-btn" round type="primary" size="mini" bind:tap="copyContact" data-contact="{{item.contact}}">复制</van-button>
+        <van-button class="phone-btn" wx:if="{{item.type==='手机号'}}" round type="info" size="mini" bind:tap="phoneBtnClick" data-phone="{{item.contact}}">拨打</van-button>
+      </view>
+    </van-collapse-item>
+    <van-collapse-item name="2">
+      <view slot="title">
         <text style="font-size: 32rpx;color: #333333;">线下地址</text>
         <van-icon name="shop-collect-o" style="font-size: 32rpx;margin-left: 10rpx;" />
       </view>
@@ -11,18 +24,6 @@
           <text class="address-text">{{item.address}}</text>
           <van-button class="address-btn" round type="info" size="mini" bind:tap="addressBtnClick" data-item="{{item}}">查看</van-button>
         </view>
-      </view>
-    </van-collapse-item>
-    <van-collapse-item name="2">
-      <view slot="title">
-        <text style="font-size: 32rpx;color: #333333;">联系方式</text>
-        <van-icon name="phone-o" style="font-size: 32rpx;margin-left: 10rpx;" />
-      </view>
-      <view class="phone-item" wx:for="{{theData.contact}}" wx:key="item">
-        <text>{{item.type}}：</text>
-        <text class="phone-text">{{item.contact}}</text>
-        <van-button class="phone-btn" round type="primary" size="mini" bind:tap="copyContact" data-contact="{{item.contact}}">复制</van-button>
-        <van-button class="phone-btn" wx:if="{{item.type==='手机号'}}" round type="info" size="mini" bind:tap="phoneBtnClick" data-phone="{{item.contact}}">拨打</van-button>
       </view>
     </van-collapse-item>
     <van-collapse-item name="3">

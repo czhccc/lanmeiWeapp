@@ -109,7 +109,7 @@ page {
   margin-top: 10rpx;
 }
 .defaultAddressNotAvailableText {
-  color: red;
+  color: #E53935;
   text-align: right;
   padding-right: 30rpx;
   font-size: 24rpx;
@@ -192,7 +192,7 @@ page {
 }
 .detail-line-value2 {
   font-size: 28rpx;
-  color: red;
+  color: #E53935;
   font-weight: 700;
   word-break: keep-all;
 }

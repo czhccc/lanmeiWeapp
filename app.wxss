@@ -3,24 +3,31 @@
   color: #1989FA;
 }
 
-/* 空心按钮 */
-.btn1 {
-  border-radius: 42rpx;
-  border: 2rpx solid #1989FA;
-  height: 84rpx;
-  text-align: center;
-  line-height: 84rpx;
-  color: #1989FA;
-  box-sizing: border-box;
-  background-color: white;
+.the-color {
+  color: #E53935;
 }
 
-/* 实心按钮 */
-.btn2 {
-  background: #1989FA;
-  border-radius: 42rpx;
-  height: 84rpx;
-  text-align: center;
-  line-height: 84rpx;
+.btn-solid {
   color: white;
+  border: 2rpx solid #1989FA;
+  background-color: #1989FA;
+  border-radius: 9999rpx;
+  text-align: center;
+  font-size: 28rpx;
+  margin-left: 20rpx;
+  padding: 12rpx 20rpx;
+}
+.btn-solid-#E53935 {
+  border: 2rpx solid #E53E3E;
+  background-color: #E53E3E;
+  color: white;
+}
+.btn-blank {
+  color: #1989FA;
+  border: 2rpx solid #1989FA;
+  border-radius: 9999rpx;
+  text-align: center;
+  font-size: 28rpx;
+  margin-left: 20rpx;
+  padding: 12rpx 20rpx;
 }

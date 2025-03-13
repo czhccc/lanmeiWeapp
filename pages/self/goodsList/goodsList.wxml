@@ -43,7 +43,7 @@
       <view class="haveOrdered">
         <view class="haveOrdered-label">已预订：</view>
         <view class="haveOrdered-value">
-          <text style="color: red;">200</text> 斤
+          <text style="color: #E53935;">200</text> 斤
         </view>
       </view>
     </view>

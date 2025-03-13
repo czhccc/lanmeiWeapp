@@ -59,7 +59,6 @@ page {
 }
 .order-content {
   display: flex;
-  justify-content: space-between;
   align-items: flex-start;
   margin-top: 24rpx;
 }
@@ -103,50 +102,40 @@ page {
   display: flex;
   justify-content: flex-end;
 }
-.order-btn-red {
-  width: 160rpx;
-  height: 64rpx;
-  line-height: 64rpx;
-  background: #FFFFFF;
-  border-radius: 32rpx;
-  border: 2rpx solid red;
-  text-align: center;
-  font-size: 28rpx;
-  color: red;
-  box-sizing: border-box;
-}
-.order-payOrder {
-  width: 160rpx;
-  height: 64rpx;
-  line-height: 64rpx;
-  background: #FFFFFF;
-  border-radius: 32rpx;
+.order-btn-solid {
+  color: white;
   border: 2rpx solid #1989FA;
+  background-color: #1989FA;
+  border-radius: 9999rpx;
   text-align: center;
   font-size: 28rpx;
-  color: #1989FA;
-  box-sizing: border-box;
-}
-.order-seeDetail {
-  width: 160rpx;
-  height: 64rpx;
-  line-height: 64rpx;
-  background: #1989FA;
-  border-radius: 32rpx;
-  text-align: center;
-  font-size: 28rpx;
-  color: #FFFFFF;
   margin-left: 20rpx;
+  padding: 12rpx 20rpx;
+}
+.order-btn-solid-#E53935 {
+  border: 2rpx solid #E53E3E;
+  background-color: #E53E3E;
+  color: white;
+}
+.order-btn-blank {
+  color: #1989FA;
+  border: 2rpx solid #1989FA;
+  border-radius: 9999rpx;
+  text-align: center;
+  font-size: 28rpx;
+  margin-left: 20rpx;
+  padding: 12rpx 20rpx;
 }
 
 .filter {
   position: fixed;
   right: 0rpx;
   top: 60vh;
-  width: 120rpx;
+  /* width: 120rpx; */
+  padding: 10rpx 12rpx;
   text-align: center;
-  height: 60rpx;
-  line-height: 60rpx;
+  /* height: 60rpx; */
+  /* line-height: 60rpx; */
   background-color: rgba(25,137,250,0.8);
   font-size: 30rpx;
   border-radius: 10rpx 0 0 10rpx;
@@ -221,7 +210,7 @@ page {
   justify-content: space-between;
 }
 .filter-reset {
-  width: 340rpx;
+  flex: 1;
   height: 84rpx;
   background: #FFFFFF;
   border-radius: 42rpx;
@@ -231,19 +220,19 @@ page {
   font-size: 32rpx;
   color: #1989FA;
   font-weight: 700;
-  box-sizing: border-box;
 }
 .filter-confirm {
-  width: 340rpx;
+  margin-left: 30rpx;
+  flex: 1;
   height: 84rpx;
   background: #1989FA;
   border-radius: 42rpx;
+  border: 2rpx solid #1989FA;
   line-height: 84rpx;
   text-align: center;
   font-size: 32rpx;
   color: #FFFFFF;
   font-weight: 700;
-  box-sizing: border-box;
 }
 
 /* 取消预订 */
@@ -277,8 +266,8 @@ page {
   line-height: 68rpx;
   background: white;
   border-radius: 42rpx;
-  color: red;
-  border: 2rpx solid red;
+  color: #E53935;
+  border: 2rpx solid #E53935;
   text-align: center;
   font-size: 32rpx;
 }

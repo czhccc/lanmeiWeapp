@@ -73,7 +73,7 @@
     </view>
     <view class="detail-line" wx:if="{{discountAmount > 0}}">
       <view class="detail-line-label">满减优惠</view>
-      <view class="detail-line-value" style="color: red;">-¥{{discountAmount}}</view>
+      <view class="detail-line-value" style="color: #E53935;">-¥{{discountAmount}}</view>
     </view>
     <view class="detail-line" wx:if="{{addressInfo.province}}">
       <view class="detail-line-label2">总计金额：</view>

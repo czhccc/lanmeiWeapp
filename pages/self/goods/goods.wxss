@@ -30,8 +30,8 @@ page {
   height: 84rpx;
   text-align: center;
 	line-height: 84rpx;
-	border: 1rpx solid red;
-  color: red;
+	border: 1rpx solid #E53935;
+  color: #E53935;
   box-sizing: border-box;
 	background-color: white;
 	margin: 0 auto;

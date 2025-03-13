@@ -45,7 +45,7 @@ Page({
       theData.complete_time = theData.complete_time ? dayjs(theData.complete_time).format("YYYY-MM-DD HH:mm:ss") : null
 
       let finalPrice = null
-      if (theData.batch_type==='preorder') {
+      if (theData.batch_type==='preorder') { // preorder
         if (theData.status==='reserved' || theData.status==='canceled') { // 预订阶段
           theData.totalMinPrice = (Number(theData.preorder_minPrice)*Number(theData.num)).toFixed(2)
           theData.totalMaxPrice = (Number(theData.preorder_maxPrice)*Number(theData.num)).toFixed(2)
@@ -58,7 +58,8 @@ Page({
 
           finalPrice = (Number(theData.preorder_finalPrice)*Number(theData.num) + Number(theData.postage) - Number(theData.discountAmount_promotion) - Number(theData.discountAmount_custom)).toFixed(2)
         }
-      } else {
+      } else if (theData.batch_type === 'stock') {  // stock
+        theData.totalPrice = (Number(theData.stock_unitPrice)*Number(theData.num)).toFixed(2)
         finalPrice = (Number(theData.stock_unitPrice)*Number(theData.num) + Number(theData.postage) - Number(theData.discountAmount_promotion) - Number(theData.discountAmount_custom)).toFixed(2)
       }
       theData.finalPrice = finalPrice

@@ -19,9 +19,9 @@ Page({
     listData: [],
 
     // 筛选项
+    status: '',
     orderNo: '',
     goodsName: '',
-    status: '',
     startDate: '',
     endDate: '',
 
@@ -52,7 +52,6 @@ Page({
       pageSize: this.data.pageSize,
       user: wx.getStorageSync('phone'),
       generation_type: 'auto',
-      batch_type: this.data.tabIndex===0 ? 'preorder' : 'stock',
       order_no: this.data.orderNo,
       snapshot_goodsName: this.data.goodsName,
       status: this.data.status,
@@ -109,18 +108,27 @@ Page({
     })
   },
   tabChange(e) {
+    console.log(e)
     if (e.detail.index === this.data.tabIndex) {
       return;
     } else {
+      let status = ''
+      switch (e.detail.index) {
+        case 0: status='';break;
+        case 1: status='reserved';break;
+        case 2: status='paid';break;
+        case 3: status='completed';break;
+        default: break;
+      }
       this.setData({
         tabIndex: e.detail.index,
         pageNo: 1,
         listData: [],
         orderNo: '',
         goodsName: '',
-        status: '',
         startDate: '',
         endDate: '',
+        status,
       })
       this.getOrderList()
     }
@@ -133,17 +141,6 @@ Page({
   },
 
   // 取消预订
-  cancelOrder(e) {
-    this.data.currentOrderId = e.currentTarget.dataset.orderid
-
-    if (this.data.isSubmitting) {
-      return;
-    }
-    this.setData({
-      isShowCancelOrderPopup: true,
-      cancelOrderReason: '',
-    })
-  },
   closeCancelOrderPopup() {
     this.setData({
       isShowCancelOrderPopup: false,
@@ -180,6 +177,17 @@ Page({
       setTimeout(() => {
         this.data.isSubmitting = false
       }, 1500)
+    })
+  },
+  cancelOrder(e) {
+    this.data.currentOrderId = e.currentTarget.dataset.orderid
+
+    if (this.data.isSubmitting) {
+      return;
+    }
+    this.setData({
+      isShowCancelOrderPopup: true,
+      cancelOrderReason: '',
     })
   },
   payOrder(e) { // 付款

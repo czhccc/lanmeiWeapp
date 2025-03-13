@@ -191,7 +191,7 @@ page {
 }
 .detail-line-value2 {
   font-size: 32rpx;
-  color: red;
+  color: #E53935;
   font-weight: 700;
 }
 .changeAmountBtn {
@@ -307,11 +307,11 @@ page {
 .changeAmount-cancelBtn {
   flex: 1;
   border-radius: 42rpx;
-  border: 2rpx solid red;
+  border: 2rpx solid #E53935;
   height: 84rpx;
   text-align: center;
   line-height: 84rpx;
-  color: red;
+  color: #E53935;
   box-sizing: border-box;
   background-color: white;
   font-size: 32rpx;
@@ -370,11 +370,11 @@ page {
 .cancelOrder-cancelBtn {
   flex: 1;
   border-radius: 42rpx;
-  border: 2rpx solid red;
+  border: 2rpx solid #E53935;
   height: 84rpx;
   text-align: center;
   line-height: 84rpx;
-  color: red;
+  color: #E53935;
   box-sizing: border-box;
   background-color: white;
   font-size: 32rpx;
