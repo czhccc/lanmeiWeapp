@@ -18,11 +18,11 @@
 		<view class="right">
 			<!-- <view class="sort">
 				<view class="zhtj" bindtap="sortClick" style="color:{{!sortType?'#1989FA':'#999999'}};">综合推荐</view>
-				<view class="xl" bindtap="sortClick" data-flag="sale_num">
-					<view class="sort-text" style="color:{{sortType=='sale_num'?'#1989FA':'#999999'}};">销量</view>
-					<image class="sort-img" wx:if="{{sortType!='sale_num'}}" src="/images/common/sort0.png" mode=""/>
-					<image class="sort-img" wx:if="{{sortType=='sale_num' && sortOrder=='asc'}}" src="/images/common/sort1.png" mode=""/>
-					<image class="sort-img" wx:if="{{sortType=='sale_num' && sortOrder=='desc'}}" src="/images/common/sort2.png" mode=""/>
+				<view class="xl" bindtap="sortClick" data-flag="sale_quantity">
+					<view class="sort-text" style="color:{{sortType=='sale_quantity'?'#1989FA':'#999999'}};">销量</view>
+					<image class="sort-img" wx:if="{{sortType!='sale_quantity'}}" src="/images/common/sort0.png" mode=""/>
+					<image class="sort-img" wx:if="{{sortType=='sale_quantity' && sortOrder=='asc'}}" src="/images/common/sort1.png" mode=""/>
+					<image class="sort-img" wx:if="{{sortType=='sale_quantity' && sortOrder=='desc'}}" src="/images/common/sort2.png" mode=""/>
 				</view>
 				<view class="xl">
 					<view class="sort-text" bindtap="sortClick" data-flag="cash_price" style="color:{{sortType=='cash_price'?'#1989FA':'#999999'}};">价格</view>
@@ -45,8 +45,8 @@
 					<view class="goods-type" style="background-color: {{item.batch_type==='preorder'?'#66BB6A':'rgba(25,137,250)'}};">{{item.batch_type==='preorder'?'预订':'现货'}}</view>
 					<view class="good-content">
 						<view class="good-name">{{item.goods_name}}</view>
-						<view class="good-price" wx:if="{{item.batch_type==='preorder'}}">¥{{item.batch_minPrice}} ~ ¥{{item.batch_maxPrice}} / {{item.goods_unit}}</view>
-						<view class="good-price" wx:if="{{item.batch_type==='stock'}}">¥{{item.batch_unitPrice}} / {{item.goods_unit}}</view>
+						<view class="good-price" wx:if="{{item.batch_type==='preorder'}}">¥{{item.batch_preorder_minPrice}} ~ ¥{{item.batch_preorder_maxPrice}} / {{item.goods_unit}}</view>
+						<view class="good-price" wx:if="{{item.batch_type==='stock'}}">¥{{item.batch_stock_unitPrice}} / {{item.goods_unit}}</view>
 					</view>
 				</view>
 				<view wx:if="{{listData.length===0}}" style="display: flex;flex-direction: column;align-items: center;position: absolute;top: 50%;transform: translateY(-50%);width: 100%;">

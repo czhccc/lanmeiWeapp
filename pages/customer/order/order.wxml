@@ -31,7 +31,7 @@
           <image class="order-img" src="{{item.snapshot_coverImage}}" alt=""/>
           <view class="goodsName">{{item.snapshot_goodsName}}</view>
       </view>
-      <view class="goods-num">×{{item.num}} {{item.snapshot_goodsUnit}}</view>
+      <view class="goods-quantity">×{{item.quantity}} {{item.snapshot_goodsUnit}}</view>
       
       <view class="payCount" wx:if="{{item.batch_type==='preorder'&&(item.status==='reserved'||item.status==='canceled')}}">
         <view class="payCount-label">价格区间：</view>

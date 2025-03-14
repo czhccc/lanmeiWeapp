@@ -3,9 +3,9 @@ Page({
   data: {
     goodsId: '', // 产品编号
     name: '', // 产品名称
-    totalNum: 0, // 总数量
+    totalQuantity: 0, // 总数量
     unit: '', // 单位
-    remainsNum: 0, // 剩余数量
+    remainsQuantity: 0, // 剩余数量
     unitPrice: 0, // 单价
     canMail: true, // 是否可以邮寄
     isSale: true, // 是否上架

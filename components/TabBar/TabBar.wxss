@@ -21,7 +21,6 @@
   display: flex;
   justify-content: space-around;
   align-items: center;
-  box-sizing: border-box;
   border-top: 1rpx solid #E7E7E7;
 }
 
@@ -30,7 +29,6 @@
   width: 120rpx;
   height: 80rpx;
   border-radius: 40rpx;
-  box-sizing: border-box;
   padding-top: 4rpx;
 }
 .tab-bar-img{

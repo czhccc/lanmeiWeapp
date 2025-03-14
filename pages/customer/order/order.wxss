@@ -75,7 +75,7 @@ page {
   margin-left: 20rpx;
   /* font-weight: 700; */
 }
-.goods-num {
+.goods-quantity {
   font-size: 30rpx;
   color: black;
   text-align: right;

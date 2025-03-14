@@ -25,27 +25,31 @@ page {
 	box-sizing: border-box;
 	padding: 0 32rpx;
 }
-.btn2 {
+.submitBtn {
 	width: 630rpx;
 	margin: 0 auto;
 	margin-top: 20rpx;
-	background: white;
-  border-radius: 42rpx;
-  border: 2rpx solid #1989FA;
+	background: #1989FA;
+  border-radius: 9999rpx;
+  border: 1rpx solid #1989FA;
   height: 80rpx;
   text-align: center;
   line-height: 80rpx;
-  color: #1989FA;
-	box-sizing: border-box;
-	font-size: 30rpx;
-  background-color: white;
+  color: white;
+	font-size: 32rpx;
 }
 .moreIdeas {
-	font-size: 32rpx;
-	color: #1989FA;
 	margin-top: 30rpx;
 	display: flex;
-	justify-content: flex-end;
+  justify-content: flex-end;
+}
+.contactUs {
+  font-size: 24rpx;
+  border: 1rpx solid #1989FA;
+  border-radius: 9999rpx;
+  text-align: center;
+  color: #1989FA;
+  padding: 10rpx 16rpx;
 }
 
 .history-item {

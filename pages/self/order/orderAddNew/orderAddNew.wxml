@@ -14,11 +14,11 @@
           <view class="goods-price-new">¥199.00</view>
           <view class="goods-price-old">¥299.00</view>
         </view>
-        <view class="num-wrapper">
-          <view class="num-wrapper2">
+        <view class="quantity-wrapper">
+          <view class="quantity-wrapper2">
             <van-stepper 
-              value="{{ num }}" 
-              bind:change="numChnage"
+              value="{{ quantity }}" 
+              bind:change="quantityChnage"
               min="{{1}}"
               max="{{999}}" 
             />

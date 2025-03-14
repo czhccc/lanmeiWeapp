@@ -23,7 +23,7 @@
         </view>
       </view>
     </view>
-    <view class="goods-num">×999</view>
+    <view class="goods-quantity">×999</view>
   </view>
 
   <view class="item-title">收货地址</view>

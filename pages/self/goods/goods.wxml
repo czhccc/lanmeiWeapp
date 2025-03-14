@@ -16,7 +16,7 @@
 	<view style="display: flex;align-items: center;">
     <van-field
       type="number"
-      model:value="{{ totalNum }}"
+      model:value="{{ totalQuantity }}"
       placeholder="请输入总数量"
       border="{{ false }}"
       label="总数量"
@@ -30,7 +30,7 @@
   </view>
 	<van-field
 		type="number"
-		model:value="{{ num }}"
+		model:value="{{ quantity }}"
 		placeholder="自动计算"
 		border="{{ false }}"
 		label="当前剩余"

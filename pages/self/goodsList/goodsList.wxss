@@ -71,7 +71,7 @@ page {
   margin-top: 10rpx;
   flex: 1;
 }
-.shelve-num {
+.shelve-Quantity {
   margin-left: 20rpx;
   font-size: 24rpx;
   color: black;

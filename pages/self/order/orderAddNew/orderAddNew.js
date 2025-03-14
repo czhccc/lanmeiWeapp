@@ -1,7 +1,7 @@
 // pages/self/order/orderAddNew/orderAddNew.js
 Page({
   data: {
-    num: 1,
+    quantity: 1,
     typeArr: [  // 当前状态
       {value: 'USA', label: '购买'},
       {value: 'BRA', label: '预订'},
@@ -29,9 +29,9 @@ Page({
   onLoad(options) {
 
   },
-  numChnage(e) {
+  quantityChnage(e) {
     this.setData({
-      num: e.detail
+      quantity: e.detail
     })
   },
   bindRegionChange(e) { // 选择省市区

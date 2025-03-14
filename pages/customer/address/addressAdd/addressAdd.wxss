@@ -21,20 +21,20 @@ page {
 .deleteBtn {
   flex: 1;
   background: white;
-  border-radius: 42rpx;
-  border: 2rpx solid #EE0A24;
+  border-radius: 9999rpx;
+  border: 1rpx solid #EE0A24;
   height: 84rpx;
   text-align: center;
   line-height: 84rpx;
   color: #EE0A24;
-  box-sizing: border-box;
   background-color: white;
   margin-right: 30rpx;
 }
 .saveBtn {
   flex: 1;
   background: #1989FA;
-  border-radius: 42rpx;
+  border: 1rpx solid #1989FA;
+  border-radius: 9999rpx;
   height: 84rpx;
   text-align: center;
   line-height: 84rpx;

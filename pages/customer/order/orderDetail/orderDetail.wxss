@@ -54,7 +54,7 @@ page {
   margin-left: 20rpx;
   /* font-weight: 700; */
 }
-.goods-num {
+.goods-quantity {
   margin-left: 20rpx;
   font-size: 30rpx;
   color: black;
@@ -217,14 +217,14 @@ page {
   align-items: center;
   justify-content: space-between;
 }
-.payNum {
+.payAmount {
   display: flex;
 }
-.payNum-label {
+.payAmount-label {
   font-size: 32rpx;
   color: #333333;
 }
-.payNum-value {
+.payAmount-value {
   font-size: 32rpx;
   color: #F62603;
   font-weight: 700;

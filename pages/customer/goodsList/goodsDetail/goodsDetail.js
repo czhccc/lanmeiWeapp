@@ -37,12 +37,12 @@ Page({
       }
       
       theData.batch_minQuantity = formatNumber(theData.batch_minQuantity)
-      theData.batch_remainingAmount = formatNumber(theData.batch_remainingAmount)
+      theData.batch_remainingQuantity = formatNumber(theData.batch_remainingQuantity)
       if (theData.batch_type === 'preorder') {
-        theData.batch_minPrice = theData.batch_minPrice
-        theData.batch_maxPrice = theData.batch_maxPrice
+        theData.batch_preorder_minPrice = theData.batch_preorder_minPrice
+        theData.batch_preorder_maxPrice = theData.batch_preorder_maxPrice
       } else {
-        theData.batch_unitPrice = theData.batch_unitPrice
+        theData.batch_stock_unitPrice = theData.batch_stock_unitPrice
         theData.batch_stock = formatNumber(theData.batch_stock)
       }
 

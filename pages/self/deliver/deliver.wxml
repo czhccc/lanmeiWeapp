@@ -32,7 +32,7 @@
             <view class="goods-specification-value">500ml500ml500ml500ml500ml500ml500ml500ml</view>
           </view>
         </view>
-        <view class="goods-num">×999</view>
+        <view class="goods-quantity">×999</view>
       </view>
       
       <view class="payCount">

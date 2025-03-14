@@ -16,7 +16,7 @@
   </view>
 
   <view class="bottom-bar">
-    <view class="addBtn" wx:if="{{numLimited}}">收货地址数量已达上限</view>
+    <view class="addBtn" wx:if="{{quantityLimited}}">收货地址数量已达上限</view>
     <view class="addBtn" wx:else bind:tap="toAdd">新增</view>
   </view>
 </view>

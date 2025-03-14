@@ -36,7 +36,7 @@
             </view>
           </view>
         </view>
-        <view class="goods-num">×999</view>
+        <view class="goods-Quantity">×999</view>
       </view>
       
       <view class="payCount">

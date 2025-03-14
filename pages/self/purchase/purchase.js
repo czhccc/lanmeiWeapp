@@ -5,7 +5,7 @@ Page({
     batch: '', // 批次
     name: '', // 产品名
     resource: '', // 来源
-    num: 0, // 数量
+    quantity: 0, // 数量
     unit: '', // 单位
     goodsCosts: 0, // 货物成本
     otherCosts: 0, // 其他总成本

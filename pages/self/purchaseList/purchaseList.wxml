@@ -28,7 +28,7 @@
         <view class="purchase-time">采购时间：2024-6-13</view>
         <view class="purchase-main">
           <view class="goodsName">蓝莓蓝莓蓝莓蓝莓蓝莓蓝莓蓝莓蓝莓蓝莓蓝莓蓝莓蓝莓蓝莓</view>
-          <view class="purchase-num">×999斤</view>
+          <view class="purchase-quantity">×999斤</view>
         </view>
         <view class="purchase-resource">
           <view class="purchase-resource-label">

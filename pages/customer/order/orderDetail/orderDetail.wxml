@@ -13,7 +13,7 @@
       <image class="goods-img" src="{{theData.snapshot_coverImage}}" mode=""/>
       <view class="goods-name">{{theData.snapshot_goodsName}}</view>
     </view>
-    <view class="goods-num">×{{theData.num}} {{theData.snapshot_goodsUnit}}</view>
+    <view class="goods-quantity">×{{theData.quantity}} {{theData.snapshot_goodsUnit}}</view>
     <view class="goods-price">
       <view class="goods-price-proorder" wx:if="{{theData.batch_type==='preorder'}}">
         ￥{{theData.preorder_minPrice}} ~ {{theData.preorder_maxPrice}}
@@ -117,11 +117,11 @@
 
   <view class="bottom" wx:if="{{isShowBottom}}">
     <view class="bottom-content">
-      <view class="payNum" wx:if="{{theData.status === 'unpaid'}}">
-        <!-- <view class="payNum-label">待付款金额：</view> -->
-        <view class="payNum-value">¥{{theData.finalPrice}}</view>
+      <view class="payAmount" wx:if="{{theData.status === 'unpaid'}}">
+        <!-- <view class="payAmount-label">待付款金额：</view> -->
+        <view class="payAmount-value">¥{{theData.finalPrice}}</view>
       </view>
-      <view class="payNum" wx:else> </view>
+      <view class="payAmount" wx:else> </view>
       <view class="btn-solid btn-solid-#E53935" bind:tap="cancelOrder" wx:if="{{theData.status === 'reserved'}}">取消预订</view>
       <view class="btn-solid" bind:tap="payOrder" wx:if="{{theData.status === 'unpaid'}}">付款</view>
       <view class="btn-solid" bind:tap="completeOrder" wx:if="{{theData.status === 'paid'}}">确认收货</view>

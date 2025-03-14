@@ -5,7 +5,7 @@ import {
 
 Page({
   data: {
-    numLimited: false, // 数量上限
+    quantityLimited: false, // 数量上限
     isChoose: false,
     list: [],
 
@@ -28,7 +28,7 @@ Page({
       user: wx.getStorageSync('phone')
     }).then(res => {
       if (res.data.length >= 10) {
-        this.setData({ numLimited: true })
+        this.setData({ quantityLimited: true })
       }
 
       if (this.data.isChoose) {

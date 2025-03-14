@@ -52,11 +52,6 @@ page {
   color: #F62603;
   font-weight: 700;
 }
-.goods-num-wrapper {
-  display: flex;
-  justify-content: flex-end;
-  margin-top: 20rpx;
-}
 
 .chooseAddress {
   width: 690rpx;
@@ -211,15 +206,15 @@ page {
   align-items: center;
   justify-content: space-between;
 }
-.payNum {
+.payAmount {
   display: flex;
 }
-.payNum-label {
+.payAmount-label {
   font-size: 32rpx;
   color: #333333;
   font-weight: 700;
 }
-.payNum-value {
+.payAmount-value {
   font-size: 32rpx;
   color: #F62603;
   font-weight: 700;

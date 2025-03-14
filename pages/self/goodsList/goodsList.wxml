@@ -29,7 +29,7 @@
         <view class="shelve-time">上架时间/下架时间：2024-6-13</view>
         <view class="shelve-main">
           <view class="goodsName">蓝莓蓝莓蓝莓蓝莓蓝莓蓝莓蓝莓蓝莓蓝莓蓝莓蓝莓蓝莓蓝莓蓝莓蓝莓蓝莓蓝莓蓝莓蓝莓</view>
-          <view class="shelve-num">×999斤</view>
+          <view class="shelve-Quantity">×999斤</view>
         </view>
       </view>
 			<view class="payCount">

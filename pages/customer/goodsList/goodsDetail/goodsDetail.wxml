@@ -15,12 +15,12 @@
 	<view class="introduce">
 		<view class="name">{{theData.goods_name}}</view>
 		<view class="price-wrapper">
-			<view class="price" wx:if="{{theData.batch_type==='preorder'}}">¥{{theData.batch_minPrice}} ~ ¥{{theData.batch_maxPrice}} / {{theData.goods_unit}}</view>
-			<view class="price" wx:if="{{theData.batch_type==='stock'}}">¥{{theData.batch_unitPrice}} / {{theData.goods_unit}}</view>
+			<view class="price" wx:if="{{theData.batch_type==='preorder'}}">¥{{theData.batch_preorder_minPrice}} ~ ¥{{theData.batch_preorder_maxPrice}} / {{theData.goods_unit}}</view>
+			<view class="price" wx:if="{{theData.batch_type==='stock'}}">¥{{theData.batch_stock_unitPrice}} / {{theData.goods_unit}}</view>
 		</view>
 		<view class="type-wrapper">
 			<view class="type" wx:if="{{theData.batch_type==='preorder'}}">预订中</view>
-			<view class="type" wx:if="{{theData.batch_type==='stock'}}">剩余量：{{theData.batch_stock_remainingAmount}} {{theData.goods_unit}}</view>
+			<view class="type" wx:if="{{theData.batch_type==='stock'}}">剩余量：{{theData.batch_stock_remainingQuantity}} {{theData.goods_unit}}</view>
 		</view>
 	</view>
 

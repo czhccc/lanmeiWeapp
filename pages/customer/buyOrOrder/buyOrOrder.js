@@ -10,7 +10,7 @@ Page({
   data: {
     theData: null,
 
-    num: 1,
+    quantity: 1,
 
     defaultAddressNotAvailable: true,
     provinces: [],
@@ -36,17 +36,17 @@ Page({
     })
     if (app.globalData.currentGoodsDetail.batch_type==='preorder') {
       this.setData({
-        totalMinPrice: this.data.theData.batch_minPrice,
-        totalMaxPrice: this.data.theData.batch_maxPrice,
+        totalMinPrice: this.data.theData.batch_preorder_minPrice,
+        totalMaxPrice: this.data.theData.batch_preorder_maxPrice,
       })
     } else {
       this.setData({
-        totalPrice: app.globalData.currentGoodsDetail.batch_unitPrice
+        totalPrice: app.globalData.currentGoodsDetail.batch_stock_unitPrice
       })
     }
 
     this.setData({
-      num: this.data.theData.batch_minQuantity
+      quantity: this.data.theData.batch_minQuantity
     })
 
     this.calculateFinalPrice()
@@ -76,25 +76,25 @@ Page({
       }
     })
   },
-  numChange(e) {
-    let num = e.detail
+  quantityChange(e) {
+    let quantity = e.detail
     if (this.data.theData.batch_type === 'preorder') { // 预订
       this.setData({
-        num,
-        totalMinPrice: (num * Number(this.data.theData.batch_minPrice)).toFixed(2),
-        totalMaxPrice: (num * Number(this.data.theData.batch_maxPrice)).toFixed(2),
+        quantity,
+        totalMinPrice: (quantity * Number(this.data.theData.batch_preorder_minPrice)).toFixed(2),
+        totalMaxPrice: (quantity * Number(this.data.theData.batch_preorder_maxPrice)).toFixed(2),
       })
     } else { // 现货
       this.setData({
-        num,
-        totalPrice: (num * Number(this.data.theData.batch_unitPrice)).toFixed(2)
+        quantity,
+        totalPrice: (quantity * Number(this.data.theData.batch_stock_unitPrice)).toFixed(2)
       })
     }
 
     // 计算优惠
     let discountAmount = 0;
     this.data.theData.batch_discounts.forEach(item => {
-      if (num >= item.quantity) {
+      if (quantity >= item.quantity) {
         discountAmount = Math.max(discountAmount, item.discount);
       }
     })
@@ -116,19 +116,19 @@ Page({
     }
     let postageRule = this.data.theData.batch_shipProvinces.find(item => item.name === this.data.addressInfo.province)
 
-    if (postageRule.freeShippingNum&&this.data.num>=postageRule.freeShippingNum) { // 达到包邮条件
+    if (postageRule.freeShippingQuantity&&this.data.quantity>=postageRule.freeShippingQuantity) { // 达到包邮条件
       this.setData({
         postage: '0.00'
       })
     } else {
-      if (this.data.num <= postageRule.baseNum) { // 首重之内
+      if (this.data.quantity <= postageRule.baseQuantity) { // 首重之内
         this.setData({
           postage: String(postageRule.basePostage.toFixed(2))
         })
       }
-      if ((this.data.num>postageRule.baseNum)&&(this.data.num<postageRule.freeShippingNum)) { // 大于首重
-        let excess = this.data.num - postageRule.baseNum; // 超出首重的数量
-        let extraChargeUnits = Math.ceil(excess / postageRule.extraNum); // 向上取整计算需要支付的超额邮费次数
+      if ((this.data.quantity>postageRule.baseQuantity)&&(this.data.quantity<postageRule.freeShippingQuantity)) { // 大于首重
+        let excess = this.data.quantity - postageRule.baseQuantity; // 超出首重的数量
+        let extraChargeUnits = Math.ceil(excess / postageRule.extraQuantity); // 向上取整计算需要支付的超额邮费次数
         this.setData({
           postage: String((postageRule.basePostage + extraChargeUnits * postageRule.extraPostage).toFixed(2))
         })
@@ -161,7 +161,7 @@ Page({
     }
 
     let that = this
-    if (this.data.num < this.data.theData.batch_minQuantity) {
+    if (this.data.quantity < this.data.theData.batch_minQuantity) {
       wx.showToast({
         title: `最少${this.data.theData.batch_type==='preorder'?'预订':'购买'}${this.data.theData.batch_minQuantity}${this.data.theData.goods_unit}`,
         icon: 'none'
@@ -186,7 +186,7 @@ Page({
             goods_id: that.data.theData.id,
             batch_no: that.data.theData.batch_no,
             batch_type: that.data.theData.batch_type,
-            num: that.data.num,
+            quantity: that.data.quantity,
             receive_isHomeDelivery: that.data.addressInfo.district==='嵊州市' ? (that.data.isHomeDelivery ? 1 : 0) : 0,
             receive_name: that.data.addressInfo.name,
             receive_phone: that.data.addressInfo.phone,

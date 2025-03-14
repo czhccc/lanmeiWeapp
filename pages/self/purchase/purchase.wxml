@@ -36,7 +36,7 @@
   <view style="display: flex;align-items: center;">
     <van-field
       type="number"
-      model:value="{{ num }}"
+      model:value="{{ quantity }}"
       placeholder="数量"
       border="{{ false }}"
       label="数量"

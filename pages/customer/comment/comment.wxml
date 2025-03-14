@@ -12,7 +12,7 @@
 					class="commentInput"
 					model:value="{{ comment }}"
 					type="textarea"
-					placeholder="留言您愿意跟我们分享的任何想法..."
+					placeholder="留言您的任何想法..."
 					autosize
 					border="{{ false }}"
 					maxlength="{{200}}"
@@ -26,9 +26,9 @@
 						multiple
 					/>
 				</view> -->
-				<view class="btn2" bindtap="submit">提交</view>
+				<view class="submitBtn" bindtap="submit">提 交</view>
 				<view class="moreIdeas">
-					<van-button type="info" size="small" bindtap="contactUs">直接联系我们</van-button>
+          <view class="contactUs" bindtap="contactUs">直接联系我们</view>
 				</view>
       </view>
     </van-collapse-item>

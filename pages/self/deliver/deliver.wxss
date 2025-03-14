@@ -86,7 +86,7 @@ page {
 .goods-specification-value {
   word-break: break-all;
 }
-.goods-num {
+.goods-quantity {
   margin-left: 20rpx;
   font-size: 24rpx;
   color: black;

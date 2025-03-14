@@ -75,7 +75,7 @@ page {
   margin-left: 10rpx;
   transform: translateY(-4rpx);
 }
-.goods-num {
+.goods-quantity {
   margin-left: 20rpx;
   font-size: 30rpx;
   color: #999999;
@@ -194,7 +194,7 @@ page {
   color: #E53935;
   font-weight: 700;
 }
-.changeAmountBtn {
+.changeQuantityBtn {
   width: 200rpx;
   height: 68rpx;
   background: #1989FA;
@@ -277,34 +277,34 @@ page {
   
 }
 
-.changeAmount-wrapper {
+.changeQuantity-wrapper {
   width: 60vw;
   padding: 24rpx;
   box-sizing: border-box;
 }
-.changeAmount-title {
+.changeQuantity-title {
   font-weight: 700;
   font-size: 30rpx;
   padding: 20rpx;
   box-sizing: border-box;
 }
-.changeAmount-input-wrapper {
+.changeQuantity-input-wrapper {
   display: flex;
   align-items: center;
 }
-.changeAmount-input-zs {
+.changeQuantity-input-zs {
   flex: 1;
 }
-.changeAmount-input-xs {
+.changeQuantity-input-xs {
   width: 100rpx;
 }
-.changeAmount-btns {
+.changeQuantity-btns {
   display: flex;
   align-items: center;
   padding: 20rpx;
   box-sizing: border-box;
 }
-.changeAmount-cancelBtn {
+.changeQuantity-cancelBtn {
   flex: 1;
   border-radius: 42rpx;
   border: 2rpx solid #E53935;
@@ -317,7 +317,7 @@ page {
   font-size: 32rpx;
   font-weight: 700;
 }
-.changeAmount-confirmBtn {
+.changeQuantity-confirmBtn {
   flex: 1;
   background: #1989FA;
   border-radius: 42rpx;
