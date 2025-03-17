@@ -1,26 +1,25 @@
 <!--pages/customer/buyOrOrder/buyOrOrder.wxml-->
 <view class="buyOrOrder">
   <view class="goods">
-    <view class="goods-content-wrapper">
+    <view class="goods-content">
       <image class="goods-img" src="{{theData.goods_coverImage}}" mode=""
         binderror="coverImageLoadError" />
-      <view class="goods-content">
-        <view class="goods-name">{{theData.goods_name}}</view>
-        
-        <view class="goods-price-content">
-          <view class="goods-price" wx:if="{{theData.batch_type==='preorder'}}">¥{{theData.batch_preorder_minPrice}} ~ ¥{{theData.batch_preorder_maxPrice}} / {{theData.goods_unit}}</view>
-			    <view class="goods-price" wx:if="{{theData.batch_type==='stock'}}">¥{{theData.batch_stock_unitPrice}} / {{theData.goods_unit}}</view>
-        </view>
-        <view class="goods-quantity-wrapper">
-          <van-stepper 
-            value="{{ quantity }}" 
-            bind:change="quantityChange"
-            min="{{theData.batch_minQuantity}}"
-            max="{{theData.batch_type==='stock' ? theData.batch_stock_remainingQuantity : 999}}" 
-          />
-        </view>
-        <view class="goods-stock" wx:if="{{theData.batch_type==='stock'}}">剩余量：{{theData.batch_stock_remainingQuantity}} {{theData.goods_unit}}</view>
-      </view>
+      <view class="goods-name">{{theData.goods_name}}</view>
+    </view>
+    <view class="goods-price-content">
+      <view class="goods-price" wx:if="{{theData.batch_type==='preorder'}}">¥{{theData.batch_preorder_minPrice}} ~ ¥{{theData.batch_preorder_maxPrice}} / {{theData.goods_unit}}</view>
+      <view class="goods-price" wx:if="{{theData.batch_type==='stock'}}">¥{{theData.batch_stock_unitPrice}} / {{theData.goods_unit}}</view>
+    </view>
+    <view class="goods-quantity-wrapper">
+      <van-stepper 
+        value="{{ quantity }}" 
+        bind:change="quantityChange"
+        min="{{theData.batch_minQuantity}}"
+        max="{{theData.batch_type==='stock' ? theData.batch_stock_remainingQuantity : 999}}" 
+      />
+    </view>
+    <view class="goods-stock-wrapper">
+      <view class="goods-stock" wx:if="{{theData.batch_type==='stock'}}">剩余量：{{theData.batch_stock_remainingQuantity}} {{theData.goods_unit}}</view>
     </view>
   </view>
 
@@ -63,21 +62,22 @@
   <view class="detail">
     <view class="detail-line">
       <view class="detail-line-label">商品总价</view>
-      <view class="detail-line-value" wx:if="{{theData.batch_type==='preorder'}}">¥{{totalMinPrice}} ~ {{totalMaxPrice}}</view>
-      <view class="detail-line-value" wx:if="{{theData.batch_type==='stock'}}">¥{{totalPrice}}</view>
+      <view class="detail-line-value" wx:if="{{theData.batch_type==='preorder'}}">¥{{resultInfo.goodsTotalMinPrice}} ~ {{resultInfo.goodsTotalMaxPrice}}</view>
+      <view class="detail-line-value" wx:if="{{theData.batch_type==='stock'}}">¥{{resultInfo.goodsTotalPrice}}</view>
     </view>
     <view class="detail-line">
       <view class="detail-line-label">邮费</view>
-      <view class="detail-line-value" wx:if="{{addressInfo.province}}">{{addressInfo.province&&postage==='0.00' ? '包邮' : '¥'+postage}}</view>
+      <view class="detail-line-value" wx:if="{{addressInfo.province}}">{{resultInfo.postage==='0.00' ? '包邮' : '¥'+resultInfo.postage}}</view>
       <view class="detail-line-value" wx:else>{{'请选择收货地址'}}</view>
     </view>
-    <view class="detail-line" wx:if="{{discountAmount > 0}}">
+    <view class="detail-line" wx:if="{{resultInfo.discount && resultInfo.discount>0}}">
       <view class="detail-line-label">满减优惠</view>
-      <view class="detail-line-value" style="color: #E53935;">-¥{{discountAmount}}</view>
+      <view class="detail-line-value" style="color: #E53935;">-¥{{resultInfo.discount}}</view>
     </view>
     <view class="detail-line" wx:if="{{addressInfo.province}}">
       <view class="detail-line-label2">总计金额：</view>
-      <view class="detail-line-value2">¥{{finalPrice}}</view>
+      <view class="detail-line-value2" wx:if="{{theData.batch_type==='preorder'}}">¥{{resultInfo.finalAmountMin}} ~ {{resultInfo.finalAmountMax}}</view>
+      <view class="detail-line-value2" wx:if="{{theData.batch_type==='stock'}}">¥{{resultInfo.finalAmount}}</view>
     </view>
   </view>
   
@@ -85,7 +85,8 @@
     <view class="bottom-content">
       <view class="payAmount" wx:if="{{addressInfo.province}}">
         <!-- <view class="payAmount-label">{{theData.batch_type==='preorder'?'价格区间':'付款金额'}}：</view> -->
-        <view class="payAmount-value">¥{{finalPrice}}</view>
+        <view class="payAmount-value" wx:if="{{theData.batch_type==='preorder'}}">¥{{resultInfo.finalAmountMin}} ~ {{resultInfo.finalAmountMax}}</view>
+      <view class="payAmount-value" wx:if="{{theData.batch_type==='stock'}}">¥{{resultInfo.finalAmount}}</view>
       </view>
       <view class="payAmount" wx:else>请选择收获地址</view>
       <view class="payBtn" bind:tap="submit">{{theData.batch_type==='preorder' ? '确定预订' : '提交订单'}}</view>

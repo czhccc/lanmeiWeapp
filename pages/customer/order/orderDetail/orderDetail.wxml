@@ -34,7 +34,7 @@
     </view>
   </view>
 
-  <view class="item-title" wx:if="{{theData.status==='canceled'}}">订单已取消（{{theData.cancel_by===theData.user?'用户取消':'管理员取消'}}）</view>
+  <view class="item-title" wx:if="{{theData.status==='canceled'}}">订单已取消（{{theData.cancel_by===theData.create_by?'用户取消':'管理员取消'}}）</view>
   <view class="canceledInfo" wx:if="{{theData.status==='canceled'}}">
     取消原因：{{ theData.cancel_reason }}
   </view>
@@ -51,8 +51,8 @@
     <view class="isHomeDelivery">{{theData.receive_isHomeDelivery===1 ? '送货上门' : ' '}}</view>
   </view>
 
-  <view class="item-title">备注</view>
-  <view class="notes-wrapper">
+  <view class="item-title" wx:if="{{theData.remark_customer}}">用户备注</view>
+  <view class="notes-wrapper" wx:if="{{theData.remark_customer}}">
     <van-field
       model:value="{{ theData.remark_customer }}"
       type="textarea"
@@ -101,10 +101,6 @@
       <view class="detail-line-label">满减优惠</view>
       <view class="detail-line-value" style="color: #E53935;">-¥{{theData.discountAmount_promotion}}</view>
     </view>
-    <view class="detail-line" wx:if="{{theData.discountAmount_custom > 0}}">
-      <view class="detail-line-label">其他优惠</view>
-      <view class="detail-line-value" style="color: #E53935;">-¥{{theData.discountAmount_custom}}</view>
-    </view>
     <view class="detail-line">
       <view class="detail-line-label2">总计金额：</view>
       <view class="detail-line-value2">¥{{theData.finalPrice}}</view>
@@ -113,6 +109,11 @@
       <view class="detail-line-label2">实付款：</view>
       <view class="detail-line-value2">¥{{theData.finalPrice}}</view>
     </view>
+  </view>
+
+  <view class="item-title">商品详情快照</view>
+  <view class="goodsDetailSnapshot">
+    <rich-text class="goodsDetailSnapshot-richText" nodes="{{theData.snapshot_goodsRichText}}"/>
   </view>
 
   <view class="bottom" wx:if="{{isShowBottom}}">

@@ -33,20 +33,28 @@
 			</view> -->
 			<scroll-view 
         scroll-y 
-        class="goods" 
+        class="goods-list" 
         bindscrolltolower="scrollToLower"
         refresher-enabled	
         bindrefresherrefresh="bindrefresherrefresh" 
         refresher-triggered="{{refresherTriggered}}"
       >
-				<view class="good" wx:for="{{listData}}" wx:key="index" bindtap="goodsClick" data-item="{{item}}">
-					<image wx:if="{{item.goods_coverImage}}" class="good-img" src="{{item.goods_coverImage}}" mode=""/>
-					<image wx:if="{{!item.goods_coverImage}}" class="good-img" src="../../../images/common/noImg.png" mode=""/>
-					<view class="goods-type" style="background-color: {{item.batch_type==='preorder'?'#66BB6A':'rgba(25,137,250)'}};">{{item.batch_type==='preorder'?'预订':'现货'}}</view>
-					<view class="good-content">
-						<view class="good-name">{{item.goods_name}}</view>
-						<view class="good-price" wx:if="{{item.batch_type==='preorder'}}">¥{{item.batch_preorder_minPrice}} ~ ¥{{item.batch_preorder_maxPrice}} / {{item.goods_unit}}</view>
-						<view class="good-price" wx:if="{{item.batch_type==='stock'}}">¥{{item.batch_stock_unitPrice}} / {{item.goods_unit}}</view>
+				<view class="goods" wx:for="{{listData}}" wx:key="index" bindtap="goodsClick" data-item="{{item}}">
+					<view class="goods-wrapper">
+            <view class="goods-type goods-type-preorder" wx:if="{{item.batch_type==='preorder'}}">预订</view>
+            <view class="goods-type goods-type-stock" wx:if="{{item.batch_type==='stock'}}">现货</view>
+
+            <image wx:if="{{item.goods_coverImage}}" class="goods-img" src="{{item.goods_coverImage}}" mode=""/>
+					  <image wx:if="{{!item.goods_coverImage}}" class="goods-img" src="../../../images/common/noImg.png" mode=""/>
+
+            <view class="goods-content">
+              <view class="goods-name">{{item.goods_name}}</view>
+
+              <view class="goods-price-wrapper">
+                <view class="goods-price" wx:if="{{item.batch_type==='preorder'}}">¥{{item.batch_preorder_minPrice}} ~ ¥{{item.batch_preorder_maxPrice}} / {{item.goods_unit}}</view>
+                <view class="goods-price" wx:if="{{item.batch_type==='stock'}}">¥{{item.batch_stock_unitPrice}} / {{item.goods_unit}}</view>
+              </view>
+            </view>
 					</view>
 				</view>
 				<view wx:if="{{listData.length===0}}" style="display: flex;flex-direction: column;align-items: center;position: absolute;top: 50%;transform: translateY(-50%);width: 100%;">

@@ -1,7 +1,7 @@
 // pages/customer/order/orderDetail/orderDetail.js
 import {
   _getOrderDetailById,
-  _cancelSingleReservedOrder,
+  _cancelOrder,
   _payOrder,
   _completeOrder,
 } from '../../../../network/customer/order'
@@ -50,17 +50,17 @@ Page({
           theData.totalMinPrice = (Number(theData.preorder_minPrice)*Number(theData.quantity)).toFixed(2)
           theData.totalMaxPrice = (Number(theData.preorder_maxPrice)*Number(theData.quantity)).toFixed(2)
 
-          let finalMinPrice = (Number(theData.preorder_minPrice)*Number(theData.quantity) + Number(theData.postage) - Number(theData.discountAmount_promotion) - Number(theData.discountAmount_custom)).toFixed(2)
-          let finalMaxPrice = (Number(theData.preorder_maxPrice)*Number(theData.quantity) + Number(theData.postage) - Number(theData.discountAmount_promotion) - Number(theData.discountAmount_custom)).toFixed(2)
+          let finalMinPrice = (Number(theData.preorder_minPrice)*Number(theData.quantity) + Number(theData.postage) - Number(theData.discountAmount_promotion)).toFixed(2)
+          let finalMaxPrice = (Number(theData.preorder_maxPrice)*Number(theData.quantity) + Number(theData.postage) - Number(theData.discountAmount_promotion)).toFixed(2)
           finalPrice = `${finalMinPrice} ~ ${finalMaxPrice}`
         } else if (theData.status==='unpaid' || theData.status==='paid'||theData.status==='completed') { // 售卖阶段
           theData.totalPrice = (Number(theData.preorder_finalPrice)*Number(theData.quantity)).toFixed(2)
 
-          finalPrice = (Number(theData.preorder_finalPrice)*Number(theData.quantity) + Number(theData.postage) - Number(theData.discountAmount_promotion) - Number(theData.discountAmount_custom)).toFixed(2)
+          finalPrice = (Number(theData.preorder_finalPrice)*Number(theData.quantity) + Number(theData.postage) - Number(theData.discountAmount_promotion)).toFixed(2)
         }
       } else if (theData.batch_type === 'stock') {  // stock
         theData.totalPrice = (Number(theData.stock_unitPrice)*Number(theData.quantity)).toFixed(2)
-        finalPrice = (Number(theData.stock_unitPrice)*Number(theData.quantity) + Number(theData.postage) - Number(theData.discountAmount_promotion) - Number(theData.discountAmount_custom)).toFixed(2)
+        finalPrice = (Number(theData.stock_unitPrice)*Number(theData.quantity) + Number(theData.postage) - Number(theData.discountAmount_promotion)).toFixed(2)
       }
       theData.finalPrice = finalPrice
 
@@ -89,7 +89,7 @@ Page({
   cancelOrderPopupConfirm() {
     this.data.isSubmitting = false
 
-    _cancelSingleReservedOrder({
+    _cancelOrder({
       orderId: this.data.orderId,
       cancelOrderReason: this.data.cancelOrderReason,
     }).then(res => {

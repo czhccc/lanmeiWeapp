@@ -25,7 +25,7 @@ Page({
   },
   getAddressList() {
     _getAddressList({
-      user: wx.getStorageSync('phone')
+      create_by: wx.getStorageSync('phone')
     }).then(res => {
       if (res.data.length >= 10) {
         this.setData({ quantityLimited: true })
@@ -86,8 +86,8 @@ Page({
       prevPage.setData({
         addressInfo: address
       });
-      if (prevPage.calculatePostage) {
-        prevPage.calculatePostage()
+      if (prevPage.chooseAddressCallback) {
+        prevPage.chooseAddressCallback()
       }
       wx.navigateBack();
     }

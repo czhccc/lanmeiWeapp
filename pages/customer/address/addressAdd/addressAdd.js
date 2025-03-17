@@ -223,7 +223,7 @@ Page({
             _addAddress({
               name: that.data.name, 
               phone: that.data.phone, 
-              user: wx.getStorageSync('phone'), 
+              create_by: wx.getStorageSync('phone'), 
               province: that.data.province, 
               provinceCode: that.data.provinceCode, 
               city: that.data.city, 
@@ -249,7 +249,6 @@ Page({
               id: that.data.id,
               name: that.data.name, 
               phone: that.data.phone, 
-              user: wx.getStorageSync('phone'), 
               province: that.data.province, 
               provinceCode: that.data.provinceCode, 
               city: that.data.city, 

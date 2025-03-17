@@ -26,9 +26,9 @@ export function _getOrderDetailById(data) {
 }
 
 // 取消订单
-export function _cancelSingleReservedOrder(data) {
+export function _cancelOrder(data) {
   return request({
-		url: '/order/cancelSingleReservedOrder',
+		url: '/order/cancelOrder',
     data,
     method: 'POST'
 	}, false)
@@ -47,6 +47,15 @@ export function _payOrder(data) {
 export function _completeOrder(data) {
   return request({
 		url: '/order/completeOrder',
+    data,
+    method: 'POST'
+	}, false)
+}
+
+// 确认收货（完结订单）
+export function _generateOrderInfo(data) {
+  return request({
+		url: '/order/generateOrderInfo',
     data,
     method: 'POST'
 	}, false)

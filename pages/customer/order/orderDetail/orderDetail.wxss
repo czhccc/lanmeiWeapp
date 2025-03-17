@@ -245,6 +245,22 @@ page {
   color: white;
 }
 
+.goodsDetailSnapshot {
+  width: 690rpx;
+  background-color: white;
+  border-radius: 0 0 16rpx 16rpx;
+  margin: 0 auto;
+  padding: 24rpx;
+  box-sizing: border-box;
+}
+.goodsDetailSnapshot-richText {
+  background-color: white;
+}
+.goodsDetailSnapshot-richText [src]{
+	max-width:100%;
+}
+
+
 .item-title {
   width: 690rpx;
   margin: 0 auto;
