@@ -38,7 +38,7 @@ page {
   word-break: keep-all;
 }
 .orderId-value {
-  word-break: break-all;
+  word-break: keep-all;
 }
 .orderId-copy {
   margin-left: 8rpx;

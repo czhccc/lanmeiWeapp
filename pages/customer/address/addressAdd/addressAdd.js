@@ -159,7 +159,6 @@ Page({
     if (this.data.isSubmitting) {
       return;
     }
-    this.data.isSubmitting = true
 
     if (!this.data.name) {
       wx.showToast({
@@ -184,21 +183,21 @@ Page({
       })
       return;
     }
-    if (!this.data.province) {
+    if (!this.data.provinceCode) {
       wx.showToast({
         title: '请选择省',
         icon: 'none'
       })
       return;
     }
-    if (!this.data.city) {
+    if (!this.data.cityCode) {
       wx.showToast({
         title: '请选择市',
         icon: 'none'
       })
       return;
     }
-    if (!this.data.district) {
+    if (!this.data.districtCode) {
       wx.showToast({
         title: '请选择区',
         icon: 'none'
@@ -218,17 +217,14 @@ Page({
       title: '确认提交？',
       success(res) {
         if (res.confirm) {
-          // that.data.isSubmitting = true
+          that.data.isSubmitting = true
           if (that.data.flag === 'add') { // 新增
             _addAddress({
               name: that.data.name, 
               phone: that.data.phone, 
               create_by: wx.getStorageSync('phone'), 
-              province: that.data.province, 
               provinceCode: that.data.provinceCode, 
-              city: that.data.city, 
               cityCode: that.data.cityCode, 
-              district: that.data.district, 
               districtCode: that.data.districtCode, 
               detail: that.data.detail, 
               isDefault: that.data.isDefault,
@@ -249,11 +245,8 @@ Page({
               id: that.data.id,
               name: that.data.name, 
               phone: that.data.phone, 
-              province: that.data.province, 
               provinceCode: that.data.provinceCode, 
-              city: that.data.city, 
               cityCode: that.data.cityCode, 
-              district: that.data.district, 
               districtCode: that.data.districtCode, 
               detail: that.data.detail, 
               isDefault: that.data.isDefault,

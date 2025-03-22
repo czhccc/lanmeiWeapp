@@ -1,9 +1,9 @@
 import request from '../network'
 
 // 用户留言历史
-export function _getUserAllComments(data) {
+export function _getUserComments(data) {
   return request({
-		url: '/comment/getUserAllComments',
+		url: '/comment/getUserComments',
 		data
   })
 }

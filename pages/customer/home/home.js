@@ -35,13 +35,14 @@ Page({
   },
   getLatestNotification() {
     _getLatestNotification().then(res => {
-      console.log(res)
-      this.setData({
-        notification: {
-          content: res.data.content,
-          createTime: res.data.createTime
-        }
-      })
+      if (res.data) {
+        this.setData({
+          notification: {
+            content: res.data.content,
+            createTime: res.data.createTime
+          }
+        })
+      }
     })
   },
   _getSwiper() { // 轮播图

@@ -1,8 +1,10 @@
 // pages/customer/comment/comment.js
 import {
   _comment,
-  _getUserAllComments
+  _getUserComments
 } from '../../../network/customer/comment'
+
+import dayjs from 'dayjs'
 
 Page({
   data: {
@@ -13,6 +15,7 @@ Page({
     historyComments: [],
 
     isSubmitting: false,
+    hasComment: false,
   },
   onLoad(options) {
     this.getHistoryComments()
@@ -21,8 +24,10 @@ Page({
 
   },
   getHistoryComments() {
-    _getUserAllComments({
-      author: wx.getStorageSync('phone')
+    _getUserComments({
+      author: wx.getStorageSync('phone'),
+      startTime: dayjs().subtract(1, 'month').format('YYYY-MM-DD 00:00:00'),
+      endTime: dayjs().format('YYYY-MM-DD 23:59:59')
     }).then(res => {
       this.setData({
         historyComments: res.data.records
@@ -85,10 +90,15 @@ Page({
     })
   },
   submit() {
-    var that = this;
-    if (that.data.isSubmitting) {
+    if (this.data.isSubmitting) {
       return;
     }
+    var that = this;
+
+    if (!this.data.comment.trim()) {
+      return;
+    }
+
     wx.showModal({
       title: '确认提交？',
       success: (res) => {
@@ -107,7 +117,8 @@ Page({
                 that.getHistoryComments()
                 that.setData({
                   comment: '',
-                  isSubmitting: false,
+                  hasComment: false,
+                  isSubmitting: false
                 })
               }, 1500)
             } else {
@@ -116,11 +127,19 @@ Page({
                 icon: 'none'
               })
             }
-          }).finally(() => {
+          }).catch(() => {
             that.data.isSubmitting = false
           })
         }
       }
     });
+  },
+  commentChange(e) {
+    const hasComment = !!e.detail.trim();
+    if (this.data.hasComment !== hasComment) {
+      this.setData({ 
+        hasComment 
+      });
+    }
   }
 })

@@ -5,7 +5,8 @@ import {
 
 Page({
   data: {
-    theData: {}
+    theData: {},
+    activeName: '1',
   },
   onLoad(options) {
     this.getAboutUs()

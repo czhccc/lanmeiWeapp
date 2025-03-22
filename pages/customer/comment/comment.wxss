@@ -29,9 +29,7 @@ page {
 	width: 630rpx;
 	margin: 0 auto;
 	margin-top: 20rpx;
-	background: #1989FA;
   border-radius: 9999rpx;
-  border: 1rpx solid #1989FA;
   height: 80rpx;
   text-align: center;
   line-height: 80rpx;
@@ -63,9 +61,6 @@ page {
 .history-comment-time {
 	font-size: 24rpx;
 	color: gray;
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
 }
 .history-comment-content {
 	font-size: 28rpx;

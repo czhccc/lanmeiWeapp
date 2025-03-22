@@ -2,7 +2,7 @@
 <view class="home">
 	<TabBar />
 
-	<view class="notification">
+	<view class="notification" wx:if="{{notification.content}}">
 		<view class="notification-content">
 			<van-icon class="notification-content-icon" name="volume-o" />
 			<view class="notification-content-value">

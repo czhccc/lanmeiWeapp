@@ -1,6 +1,6 @@
 <!--pages/customer/seeSeller/seeSeller.wxml-->
 <view class="seeSeller">
-	<van-collapse accordion value="{{ activeName }}" bind:change="onChange">
+	<van-collapse accordion model:value="{{ activeName }}" bind:change="onChange">
     <van-collapse-item name="1">
       <view slot="title">
         <text style="font-size: 32rpx;color: #333333;">联系方式</text>

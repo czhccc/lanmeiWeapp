@@ -7,6 +7,10 @@ import {
   _getDefaultAddress
 } from '../../../network/customer/address'
 
+import {
+  debounce
+} from '../../../utils/utils.js'
+
 Page({
   data: {
     theData: null,
@@ -67,7 +71,7 @@ Page({
       quantity: e.detail
     })
 
-    this.generateOrderInfo()
+    this.debounceGenerateOrderInfo()
   },
   chooseAddress() {
     wx.navigateTo({
@@ -161,6 +165,9 @@ Page({
       isHomeDelivery: e.detail
     })
   },
+  debounceGenerateOrderInfo: debounce(function() {
+    this.generateOrderInfo();
+  }, 300),
   generateOrderInfo() {
     _generateOrderInfo({
       goodsId: this.data.theData.id,

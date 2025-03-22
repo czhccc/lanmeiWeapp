@@ -246,3 +246,7 @@ page {
   box-sizing: border-box;
   padding: 24rpx 24rpx 10rpx 24rpx;
 }
+
+.van-stepper__input {
+  width: 100rpx !important;
+}

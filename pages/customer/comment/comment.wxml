@@ -16,6 +16,7 @@
 					autosize
 					border="{{ false }}"
 					maxlength="{{200}}"
+          bind:change="commentChange"
 				/>
 				<!-- <view class="upload-wrapper">
 					<van-uploader 
@@ -26,7 +27,11 @@
 						multiple
 					/>
 				</view> -->
-				<view class="submitBtn" bindtap="submit">提 交</view>
+				<view 
+          class="submitBtn" 
+          bindtap="submit"
+          style="background-color: {{hasComment ? '#1989FA' : '#909399'}};"
+        >提 交</view>
 				<view class="moreIdeas">
           <view class="contactUs" bindtap="contactUs">直接联系我们</view>
 				</view>
@@ -34,14 +39,11 @@
     </van-collapse-item>
     <van-collapse-item name="2">
       <view slot="title">
-        <text style="font-size: 32rpx;">历史留言(30天内)</text>
+        <text style="font-size: 32rpx;">近期留言</text>
       </view>
       <view class="history-item" wx:for="{{historyComments}}" wx:key="index">
 				<view class="history-comment">
-					<view class="history-comment-time">
-						<text style="font-size: 30rpx; color: black;">#{{index+1}}</text>
-						<text>{{item.commentTime}}</text>
-					</view>
+					<view class="history-comment-time">{{item.commentTime}}</view>
 					<view class="history-comment-content">{{item.comment}}</view>
 				</view>
 				<block wx:for="{{item.responses}}" wx:for-item="iten" wx:for-index="indey" wx:key="indey">
