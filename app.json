@@ -3,7 +3,6 @@
     "pages/temporary/home/home",
     "pages/customer/mine/mine",
     "pages/customer/home/home",
-    
     "pages/self/order/orderAddNew/orderAddNew",
     "pages/self/order/orderDetail/orderDetail",
     "pages/self/order/order",
@@ -20,13 +19,11 @@
     "pages/customer/buyOrOrder/buyOrOrder",
     "pages/customer/goodsList/goodsDetail/goodsDetail",
     "pages/customer/comment/comment",
-    
     "pages/customer/seeSeller/seeSeller",
     "pages/customer/goodsList/goodsList",
     "pages/customer/address/addressList/addressList",
-    "pages/customer/address/addressAdd/addressAdd"
-    
-    
+    "pages/customer/address/addressAdd/addressAdd",
+    "pages/customer/news/newsDetail/newsDetail"
   ],
   "usingComponents": {
     "NavBar": "./components/NavBar/NavBar",

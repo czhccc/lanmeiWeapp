@@ -2,14 +2,14 @@
 <view class="home">
 	<TabBar />
 
-	<view class="notification" wx:if="{{notification.content}}">
+	<view class="notification">
 		<view class="notification-content">
 			<van-icon class="notification-content-icon" name="volume-o" />
 			<view class="notification-content-value">
-				{{ notification.content }}
+				{{ notification.content || '暂无新公告' }}
 			</view> 
 		</view>
-		<view class="notification-time">
+		<view class="notification-time" wx:if="{{ notification.createTime }}">
 			--- {{ notification.createTime }}
 		</view>
 	</view>
@@ -17,32 +17,48 @@
 
 	<view class="swiper-wrapper">
 		<swiper class="swiper" autoplay="true" interval="3000" duration="500" 	indicator-dots indicator-color="rgba(255,255,255,0.55)" 	indicator-active-color="#FFFFFF">
-			<swiper-item>
-				<image class="swiper-img" src="https://img0.baidu.com/it/u=3121065565,3649687365&fm=253&fmt=auto&app=138&f=JPEG?w=800&h=1422" bindtap="seeBigSwiperItem" mode="aspectFit"></image>
-			</swiper-item>
-			<swiper-item>
-				<image class="swiper-img" src="https://i0.hdslb.com/bfs/article/442ddbb12b31a22e67bb99e524d1e69800e9ebf8.jpg" bindtap="seeBigSwiperItem" mode="aspectFit"></image>
-			</swiper-item>
-			<swiper-item>
-				<image class="swiper-img" src="https://img1.baidu.com/it/u=1429192092,2564268011&fm=253&app=138&f=JPEG?w=800&h=1131" bindtap="seeBigSwiperItem" mode="aspectFit"></image>
-			</swiper-item>
+      <block wx:for="{{swiper}}" wx:key="index">
+        <swiper-item>
+          <image 
+            class="swiper-img" 
+            mode="aspectFit"
+            src="{{item.customImageUrl || item.goodsCoverImageUrl}}" 
+            bindtap="swiperItemClick"
+            data-item="{{item}}" 
+          ></image>
+        </swiper-item>
+      </block>
 		</swiper>
 	</view>
 
 	<view class="nav-items">
-		<view class="nav-item" bindtap="navigate" data-flag="myOrder">
-			<image class="nav-item-img" src="../../../images/home/icon-order.png" mode=""/>
-			<view class="nav-item-title">我的订单</view>
+    <view class="nav-item" bindtap="navigate" data-flag="aboutUs">
+			<image class="nav-item-img" src="../../../images/home/icon-aboutUs.png" mode=""/>
+			<view class="nav-item-title">关于我们</view>
 		</view>
 		<view class="nav-item" bindtap="navigate" data-flag="comment">
 			<image class="nav-item-img" src="../../../images/home/icon-comment.png" mode=""/>
 			<view class="nav-item-title">想法留言</view>
 		</view>
-		<view class="nav-item" bindtap="navigate" data-flag="aboutUs">
-			<image class="nav-item-img" src="../../../images/home/icon-aboutUs.png" mode=""/>
-			<view class="nav-item-title">关于我们</view>
+		<view class="nav-item" bindtap="navigate" data-flag="myOrder">
+			<image class="nav-item-img" src="../../../images/home/icon-order.png" mode=""/>
+			<view class="nav-item-title">我的订单</view>
 		</view>
 	</view>
+
+  <view class="news-wrapper">
+    <view class="news-pla">资讯</view>
+    <view class="news-content">
+      <view class="news-item" wx:for="{{news}}" wx:key="index" bind:tap="newsItemClick" data-item="{{item}}">
+        <view class="news-item-pin" wx:if="{{item.isPin==1}}">⚑</view>
+        <view class="news-item-dot" wx:if="{{item.isPin==0}}"></view>
+        <view class="news-item-title-wrapper">
+          <view class="news-item-title">{{item.title}}</view>
+          <view class="news-item-title-tip" wx:if="{{item.isShowNewTip}}">新</view>
+        </view>
+      </view>
+    </view>
+  </view>
 
 	<view style="margin-top: 100rpx;margin-left: 100rpx;" bindtap="return">
 		返回

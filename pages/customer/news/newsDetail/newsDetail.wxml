@@ -1,0 +1,10 @@
+<!--pages/customer/news/newsDetail/newsDetail.wxml-->
+<view class="newsDetail">
+  <view class="title">{{theData.title}}</view>
+
+  <view class="updateTime">{{theData.updateTimeToShow}}</view>
+
+  <view class="richText-wrapper">
+    <rich-text class="richText-content" nodes="{{theData.content}}"></rich-text>
+  </view>
+</view>

@@ -3,6 +3,16 @@ import {
   _getLatestNotification
 } from '../../../network/customer/notify'
 
+import {
+  _getRecommendList
+} from '../../../network/customer/recommend'
+
+import {
+  _getNewsList
+} from '../../../network/customer/news.js'
+
+import dayjs from 'dayjs'
+
 Page({
   data: {
     notification: {
@@ -10,18 +20,15 @@ Page({
       time: '',
     },
     swiper: [],
+    news: [],
   },
   onLoad(options) {
 
   },
   onShow() {
     this.getLatestNotification()
-  },
-  seeBigSwiperItem(e) {
-    console.log(e)
-    wx.previewImage({
-      urls: ['https://img0.baidu.com/it/u=3121065565,3649687365&fm=253&fmt=auto&app=138&f=JPEG?w=800&h=1422','https://i0.hdslb.com/bfs/article/442ddbb12b31a22e67bb99e524d1e69800e9ebf8.jpg','https://img1.baidu.com/it/u=1429192092,2564268011&fm=253&app=138&f=JPEG?w=800&h=1131'] // 需要预览的图片http链接列表
-    });
+    this.getRecommendList()
+    this.getNewsList()
   },
   getLocation(){
     wx.getLocation({
@@ -45,12 +52,21 @@ Page({
       }
     })
   },
-  _getSwiper() { // 轮播图
-    // getHomeSwiper().then(res => {
-    //   this.setData({
-    //     swiper: res.result
-    //   })
-    // })
+  getRecommendList() { // 轮播图
+    _getRecommendList().then(res => {
+      let swiper = res.data.records
+      swiper.sort((a, b) => a.sort - b.sort);
+
+      this.setData({
+        swiper
+      })
+    })
+  },
+  swiperItemClick(e) {
+    let item = e.currentTarget.dataset.item
+    wx.navigateTo({
+      url: `/pages/customer/goodsList/goodsDetail/goodsDetail?id=${item.goods_id}`,
+    })
   },
   navigate(e) {
     let flag = e.currentTarget.dataset.flag
@@ -73,6 +89,40 @@ Page({
       default:
         break;
     }
+  },
+  getNewsList() {
+    _getNewsList({
+      showed: 1,
+      pageNo: 1,
+      pageSize: 6,
+    }).then(res => {
+      let news = res.data.records.map(item => {
+        return {
+          id: item.id,
+          title: item.title,
+          isPin: item.isPin,
+          createTime: item.createTime,
+          isShowNewTip: dayjs(item.createTime).isAfter(dayjs().subtract(7, 'day')),
+        }
+      })
+      news.sort((a, b) => {
+        if (b.isPin !== a.isPin) {
+          return b.isPin - a.isPin; // isPin 为 1 的排前面
+        }
+        return new Date(b.createTime) - new Date(a.createTime); // createTime 降序
+      });
+
+      this.setData({
+        news
+      })
+    })
+  },
+  newsItemClick(e) {
+    console.log(e)
+    let item = e.currentTarget.dataset.item
+    wx.navigateTo({
+      url: `/pages/customer/news/newsDetail/newsDetail?id=${item.id}`,
+    })
   },
   return() {
     wx.navigateTo({

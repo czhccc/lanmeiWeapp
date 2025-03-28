@@ -1,0 +1,31 @@
+/* pages/customer/news/newsDetail/newsDetail.wxss */
+page {
+	height: 100%;
+}
+.newsDetail {
+  padding: 30rpx;
+	padding-bottom: 100rpx;
+}
+.title {
+  font-weight: 700;
+  font-size: 34rpx;
+}
+
+.updateTime {
+  margin-top: 20rpx;
+  color: #a0a1a7;
+  text-align: right;
+  font-size: 24rpx;
+}
+
+.richText-wrapper {
+  margin-top: 30rpx;
+}
+.richText-content {
+	width: 100%;
+  max-width: 100%;
+  font-size: 30rpx;
+}
+.richText-content [src]{
+	max-width:100%;
+}

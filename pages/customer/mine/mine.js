@@ -18,8 +18,12 @@ Page({
     })
   },
   getPhoneNumber (e) {
-    console.log('微信授权登录')
+    console.log('微信授权登录', e)
     if (!e.detail.code) { // 用户拒绝授权
+      wx.showToast({
+        title: e.detail.errMsg,
+        icon: 'none'
+      })
       return;
     }
     const { code, encryptedData, iv } = e.detail;

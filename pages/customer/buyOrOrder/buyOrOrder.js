@@ -177,6 +177,35 @@ Page({
       this.setData({
         resultInfo: res.data
       })
+    }).catch(err => {
+      let unknownError = false
+      let message = ''
+      switch (err.message) {
+        case '商品已下架':
+          message = '商品已下架'
+          break;
+        default:
+          message = `十分抱歉😢，存在未知错误，请联系管理员`
+          unknownError = true
+          break;
+      }
+      wx.showToast({
+        title: message,
+        icon: 'none',
+        duration: 2000
+      })
+
+      if (unknownError) {
+        setTimeout(() => {
+          wx.navigateTo({
+            url: '/pages/customer/seeSeller/seeSeller',
+          })
+        }, 2000)
+      } else {
+        setTimeout(() => {
+          wx.navigateBack()
+        }, 2000)
+      }
     })
   },
   chooseAddressCallback() {

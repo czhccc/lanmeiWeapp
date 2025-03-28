@@ -81,7 +81,6 @@ Page({
   },
   goodsClick(e) {
     let item = e.currentTarget.dataset.item
-    console.log(item)
     wx.navigateTo({
       url: `/pages/customer/goodsList/goodsDetail/goodsDetail?id=${item.id}`,
     })
