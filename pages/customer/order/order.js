@@ -1,4 +1,6 @@
 // pages/customer/order/order.js
+import dayjs from 'dayjs'
+
 import {
   _getOrderList,
   _cancelOrder,
@@ -24,6 +26,9 @@ Page({
     goodsName: '',
     startDate: '',
     endDate: '',
+
+    dateRangeStart: dayjs().subtract(1, 'year').startOf('year').format('YYYY-MM-DD'),
+    dateRangeEnd: dayjs().format('YYYY-MM-DD'),
 
     // 取消预订
     isShowCancelOrderPopup: false,
@@ -61,10 +66,11 @@ Page({
         let statusText = ''
         switch (item.status) {
           case 'reserved': statusText='已预订';break;
-          case 'paid': statusText='已付款';break;
-          case 'unpaid': statusText='未付款';break;
-          case 'completed': statusText='已完结';break;
           case 'canceled': statusText='已取消';break;
+          case 'unpaid': statusText='未付款';break;
+          case 'paid': statusText='已付款';break;
+          case 'shipped': statusText='已发货';break;
+          case 'completed': statusText='已完结';break;
           case 'refunded': statusText='已退款';break;
           default: break;
         }

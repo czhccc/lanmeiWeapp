@@ -46,16 +46,13 @@ page {
   height: 36rpx;
 }
 .order-status {
-  width: 104rpx;
-  height: 40rpx;
-  background: #F2F3FF;
+  height: 36rpx;
+  line-height: 36rpx;
+  padding: 2rpx 6rpx;
   border-radius: 4rpx;
-  line-height: 40rpx;
   text-align: center;
   font-size: 26rpx;
-  color: #1989FA;
-  margin-left: 40rpx;
-  /* font-weight: 700; */
+  border: 1rpx solid;
 }
 .order-content {
   display: flex;
@@ -171,19 +168,6 @@ page {
   flex: 1;
   font-size: 28rpx;
   padding: 10rpx 24rpx;
-}
-.filter-status {
-  justify-content: flex-start;
-  flex-wrap: wrap;
-}
-.filter-status-item {
-  padding: 10rpx 20rpx;
-  background-color: rgb(148,148,148);
-  border-radius: 20rpx;
-  font-size: 28rpx;
-  word-break: keep-all;
-  margin-right: 20rpx;
-  margin-bottom: 10rpx;
 }
 .filter-time {
   display: flex;

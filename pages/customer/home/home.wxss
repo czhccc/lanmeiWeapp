@@ -130,3 +130,8 @@ page {
   border-radius: 8rpx;
   margin-left: 10rpx;
 }
+.news-blank {
+  text-align: center;
+  padding-top: 60rpx;
+  color: rgb(177, 177, 177);
+}

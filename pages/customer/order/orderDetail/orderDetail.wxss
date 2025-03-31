@@ -188,18 +188,48 @@ page {
 .orderId-label {
   font-size: 28rpx;
   color: #666666;
-  /* font-weight: 700; */
+  word-break: keep-all;
 }
 .orderId-value {
   display: flex;
   align-items: center;
   font-size: 28rpx;
   color: #333333;
+  word-break: break-all;
+  margin-left: 100rpx;
 }
 .copy-icon {
-  width: 36rpx;
+  min-width: 36rpx;
+  max-width: 36rpx;
   height: 36rpx;
   margin-left: 8rpx;
+}
+
+.trackingNumber {
+  width: 690rpx;
+  height: 104rpx;
+  background: #FFFFFF;
+  border-radius: 16rpx;
+  margin: 0 auto;
+  margin-top: 40rpx;
+  padding: 32rpx;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.trackingNumber-label {
+  font-size: 28rpx;
+  color: #666666;
+  word-break: keep-all;
+}
+.trackingNumber-value {
+  display: flex;
+  align-items: center;
+  font-size: 28rpx;
+  color: #333333;
+  word-break: break-all;
+  margin-left: 100rpx;
 }
 
 .bottom {

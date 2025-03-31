@@ -22,10 +22,13 @@
           <view class="orderId-value">{{item.order_no}}</view>
           <image class="orderId-copy" src="../../../images/common/copy.png" mode="" bind:tap="copyOrderId" data-text="{{item.order_no}}" />
         </view>
-        <view class="order-status" wx:if="{{item.statusText==='已预订'}}" style="color: #1F8FA6;">{{item.statusText}}</view>
-        <view class="order-status" wx:if="{{item.statusText==='已取消'}}" style="color: #C05717;">{{item.statusText}}</view>
-        <view class="order-status" wx:if="{{item.statusText==='已付款'}}" style="color: #13ac5a;">{{item.statusText}}</view>
-        <view class="order-status" wx:if="{{item.statusText==='已完结'}}" style="color: #2D3748;">{{item.statusText}}</view>
+        <view class="order-status order-status-color-reserved" wx:if="{{item.statusText==='已预订'}}">{{item.statusText}}</view>
+        <view class="order-status order-status-color-canceled" wx:if="{{item.statusText==='已取消'}}">{{item.statusText}}</view>
+        <view class="order-status order-status-color-unpaid" wx:if="{{item.statusText==='未付款'}}">{{item.statusText}}</view>
+        <view class="order-status order-status-color-paid" wx:if="{{item.statusText==='已付款'}}">{{item.statusText}}</view>
+        <view class="order-status order-status-color-shipped" wx:if="{{item.statusText==='已发货'}}">{{item.statusText}}</view>
+        <view class="order-status order-status-color-completed" wx:if="{{item.statusText==='已完结'}}">{{item.statusText}}</view>
+        <view class="order-status order-status-color-refunded" wx:if="{{item.statusText==='已退款'}}">{{item.statusText}}</view>
       </view>
       <view class="order-content">
           <image class="order-img" src="{{item.snapshot_coverImage}}" alt=""/>
@@ -49,7 +52,7 @@
       <view class="order-btns">
         <view class="order-btn-solid order-btn-solid-#E53935" wx:if="{{item.status==='reserved'}}" catch:tap="cancelOrder" data-orderId="{{item.id}}">取消预订</view>
         <view class="order-btn-solid" wx:if="{{item.status==='unpaid'}}" catch:tap="payOrder" data-orderId="{{item.id}}">付款</view>
-        <view class="order-btn-solid" wx:if="{{item.status==='paid'}}" catch:tap="completeOrder" data-orderId="{{item.id}}">确认收货</view>
+        <view class="order-btn-solid" wx:if="{{item.status==='shipped'}}" catch:tap="completeOrder" data-orderId="{{item.id}}">确认收货</view>
         <!-- <view class="order-payOrder" wx:if="{{item.batch_type==='stock'}}" catch:tap="refund">退款</view> -->
         <view class="order-btn-blank" catch:tap="seeDetail" data-orderId="{{item.id}}">查看详情</view>
       </view>
@@ -86,7 +89,7 @@
       <view class="filter-item">
         <view class="filter-item-label" style="color: {{(startDate || endDare)?'rgb(25,137,250)':'black'}};">时间段：</view>
         <view class="filter-item-value filter-time">
-          <picker mode="date" value="{{startDate}}" start="2024-01-01" end="2030-12-31" bindchange="startDateChange">
+          <picker mode="date" value="{{startDate}}" start="{{dateRangeStart}}" end="{{dateRangeEnd}}" bindchange="startDateChange">
             <view class="picker">
               <input class="filter-time-item" value="{{startDate}}" placeholder="开始日期" disabled></input>
             </view>

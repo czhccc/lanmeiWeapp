@@ -89,18 +89,18 @@ page {
 	font-size: 18rpx;
   height: 28rpx;
   line-height: 28rpx;
-  padding: 0 6rpx;
-  border-radius: 16rpx 0 16rpx 0;
+  padding: 2rpx 6rpx;
+  border-radius: 16rpx 0 10rpx 0;
   position: absolute;
   left: 4rpx;
   top: 4rpx;
 }
 .goods-type-preorder {
-  background-color: #f19304;
+  background-color: #10B981;
   color: #FFFFFF;
 }
 .goods-type-stock {
-  background-color: #4CAF50;
+  background-color: #F59E0B;
   color: white;
 }
 .goods-img {

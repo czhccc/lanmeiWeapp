@@ -2,10 +2,13 @@
 <view class="orderDetail" style="padding-bottom: {{isShowBottom ? '200rpx' : '100rpx'}}">
 
   <view class="status-wrapper">
-    <view class="status" wx:if="{{theData.statusText==='已预订'}}" style="color: #1F8FA6;">{{theData.statusText}}</view>
-    <view class="status" wx:if="{{theData.statusText==='已取消'}}" style="color: #C05717;">{{theData.statusText}}</view>
-    <view class="status" wx:if="{{theData.statusText==='已付款'}}" style="color: #13ac5a;">{{theData.statusText}}</view>
-    <view class="status" wx:if="{{theData.statusText==='已完结'}}" style="color: #2D3748;">{{theData.statusText}}</view>
+    <view class="status order-status-color-reserved" wx:if="{{theData.statusText==='已预订'}}">{{theData.statusText}}</view>
+    <view class="status order-status-color-canceled" wx:if="{{theData.statusText==='已取消'}}">{{theData.statusText}}</view>
+    <view class="status order-status-color-unpaid" wx:if="{{theData.statusText==='未付款'}}">{{theData.statusText}}</view>
+    <view class="status order-status-color-paid" wx:if="{{theData.statusText==='已付款'}}">{{theData.statusText}}</view>
+    <view class="status order-status-color-shipped" wx:if="{{theData.statusText==='已发货'}}">{{theData.statusText}}</view>
+    <view class="status order-status-color-completed" wx:if="{{theData.statusText==='已完结'}}">{{theData.statusText}}</view>
+    <view class="status order-status-color-refunded" wx:if="{{theData.statusText==='已退款'}}">{{theData.statusText}}</view>
   </view>
   
   <view class="goods">
@@ -31,6 +34,14 @@
     <view class="orderId-value">
       {{theData.order_no}}
       <image class="copy-icon" src="../../../../images/common/copy.png" mode="" bind:tap="copyOrderId" data-text="{{theData.order_no}}" />
+    </view>
+  </view>
+  
+  <view class="trackingNumber">
+    <view class="trackingNumber-label">快递单号</view>
+    <view class="trackingNumber-value">
+      {{theData.ship_trackingNumber}}
+      <image class="copy-icon" src="../../../../images/common/copy.png" mode="" bind:tap="copyTrackingNumber" data-text="{{theData.ship_trackingNumber}}" />
     </view>
   </view>
 

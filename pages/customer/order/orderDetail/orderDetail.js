@@ -30,10 +30,11 @@ Page({
       let statusText = ''
       switch (theData.status) {
         case 'reserved': statusText='已预订';break;
-        case 'paid': statusText='已付款';break;
-        case 'unpaid': statusText='未付款';break;
-        case 'completed': statusText='已完结';break;
         case 'canceled': statusText='已取消';break;
+        case 'unpaid': statusText='未付款';break;
+        case 'paid': statusText='已付款';break;
+        case 'shipped': statusText='已发货';break;
+        case 'completed': statusText='已完结';break;
         case 'refunded': statusText='已退款';break;
         default: break;
       }
@@ -53,7 +54,7 @@ Page({
           let finalMinPrice = (Number(theData.preorder_minPrice)*Number(theData.quantity) + Number(theData.postage) - Number(theData.discountAmount_promotion)).toFixed(2)
           let finalMaxPrice = (Number(theData.preorder_maxPrice)*Number(theData.quantity) + Number(theData.postage) - Number(theData.discountAmount_promotion)).toFixed(2)
           finalPrice = `${finalMinPrice} ~ ${finalMaxPrice}`
-        } else if (theData.status==='unpaid' || theData.status==='paid'||theData.status==='completed') { // 售卖阶段
+        } else if (theData.status==='unpaid' || theData.status==='paid' || theData.status==='shipped' || theData.status==='completed') { // 售卖阶段
           theData.totalPrice = (Number(theData.preorder_finalPrice)*Number(theData.quantity)).toFixed(2)
 
           finalPrice = (Number(theData.preorder_finalPrice)*Number(theData.quantity) + Number(theData.postage) - Number(theData.discountAmount_promotion)).toFixed(2)
@@ -174,6 +175,17 @@ Page({
     });
   },
   copyOrderId(e) {
+    wx.setClipboardData({
+      data: e.currentTarget.dataset.text,
+      success(res) {
+        wx.showToast({
+          title: '复制成功',
+          icon: 'success',
+        });
+      },
+    });
+  },
+  copyTrackingNumber(e) {
     wx.setClipboardData({
       data: e.currentTarget.dataset.text,
       success(res) {

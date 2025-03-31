@@ -48,7 +48,7 @@
 
   <view class="news-wrapper">
     <view class="news-pla">资讯</view>
-    <view class="news-content">
+    <view class="news-content" wx:if="{{news.length > 0}}">
       <view class="news-item" wx:for="{{news}}" wx:key="index" bind:tap="newsItemClick" data-item="{{item}}">
         <view class="news-item-pin" wx:if="{{item.isPin==1}}">⚑</view>
         <view class="news-item-dot" wx:if="{{item.isPin==0}}"></view>
@@ -57,6 +57,9 @@
           <view class="news-item-title-tip" wx:if="{{item.isShowNewTip}}">新</view>
         </view>
       </view>
+    </view>
+    <view class="news-blank" wx:if="{{news.length === 0}}">
+      暂无新资讯~
     </view>
   </view>
 

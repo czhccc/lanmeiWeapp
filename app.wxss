@@ -31,3 +31,25 @@
   margin-left: 20rpx;
   padding: 12rpx 20rpx;
 }
+
+.order-status-color-reserved {
+  color: #10B981;
+}
+.order-status-color-canceled {
+  color: #DC2626;
+}
+.order-status-color-unpaid {
+  color: #4C1D95;
+}
+.order-status-color-paid {
+  color: #F59E0B;
+}
+.order-status-color-shipped {
+  color: #0070d8;
+}
+.order-status-color-completed {
+  color: #64748B;
+}
+.order-status-color-refunded {
+  color: #EF4444;
+}
