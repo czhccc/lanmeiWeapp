@@ -28,9 +28,8 @@ Page({
     _getGoodsDetailById({ id }).then(res => {
       let theData = res.data
 
-      if (theData.batch_discounts && theData.batch_discounts.length>0) {
-        theData.batch_discounts = theData.batch_discounts
-        for (const item of theData.batch_discounts) {
+      if (theData.batch_discounts_promotion && theData.batch_discounts_promotion.length>0) {
+        for (const item of theData.batch_discounts_promotion) {
           item.discount = formatNumber(item.discount)
           item.quantity = formatNumber(item.quantity)
         }

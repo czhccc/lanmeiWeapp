@@ -120,7 +120,6 @@ page {
   justify-content: space-between;
   align-items: center;
   padding: 20rpx;
-  margin-top: 16rpx;
   background-color: white;
   width: 690rpx;
   background: #FFFFFF;
@@ -129,14 +128,17 @@ page {
   margin-top: 40rpx;
   box-sizing: border-box;
 }
+.isHomeDeliveryText {
+  font-size: 28rpx;
+}
 .isHomeDelivery-checkbox {
   font-size: 28rpx;
 }
 .isHomeDelivery-tip {
-  font-size: 24rpx;
+  font-size: 22rpx;
   margin-top: 10rpx;
-  display: flex;
-  justify-content: flex-end;
+  text-align: right;
+  padding-right: 30rpx;
 }
 
 .notes-wrapper {
@@ -162,6 +164,36 @@ page {
   color: #999999 !important;
 }
 
+.extraOptions-wrapper {
+
+}
+.extraOptions-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20rpx;
+  margin-top: 16rpx;
+  background-color: white;
+  width: 690rpx;
+  background: #FFFFFF;
+  border-radius: 0 0 16rpx 16rpx;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+.extraOptions-item-text {
+
+}
+.extraOptions-item-text-content {
+  font-size: 28rpx;
+  word-break: break-all;
+}
+.extraOptions-item-text-amount {
+  font-size: 26rpx;
+}
+.extraOptions-item-checkbox {
+  margin-left: 40rpx;
+}
+
 .detail {
   margin: 0 auto;
   width: 690rpx;
@@ -179,11 +211,13 @@ page {
 .detail-line-label {
   font-size: 28rpx;
   color: #333333;
+  word-break: break-all;
 }
 .detail-line-value {
   font-size: 28rpx;
   color: #333333;
   font-weight: 700;
+  margin-left: 40rpx;
 }
 .detail-line-label2 {
   font-size: 28rpx;

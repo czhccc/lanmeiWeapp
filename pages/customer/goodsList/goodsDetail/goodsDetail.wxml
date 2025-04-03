@@ -35,7 +35,7 @@
 			<view>最少{{theData.batch_type === 'stock' ? '购买' : '预订'}} {{theData.batch_minQuantity}} {{theData.goods_unit}}</view>
 		</view>
 		<view class="tip-wrapper">
-			<view wx:for="{{theData.batch_discounts}}" wx:key="index">
+			<view wx:for="{{theData.batch_discounts_promotion}}" wx:key="index">
 				满 {{item.quantity}} {{theData.goods_unit}}，优惠 {{item.discount}} 元
 			</view>
 		</view>

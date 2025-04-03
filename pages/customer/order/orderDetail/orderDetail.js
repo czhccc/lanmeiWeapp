@@ -46,22 +46,24 @@ Page({
       theData.complete_time = theData.complete_time ? dayjs(theData.complete_time).format("YYYY-MM-DD HH:mm:ss") : null
 
       let finalPrice = null
+      let extraOptionsTotalAmount = theData.extraOptions.reduce((total, item) => total+item.amount, 0)
+      console.log('extraOptionsTotalAmount', extraOptionsTotalAmount)
       if (theData.batch_type==='preorder') { // preorder
         if (theData.status==='reserved' || theData.status==='canceled') { // 预订阶段
           theData.totalMinPrice = (Number(theData.preorder_minPrice)*Number(theData.quantity)).toFixed(2)
           theData.totalMaxPrice = (Number(theData.preorder_maxPrice)*Number(theData.quantity)).toFixed(2)
 
-          let finalMinPrice = (Number(theData.preorder_minPrice)*Number(theData.quantity) + Number(theData.postage) - Number(theData.discountAmount_promotion)).toFixed(2)
-          let finalMaxPrice = (Number(theData.preorder_maxPrice)*Number(theData.quantity) + Number(theData.postage) - Number(theData.discountAmount_promotion)).toFixed(2)
+          let finalMinPrice = (Number(theData.preorder_minPrice)*Number(theData.quantity) + extraOptionsTotalAmount + Number(theData.postage) - Number(theData.discountAmount_promotion)).toFixed(2)
+          let finalMaxPrice = (Number(theData.preorder_maxPrice)*Number(theData.quantity) + extraOptionsTotalAmount + Number(theData.postage) - Number(theData.discountAmount_promotion)).toFixed(2)
           finalPrice = `${finalMinPrice} ~ ${finalMaxPrice}`
         } else if (theData.status==='unpaid' || theData.status==='paid' || theData.status==='shipped' || theData.status==='completed') { // 售卖阶段
           theData.totalPrice = (Number(theData.preorder_finalPrice)*Number(theData.quantity)).toFixed(2)
 
-          finalPrice = (Number(theData.preorder_finalPrice)*Number(theData.quantity) + Number(theData.postage) - Number(theData.discountAmount_promotion)).toFixed(2)
+          finalPrice = (Number(theData.preorder_finalPrice)*Number(theData.quantity) + extraOptionsTotalAmount + Number(theData.postage) - Number(theData.discountAmount_promotion)).toFixed(2)
         }
       } else if (theData.batch_type === 'stock') {  // stock
         theData.totalPrice = (Number(theData.stock_unitPrice)*Number(theData.quantity)).toFixed(2)
-        finalPrice = (Number(theData.stock_unitPrice)*Number(theData.quantity) + Number(theData.postage) - Number(theData.discountAmount_promotion)).toFixed(2)
+        finalPrice = (Number(theData.stock_unitPrice)*Number(theData.quantity) + extraOptionsTotalAmount + Number(theData.postage) - Number(theData.discountAmount_promotion)).toFixed(2)
       }
       theData.finalPrice = finalPrice
 

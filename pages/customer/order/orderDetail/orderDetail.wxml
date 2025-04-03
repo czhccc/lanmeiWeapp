@@ -37,7 +37,7 @@
     </view>
   </view>
   
-  <view class="trackingNumber">
+  <view class="trackingNumber" wx:if="{{theData.ship_trackingNumber}}">
     <view class="trackingNumber-label">快递单号</view>
     <view class="trackingNumber-value">
       {{theData.ship_trackingNumber}}
@@ -104,6 +104,12 @@
       <view class="detail-line-value" wx:if="{{theData.batch_type==='preorder'&&(theData.status==='unpaid'||theData.status==='paid'||theData.status==='completed')}}">¥{{theData.totalPrice}}</view>
       <view class="detail-line-value" wx:if="{{theData.batch_type==='stock'}}">¥{{theData.totalPrice}}</view>
     </view>
+    <block wx:for="{{theData.extraOptions}}" wx:key="index">
+      <view class="detail-line">
+        <view class="detail-line-label">{{item.content}}</view>
+        <view class="detail-line-value">￥{{item.amount}}</view>
+      </view>
+    </block>
     <view class="detail-line">
       <view class="detail-line-label">邮费</view>
       <view class="detail-line-value">{{theData.postage==='0.00' ? '包邮' : '¥'+theData.postage}}</view>
@@ -118,7 +124,7 @@
     </view>
     <view class="detail-line" wx:if="{{theData.pay_finalAmount}}">
       <view class="detail-line-label2">实付款：</view>
-      <view class="detail-line-value2">¥{{theData.finalPrice}}</view>
+      <view class="detail-line-value2">¥{{theData.pay_finalAmount}}</view>
     </view>
   </view>
 

@@ -24,9 +24,11 @@ Page({
 
     notes: '',
 
+    extraOptions: [],
+
     isSubmitting: false,
 
-    resultInfo: {},
+    calculatedOrderInfo: {},
   },
   onLoad(options) {
     const app = getApp();
@@ -36,7 +38,13 @@ Page({
     })
 
     this.setData({
-      quantity: this.data.theData.batch_minQuantity
+      quantity: this.data.theData.batch_minQuantity,
+      extraOptions: this.data.theData.batch_extraOptions.map(item => {
+        return {
+          ...item,
+          isChoosed: false,
+        }
+      })
     })
 
     wx.setNavigationBarTitle({
@@ -115,6 +123,7 @@ Page({
             receive_districtCode: that.data.addressInfo.districtCode,
             receive_address: that.data.addressInfo.detail,
             remark_customer: that.data.notes,
+            extraOptionsIds: that.data.extraOptions.filter(item => item.isChoosed).map(item => item.id)
           }
           if (that.data.theData.batch_type === 'preorder') { // 预订
             _createOrder(params).then(res => {
@@ -173,9 +182,10 @@ Page({
       goodsId: this.data.theData.id,
       quantity: this.data.quantity,
       provinceCode: this.data.addressInfo&&this.data.addressInfo.provinceCode,
+      extraOptionsIds: this.data.extraOptions.filter(item => item.isChoosed).map(item => item.id)
     }).then(res => {
       this.setData({
-        resultInfo: res.data
+        calculatedOrderInfo: res.data
       })
     }).catch(err => {
       let unknownError = false
@@ -214,4 +224,14 @@ Page({
   coverImageLoadError() {
     console.log('封面图加载失败，要在这里替换成默认图片')
   },
+  extraOptionChange(e) {
+    let id = e.currentTarget.dataset.id
+    let changedItem = this.data.extraOptions.find(item => item.id===id)
+    changedItem.isChoosed = !changedItem.isChoosed
+    this.setData({
+      extraOptions: this.data.extraOptions
+    })
+
+    this.debounceGenerateOrderInfo()
+  }
 })

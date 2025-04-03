@@ -23,6 +23,19 @@
     </view>
   </view>
 
+  <view class="item-title" wx:if="{{extraOptions&&extraOptions.length > 0}}">额外选项</view>
+  <view class="extraOptions-wrapper" wx:if="{{extraOptions&&extraOptions.length > 0}}">
+    <block wx:for="{{extraOptions}}" wx:key="index">
+      <view class="extraOptions-item">
+        <view class="extraOptions-item-text">
+          <text class="extraOptions-item-text-content">{{item.content}}</text>
+          <text class="extraOptions-item-text-amount">（￥{{item.amount}}）</text>
+        </view>
+        <van-checkbox class="extraOptions-item-checkbox" value="{{ item.isChoosed }}" shape="square" bind:change="extraOptionChange" data-id="{{item.id}}" />
+      </view>
+    </block>
+  </view>
+
   <view class="item-title">收货地址</view>
   <view class="chooseAddress" bind:tap="chooseAddress" wx:if="{{!addressInfo.id}}">
     <text class="chooseAddress-text">请选择收货地址</text>
@@ -39,11 +52,11 @@
   <view class="defaultAddressNotAvailableText" wx:if="{{defaultAddressNotAvailable&&!addressInfo.province}}">默认地址不符合条件，请手动选择</view>
 
   <view class="isHomeDelivery-wrapper" wx:if="{{addressInfo.district==='嵊州市'}}">
-    <van-checkbox class="isHomeDelivery-checkbox" value="{{ isHomeDelivery }}" shape="square" bind:change="isHomeDeliveryChange">送货上门</van-checkbox>
-    <view class="isHomeDelivery-tip" wx:if="{{addressInfo.district==='嵊州市'}}">嵊州市可送货上门</view>
+    <view class="isHomeDeliveryText">送货上门</view>
+    <van-checkbox class="isHomeDelivery-checkbox" value="{{ isHomeDelivery }}" shape="square" bind:change="isHomeDeliveryChange" />
   </view>
+  <view class="isHomeDelivery-tip" wx:if="{{addressInfo.district==='嵊州市'}}">嵊州市可送货上门</view>
   
-
   <view class="item-title">备注</view>
   <view class="notes-wrapper">
     <van-field
@@ -62,22 +75,28 @@
   <view class="detail">
     <view class="detail-line">
       <view class="detail-line-label">商品总价</view>
-      <view class="detail-line-value" wx:if="{{theData.batch_type==='preorder'}}">¥{{resultInfo.goodsTotalMinPrice}} ~ {{resultInfo.goodsTotalMaxPrice}}</view>
-      <view class="detail-line-value" wx:if="{{theData.batch_type==='stock'}}">¥{{resultInfo.goodsTotalPrice}}</view>
+      <view class="detail-line-value" wx:if="{{theData.batch_type==='preorder'}}">¥{{calculatedOrderInfo.goodsTotalMinPrice}} ~ {{calculatedOrderInfo.goodsTotalMaxPrice}}</view>
+      <view class="detail-line-value" wx:if="{{theData.batch_type==='stock'}}">¥{{calculatedOrderInfo.goodsTotalPrice}}</view>
     </view>
+    <block wx:for="{{calculatedOrderInfo.extraOptions}}" wx:key="index">
+      <view class="detail-line">
+        <view class="detail-line-label">{{item.content}}</view>
+        <view class="detail-line-value">￥{{item.amount}}</view>
+      </view>
+    </block>
     <view class="detail-line">
       <view class="detail-line-label">邮费</view>
-      <view class="detail-line-value" wx:if="{{addressInfo.province}}">{{resultInfo.postage==='0.00' ? '包邮' : '¥'+resultInfo.postage}}</view>
+      <view class="detail-line-value" wx:if="{{addressInfo.province}}">{{calculatedOrderInfo.postage==='0.00' ? '包邮' : '¥'+calculatedOrderInfo.postage}}</view>
       <view class="detail-line-value" wx:else>{{'请选择收货地址'}}</view>
     </view>
-    <view class="detail-line" wx:if="{{resultInfo.discount && resultInfo.discount>0}}">
+    <view class="detail-line" wx:if="{{calculatedOrderInfo.discountAmountPromotion && calculatedOrderInfo.discountAmountPromotion>0}}">
       <view class="detail-line-label">满减优惠</view>
-      <view class="detail-line-value" style="color: #E53935;">-¥{{resultInfo.discount}}</view>
+      <view class="detail-line-value" style="color: #E53935;">-¥{{calculatedOrderInfo.discountAmountPromotion}}</view>
     </view>
     <view class="detail-line" wx:if="{{addressInfo.province}}">
       <view class="detail-line-label2">总计金额：</view>
-      <view class="detail-line-value2" wx:if="{{theData.batch_type==='preorder'}}">¥{{resultInfo.finalAmountMin}} ~ {{resultInfo.finalAmountMax}}</view>
-      <view class="detail-line-value2" wx:if="{{theData.batch_type==='stock'}}">¥{{resultInfo.finalAmount}}</view>
+      <view class="detail-line-value2" wx:if="{{theData.batch_type==='preorder'}}">¥{{calculatedOrderInfo.finalAmountMin}} ~ {{calculatedOrderInfo.finalAmountMax}}</view>
+      <view class="detail-line-value2" wx:if="{{theData.batch_type==='stock'}}">¥{{calculatedOrderInfo.finalAmount}}</view>
     </view>
   </view>
   
@@ -85,8 +104,8 @@
     <view class="bottom-content">
       <view class="payAmount" wx:if="{{addressInfo.province}}">
         <!-- <view class="payAmount-label">{{theData.batch_type==='preorder'?'价格区间':'付款金额'}}：</view> -->
-        <view class="payAmount-value" wx:if="{{theData.batch_type==='preorder'}}">¥{{resultInfo.finalAmountMin}} ~ {{resultInfo.finalAmountMax}}</view>
-      <view class="payAmount-value" wx:if="{{theData.batch_type==='stock'}}">¥{{resultInfo.finalAmount}}</view>
+        <view class="payAmount-value" wx:if="{{theData.batch_type==='preorder'}}">¥{{calculatedOrderInfo.finalAmountMin}} ~ {{calculatedOrderInfo.finalAmountMax}}</view>
+      <view class="payAmount-value" wx:if="{{theData.batch_type==='stock'}}">¥{{calculatedOrderInfo.finalAmount}}</view>
       </view>
       <view class="payAmount" wx:else>请选择收获地址</view>
       <view class="payBtn" bind:tap="submit" wx:if="{{addressInfo.id}}">{{theData.batch_type==='preorder' ? '确定预订' : '提交订单'}}</view>
