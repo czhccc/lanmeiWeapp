@@ -1,8 +1,8 @@
 import request from '../network'
 
-export function _getNewsList(data) {
+export function _getNewsListForWechat(data) {
   return request({
-		url: '/wechat/news/list',
+		url: '/wechat/news/listForWechat',
 		data
   })
 }

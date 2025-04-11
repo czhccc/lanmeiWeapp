@@ -13,6 +13,7 @@ Page({
   },
   getAboutUs() {
     _getAboutUs().then(res => {
+      console.log(JSON.stringify(res.data))
       this.setData({
         theData: res.data
       })

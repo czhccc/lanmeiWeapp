@@ -13,7 +13,10 @@ Page({
     this.getNewsDetail(options.id)
   },
   getNewsDetail(id) {
-    _getNewsDetail({ id }).then(res => {
+    _getNewsDetail({ 
+      id,
+      flag: 'wechat' 
+    }).then(res => {
       let theData = res.data
       theData.updateTimeToShow = dayjs(theData.updateTime).format('YYYY-MM-DD')
 

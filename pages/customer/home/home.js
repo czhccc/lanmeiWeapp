@@ -8,7 +8,7 @@ import {
 } from '../../../network/customer/recommend'
 
 import {
-  _getNewsList
+  _getNewsListForWechat
 } from '../../../network/customer/news.js'
 
 import dayjs from 'dayjs'
@@ -31,14 +31,14 @@ Page({
     this.getNewsList()
   },
   getLocation(){
-    wx.getLocation({
-      type: 'wgs84',
-      isHighAccuracy: true,
-      success: res => {
-        wx.setStorageSync('longitude', res.longitude)
-        wx.setStorageSync('latitude', res.latitude)
-      },
-    })
+    // wx.getLocation({
+    //   type: 'wgs84',
+    //   isHighAccuracy: true,
+    //   success: res => {
+    //     wx.setStorageSync('longitude', res.longitude)
+    //     wx.setStorageSync('latitude', res.latitude)
+    //   },
+    // })
   },
   getLatestNotification() {
     _getLatestNotification().then(res => {
@@ -54,7 +54,7 @@ Page({
   },
   getRecommendList() { // 轮播图
     _getRecommendList().then(res => {
-      let swiper = res.data.records
+      let swiper = res.data
       swiper.sort((a, b) => a.sort - b.sort);
 
       this.setData({
@@ -91,12 +91,8 @@ Page({
     }
   },
   getNewsList() {
-    _getNewsList({
-      showed: 1,
-      pageNo: 1,
-      pageSize: 6,
-    }).then(res => {
-      let news = res.data.records.map(item => {
+    _getNewsListForWechat().then(res => {
+      let news = res.data.map(item => {
         return {
           id: item.id,
           title: item.title,

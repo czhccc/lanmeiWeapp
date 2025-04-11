@@ -125,6 +125,7 @@ page {
 .goods-price-wrapper {
   display: flex;
   justify-content: flex-end;
+  padding-right: 4rpx;
 }
 .goods-price {
 	font-size: 26rpx;

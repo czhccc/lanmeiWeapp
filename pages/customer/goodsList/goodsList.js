@@ -1,6 +1,6 @@
 // pages/prefer/goodsList.js
 import {
-  _getCategory,
+  _getCategoryList,
   _getGoodsList
 } from '../../../network/customer/goods'
 
@@ -20,12 +20,12 @@ Page({
   },
   onShow() {
     this.getCategory()
-    this.getGoodsList()
+    this.getGoodsList({
+      goodsCategoryId: this.data.choosedCategoryId
+    })
   },
   getCategory() {
-    _getCategory({
-      isSelling: true
-    }).then(res => {
+    _getCategoryList().then(res => {
       if (res.data.length === 0) {
         return;
       }
@@ -38,9 +38,6 @@ Page({
   getGoodsList(params) {
     _getGoodsList({
       ...params,
-      pageNo: 1,
-      pageSize: 999,
-      goodsIsSelling: 1,
     }).then(res => {
       this.setData({
         listData: res.data.records
@@ -56,12 +53,14 @@ Page({
   categoryItemClick(e) {
     let categoryId = e.currentTarget.dataset.id
     this.setData({
+      goodsName: '',
       choosedCategoryId: categoryId,
     })
     this.getGoodsList({goodsCategoryId: categoryId})
   },
   getAllGoods() {
     this.setData({
+      goodsName: '',
       choosedCategoryId: -1
     })
     this.getGoodsList()
@@ -75,7 +74,6 @@ Page({
     }
     this.getGoodsList(params)
     this.setData({
-      goodsName: null,
       choosedCategoryId: -1,
     })
   },
@@ -87,7 +85,6 @@ Page({
   },
   bindrefresherrefresh() { // 下拉刷新
     this.setData({
-      pageNo: 1,
       listData: [],
       refresherTriggered: true
     })

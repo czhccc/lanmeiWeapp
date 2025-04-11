@@ -46,8 +46,11 @@ Page({
       theData.complete_time = theData.complete_time ? dayjs(theData.complete_time).format("YYYY-MM-DD HH:mm:ss") : null
 
       let finalPrice = null
-      let extraOptionsTotalAmount = theData.extraOptions.reduce((total, item) => total+item.amount, 0)
-      console.log('extraOptionsTotalAmount', extraOptionsTotalAmount)
+      let extraOptionsTotalAmount = 0 
+      if (Array.isArray(theData.extraOptions)) {
+        extraOptionsTotalAmount = theData.extraOptions.reduce((total, item) => total+item.amount, 0)
+      }
+
       if (theData.batch_type==='preorder') { // preorder
         if (theData.status==='reserved' || theData.status==='canceled') { // 预订阶段
           theData.totalMinPrice = (Number(theData.preorder_minPrice)*Number(theData.quantity)).toFixed(2)

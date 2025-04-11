@@ -1,9 +1,9 @@
 import request from '../network'
 
 // 获取分类
-export function _getCategory(data) {
+export function _getCategoryList(data) {
   return request({
-		url: '/category',
+		url: '/category/listForWechat',
 		data
   })
 }
@@ -11,8 +11,9 @@ export function _getCategory(data) {
 // 获取商品列表
 export function _getGoodsList(data) {
   return request({
-		url: '/goods/getGoodsList',
-		data
+		url: '/goods/getGoodsListForWechat',
+    data,
+    method: 'POST'
   })
 }
 
