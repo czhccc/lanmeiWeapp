@@ -29,7 +29,11 @@ export default function(options, showToast=true) {
         
         if (data.code !== 200) { // 不成功
           if (showToast) {
-            wx.showToast({ title: data.message, icon: 'none' })
+            wx.showToast({ 
+              title: data.message, 
+              icon: 'none',
+              duration: 60000 
+            })
           }
 					if (data.code === 401) {
             wx.removeStorageSync('token')
@@ -47,7 +51,11 @@ export default function(options, showToast=true) {
             }
 					} else {
             if (showToast) {
-              wx.showToast({ title: data.message, icon: 'none' })
+              wx.showToast({ 
+                title: data.message, 
+                icon: 'none',
+                duration: 60000 
+              })
             }
             reject(data)
           }
@@ -62,7 +70,11 @@ export default function(options, showToast=true) {
         if (showToast) {
           wx.hideLoading({ fail: err => {} })
         }
-				wx.showToast({ title: '网络请求错误', icon: 'none' })
+				wx.showToast({ 
+          title: '网络请求错误', 
+          icon: 'none',
+          duration: 60000  
+        })
         reject(err)
       },
     })

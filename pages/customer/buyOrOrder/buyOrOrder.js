@@ -6,6 +6,9 @@ import {
 import {
   _getDefaultAddress
 } from '../../../network/customer/address'
+import {
+  _getIdempotencyKey
+} from '../../../network/customer/utils'
 
 import {
   debounce
@@ -32,19 +35,23 @@ Page({
   },
   onLoad(options) {
     const app = getApp();
-    this.setData({
-      theData: app.globalData.currentGoodsDetail,
-      provinces: app.globalData.currentGoodsDetail.batch_shipProvinces.map(item => item.name)
-    })
+
+    let theData = app.globalData.currentGoodsDetail
+    console.log(theData)
+    let provinces = theData.batch_shipProvinces&&theData.batch_shipProvinces.length>0 
+                      ? theData.batch_shipProvinces.map(item => item.name) 
+                      : []
+    let extraOptions = theData.batch_extraOptions&&theData.batch_extraOptions.length>0 
+                        ? theData.batch_extraOptions.map(item => {
+                                                  return { ...item, isChoosed: false, }
+                                                }) 
+                        : []
 
     this.setData({
-      quantity: this.data.theData.batch_minQuantity,
-      extraOptions: this.data.theData.batch_extraOptions.map(item => {
-        return {
-          ...item,
-          isChoosed: false,
-        }
-      })
+      theData,
+      quantity: theData.batch_minQuantity,
+      provinces,
+      extraOptions,
     })
 
     wx.setNavigationBarTitle({
@@ -86,7 +93,7 @@ Page({
       url: `/pages/customer/address/addressList/addressList?isChoose=true&availableProvinces=${this.data.provinces}`,
     })
   },
-  submit() {
+  async submit() {
     if (this.data.isSubmitting) {
       return;
     }
@@ -107,12 +114,38 @@ Page({
       return;
     }
 
-    this.data.isSubmitting = true
+    // this.data.isSubmitting = true
+
+    let idempotencyKey;
+    try {
+      let getIdempotencyKeyResult = await _getIdempotencyKey({
+        keyParams: {
+          goodsId: this.data.theData.id,
+          quantity: this.data.quantity,
+          addressId: this.data.id
+        },
+        keyPrefix: 'order'
+      });
+      idempotencyKey = getIdempotencyKeyResult.data.idempotencyKey
+    } catch (error) {
+      wx.showToast({
+        title: error.message,
+        icon: 'none',
+        duration: 60000
+      })
+      return false;
+    }
+
+    console.log(idempotencyKey)
+
+    this.data.isSubmitting = false
+    
     wx.showModal({
       title: `${this.data.theData.batch_type==='preorder' ? '确定预订' : '提交订单'}`,
       success(res) {
         if (res.confirm) {
           let params = {
+            idempotencyKey,
             goods_id: that.data.theData.id,
             quantity: that.data.quantity,
             receive_isHomeDelivery: that.data.addressInfo.district==='嵊州市' ? (that.data.isHomeDelivery ? 1 : 0) : 0,
@@ -154,7 +187,6 @@ Page({
               }, 1500)
               // 跳转到支付页
             }).catch(error => {
-              console.log('error ????????????')
               wx.showToast({
                 title: error.message,
                 icon: 'error'

@@ -27,11 +27,12 @@
 						multiple
 					/>
 				</view> -->
-				<view 
-          class="submitBtn" 
+				<button 
+          class="loadingBtn submitBtn" 
           bindtap="submit"
           style="background-color: {{hasComment ? '#1989FA' : '#909399'}};"
-        >提 交</view>
+          loading="{{isSubmitting}}"
+        >提交</button>
 				<view class="moreIdeas">
           <view class="contactUs" bindtap="contactUs">直接联系我们</view>
 				</view>

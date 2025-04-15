@@ -12,7 +12,7 @@ Page({
       time: '',
     },
 
-    isSubmitting: false,
+    // isSubmitting: false,
   },
   onShow() {
     this.getLatestNotification()

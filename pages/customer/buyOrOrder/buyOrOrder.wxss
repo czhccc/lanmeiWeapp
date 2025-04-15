@@ -259,14 +259,7 @@ page {
   font-weight: 700;
 }
 .payBtn {
-  width: 240rpx;
-  height: 74rpx;
-  line-height: 74rpx;
-  background: #1989FA;
-  border-radius: 42rpx;
-  color: white;
-  text-align: center;
-  font-size: 36rpx;
+  
 }
 
 .item-title {

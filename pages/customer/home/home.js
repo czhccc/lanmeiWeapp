@@ -30,18 +30,10 @@ Page({
     this.getRecommendList()
     this.getNewsList()
   },
-  getLocation(){
-    // wx.getLocation({
-    //   type: 'wgs84',
-    //   isHighAccuracy: true,
-    //   success: res => {
-    //     wx.setStorageSync('longitude', res.longitude)
-    //     wx.setStorageSync('latitude', res.latitude)
-    //   },
-    // })
-  },
   getLatestNotification() {
     _getLatestNotification().then(res => {
+      console.log('????????',res)
+
       if (res.data) {
         this.setData({
           notification: {

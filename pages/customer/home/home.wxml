@@ -15,7 +15,7 @@
 	</view>
 
 
-	<view class="swiper-wrapper">
+	<view class="swiper-wrapper" wx:if="{{swiper.length > 0}}">
 		<swiper class="swiper" autoplay="true" interval="3000" duration="500" 	indicator-dots indicator-color="rgba(255,255,255,0.55)" 	indicator-active-color="#FFFFFF">
       <block wx:for="{{swiper}}" wx:key="index">
         <swiper-item>

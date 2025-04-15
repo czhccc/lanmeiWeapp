@@ -58,7 +58,13 @@
 
   <view class="bottom-bar">
     <view class="deleteBtn" wx:if="{{flag==='edit'}}" bind:tap="toDelete">删除</view>
-    <view class="saveBtn" bind:tap="toSave">{{flag==='edit'?'保存':'提交'}}</view>
+    <button 
+      class="loadingBtn saveBtn" 
+      bind:tap="toSave"
+      loading="{{isSubmitting}}"
+    >
+      {{flag==='edit'?'保存':'提交'}}
+    </button>
   </view>
 
   <van-popup 

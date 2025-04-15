@@ -140,9 +140,24 @@
         <view class="payAmount-value">¥{{theData.finalPrice}}</view>
       </view>
       <view class="payAmount" wx:else> </view>
-      <view class="btn-solid btn-solid-#E53935" bind:tap="cancelOrder" wx:if="{{theData.status === 'reserved'}}">取消预订</view>
-      <view class="btn-solid" bind:tap="payOrder" wx:if="{{theData.status === 'unpaid'}}">付款</view>
-      <view class="btn-solid" bind:tap="completeOrder" wx:if="{{theData.status === 'paid'}}">确认收货</view>
+      <button 
+        class="loadingBtn" 
+        bind:tap="cancelOrder" 
+        wx:if="{{theData.status === 'reserved'}}"
+        loading="{{isSubmitting}}"
+      >取消预订</button>
+      <button 
+        class="loadingBtn" 
+        bind:tap="payOrder" 
+        wx:if="{{theData.status === 'unpaid'}}"
+        loading="{{isSubmitting}}"
+      >付款</button>
+      <button 
+        class="loadingBtn" 
+        bind:tap="completeOrder" 
+        wx:if="{{theData.status === 'paid'}}"
+        loading="{{isSubmitting}}"
+      >确认收货</button>
     </view>
   </view>
 

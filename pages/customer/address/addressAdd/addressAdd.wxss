@@ -31,12 +31,5 @@ page {
   margin-right: 30rpx;
 }
 .saveBtn {
-  flex: 1;
-  background: #1989FA;
-  border: 1rpx solid #1989FA;
-  border-radius: 9999rpx;
-  height: 84rpx;
-  text-align: center;
-  line-height: 84rpx;
-  color: white;
+  width: 100%;
 }

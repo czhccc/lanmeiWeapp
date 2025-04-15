@@ -108,7 +108,14 @@
       <view class="payAmount-value" wx:if="{{theData.batch_type==='stock'}}">¥{{calculatedOrderInfo.finalAmount}}</view>
       </view>
       <view class="payAmount" wx:else>请选择收获地址</view>
-      <view class="payBtn" bind:tap="submit" wx:if="{{addressInfo.id}}">{{theData.batch_type==='preorder' ? '确定预订' : '提交订单'}}</view>
+      <button 
+        class="loadingBtn payBtn" 
+        bind:tap="submit" 
+        wx:if="{{addressInfo.id}}"
+        loading="{{isSubmitting}}"
+      >
+        {{theData.batch_type==='preorder' ? '确定预订' : '提交订单'}}
+      </button>
     </view>
   </view>
 </view>

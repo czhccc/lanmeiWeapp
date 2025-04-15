@@ -195,28 +195,18 @@ page {
 }
 .filter-reset {
   flex: 1;
-  height: 84rpx;
+  height: 80rpx;
   background: #FFFFFF;
   border-radius: 42rpx;
   border: 2rpx solid #1989FA;
-  line-height: 84rpx;
-  text-align: center;
-  font-size: 32rpx;
+  line-height: 80rpx;
+  font-size: 36rpx;
   color: #1989FA;
-  font-weight: 700;
 }
 .filter-confirm {
   margin-left: 30rpx;
   flex: 1;
-  height: 84rpx;
-  background: #1989FA;
-  border-radius: 42rpx;
-  border: 2rpx solid #1989FA;
-  line-height: 84rpx;
-  text-align: center;
-  font-size: 32rpx;
-  color: #FFFFFF;
-  font-weight: 700;
+  height: 80rpx;
 }
 
 /* 取消预订 */
@@ -265,4 +255,17 @@ page {
   text-align: center;
   font-size: 32rpx;
   margin-left: 20rpx;
+}
+
+.loadingBtn {
+  height: 66rpx;
+  line-height: 66rpx;
+  font-size: 28rpx;
+  padding: 0 24rpx;
+}
+.seeDetailBtn {
+  background-color: white;
+  color: #1989FA;
+  border: 1rpx solid #1989FA;
+  margin-left: 24rpx;
 }

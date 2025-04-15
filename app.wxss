@@ -31,6 +31,16 @@
   margin-left: 20rpx;
   padding: 12rpx 20rpx;
 }
+.loadingBtn {
+  height: 80rpx;
+  line-height: 80rpx;
+  background: #1989FA;
+  border-radius: 999rpx;
+  color: white;
+  font-size: 36rpx;
+  margin: 0;
+  padding: 0rpx 40rpx;
+}
 
 .order-status-color-reserved {
   color: #10B981;

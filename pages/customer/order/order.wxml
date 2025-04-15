@@ -18,7 +18,7 @@
     <view class="order-item" wx:for="{{listData}}" wx:key="index">
       <view class="order-top">
         <view class="orderId">
-          <view class="orderId-label">订单编号：</view>
+          <view class="orderId-label">订单号：</view>
           <view class="orderId-value">{{item.order_no}}</view>
           <image class="orderId-copy" src="../../../images/common/copy.png" mode="" bind:tap="copyOrderId" data-text="{{item.order_no}}" />
         </view>
@@ -50,11 +50,32 @@
       </view>
 
       <view class="order-btns">
-        <view class="order-btn-solid order-btn-solid-#E53935" wx:if="{{item.status==='reserved'}}" catch:tap="cancelOrder" data-orderId="{{item.id}}">取消预订</view>
-        <view class="order-btn-solid" wx:if="{{item.status==='unpaid'}}" catch:tap="payOrder" data-orderId="{{item.id}}">付款</view>
-        <view class="order-btn-solid" wx:if="{{item.status==='shipped'}}" catch:tap="completeOrder" data-orderId="{{item.id}}">确认收货</view>
-        <!-- <view class="order-payOrder" wx:if="{{item.batch_type==='stock'}}" catch:tap="refund">退款</view> -->
-        <view class="order-btn-blank" catch:tap="seeDetail" data-orderId="{{item.id}}">查看详情</view>
+        <button 
+          class="loadingBtn" 
+          wx:if="{{item.status==='reserved'}}" 
+          catch:tap="cancelOrder" 
+          data-orderId="{{item.id}}"
+          loading="{{isSubmitting}}"
+        >取消预订</button>
+        <button 
+          class="loadingBtn" 
+          wx:if="{{item.status==='unpaid'}}" 
+          catch:tap="payOrder" 
+          data-orderId="{{item.id}}"
+          loading="{{isSubmitting}}"
+        >付款</button>
+        <button class="loadingBtn" 
+          wx:if="{{item.status==='shipped'}}" 
+          catch:tap="completeOrder" 
+          data-orderId="{{item.id}}"
+          loading="{{isSubmitting}}"
+        >确认收货</button>
+        <!-- <button class="loadingBtn" wx:if="{{item.batch_type==='stock'}}" catch:tap="refund">退款</button> -->
+        <button 
+          class="loadingBtn seeDetailBtn" 
+          catch:tap="seeDetail" 
+          data-orderId="{{item.id}}"
+        >查看详情</button>
       </view>
     </view>
     <view class="blank" style="height: 60rpx;"></view>
@@ -104,8 +125,12 @@
       </view>
 
       <view class="filter-btns">
-        <view class="filter-reset" bind:tap="filterReset">重置</view>
-        <view class="filter-confirm" bind:tap="filterConfirm">确定</view>
+        <button class="filter-reset" bind:tap="filterReset">重置</button>
+        <button 
+          class="loadingBtn filter-confirm" 
+          bind:tap="filterConfirm"
+          loading="{{isSubmitting}}"
+        >确定</button>
       </view>
     </view>
   </van-popup>

@@ -13,12 +13,13 @@ Page({
     availableProvincesString: '',
   },
   onLoad(options) {
-    console.log(options)
-    this.setData({
-      isChoose: options.isChoose || false,
-      availableProvinces: options.availableProvinces.split(','),
-      availableProvincesString: options.availableProvinces.replaceAll(',', '、'),
-    })
+    if (options.isChoose) {
+      this.setData({
+        isChoose: options.isChoose,
+        availableProvinces: options.availableProvinces.split(','),
+        availableProvincesString: options.availableProvinces.replaceAll(',', '、'),
+      })
+    }
   },
   onShow() {
     this.getAddressList()
