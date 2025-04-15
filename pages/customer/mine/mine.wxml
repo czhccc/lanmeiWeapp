@@ -36,7 +36,7 @@
 			</view>
 			<view class="nav-panel-item" bindtap="contact">
 				<van-icon style="font-size: 60rpx;" name="friends-o" />
-				<view class="nav-panel-items-text">关于我们</view>
+				<view class="nav-panel-items-text">联系我们</view>
 			</view>
 		</view>
 	</view>

@@ -18,12 +18,7 @@ Page({
     })
   },
   getPhoneNumber (e) {
-    console.log('微信授权登录', e)
     if (!e.detail.code) { // 用户拒绝授权
-      wx.showToast({
-        title: e.detail.errMsg,
-        icon: 'none'
-      })
       return;
     }
     const { code, encryptedData, iv } = e.detail;
@@ -55,7 +50,7 @@ Page({
       url: '/pages/customer/comment/comment',
     })
   },
-  contact() { // 关于我们
+  contact() { // 联系我们
     wx.navigateTo({
       url: '/pages/customer/seeSeller/seeSeller',
     })

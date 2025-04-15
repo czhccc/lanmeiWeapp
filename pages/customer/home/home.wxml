@@ -34,7 +34,7 @@
 	<view class="nav-items">
     <view class="nav-item" bindtap="navigate" data-flag="aboutUs">
 			<image class="nav-item-img" src="../../../images/home/icon-aboutUs.png" mode=""/>
-			<view class="nav-item-title">关于我们</view>
+			<view class="nav-item-title">联系我们</view>
 		</view>
 		<view class="nav-item" bindtap="navigate" data-flag="comment">
 			<image class="nav-item-img" src="../../../images/home/icon-comment.png" mode=""/>

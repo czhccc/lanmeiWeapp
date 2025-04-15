@@ -28,14 +28,13 @@ export default function(options, showToast=true) {
         let data = res.data
         
         if (data.code !== 200) { // 不成功
-          if (showToast) {
-            wx.showToast({ 
-              title: data.message, 
-              icon: 'none',
-              duration: 60000 
-            })
-          }
 					if (data.code === 401) {
+            wx.showToast({ 
+              title: '请先登录😢', 
+              icon: 'none',
+              duration: 1500
+            })
+
             wx.removeStorageSync('token')
             wx.removeStorageSync('phone')
             
@@ -52,11 +51,12 @@ export default function(options, showToast=true) {
 					} else {
             if (showToast) {
               wx.showToast({ 
-                title: data.message, 
+                title: '十分抱歉😢，网络请求出错了，请联系管理员', 
                 icon: 'none',
-                duration: 60000 
+                duration: 60000
               })
             }
+            console.log('???')
             reject(data)
           }
         } else { // 成功
@@ -71,9 +71,9 @@ export default function(options, showToast=true) {
           wx.hideLoading({ fail: err => {} })
         }
 				wx.showToast({ 
-          title: '网络请求错误', 
+          title: '十分抱歉😢，网络请求出错了，请联系管理员', 
           icon: 'none',
-          duration: 60000  
+          duration: 60000
         })
         reject(err)
       },

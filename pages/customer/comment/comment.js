@@ -3,6 +3,9 @@ import {
   _comment,
   _getUserComments
 } from '../../../network/customer/comment'
+import {
+  _getIdempotencyKey
+} from '../../../network/customer/utils'
 
 import dayjs from 'dayjs'
 
@@ -20,9 +23,6 @@ Page({
   onLoad(options) {
     this.getHistoryComments()
   },
-  onReady() {
-
-  },
   getHistoryComments() {
     _getUserComments({
       author: wx.getStorageSync('phone'),
@@ -35,7 +35,6 @@ Page({
     })
   },
   onChange(e) {
-    console.log(e)
     if (this.data.activeName !== e.detail) {
       this.setData({
         activeName: e.detail,
@@ -43,7 +42,6 @@ Page({
     }
   },
   afterRead(event) {
-    console.log(event)
     const { file } = event.detail;
     const { fileList = [] } = this.data;
     if (Array.isArray(file)) { // 多选
@@ -89,7 +87,7 @@ Page({
       url: '/pages/customer/seeSeller/seeSeller',
     })
   },
-  submit() {
+  async submit() {
     if (this.data.isSubmitting) {
       return;
     }
@@ -99,34 +97,44 @@ Page({
       return;
     }
 
+    that.data.isSubmitting = true
+
+    let idempotencyKey;
+    try {
+      let getIdempotencyKeyResult = await _getIdempotencyKey({
+        keyParams: {
+          comment: that.data.comment,
+        },
+        keyPrefix: 'comment'
+      });
+      idempotencyKey = getIdempotencyKeyResult.data.idempotencyKey
+    } catch (error) {
+      this.data.isSubmitting = false
+      return false;
+    }
+
     wx.showModal({
       title: '确认提交？',
       success: (res) => {
         if (res.confirm) {
-          that.data.isSubmitting = true
           _comment({
+            idempotencyKey,
             comment: that.data.comment,
-            author: wx.getStorageSync('phone')
           }).then(res => {
-            if (res.data) {
-              wx.showToast({
-                title: '留言成功',
-                icon: 'none'
+            wx.showToast({
+              title: '留言成功',
+              icon: 'none'
+            })
+            setTimeout(() => {
+              that.getHistoryComments()
+
+              that.setData({
+                comment: '',
+                hasComment: false,
               })
-              setTimeout(() => {
-                that.getHistoryComments()
-                that.setData({
-                  comment: '',
-                  hasComment: false,
-                  isSubmitting: false
-                })
-              }, 1500)
-            } else {
-              wx.showToast({
-                title: res.message,
-                icon: 'none'
-              })
-            }
+
+              this.data.isSubmitting = false
+            }, 1500)
           }).catch(() => {
             that.data.isSubmitting = false
           })

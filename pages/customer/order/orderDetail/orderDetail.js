@@ -99,22 +99,15 @@ Page({
       orderId: this.data.orderId,
       cancelOrderReason: this.data.cancelOrderReason,
     }).then(res => {
-      if (res.code === 200) {
-        this.setData({
-          isShowCancelOrderPopup: false,
-        })
-        wx.showToast({
-          title: '取消预订成功',
-        })
-        setTimeout(() => {
-          this.getOrderDetailById()
-        }, 1500)
-      } else {
-        wx.showToast({
-          title: res.message,
-          icon: 'error'
-        })
-      }
+      this.setData({
+        isShowCancelOrderPopup: false,
+      })
+      wx.showToast({
+        title: '取消预订成功',
+      })
+      setTimeout(() => {
+        this.getOrderDetailById()
+      }, 1500)
     })
   },
   payOrder() { // 付款
@@ -126,14 +119,12 @@ Page({
     _payOrder({
       orderId: this.data.orderId
     }).then(res => {
-      if (res.code === 200) {
-        wx.showToast({
-          title: '付款成功',
-        })
-        setTimeout(() => {
-          this.getOrderDetailById()
-        }, 1500)
-      }
+      wx.showToast({
+        title: '付款成功',
+      })
+      setTimeout(() => {
+        this.getOrderDetailById()
+      }, 1500)
     })
   },
   completeOrder(e) { // 确认收货
@@ -150,27 +141,14 @@ Page({
       success(res) {
         if (res.confirm) {
           _completeOrder({ orderId: that.data.orderId }).then(res => {
-            if (res.code === 200) {
-              wx.showToast({
-                title: '收货成功',
-              })
-              setTimeout(() => {
-                that.getOrderDetailById()
-              }, 1500)
-            } else {
-              wx.showToast({
-                title: res.message,
-                icon: 'none'
-              })
-            }
-          }).catch(error => {
             wx.showToast({
-              title: error.message,
-              icon: 'none'
+              title: '收货成功',
             })
             setTimeout(() => {
-              that.data.isSubmitting = false
+              that.getOrderDetailById()
             }, 1500)
+          }).catch(error => {
+            that.data.isSubmitting = false
           })
         }
         if (res.cancel) {

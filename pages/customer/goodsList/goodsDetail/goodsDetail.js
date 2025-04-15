@@ -57,16 +57,6 @@ Page({
     })
   },
   toBuyOrOrder() {
-    if (this.data.theData.batch_type === 'stock') {
-      if (this.data.theData.batch_stock <= 0) {
-        wx.showToast({
-          title: '已经卖完了...',
-          icon: 'none'
-        })
-        return;
-      }
-    }
-
     const app = getApp();
     app.globalData.currentGoodsDetail = this.data.theData
 

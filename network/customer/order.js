@@ -52,7 +52,7 @@ export function _completeOrder(data) {
 	}, false)
 }
 
-// 确认收货（完结订单）
+// 计算订单信息
 export function _generateOrderInfo(data) {
   return request({
 		url: '/order/generateOrderInfo',

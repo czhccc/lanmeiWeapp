@@ -28,7 +28,7 @@
     </van-collapse-item>
     <van-collapse-item name="3">
       <view slot="title">
-        <text style="font-size: 32rpx;color: #333333;">关于我们</text>
+        <text style="font-size: 32rpx;color: #333333;">联系我们</text>
         <van-icon name="friends-o" style="font-size: 32rpx;margin-left: 10rpx;" />
       </view>
       <rich-text class="detail-content" nodes="{{theData.aboutUs}}"></rich-text>

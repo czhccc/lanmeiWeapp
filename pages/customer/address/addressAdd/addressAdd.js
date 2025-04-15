@@ -5,6 +5,9 @@ import {
   _deleteAddress,
   _getAll,
 } from '../../../../network/customer/address'
+import {
+  _getIdempotencyKey
+} from '../../../../network/customer/utils'
 
 Page({
   data: {
@@ -127,17 +130,34 @@ Page({
       isDefault: e.detail.value
     })
   },
-  toDelete() {
+  async toDelete() {
     if (this.data.isSubmitting) {
       return;
     }
     var that = this;
+
+    that.data.isSubmitting = true
+
+    let idempotencyKey;
+    try {
+      let getIdempotencyKeyResult = await _getIdempotencyKey({
+        keyParams: {
+          id: that.data.id,
+        },
+        keyPrefix: 'address'
+      });
+      idempotencyKey = getIdempotencyKeyResult.data.idempotencyKey
+    } catch (error) {
+      this.data.isSubmitting = false
+      return false;
+    }
+
     wx.showModal({
       title: '确认删除？',
       success(res) {
         if (res.confirm) {
-          that.data.isSubmitting = true
           _deleteAddress({
+            idempotencyKey,
             id: that.data.id
           }).then(res => {
             wx.showToast({
@@ -146,16 +166,15 @@ Page({
             })
 
             setTimeout(() => {
+              that.data.isSubmitting = false
               wx.navigateBack()
             }, 1500)
-          }).finally(() => {
-            that.data.isSubmitting = false
           })
         }
       }
     });
   },
-  toSave() {
+  async toSave() {
     if (this.data.isSubmitting) {
       return;
     }
@@ -213,6 +232,26 @@ Page({
     }
 
     var that = this;
+
+    let idempotencyKey;
+    try {
+      let getIdempotencyKeyResult = await _getIdempotencyKey({
+        keyParams: {
+          name: that.data.name, 
+          phone: that.data.phone, 
+          provinceCode: that.data.provinceCode, 
+          cityCode: that.data.cityCode, 
+          districtCode: that.data.districtCode, 
+          detail: that.data.detail, 
+        },
+        keyPrefix: 'address'
+      });
+      idempotencyKey = getIdempotencyKeyResult.data.idempotencyKey
+    } catch (error) {
+      this.data.isSubmitting = false
+      return false;
+    }
+
     wx.showModal({
       title: '确认提交？',
       success(res) {
@@ -220,6 +259,7 @@ Page({
           that.data.isSubmitting = true
           if (that.data.flag === 'add') { // 新增
             _addAddress({
+              idempotencyKey,
               name: that.data.name, 
               phone: that.data.phone, 
               create_by: wx.getStorageSync('phone'), 
@@ -230,18 +270,18 @@ Page({
               isDefault: that.data.isDefault,
             }).then(res => {
               wx.showToast({
-                title: res.message,
+                title: '新增成功',
                 icon: 'none'
               })
 
               setTimeout(() => {
+                that.data.isSubmitting = false
                 wx.navigateBack()
               }, 1500)
-            }).finally(() => {
-              that.data.isSubmitting = false
             })
           } else { // 编辑
             _editAddress({
+              idempotencyKey,
               id: that.data.id,
               name: that.data.name, 
               phone: that.data.phone, 
@@ -252,15 +292,14 @@ Page({
               isDefault: that.data.isDefault,
             }).then(res => {
               wx.showToast({
-                title: res.message,
+                title: '编辑成功',
                 icon: 'none'
               })
 
               setTimeout(() => {
+                that.data.isSubmitting = false
                 wx.navigateBack()
               }, 1500)
-            }).finally(() => {
-              that.data.isSubmitting = false
             })
           }
         } else if (res.cancel) {

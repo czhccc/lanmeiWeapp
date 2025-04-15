@@ -1,7 +1,7 @@
 // app.js
 App({
   onLaunch() {
-    // scroll-view 参考self-purchaseList
+    // scroll-view 参考
 
     // wx.showModal({
     //   title: '确认取消预订？',

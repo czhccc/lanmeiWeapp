@@ -5,5 +5,5 @@
     "van-button": "@vant/weapp/button/index",
     "van-icon": "@vant/weapp/icon/index"
   },
-  "navigationBarTitleText": "关于我们"
+  "navigationBarTitleText": "联系我们"
 }

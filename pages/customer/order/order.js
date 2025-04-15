@@ -158,30 +158,17 @@ Page({
       orderId: this.data.currentOrderId,
       cancelOrderReason: this.data.cancelOrderReason,
     }).then(res => {
-      if (res.code === 200) {
-        this.setData({
-          isShowCancelOrderPopup: false,
-        })
-        wx.showToast({
-          title: '取消预订成功',
-        })
-        setTimeout(() => {
-          this.replaceOrderItem()
-        }, 1500)
-      } else {
-        wx.showToast({
-          title: res.message,
-          icon: 'none'
-        })
-      }
-    }).catch(error => {
+      this.setData({
+        isShowCancelOrderPopup: false,
+      })
       wx.showToast({
-        title: error.message,
-        icon: 'none'
+        title: '取消预订成功',
       })
       setTimeout(() => {
-        this.data.isSubmitting = false
+        this.replaceOrderItem()
       }, 1500)
+    }).catch(error => {
+      this.data.isSubmitting = false
     })
   },
   cancelOrder(e) {
@@ -199,27 +186,14 @@ Page({
     this.data.currentOrderId = e.currentTarget.dataset.orderid
 
     _payOrder({ orderId: this.data.currentOrderId }).then(res => {
-      if (res.code === 200) {
-        wx.showToast({
-          title: '付款成功',
-        })
-        setTimeout(() => {
-          this.replaceOrderItem()
-        }, 1500)
-      } else {
-        wx.showToast({
-          title: res.message,
-          icon: 'none'
-        })
-      }
-    }).catch(error => {
       wx.showToast({
-        title: error.message,
-        icon: 'none'
+        title: '付款成功',
       })
       setTimeout(() => {
-        this.data.isSubmitting = false
+        this.replaceOrderItem()
       }, 1500)
+    }).catch(error => {
+      this.data.isSubmitting = false
     })
   },
   completeOrder(e) { // 确认收货
@@ -238,27 +212,14 @@ Page({
       success(res) {
         if (res.confirm) {
           _completeOrder({ orderId: that.data.currentOrderId }).then(res => {
-            if (res.code === 200) {
-              wx.showToast({
-                title: '收货成功',
-              })
-              setTimeout(() => {
-                that.replaceOrderItem()
-              }, 1500)
-            } else {
-              wx.showToast({
-                title: res.message,
-                icon: 'none'
-              })
-            }
-          }).catch(error => {
             wx.showToast({
-              title: error.message,
-              icon: 'none'
+              title: '收货成功',
             })
             setTimeout(() => {
-              that.data.isSubmitting = false
+              that.replaceOrderItem()
             }, 1500)
+          }).catch(error => {
+            that.data.isSubmitting = false
           })
         }
         if (res.cancel) {

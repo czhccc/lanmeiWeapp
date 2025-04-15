@@ -114,7 +114,7 @@ Page({
       return;
     }
 
-    // this.data.isSubmitting = true
+    this.data.isSubmitting = true
 
     let idempotencyKey;
     try {
@@ -128,17 +128,9 @@ Page({
       });
       idempotencyKey = getIdempotencyKeyResult.data.idempotencyKey
     } catch (error) {
-      wx.showToast({
-        title: error.message,
-        icon: 'none',
-        duration: 60000
-      })
+      this.data.isSubmitting = false
       return false;
     }
-
-    console.log(idempotencyKey)
-
-    this.data.isSubmitting = false
     
     wx.showModal({
       title: `${this.data.theData.batch_type==='preorder' ? '确定预订' : '提交订单'}`,
@@ -169,10 +161,7 @@ Page({
                 });
               }, 1500)
             }).catch(error => {
-              wx.showToast({
-                title: error.message,
-                icon: 'error'
-              })
+              that.data.isSubmitting = false
             })
           } else { // 现货
             params.total_price = that.data.totalPrice
@@ -187,10 +176,6 @@ Page({
               }, 1500)
               // 跳转到支付页
             }).catch(error => {
-              wx.showToast({
-                title: error.message,
-                icon: 'error'
-              })
               that.data.isSubmitting = false
             })
           }

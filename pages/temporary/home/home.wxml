@@ -1,7 +1,0 @@
-<!--pages/temporary/home/home.wxml-->
-<view class="home">
-	<view class="wrapper">
-		<button bindtap="selfClick">自用</button>
-		<button style="margin-top: 50rpx;" bindtap="customerClick">客户用</button>
-	</view>
-</view>
