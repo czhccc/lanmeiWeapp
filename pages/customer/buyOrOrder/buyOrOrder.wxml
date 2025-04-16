@@ -51,11 +51,11 @@
   </view>
   <view class="defaultAddressNotAvailableText" wx:if="{{defaultAddressNotAvailable&&!addressInfo.province}}">默认地址不符合条件，请手动选择</view>
 
-  <view class="isHomeDelivery-wrapper" wx:if="{{addressInfo.district==='嵊州市'}}">
+  <view class="isHomeDelivery-wrapper" wx:if="{{theData.batch_ship_canHomeDelivery===1 && addressInfo.district==='嵊州市'}}">
     <view class="isHomeDeliveryText">送货上门</view>
     <van-checkbox class="isHomeDelivery-checkbox" value="{{ isHomeDelivery }}" shape="square" bind:change="isHomeDeliveryChange" />
   </view>
-  <view class="isHomeDelivery-tip" wx:if="{{addressInfo.district==='嵊州市'}}">嵊州市可送货上门</view>
+  <view class="isHomeDelivery-tip" wx:if="{{theData.batch_ship_canHomeDelivery===1 && addressInfo.district==='嵊州市'}}">嵊州市可送货上门</view>
   
   <view class="item-title">备注</view>
   <view class="notes-wrapper">

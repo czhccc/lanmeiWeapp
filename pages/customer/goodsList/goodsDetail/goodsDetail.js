@@ -47,7 +47,7 @@ Page({
 
       this.setData({
         theData,
-        provinces: theData.batch_shipProvinces.map(item => item.name).join('、')
+        provinces: theData.batch_ship_provinces.map(item => item.name).join('、')
       })
     })
   },

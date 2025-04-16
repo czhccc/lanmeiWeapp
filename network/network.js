@@ -25,10 +25,11 @@ export default function(options, showToast=true) {
       method: options.method || 'GET',
       data: options.data || {},
       success: res => {
+        console.log('success')
         let data = res.data
-        
+
         if (data.code !== 200) { // 不成功
-					if (data.code === 401) {
+					if (data.code === 'INVALID_TOKEN') {
             wx.showToast({ 
               title: '请先登录😢', 
               icon: 'none',
@@ -56,7 +57,6 @@ export default function(options, showToast=true) {
                 duration: 60000
               })
             }
-            console.log('???')
             reject(data)
           }
         } else { // 成功

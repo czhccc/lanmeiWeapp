@@ -38,8 +38,8 @@ Page({
 
     let theData = app.globalData.currentGoodsDetail
     console.log(theData)
-    let provinces = theData.batch_shipProvinces&&theData.batch_shipProvinces.length>0 
-                      ? theData.batch_shipProvinces.map(item => item.name) 
+    let provinces = theData.batch_ship_provinces&&theData.batch_ship_provinces.length>0 
+                      ? theData.batch_ship_provinces.map(item => item.name) 
                       : []
     let extraOptions = theData.batch_extraOptions&&theData.batch_extraOptions.length>0 
                         ? theData.batch_extraOptions.map(item => {
