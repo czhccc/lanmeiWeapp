@@ -15,11 +15,11 @@
         value="{{ quantity }}" 
         bind:change="quantityChange"
         min="{{theData.batch_minQuantity}}"
-        max="{{theData.batch_type==='stock' ? theData.batch_stock_remainingQuantity : 999}}" 
+        max="{{theData.batch_type==='stock' ? stock_remainingQuantity : 999}}" 
       />
     </view>
     <view class="goods-stock-wrapper">
-      <view class="goods-stock" wx:if="{{theData.batch_type==='stock'}}">剩余量：{{theData.batch_stock_remainingQuantity}} {{theData.goods_unit}}</view>
+      <view class="goods-stock" wx:if="{{theData.batch_type==='stock'}}">剩余量：{{stock_remainingQuantity}} {{theData.goods_unit}}</view>
     </view>
   </view>
 

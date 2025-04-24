@@ -80,7 +80,7 @@ Page({
   goodsClick(e) {
     let item = e.currentTarget.dataset.item
     wx.navigateTo({
-      url: `/pages/customer/goodsList/goodsDetail/goodsDetail?id=${item.id}`,
+      url: `/pages/customer/goodsList/goodsDetail/goodsDetail?id=${item.id}&batch_type=${item.batch_type}`,
     })
   },
   bindrefresherrefresh() { // 下拉刷新

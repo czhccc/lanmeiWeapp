@@ -24,3 +24,11 @@ export function _getGoodsDetailById(data) {
 		data
   })
 }
+
+// 获取 stock批次 库存
+export function _getGoodsStockRemainingQuantityFromRedis(data) {
+  return request({
+    url: '/goods/getGoodsStockRemainingQuantityFromRedis',
+    data
+  })
+}

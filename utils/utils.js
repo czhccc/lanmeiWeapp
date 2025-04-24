@@ -10,7 +10,7 @@ export function formatNumber(number) {
 	  if (decimalPart === '0' || decimalPart === '00') {
 		return Math.floor(num); // 小数部分为 0 或 00 时，返回去掉小数部分的值
 	  }
-	  return num; // 否则保留小数
+	    return num; // 否则保留小数
 	}
 }
 

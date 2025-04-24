@@ -1,6 +1,7 @@
 // pages/deal/dealPrefer/dealPreferDetail/dealPreferDetail.js
 import {
-  _getGoodsDetailById
+  _getGoodsDetailById,
+  _getGoodsStockRemainingQuantityFromRedis,
 } from '../../../../network/customer/goods'
 
 import {
@@ -10,22 +11,32 @@ import {
 Page({
   data: {
     id: null,
+    batch_type: null,
+
     theData: {},
     detailContet: '',
+
+    stock_RemainingQuantity: null,
+
     isShowPopup: false,
 
     provinces: [],
   },
   onLoad(options) {
     this.data.id = options.id
+    this.data.batch_type = options.batch_type
   },
   onShow() {
-    if (this.data.id) {
-      this.getGoodsDetailById(this.data.id)
+    this.getGoodsDetailById()
+    
+    if (this.data.batch_type === 'preorder') {
+
+    } else if (this.data.batch_type === 'stock') {
+      this.getGoodsStockRemainingQuantityFromRedis()
     }
   },
-  getGoodsDetailById(id) {
-    _getGoodsDetailById({ id }).then(res => {
+  getGoodsDetailById() {
+    _getGoodsDetailById({ id: this.data.id }).then(res => {
       let theData = res.data
 
       if (theData.batch_discounts_promotion && theData.batch_discounts_promotion.length>0) {
@@ -51,6 +62,13 @@ Page({
       })
     })
   },
+  getGoodsStockRemainingQuantityFromRedis() {
+    _getGoodsStockRemainingQuantityFromRedis({ id: this.data.id }).then(res => {
+      this.setData({
+        stock_RemainingQuantity: res.data.remainingQuantity
+      })
+    })
+  },
   gotoCart() {
     wx.navigateTo({
       url: '/pages/cart/cart',
@@ -61,7 +79,7 @@ Page({
     app.globalData.currentGoodsDetail = this.data.theData
 
     wx.navigateTo({
-      url: `/pages/customer/buyOrOrder/buyOrOrder`,
+      url: `/pages/customer/buyOrOrder/buyOrOrder?id=${this.data.id}`,
     })
   },
 })

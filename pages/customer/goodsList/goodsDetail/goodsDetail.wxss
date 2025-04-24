@@ -130,3 +130,8 @@ page {
   line-height: 84rpx;
   color: white;
 }
+.buyBtn-cant {
+  background: #aaa;
+  color: #ffffff;
+  /* font-weight: 700; */
+}

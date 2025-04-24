@@ -1,5 +1,8 @@
 // pages/customer/buyOrOrder/buyOrOrder.js
 import {
+  _getGoodsStockRemainingQuantityFromRedis,
+} from '../../../network/customer/goods'
+import {
   _createOrder,
   _generateOrderInfo,
 } from '../../../network/customer/order'
@@ -16,9 +19,12 @@ import {
 
 Page({
   data: {
+    id: null,
     theData: null,
 
     quantity: 1,
+
+    stock_remainingQuantity: null,
 
     defaultAddressNotAvailable: true,
     provinces: [],
@@ -35,6 +41,8 @@ Page({
   },
   onLoad(options) {
     const app = getApp();
+
+    this.data.id = options.id
 
     let theData = app.globalData.currentGoodsDetail
     console.log(theData)
@@ -57,6 +65,10 @@ Page({
     wx.setNavigationBarTitle({
       title: this.data.theData.batch_type==='preorder'?'预订':'购买'
     });
+
+    if (theData.batch_type === 'stock') {
+      this.getGoodsStockRemainingQuantityFromRedis()
+    }
 
     this.getDefaultAddress()
   },
@@ -250,5 +262,24 @@ Page({
     })
 
     this.debounceGenerateOrderInfo()
+  },
+  getGoodsStockRemainingQuantityFromRedis() { // 现货批次 库存
+    _getGoodsStockRemainingQuantityFromRedis({ id: this.data.id }).then(res => {
+      const stock_remainingQuantity = res.data.remainingQuantity
+
+      if (stock_remainingQuantity<=0 || stock_remainingQuantity<this.data.theData.batch_minQuantity) {
+        wx.showToast({
+          title: '库存不足',
+          icon: 'none'
+        })
+        setTimeout(() => {
+          wx.navigateBack()
+        }, 1500)
+      }
+
+      this.setData({
+        stock_remainingQuantity
+      })
+    })
   }
 })
