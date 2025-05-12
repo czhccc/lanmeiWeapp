@@ -3,8 +3,9 @@
 
   <view class="status-wrapper">
     <view class="status order-status-color-reserved" wx:if="{{theData.statusText==='已预订'}}">{{theData.statusText}}</view>
-    <view class="status order-status-color-canceled" wx:if="{{theData.statusText==='已取消'}}">{{theData.statusText}}</view>
+    <view class="status order-status-color-canceledOrClosed" wx:if="{{theData.statusText==='已取消'}}">{{theData.statusText}}</view>
     <view class="status order-status-color-unpaid" wx:if="{{theData.statusText==='未付款'}}">{{theData.statusText}}</view>
+    <view class="status order-status-color-canceledOrClosed" wx:if="{{theData.statusText==='已关闭'}}">{{theData.statusText}}</view>
     <view class="status order-status-color-paid" wx:if="{{theData.statusText==='已付款'}}">{{theData.statusText}}</view>
     <view class="status order-status-color-shipped" wx:if="{{theData.statusText==='已发货'}}">{{theData.statusText}}</view>
     <view class="status order-status-color-completed" wx:if="{{theData.statusText==='已完结'}}">{{theData.statusText}}</view>

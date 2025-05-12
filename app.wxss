@@ -45,7 +45,7 @@
 .order-status-color-reserved {
   color: #10B981;
 }
-.order-status-color-canceled {
+.order-status-color-canceledOrClosed {
   color: #DC2626;
 }
 .order-status-color-unpaid {

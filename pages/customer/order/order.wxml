@@ -23,8 +23,9 @@
           <image class="orderId-copy" src="../../../images/common/copy.png" mode="" bind:tap="copyOrderId" data-text="{{item.order_no}}" />
         </view>
         <view class="order-status order-status-color-reserved" wx:if="{{item.statusText==='已预订'}}">{{item.statusText}}</view>
-        <view class="order-status order-status-color-canceled" wx:if="{{item.statusText==='已取消'}}">{{item.statusText}}</view>
+        <view class="order-status order-status-color-canceledOrClosed" wx:if="{{item.statusText==='已取消'}}">{{item.statusText}}</view>
         <view class="order-status order-status-color-unpaid" wx:if="{{item.statusText==='未付款'}}">{{item.statusText}}</view>
+        <view class="order-status order-status-color-canceledOrClosed" wx:if="{{item.statusText==='已关闭'}}">{{item.statusText}}</view>
         <view class="order-status order-status-color-paid" wx:if="{{item.statusText==='已付款'}}">{{item.statusText}}</view>
         <view class="order-status order-status-color-shipped" wx:if="{{item.statusText==='已发货'}}">{{item.statusText}}</view>
         <view class="order-status order-status-color-completed" wx:if="{{item.statusText==='已完结'}}">{{item.statusText}}</view>
