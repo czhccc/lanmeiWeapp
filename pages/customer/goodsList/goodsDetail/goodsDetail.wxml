@@ -54,6 +54,7 @@
   
 	<view class="bottom-bar">
 		<view class="buyBtn" bind:tap="toBuyOrOrder" wx:if="{{theData.batch_type === 'preorder'}}">预订</view>
+    <view class="buyBtn" bind:tap="toBuyOrOrder" wx:if="{{theData.batch_type==='preorder'&&theData.batch_preorder_finalPrice}}">预订已结束，交付中</view>
     <view class="buyBtn" bind:tap="toBuyOrOrder" wx:if="{{theData.batch_type==='stock' && stock_RemainingQuantity}}">购买</view>
     <view class="buyBtn buyBtn-cant" wx:if="{{theData.batch_type==='stock' && !stock_RemainingQuantity}}">库存不足</view>
 	</view>

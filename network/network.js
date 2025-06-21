@@ -28,7 +28,7 @@ export default function(options, showToast=true) {
       success: res => {
         let data = res.data
 
-        if (data.code !== 200) { // 不成功
+        if (data.code !== 'SUCCESS') { // 不成功
 					if (data.code === 'INVALID_TOKEN') {
             wx.showToast({ 
               title: '请先登录😢', 

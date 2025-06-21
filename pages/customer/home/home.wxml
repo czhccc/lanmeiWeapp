@@ -63,8 +63,4 @@
     </view>
   </view>
 
-	<view style="margin-top: 100rpx;margin-left: 100rpx;" bindtap="return">
-		返回
-	</view>
-
 </view>
