@@ -63,4 +63,6 @@
     </view>
   </view>
 
+  <button style="width: 400rpx;margin-top: 100rpx;" bind:tap="testPay">测试微信支付</button>
+
 </view>

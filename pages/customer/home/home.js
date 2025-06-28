@@ -11,6 +11,10 @@ import {
   _getNewsListForWechat
 } from '../../../network/customer/news.js'
 
+import {
+  _getWxpayParams
+} from '../../../network/customer/wxpay.js'
+
 import dayjs from 'dayjs'
 
 Page({
@@ -112,9 +116,35 @@ Page({
       url: `/pages/customer/news/newsDetail/newsDetail?id=${item.id}`,
     })
   },
-  return() {
-    wx.navigateTo({
-      url: '/pages/temporary/home/home',
+
+
+  async testPay() {
+    const loginRes = await wx.login()
+    const code = loginRes.code
+
+    const wxpayParamsRes = await _getWxpayParams({
+      code,
+      orderNo: '202505021736454516936dNk'
     })
-  },
+    const wxpayParams = wxpayParamsRes.data
+    console.log('wxpayParams', wxpayParams)
+    wx.requestPayment({
+      timeStamp: wxpayParams.timeStamp,
+      nonceStr: wxpayParams.nonceStr,
+      package: wxpayParams.package,
+      signType: wxpayParams.signType,
+      paySign: wxpayParams.paySign,
+      success: (res) => { // res === { errMsg: "requestPayment:ok" }
+        wx.showToast({ title: '支付成功', icon: 'success' });
+        // 处理支付成功逻辑
+      },
+      fail: (err) => {
+        if (err.errMsg === 'requestPayment:fail cancel') {
+          wx.showToast({ title: '支付已取消', icon: 'none' });
+        } else {
+          wx.showToast({ title: '支付失败，请重试', icon: 'none' });
+        }
+      }
+    });
+  }
 })
